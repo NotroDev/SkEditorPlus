@@ -1,0 +1,19 @@
+﻿<hc:Window x:Class="SkEditorPlus.Windows.FontSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:SkEditorPlus"
+        mc:Ignorable="d"
+        Title="FontDialog" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TextBox x:Name="textFont" TextWrapping="Wrap" Text="" Margin="10,33,0,0" Height="23" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170" TextChanged="textFont_TextChanged"/>
+        <ListBox x:Name="lboxFont" HorizontalAlignment="Left" Height="165" VerticalAlignment="Top" Width="170" Margin="10,75,0,0" SelectionChanged="lboxFont_SelectionChanged"/>
+
+        <Button x:Name="btnOK" Content="Zastosuj" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,33,0,0"
+                Click="btnOK_Click"/>
+        <Button x:Name="btnCancel" Content="Anuluj" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,75,0,0"/>
+
+    </Grid>
+</hc:Window>

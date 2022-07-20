@@ -1,0 +1,18 @@
+﻿<hc:Window x:Name="optionWindow" x:Class="SkEditorPlus.Windows.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:SkEditorPlus"
+        mc:Ignorable="d"
+        Title="Ustawienia" Height="450" Width="800" ResizeMode="NoResize" Loaded="OnWindowLoad" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,24,0,0" TextWrapping="Wrap" Text="Czcionka edytora:" VerticalAlignment="Top" FontSize="16" FontFamily="Cascadia Mono"/>
+        <Button x:Name="fontChooseButton" Content="Wybierz" HorizontalAlignment="Left" Margin="177,18,0,0" VerticalAlignment="Top" Click="FontButtonClick"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Autozapis:" VerticalAlignment="Top" FontSize="16" FontFamily="Cascadia Mono"/>
+        <CheckBox Content="" HorizontalAlignment="Left" Margin="118,66,0,0" VerticalAlignment="Top" Background="#FF1C1C1C" Width="16" RenderTransformOrigin="-2.181,0.19" Checked="AutoSaveChecked"/>
+
+    </Grid>
+</hc:Window>
