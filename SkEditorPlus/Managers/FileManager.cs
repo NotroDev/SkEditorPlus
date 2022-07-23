@@ -17,20 +17,15 @@ namespace SkEditorPlus.Managers
 {
     public class FileManager
     {
-        public static TabControl tabControl = WindowManager.getMainWindow().tabControl;
-
-        static FileManager instance;
-
+        TabControl tabControl;
         static Regex regex = new("Nowy plik [0-9]+");
 
-        public static FileManager GetInstance()
+        public FileManager(SkEditorAPI skEditor)
         {
-            if (instance == null)
-                instance = new FileManager();
-            return instance;
+            tabControl = skEditor.GetMainWindow().tabControl;
         }
 
-        public static TextEditor GetTextEditor()
+        public TextEditor GetTextEditor()
         {
             TextEditor textEditor = null;
             TabItem tp = tabControl.SelectedItem as TabItem;
@@ -39,7 +34,7 @@ namespace SkEditorPlus.Managers
             return textEditor;
         }
 
-        private static int UntitledCount()
+        int UntitledCount()
         {
             int itemIndex = 1;
             List<TabItem> tabItems = new List<TabItem>();
@@ -191,6 +186,7 @@ namespace SkEditorPlus.Managers
 
                 if (true)//extension.Equals(".sk"))
                 {
+                    /*
                     using (StreamReader s = new StreamReader(skriptHighlightingFile))
                     {
                         using (XmlTextReader reader = new XmlTextReader(s))
@@ -199,6 +195,7 @@ namespace SkEditorPlus.Managers
                                 ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
                         }
                     }
+                    */
                 }
             }
             if (ti.Header != null)

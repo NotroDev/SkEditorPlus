@@ -21,7 +21,7 @@ namespace SkEditorPlus.Managers
                         new Button()
                         {
                             Label = "Pobierz SkEditor+",
-                            Url = "https://skript.pl/temat/49197-skeditor-remake-edytor-u%C5%82atwiaj%C4%85cy-pisanie-skrypt%C3%B3w/"
+                            Url = "https://skript.pl/temat/49197--"
                         }
                 },
                 Assets = new Assets()

@@ -1,15 +1,18 @@
-﻿<hc:Window x:Class="SkEditorPlus.MainWindow"
-           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-           xmlns:hc="https://handyorg.github.io/handycontrol"
-           mc:Ignorable="d"
-           Title="SkEditor+"
-           WindowStartupLocation="CenterScreen"
-           ShowTitle="False"
-           Height="450" 
-           Width="800" Loaded="OnWindowLoad" WindowState="Maximized" Drop="WindowDrop">
+﻿<hc:Window
+    x:Class="SkEditorPlus.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="SkEditor+"
+    Width="800"
+    Height="450"
+    Loaded="MainWindow_Loaded"
+    ShowTitle="False"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    mc:Ignorable="d">
     <hc:Window.NonClientAreaContent>
         <Grid x:Name="TitleBar">
             <Grid.ColumnDefinitions>
@@ -18,85 +21,97 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Image
-				Grid.Column="0"
-				Height="22"
-				Margin="4 5"
-				Source="Images/SkEditor.png"
-				RenderOptions.BitmapScalingMode="HighQuality"/>
+                Grid.Column="0"
+                Height="22"
+                Margin="4,5"
+                RenderOptions.BitmapScalingMode="HighQuality"
+                Source="Images/SkEditor.png" />
             <Menu
-				x:Name="MenuStrip"
-				Grid.Column="1"
-				Background="Transparent"
-				IsMainMenu="True"
-				hc:MenuAttach.IsEnabledAnimation="True"
+                x:Name="MenuBar"
+                Grid.Column="1"
+                Margin="0,2.5,0,0"
                 hc:MenuAttach.AnimationMode="Fade"
-				FontFamily="Open Sans Medium" Margin="0,2.5,0,0">
-                <MenuItem
-					x:Name="File_MenuItem"
-					Header="Plik">
+                hc:MenuAttach.IsEnabledAnimation="True"
+                Background="Transparent"
+                FontFamily="Open Sans Medium"
+                IsMainMenu="True">
+                <MenuItem x:Name="File_MenuItem" Header="Plik">
                     <MenuItem
-						x:Name="Menu_NewFile"
-						Header="Nowy"
-						InputGestureText="Ctrl+N" Click="MenuNewFile"  />
+                        x:Name="Menu_NewFile"
+                        Header="Nowy"
+                        InputGestureText="Ctrl+N" />
                     <MenuItem
-						x:Name="Menu_Open"
-						Header="Otwórz"
-						InputGestureText="Ctrl+O" Click="MenuOpenFile"  />
+                        x:Name="Menu_Open"
+                        Header="Otwórz"
+                        InputGestureText="Ctrl+O" />
                     <MenuItem
-						x:Name="Menu_Save"
-						Header="Zapisz"
-						InputGestureText="Ctrl+S" Click="MenuSave"  />
+                        x:Name="Menu_Save"
+                        Header="Zapisz"
+                        InputGestureText="Ctrl+S" />
                     <MenuItem
-						x:Name="Menu_SaveAs"
-						Header="Zapisz jako"
-						InputGestureText="Ctrl+Shift+S" Click="MenuSaveAs"  />
+                        x:Name="Menu_SaveAs"
+                        Header="Zapisz jako"
+                        InputGestureText="Ctrl+Shift+S" />
                     <MenuItem
-						x:Name="Publish_SaveAs"
-						Header="Opublikuj..."
-						InputGestureText="Ctrl+Shift+P" Click="MenuPublish"  />
+                        x:Name="Publish_SaveAs"
+                        Header="Opublikuj..."
+                        InputGestureText="Ctrl+Shift+P" />
 
                     <MenuItem
-						x:Name="Menu_CloseFile"
-						Header="Zamknij"
-						InputGestureText="Ctrl+W" Click="MenuCloseFile"  />
+                        x:Name="Menu_CloseFile"
+                        Header="Zamknij"
+                        InputGestureText="Ctrl+W" />
                 </MenuItem>
-                <MenuItem
-					x:Name="Edit_MenuItem"
-					Header="Edycja">
+                <MenuItem x:Name="Edit_MenuItem" Header="Edycja">
                     <MenuItem
-						x:Name="Menu_Generate"
-						Header="Wygeneruj komendę..."
-						InputGestureText="Ctrl+Shift+G" Click="MenuGenerate"  />
+                        x:Name="Menu_Generate"
+                        Header="Wygeneruj komendę..."
+                        InputGestureText="Ctrl+Shift+G" />
                 </MenuItem>
-                <MenuItem
-					x:Name="Other_MenuItem"
-					Header="Inne">
+                <MenuItem x:Name="Other_MenuItem" Header="Inne">
                     <MenuItem
-						x:Name="Menu_Settings"
-						Header="Ustawienia"
-						InputGestureText="Ctrl+Shift+O" Click="MenuSettings"  />
+                        x:Name="Menu_Settings"
+                        Header="Ustawienia"
+                        InputGestureText="Ctrl+Shift+O" />
                 </MenuItem>
             </Menu>
         </Grid>
     </hc:Window.NonClientAreaContent>
-    
+
     <Grid>
-        <hc:TabControl x:Name="tabControl" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="True" IsScrollable="True" ShowOverflowButton="True" SelectionChanged="TabChanged" TabItemWidth="150"  hc:TabItem.Closed="TabClosed" ShowContextMenu="False" AllowDrop="True"/>
+        <hc:TabControl
+            x:Name="tabControl"
+            hc:TabItem.Closed="TabClosed"
+            AllowDrop="True"
+            IsAnimationEnabled="True"
+            IsDraggable="True"
+            IsScrollable="True"
+            ShowCloseButton="True"
+            ShowContextMenu="False"
+            ShowOverflowButton="True"
+            TabItemWidth="150" />
     </Grid>
 
-    <hc:Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.New" Executed="ShortCutNewFile"/>
-        <CommandBinding Command="ApplicationCommands.Open" Executed="ShortCutOpen"/>
-        <CommandBinding Command="ApplicationCommands.Save" Executed="ShortCutSave"/>
-        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="ShortCutSaveAs"/>
-        <CommandBinding Command="ApplicationCommands.Close" Executed="ShortCutClose"/>
-    </hc:Window.CommandBindings>
-
     <Window.InputBindings>
-        <KeyBinding Modifiers="Ctrl" Key="N" Command="ApplicationCommands.New"/>
-        <KeyBinding Modifiers="Ctrl" Key="O" Command="ApplicationCommands.Open"/>
-        <KeyBinding Modifiers="Ctrl" Key="S" Command="ApplicationCommands.Save"/>
-        <KeyBinding Modifiers="Ctrl+Shift" Key="S" Command="ApplicationCommands.SaveAs"/>
-        <KeyBinding Modifiers="Ctrl" Key="W" Command="ApplicationCommands.Close"/>
+        <KeyBinding
+            Key="N"
+            Command="ApplicationCommands.New"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="O"
+            Command="ApplicationCommands.Open"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="S"
+            Command="ApplicationCommands.Save"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="S"
+            Command="ApplicationCommands.SaveAs"
+            Modifiers="Ctrl+Shift" />
+        <KeyBinding
+            Key="W"
+            Command="ApplicationCommands.Close"
+            Modifiers="Ctrl" />
     </Window.InputBindings>
 </hc:Window>

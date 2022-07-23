@@ -16,10 +16,12 @@ namespace SkEditorPlus.Windows
 {
     public partial class PublishWindow : HandyControl.Controls.Window
     {
-        public PublishWindow()
+        private SkEditorAPI skEditor;
+
+        public PublishWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
-
+            this.skEditor = skEditor;
             apiTextBox.Text = Properties.Settings.Default.ApiKey;
         }
 
@@ -31,7 +33,7 @@ namespace SkEditorPlus.Windows
                 return;
             }
 
-            if (string.IsNullOrEmpty(FileManager.GetTextEditor().Text))
+            if (string.IsNullOrEmpty(skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text))
             {
                 MessageBox.Error("Twój kod jest pusty!", "Błąd");
                 return;
@@ -55,7 +57,7 @@ namespace SkEditorPlus.Windows
                     {
                         key = apiTextBox.Text,
                         language = langComboBox.Text.ToLower(),
-                        content = FileManager.GetTextEditor().Text,
+                        content = skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text,
                         anonymous = anonymousCheckBox.IsChecked
                     });
                     await streamWriter.WriteAsync(json);

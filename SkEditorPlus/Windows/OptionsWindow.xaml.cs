@@ -9,9 +9,12 @@ namespace SkEditorPlus.Windows
 {
     public partial class OptionsWindow : HandyControl.Controls.Window
     {
-        public OptionsWindow()
+        private SkEditorAPI skEditor;
+
+        public OptionsWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
+            this.skEditor = skEditor;
         }
 
         private void OnWindowLoad(object sender, RoutedEventArgs e)
@@ -30,7 +33,7 @@ namespace SkEditorPlus.Windows
                 Properties.Settings.Default.Font = fontSelector.ResultFontFamily.Source;
                 Properties.Settings.Default.Save();
                 fontChooseButton.Content = Properties.Settings.Default.Font;
-                foreach (TabItem ti in FileManager.tabControl.Items)
+                foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
                 {
                     TextEditor textEditor = (TextEditor)ti.Content;
                     textEditor.FontFamily = new System.Windows.Media.FontFamily(fontSelector.ResultFontFamily.Source);

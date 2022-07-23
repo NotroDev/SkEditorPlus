@@ -17,11 +17,14 @@ namespace SkEditorPlus.Windows
 {
     public partial class GeneratorWindow : Window
     {
-        public GeneratorWindow()
+        private SkEditorAPI skEditor;
+
+        public GeneratorWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
+            this.skEditor = skEditor;
         }
-       
+
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
@@ -32,7 +35,7 @@ namespace SkEditorPlus.Windows
 
         private void Generate(object sender, System.Windows.RoutedEventArgs e)
         {
-            TextEditor editor = FileManager.GetTextEditor();
+            TextEditor editor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
 
             string code = $"\ncommand /{nameTextbox.Text}:";
             if (!string.IsNullOrEmpty(permTextbox.Text))
