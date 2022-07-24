@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
   <version>1.0.0.1</version>
-  <url>https://raw.githubusercontent.com/NotroDev/SkEditorPlus/main/SkEditor%2B%20Installer.msi?token=GHSAT0AAAAAABT3R26HUJCMBFQH4EI6XIDEYW5ACFA</url>
+  <url>https://github.com/NotroDev/SkEditorPlus/raw/main/SkEditor%2B.zip</url>
   <mandatory>false</mandatory>
 </item>
