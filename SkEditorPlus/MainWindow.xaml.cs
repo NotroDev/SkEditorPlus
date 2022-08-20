@@ -1,12 +1,13 @@
 ﻿using HandyControl.Controls;
-using ICSharpCode.AvalonEdit.Search;
+using HandyControl.Data;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.IO.MemoryMappedFiles;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus
 {
@@ -18,9 +19,22 @@ namespace SkEditorPlus
 
         public MainWindow(SkEditorAPI skEditor)
         {
+            string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
+            if (!Directory.Exists(appPath))
+            {
+                Directory.CreateDirectory(appPath);
+            }
+            if (!File.Exists(appPath + @"\SkriptHighlighting.xshd"))
+            {
+                OptionsWindow.UpdateSyntaxFile();
+            }
+
             startupFile = skEditor.GetStartupFile();
             this.skEditor = skEditor;
             InitializeComponent();
+
+            Process process = Process.GetCurrentProcess();
+            
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +55,11 @@ namespace SkEditorPlus
             {
                 fileManager.NewFile();
             }
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            RPCManager.Uninitialize();
         }
 
         private void TabClosed(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿using HandyControl.Controls;
-using ICSharpCode.AvalonEdit;
-using ICSharpCode.AvalonEdit.CodeCompletion;
+using AvalonEditB;
+using AvalonEditB.CodeCompletion;
 using Newtonsoft.Json.Linq;
 using SkEditorPlus.Data;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace SkEditorPlus.Managers
     {
         static CompletionWindow completionWindow;
 
-        static string apiKey = "658df780ec1e9b05";
+        static string apiKey = "";
         static string apiLink = $"https://docs.skunity.com/api/?key={apiKey}&function=getDocTypeSyntax&doctype=event";
 
         static TabItem tabItem = (TabItem)GetMainWindow().tabControl.SelectedItem;

@@ -3,10 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="Font" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">CascadiaMono</Value>
     </Setting>
     <Setting Name="ApiKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Wrapping" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

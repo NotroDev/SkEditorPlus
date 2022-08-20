@@ -1,12 +1,9 @@
-﻿using SkEditorPlus.Managers;
+﻿using HandyControl.Controls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.IO.MemoryMappedFiles;
+using System.Windows;
 
 namespace SkEditorPlus
 {
@@ -25,15 +22,35 @@ namespace SkEditorPlus
 
         public void Run()
         {
-            if (args.Length > 1)
+            if (args.Length > 0)
             {
-                if (!File.Exists(args[1])) 
+                if (!File.Exists(args[0]))
                     throw new FileNotFoundException("File not found... How did you do that?");
-                else startupFile = args[1];
+                else startupFile = args[0];
             }
+
             mainWindow = new MainWindow(this);
             WindowOpen?.Invoke(mainWindow, EventArgs.Empty);
             mainWindow.Show();
+
+            /*
+            string procName = Process.GetCurrentProcess().ProcessName;
+
+            Process[] processes = Process.GetProcessesByName(procName);
+
+            if (processes.Length > 1)
+            {
+
+                Process.GetCurrentProcess().Close();
+                return;
+            }
+            else
+            {
+                mainWindow = new MainWindow(this);
+                WindowOpen?.Invoke(mainWindow, EventArgs.Empty);
+                mainWindow.Show();
+            }
+            */
         }
 
         public MainWindow GetMainWindow()

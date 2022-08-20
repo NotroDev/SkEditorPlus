@@ -31,6 +31,11 @@ namespace SkEditorPlus.Managers
             });
         }
 
+        public static void Uninitialize()
+        {
+            client.Dispose();
+        }
+
         public static void SetFile(string name)
         {
             client.UpdateDetails($"Plik: {name}");

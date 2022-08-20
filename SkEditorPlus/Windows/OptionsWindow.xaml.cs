@@ -1,9 +1,11 @@
 ﻿using HandyControl.Controls;
 using HandyControl.Data;
-using ICSharpCode.AvalonEdit;
-using SkEditorPlus.Managers;
+using AvalonEditB;
 using System;
+using System.IO;
+using System.Net;
 using System.Windows;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Windows
 {
@@ -21,6 +23,7 @@ namespace SkEditorPlus.Windows
         {
             if (Properties.Settings.Default.Font == null) return;
             fontChooseButton.Content = Properties.Settings.Default.Font;
+            wrappingCheckbox.IsChecked = Properties.Settings.Default.Wrapping;
         }
 
         private void FontButtonClick(object sender, RoutedEventArgs e)
@@ -39,12 +42,6 @@ namespace SkEditorPlus.Windows
                     textEditor.FontFamily = new System.Windows.Media.FontFamily(fontSelector.ResultFontFamily.Source);
                 }
             }
-        }
-
-        private void FontChoosed(object sender, EventArgs e)
-        {
-            FontSelector fontSelector = (FontSelector)sender;
-            //fontSelector.ResultFontFamily.Source;
         }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
@@ -72,6 +69,61 @@ namespace SkEditorPlus.Windows
 
             System.Windows.Controls.CheckBox checkBox = (System.Windows.Controls.CheckBox)sender;
             checkBox.IsChecked = false;
+        }
+        
+        private void WrappingChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeWrapping(true);
+        }
+
+        private void WrappingUnChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeWrapping(false);
+        }
+
+        private void ChangeWrapping(bool wrapping)
+        {
+            Properties.Settings.Default.Wrapping = wrapping;
+            Properties.Settings.Default.Save();
+            foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
+            {
+                TextEditor textEditor = (TextEditor)ti.Content;
+                textEditor.WordWrap = wrapping;
+            }
+        }
+
+        private void UpdateSyntaxClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
+            {
+                Message = "Jeśli kontynujesz, zostanie pobrany oraz zamieniony plik podświetlania składni. Jeśli robiłeś jakieś zmiany w nim i nie chcesz ich stracić, zrób kopię.",
+                Caption = "Uwaga!",
+                ConfirmContent = "Kontynuuj",
+                CancelContent = "Anuluj",
+                Button = MessageBoxButton.OKCancel
+
+            });
+
+            if (result.Equals(MessageBoxResult.OK))
+            {
+                UpdateSyntaxFile();
+            }
+        }
+
+        public static void UpdateSyntaxFile()
+        {
+            string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
+            using var client = new WebClient();
+            Uri uri = new("https://notro.tech/resources/SkriptHighlighting.xshd");
+            try
+            {
+                client.DownloadFile(uri, appPath + @"\SkriptHighlighting.xshd");
+                Growl.Success("Pomyślnie zaaktualizowano plik podświetlania składni!", "SuccessMsg");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Error("Nie udało się pobrać pliku podświetlania składni!\nMasz połączenie z internetem?", "Błąd");
+            }
         }
     }
 }

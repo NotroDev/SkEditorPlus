@@ -1,11 +1,8 @@
-﻿using SkEditorPlus.Managers;
+﻿using AutoUpdaterDotNET;
+using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,15 +30,28 @@ namespace SkEditorPlus.Functionalities
                 new InputGestureCollection(new InputGesture[]
                 {
                     new KeyGesture(Key.G, ModifierKeys.Control | ModifierKeys.Shift)
+                }.ToList())),
+            new RoutedCommand("Format", typeof(MenuBarFunc),
+                new InputGestureCollection(new InputGesture[]
+                {
+                    new KeyGesture(Key.F, ModifierKeys.Control | ModifierKeys.Shift)
                 }.ToList()))
         };
         static readonly RoutedCommand[] otherApplicationCommands = new RoutedCommand[]
         {
-            new RoutedCommand("Settings", typeof(MenuBarFunc), 
-                new InputGestureCollection(new InputGesture[] 
-                { 
-                    new KeyGesture(Key.O, ModifierKeys.Control | ModifierKeys.Shift) 
-                }.ToList()))
+            new RoutedCommand("Settings", typeof(MenuBarFunc),
+                new InputGestureCollection(new InputGesture[]
+                {
+                    new KeyGesture(Key.O, ModifierKeys.Control | ModifierKeys.Shift)
+                }.ToList())),
+        };
+        static readonly RoutedCommand[] copilotApplicationCommand = new RoutedCommand[]
+        {
+            new RoutedCommand("Copilot", typeof(MenuBarFunc),
+                new InputGestureCollection(new InputGesture[]
+                {
+                    new KeyGesture(Key.C, ModifierKeys.Control | ModifierKeys.Shift)
+                }.ToList())),
         };
 
         FileManager fileManager;
@@ -75,6 +85,12 @@ namespace SkEditorPlus.Functionalities
             {
                 skEditor.GetMainWindow().CommandBindings.Add(new CommandBinding(command, Other_MenuItem_Click));
             }
+
+            foreach (RoutedCommand command in copilotApplicationCommand)
+            {
+                skEditor.GetMainWindow().CommandBindings.Add(new CommandBinding(command, fileManager.Copilot));
+            }
+
         }
 
         private void File_MenuItem_Click(object sender, RoutedEventArgs e)
@@ -115,8 +131,12 @@ namespace SkEditorPlus.Functionalities
             {
                 case "Menu_Generate":
                 case "Generate":
-                    GeneratorWindow generatorWindow = new(skEditor);
+                    GenerateWindow generatorWindow = new(skEditor);
                     generatorWindow.ShowDialog();
+                    break;
+                case "Menu_Format":
+                case "Format":
+                    fileManager.FormatCode();
                     break;
             }
         }
@@ -129,6 +149,10 @@ namespace SkEditorPlus.Functionalities
                 case "Settings":
                     OptionsWindow optionsWindow = new(skEditor);
                     optionsWindow.ShowDialog();
+                    break;
+                case "Menu_Update":
+                    AutoUpdater.InstalledVersion = new Version("1.0.0.0");
+                    AutoUpdater.Start("https://raw.githubusercontent.com/NotroDev/SkEditorPlus/main/update.xml");
                     break;
             }
         }

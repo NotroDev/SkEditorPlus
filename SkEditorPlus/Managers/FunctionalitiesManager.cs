@@ -1,11 +1,7 @@
-﻿using HandyControl.Controls;
-using SkEditorPlus.Functionalities;
+﻿using SkEditorPlus.Functionalities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using MessageBox = HandyControl.Controls.MessageBox;
 
@@ -26,10 +22,10 @@ namespace SkEditorPlus.Managers
                 {
                     var funcInstance = (IFunctionality)Activator.CreateInstance(type);
                     funcInstance.onEnable(skEditor);
-                } 
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error has been occurred while enabling one of functionalities.\n\nError message:\n" + ex.Message, 
+                    MessageBox.Show("Error has been occurred while enabling one of functionalities.\n\nError message:\n" + ex.Message,
                         "SkEditor+", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

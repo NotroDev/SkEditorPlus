@@ -25,7 +25,7 @@ namespace SkEditorPlus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CascadiaMono")]
         public string Font {
             get {
                 return ((string)(this["Font"]));
@@ -44,6 +44,18 @@ namespace SkEditorPlus.Properties {
             }
             set {
                 this["ApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Wrapping {
+            get {
+                return ((bool)(this["Wrapping"]));
+            }
+            set {
+                this["Wrapping"] = value;
             }
         }
     }

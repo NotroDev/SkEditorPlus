@@ -6,11 +6,87 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "AvalonEdit/6.1.3.50": {
+      "Autoupdater.NET.Official/1.7.4": {
+        "dependencies": {
+          "Microsoft.Web.WebView2": "1.0.1210.39"
+        },
         "runtime": {
-          "lib/net5.0-windows7.0/ICSharpCode.AvalonEdit.dll": {
-            "assemblyVersion": "6.1.3.50",
-            "fileVersion": "6.1.3.50"
+          "lib/net5.0-windows7.0/AutoUpdater.NET.dll": {
+            "assemblyVersion": "1.7.4.0",
+            "fileVersion": "1.7.4.0"
+          }
+        },
+        "resources": {
+          "lib/net5.0-windows7.0/ar/AutoUpdater.NET.resources.dll": {
+            "locale": "ar"
+          },
+          "lib/net5.0-windows7.0/cs/AutoUpdater.NET.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net5.0-windows7.0/da/AutoUpdater.NET.resources.dll": {
+            "locale": "da"
+          },
+          "lib/net5.0-windows7.0/de/AutoUpdater.NET.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0-windows7.0/es/AutoUpdater.NET.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0-windows7.0/fr/AutoUpdater.NET.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0-windows7.0/it/AutoUpdater.NET.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0-windows7.0/ja-JP/AutoUpdater.NET.resources.dll": {
+            "locale": "ja-JP"
+          },
+          "lib/net5.0-windows7.0/ko/AutoUpdater.NET.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net5.0-windows7.0/lv/AutoUpdater.NET.resources.dll": {
+            "locale": "lv"
+          },
+          "lib/net5.0-windows7.0/nl/AutoUpdater.NET.resources.dll": {
+            "locale": "nl"
+          },
+          "lib/net5.0-windows7.0/pl/AutoUpdater.NET.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net5.0-windows7.0/pt-BR/AutoUpdater.NET.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0-windows7.0/pt/AutoUpdater.NET.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/net5.0-windows7.0/ru/AutoUpdater.NET.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0-windows7.0/sk/AutoUpdater.NET.resources.dll": {
+            "locale": "sk"
+          },
+          "lib/net5.0-windows7.0/sv/AutoUpdater.NET.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net5.0-windows7.0/th/AutoUpdater.NET.resources.dll": {
+            "locale": "th"
+          },
+          "lib/net5.0-windows7.0/tr/AutoUpdater.NET.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net5.0-windows7.0/zh-tw/AutoUpdater.NET.resources.dll": {
+            "locale": "zh-tw"
+          },
+          "lib/net5.0-windows7.0/zh/AutoUpdater.NET.resources.dll": {
+            "locale": "zh"
+          }
+        }
+      },
+      "AvalonEditB/1.4.1": {
+        "runtime": {
+          "lib/net472/AvalonEditB.dll": {
+            "assemblyVersion": "1.4.1.0",
+            "fileVersion": "1.4.1.0"
           }
         }
       },
@@ -34,7 +110,47 @@
           }
         }
       },
+      "HandyControls.Lang.pl/3.4.1": {
+        "resources": {
+          "lib/net5.0/pl/HandyControl.resources.dll": {
+            "locale": "pl"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/3.0.0": {},
+      "Microsoft.Web.WebView2/1.0.1210.39": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.1210.39",
+            "fileVersion": "1.0.1210.39"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.1210.39",
+            "fileVersion": "1.0.1210.39"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.1210.39",
+            "fileVersion": "1.0.1210.39"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.1210.39"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.1210.39"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.1210.39"
+          }
+        }
+      },
       "Microsoft.Win32.Registry/4.5.0": {
         "dependencies": {
           "System.Security.AccessControl": "4.5.0",
@@ -173,12 +289,19 @@
     }
   },
   "libraries": {
-    "AvalonEdit/6.1.3.50": {
+    "Autoupdater.NET.Official/1.7.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-PtR4iPGu965DMSaDs0RyGi1LK94kUwWIZUGx1Jpg5vJr52KKQPR+KMwIthcpgoQR6xJWKM2MkZ41setJXuzMWA==",
-      "path": "avalonedit/6.1.3.50",
-      "hashPath": "avalonedit.6.1.3.50.nupkg.sha512"
+      "sha512": "sha512-6xQWXg1yYspqLPBxKPWRMsdnPLFGYenMxfYS/xg30Q1PaEvk4U2jprd9dy6n/nn0vbB81oafuoTgpS6IFLlqgQ==",
+      "path": "autoupdater.net.official/1.7.4",
+      "hashPath": "autoupdater.net.official.1.7.4.nupkg.sha512"
+    },
+    "AvalonEditB/1.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EXNMbkSsiK8J+HfyBJ3RJNzbBP0spj8AUwTAJullypQrQr6MOi3JwZW5cl6IFdxPndpriK1d/L+ZiwUgFLrZwg==",
+      "path": "avaloneditb/1.4.1",
+      "hashPath": "avaloneditb.1.4.1.nupkg.sha512"
     },
     "DiscordRichPresence/1.0.175": {
       "type": "package",
@@ -194,12 +317,26 @@
       "path": "handycontrols/3.4.1",
       "hashPath": "handycontrols.3.4.1.nupkg.sha512"
     },
+    "HandyControls.Lang.pl/3.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CkXKsF1Zk8AWdfLolYqZOCEAZvoxIFQHvUM36doNQltJAuxSNuV+RejxEti6+oyYn2zcFeyR8BSkGXurzjWlHQ==",
+      "path": "handycontrols.lang.pl/3.4.1",
+      "hashPath": "handycontrols.lang.pl.3.4.1.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/3.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-TsETIgVJb/AKoYfSP+iCxkuly5d3inZjTdx/ItZLk2CxY85v8083OBS3uai84kK3/baLnS5/b5XGs6zR7SuuHQ==",
       "path": "microsoft.netcore.platforms/3.0.0",
       "hashPath": "microsoft.netcore.platforms.3.0.0.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.1210.39": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BjNSaIg/Dvct5o5fhiN8dWf3SZYzU8QZlqyd3Gtj24x3Of5AWH9aUcji4Esj1NJPfnVOgvJDTCeG7JsuhjL0Ew==",
+      "path": "microsoft.web.webview2/1.0.1210.39",
+      "hashPath": "microsoft.web.webview2.1.0.1210.39.nupkg.sha512"
     },
     "Microsoft.Win32.Registry/4.5.0": {
       "type": "package",

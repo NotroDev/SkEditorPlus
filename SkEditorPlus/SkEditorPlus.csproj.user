@@ -18,7 +18,13 @@
     <Page Update="Styles\SearchPanelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\GeneratorWindow.xaml">
+    <Page Update="Windows\GenerateWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Generators\GuiGenerator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Generators\CommandGenerator.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\PublishWindow.xaml">

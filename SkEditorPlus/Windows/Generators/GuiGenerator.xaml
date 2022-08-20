@@ -1,0 +1,21 @@
+﻿<hc:Window x:Name="generatorWindow" x:Class="SkEditorPlus.Windows.Generators.GuiGenerator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="Wygeneruj GUI" Height="350" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+    <Grid>
+        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Nazwa funkcji" hc:InfoElement.Necessary="True" TextChanged="FunctionNameChanged"/>
+        <hc:TextBox x:Name="titleTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Tytuł" hc:InfoElement.Necessary="True" Margin="0,58,0,0"/>
+        <hc:TextBox x:Name="rowsTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Ilość rzędów" hc:InfoElement.Necessary="True" Margin="0,116,0,0"/>
+
+
+        <Button Content="Wygeneruj" HorizontalAlignment="Left" Margin="216,285,0,0" Click="Generate" VerticalAlignment="Top"/>
+        <TextBlock x:Name="howToOpenText" HorizontalAlignment="Left" Margin="10,249.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="32"/>
+        <CheckBox x:Name="exampleItemCheckbox" Content="Dodaj przykładowy przedmiot" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="backgroundCheckbox" Content="Dodaj tło" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</hc:Window>

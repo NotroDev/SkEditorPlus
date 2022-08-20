@@ -1,6 +1,6 @@
-﻿using ICSharpCode.AvalonEdit.CodeCompletion;
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Editing;
+﻿using AvalonEditB.CodeCompletion;
+using AvalonEditB.Document;
+using AvalonEditB.Editing;
 using System;
 
 namespace SkEditorPlus.Data
