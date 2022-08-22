@@ -8,10 +8,14 @@
           "Microsoft.Web.WebView2": "[1.0.1210.39, 2.0.0)"
         },
         "compile": {
-          "lib/net5.0-windows7.0/AutoUpdater.NET.dll": {}
+          "lib/net5.0-windows7.0/AutoUpdater.NET.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net5.0-windows7.0/AutoUpdater.NET.dll": {}
+          "lib/net5.0-windows7.0/AutoUpdater.NET.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App"
@@ -85,10 +89,14 @@
       "AvalonEditB/1.4.1": {
         "type": "package",
         "compile": {
-          "lib/net472/AvalonEditB.dll": {}
+          "lib/net472/AvalonEditB.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net472/AvalonEditB.dll": {}
+          "lib/net472/AvalonEditB.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "DiscordRichPresence/1.0.175": {
@@ -98,19 +106,27 @@
           "Newtonsoft.Json": "12.0.2"
         },
         "compile": {
-          "lib/netstandard2.0/DiscordRPC.dll": {}
+          "lib/netstandard2.0/DiscordRPC.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/DiscordRPC.dll": {}
+          "lib/netstandard2.0/DiscordRPC.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
-      "HandyControls/3.4.1": {
+      "HandyControls/3.4.2": {
         "type": "package",
         "compile": {
-          "lib/net5.0/HandyControl.dll": {}
+          "lib/net5.0/HandyControl.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net5.0/HandyControl.dll": {}
+          "lib/net5.0/HandyControl.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
         }
       },
       "HandyControls.Lang.pl/3.4.1": {
@@ -133,14 +149,26 @@
       "Microsoft.Web.WebView2/1.0.1210.39": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {},
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {},
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {}
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "related": ".xml"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {},
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {},
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {}
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "related": ".xml"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "related": ".xml"
+          }
         },
         "build": {
           "build/_._": {}
@@ -167,7 +195,9 @@
           "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
+          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {}
@@ -189,10 +219,14 @@
           "Microsoft.NETCore.Platforms": "3.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/_._": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {}
+          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {
+            "related": ".xml"
+          }
         },
         "runtimeTargets": {
           "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll": {
@@ -204,10 +238,14 @@
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Stylet/1.3.6": {
@@ -216,10 +254,14 @@
           "System.Drawing.Common": "4.6.0"
         },
         "compile": {
-          "lib/net5.0-windows7.0/Stylet.dll": {}
+          "lib/net5.0-windows7.0/Stylet.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net5.0-windows7.0/Stylet.dll": {}
+          "lib/net5.0-windows7.0/Stylet.dll": {
+            "related": ".xml"
+          }
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -232,7 +274,9 @@
           "Microsoft.Win32.SystemEvents": "4.6.0"
         },
         "compile": {
-          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Drawing.Common.dll": {}
@@ -255,7 +299,9 @@
           "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.AccessControl.dll": {}
+          "ref/netstandard2.0/System.Security.AccessControl.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.AccessControl.dll": {}
@@ -273,7 +319,9 @@
           "Microsoft.NETCore.Platforms": "2.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {}
+          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
@@ -390,17 +438,17 @@
         "lib/netstandard2.0/DiscordRPC.xml"
       ]
     },
-    "HandyControls/3.4.1": {
-      "sha512": "KmtumWE8zuQ6qRIACqGVkmFmRZ4pQsk5EAV477Ns4LlGf0I8KkntRDiMZPB/Od46yFUpnGHw1yB9jIE3fIfphg==",
+    "HandyControls/3.4.2": {
+      "sha512": "El3GaLo+1XTdfpOjpx3e1LE9MAwGcj2sPNp+GfVCJYGlYQ/UsZhu8RWZP5NdcPs1EvPIh6DXLvgkQGV/vS7WPA==",
       "type": "package",
-      "path": "handycontrols/3.4.1",
+      "path": "handycontrols/3.4.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "docs/readme.md",
-        "handycontrols.3.4.1.nupkg.sha512",
+        "handycontrols.3.4.2.nupkg.sha512",
         "handycontrols.nuspec",
         "icon.png",
         "lib/net40/HandyControl.dll",
@@ -443,6 +491,10 @@
         "lib/net6.0/HandyControl.dll",
         "lib/net6.0/HandyControl.pdb",
         "lib/net6.0/HandyControl.xml",
+        "lib/net7.0/HandyControl.deps.json",
+        "lib/net7.0/HandyControl.dll",
+        "lib/net7.0/HandyControl.pdb",
+        "lib/net7.0/HandyControl.xml",
         "lib/netcoreapp3.0/HandyControl.deps.json",
         "lib/netcoreapp3.0/HandyControl.dll",
         "lib/netcoreapp3.0/HandyControl.pdb",
@@ -799,40 +851,42 @@
       "Autoupdater.NET.Official >= 1.7.4",
       "AvalonEditB >= 1.4.1",
       "DiscordRichPresence >= 1.0.175",
-      "HandyControls >= 3.4.1",
+      "HandyControls >= 3.4.2",
       "HandyControls.Lang.pl >= 3.4.1",
       "Newtonsoft.Json >= 13.0.1",
       "Stylet >= 1.3.6"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\notro\\.nuget\\packages\\": {},
+    "C:\\Users\\emtel\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\notro\\Desktop\\Projekty\\SkEditorPlus2\\SkEditorPlus\\SkEditorPlus.csproj",
+      "projectUniqueName": "C:\\Users\\emtel\\Source\\Repos\\SkEditorPlus\\SkEditorPlus\\SkEditorPlus.csproj",
       "projectName": "SkEditorPlus",
-      "projectPath": "C:\\Users\\notro\\Desktop\\Projekty\\SkEditorPlus2\\SkEditorPlus\\SkEditorPlus.csproj",
-      "packagesPath": "C:\\Users\\notro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\notro\\Desktop\\Projekty\\SkEditorPlus2\\SkEditorPlus\\obj\\",
+      "projectPath": "C:\\Users\\emtel\\Source\\Repos\\SkEditorPlus\\SkEditorPlus\\SkEditorPlus.csproj",
+      "packagesPath": "C:\\Users\\emtel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emtel\\Source\\Repos\\SkEditorPlus\\SkEditorPlus\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\notro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\emtel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0-windows7.0"
+        "net5.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\notro\\AppData\\Roaming\\Cosmos User Kit\\packages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/cenngo/api/v3/index.json": {},
+        "https://www.myget.org/F/handycontrols/api/v3/index.json": {}
       },
       "frameworks": {
         "net5.0-windows7.0": {
@@ -864,7 +918,7 @@
           },
           "HandyControls": {
             "target": "Package",
-            "version": "[3.4.1, )"
+            "version": "[3.4.2, )"
           },
           "HandyControls.Lang.pl": {
             "target": "Package",
@@ -885,7 +939,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -903,7 +958,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -912,7 +967,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Pakiet „AvalonEditB 1.4.1” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8” zamiast platformy docelowej projektu „net5.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
+      "message": "Pakiet „AvalonEditB 1.4.1” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net5.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
       "libraryId": "AvalonEditB",
       "targetGraphs": [
         "net5.0-windows7.0"

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\notro\Desktop\Projekty\SkEditorPlus2\SkEditorPlus\obj\Release\net5.0-windows\
+C:\Users\emtel\Source\Repos\SkEditorPlus\SkEditorPlus\obj\Release\net5.0-windows\
 SkEditorPlus
 none
 false
 TRACE;Core;RELEASE;NET;NET5_0;NETCOREAPP
-C:\Users\notro\Desktop\Projekty\SkEditorPlus2\SkEditorPlus\App.xaml
-11770616944
+C:\Users\emtel\Source\Repos\SkEditorPlus\SkEditorPlus\App.xaml
+121318429036
 1947600419
-24-1496706709
-211-855141838
-MainWindow.xaml;Properties\DesignTimeResources.xaml;Styles\SearchPanelStyle.xaml;Styles\TextEditorStyle.xaml;Windows\FontSelector.xaml;Windows\GenerateWindow.xaml;Windows\Generators\CommandGenerator.xaml;Windows\Generators\GuiGenerator.xaml;Windows\OptionsWindow.xaml;Windows\PublishWindow.xaml;Windows\ServerWindow.xaml;
+25-276358930
+2111663089543
+MainWindow.xaml;Properties\DesignTimeResources.xaml;Styles\SearchPanelStyle.xaml;Styles\TextEditorStyle.xaml;Windows\FontSelector.xaml;Windows\GenerateWindow.xaml;Windows\Generators\CommandGenerator.xaml;Windows\Generators\GuiGenerator.xaml;Windows\OptionsWindow.xaml;Windows\PublishWindow.xaml;Windows\ServerWindow.xaml;Windows\TooltipWindow.xaml;
 
 False
 

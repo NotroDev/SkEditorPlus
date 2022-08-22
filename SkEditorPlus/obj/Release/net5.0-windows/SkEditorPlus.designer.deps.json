@@ -102,7 +102,7 @@
           }
         }
       },
-      "HandyControls/3.4.1": {
+      "HandyControls/3.4.2": {
         "runtime": {
           "lib/net5.0/HandyControl.dll": {
             "assemblyVersion": "3.3.0.0",
@@ -310,12 +310,12 @@
       "path": "discordrichpresence/1.0.175",
       "hashPath": "discordrichpresence.1.0.175.nupkg.sha512"
     },
-    "HandyControls/3.4.1": {
+    "HandyControls/3.4.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KmtumWE8zuQ6qRIACqGVkmFmRZ4pQsk5EAV477Ns4LlGf0I8KkntRDiMZPB/Od46yFUpnGHw1yB9jIE3fIfphg==",
-      "path": "handycontrols/3.4.1",
-      "hashPath": "handycontrols.3.4.1.nupkg.sha512"
+      "sha512": "sha512-El3GaLo+1XTdfpOjpx3e1LE9MAwGcj2sPNp+GfVCJYGlYQ/UsZhu8RWZP5NdcPs1EvPIh6DXLvgkQGV/vS7WPA==",
+      "path": "handycontrols/3.4.2",
+      "hashPath": "handycontrols.3.4.2.nupkg.sha512"
     },
     "HandyControls.Lang.pl/3.4.1": {
       "type": "package",
