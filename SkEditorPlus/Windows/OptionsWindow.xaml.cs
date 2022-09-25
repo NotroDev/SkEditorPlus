@@ -1,8 +1,8 @@
-﻿using HandyControl.Controls;
+﻿using AvalonEditB;
+using HandyControl.Controls;
 using HandyControl.Data;
-using AvalonEditB;
+using SkEditorPlus.Managers;
 using System;
-using System.IO;
 using System.Net;
 using System.Windows;
 using MessageBox = HandyControl.Controls.MessageBox;
@@ -22,7 +22,11 @@ namespace SkEditorPlus.Windows
         private void OnWindowLoad(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.Font == null) return;
-            fontChooseButton.Content = Properties.Settings.Default.Font;
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Font))
+            {
+                fontChooseButton.Content = Properties.Settings.Default.Font;
+            }
+            else fontChooseButton.Content = "Wybierz czcionkę";
             wrappingCheckbox.IsChecked = Properties.Settings.Default.Wrapping;
         }
 
@@ -70,7 +74,7 @@ namespace SkEditorPlus.Windows
             System.Windows.Controls.CheckBox checkBox = (System.Windows.Controls.CheckBox)sender;
             checkBox.IsChecked = false;
         }
-        
+
         private void WrappingChecked(object sender, RoutedEventArgs e)
         {
             ChangeWrapping(true);
@@ -110,7 +114,7 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        public static void UpdateSyntaxFile()
+        public void UpdateSyntaxFile()
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             using var client = new WebClient();
@@ -119,6 +123,7 @@ namespace SkEditorPlus.Windows
             {
                 client.DownloadFile(uri, appPath + @"\SkriptHighlighting.xshd");
                 Growl.Success("Pomyślnie zaaktualizowano plik podświetlania składni!", "SuccessMsg");
+                skEditor.GetMainWindow().GetFileManager().OnTabChanged();
             }
             catch (Exception e)
             {

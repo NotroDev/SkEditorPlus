@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Font" Type="System.String" Scope="User">
-      <Value Profile="(Default)">CascadiaMono</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ApiKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

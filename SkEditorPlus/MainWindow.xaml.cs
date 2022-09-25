@@ -1,19 +1,16 @@
 ﻿using HandyControl.Controls;
-using HandyControl.Data;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.IO.MemoryMappedFiles;
 using System.Windows;
-using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus
 {
     public partial class MainWindow : HandyControl.Controls.Window
     {
-        private SkEditorAPI skEditor;
+        public SkEditorAPI skEditor;
         private FileManager fileManager;
         private readonly string startupFile;
 
@@ -26,7 +23,8 @@ namespace SkEditorPlus
             }
             if (!File.Exists(appPath + @"\SkriptHighlighting.xshd"))
             {
-                OptionsWindow.UpdateSyntaxFile();
+                OptionsWindow optionsWindow = new(skEditor);
+                optionsWindow.UpdateSyntaxFile();
             }
 
             startupFile = skEditor.GetStartupFile();
@@ -34,7 +32,7 @@ namespace SkEditorPlus
             InitializeComponent();
 
             Process process = Process.GetCurrentProcess();
-            
+
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)

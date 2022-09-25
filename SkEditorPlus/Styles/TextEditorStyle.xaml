@@ -8,7 +8,7 @@
         <Setter Property="Foreground" Value="#e6e6e6" />
         <Setter Property="ShowLineNumbers" Value="True" />
         <Setter Property="LineNumbersForeground" Value="#2884a8" />
-        <Setter Property="TextElement.FontFamily" Value="{StaticResource CascadiaMono}" />
+        <Setter Property="TextElement.FontFamily" Value="/Fonts/#Cascadia Mono" />
     </Style>
     <Style TargetType="avalonedit:LineNumberMargin">
         <Setter Property="Margin" Value="0,0,5,0" />

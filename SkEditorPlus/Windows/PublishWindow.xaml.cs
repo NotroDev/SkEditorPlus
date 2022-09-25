@@ -18,7 +18,7 @@ namespace SkEditorPlus.Windows
             apiTextBox.Text = Properties.Settings.Default.ApiKey;
         }
 
-        private async void PublishClick(object sender, System.Windows.RoutedEventArgs e)
+        private void PublishClick(object sender, System.Windows.RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(apiTextBox.Text))
             {

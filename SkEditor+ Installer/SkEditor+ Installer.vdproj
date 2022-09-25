@@ -209,15 +209,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SkEditor+"
-        "ProductCode" = "8:{A03858CA-C723-4601-B3D3-E112F3BBD3A7}"
-        "PackageCode" = "8:{F4BD0066-8399-40AA-982C-C025F2488B25}"
+        "ProductCode" = "8:{F7C71A89-4796-494B-80C8-864C6688E73C}"
+        "PackageCode" = "8:{EA1C0881-A699-4E16-A041-6142E7684455}"
         "UpgradeCode" = "8:{200FAE99-AF38-4F0C-A94A-BD51BEF792DF}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:NotroDev"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:Notro#5324"
@@ -759,7 +759,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_170ECCC168694F5D993973FB9D0F9AEE"
             {
-            "SourcePath" = "8:..\\SkEditorPlus\\obj\\Release\\net5.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\SkEditorPlus\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8F2D75B5989F428FB73C80E6A839E136"

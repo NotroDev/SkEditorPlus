@@ -2,6 +2,10 @@
 using AvalonEditB.Document;
 using AvalonEditB.Editing;
 using System;
+using SkEditorPlus.Windows;
+using SkEditorPlus.Windows.Generators;
+using System.Windows;
+using System.Collections.Generic;
 
 namespace SkEditorPlus.Data
 {
@@ -9,8 +13,8 @@ namespace SkEditorPlus.Data
     {
         public CompletionData(string text, string description = "Brak opisu")
         {
-            this.Text = text;
-            this.Description = description;
+            Text = text;
+            Description = description;
         }
 
         public System.Windows.Media.ImageSource Image
@@ -33,7 +37,20 @@ namespace SkEditorPlus.Data
         public void Complete(TextArea textArea, ISegment completionSegment,
             EventArgs insertionRequestEventArgs)
         {
-            textArea.Document.Replace(completionSegment, this.Text);
+            var caretOffset = textArea.Caret.Offset;
+            var line = textArea.Document.GetLineByOffset(caretOffset);
+            textArea.Document.Replace(line.Offset, caretOffset - line.Offset, "");
+
+            CommandGenerator commandGenerator = new(GetMainWindow().skEditor);
+            commandGenerator.ShowDialog();
         }
+        public static MainWindow GetMainWindow()
+        {
+            List<Window> windowList = new();
+            foreach (Window window in System.Windows.Application.Current.Windows)
+                windowList.Add(window);
+            return (MainWindow)windowList.Find(window => window.GetType() == typeof(MainWindow));
+        }
+
     }
 }

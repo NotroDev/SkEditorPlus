@@ -1,7 +1,6 @@
-﻿using HandyControl.Controls;
-using AvalonEditB;
+﻿using AvalonEditB;
 using AvalonEditB.Document;
-using System.Collections.Generic;
+using HandyControl.Controls;
 
 namespace SkEditorPlus.Windows.Generators
 {
@@ -69,7 +68,7 @@ namespace SkEditorPlus.Windows.Generators
             if ((bool)backgroundCheckbox.IsChecked)
                 code += $"\n\tset slot (numbers between 0 and {int.Parse(rowsTextBox.Text) * 9}) of {{_gui}} to black stained glass pane";
             if ((bool)exampleItemCheckbox.IsChecked)
-                code += $"\n\tset slot {int.Parse(rowsTextBox.Text) * 9/2} of {{_gui}} to diamond named \"&aPrzykładowy przedmiot\" with lore \"&7Oto opis tego\" and \"&7wspaniałego przedmiotu!\"\n\t";
+                code += $"\n\tset slot {int.Parse(rowsTextBox.Text) * 9 / 2} of {{_gui}} to diamond named \"&aPrzykładowy przedmiot\" with lore \"&7Oto opis tego\" and \"&7wspaniałego przedmiotu!\"\n\t";
             code += "\n\topen {_gui} to {_p}";
 
             code += "\n\non inventory click:";

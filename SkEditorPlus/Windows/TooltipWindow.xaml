@@ -9,19 +9,29 @@
     MinHeight="50"
     MaxWidth="300"
     MaxHeight="200"
-    Background="{DynamicResource BackgroundBrush}"
-    mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ScrollViewer
-            Grid.Row="0"
-            HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Auto">
-            <TextBlock x:Name="description" TextWrapping="Wrap" />
-        </ScrollViewer>
-        <DockPanel x:Name="dockpanel" Grid.Row="1" />
-    </Grid>
+    mc:Ignorable="d" Width="277" Height="116">
+    <Border Background="#2d2d30" BorderThickness="1.5" BorderBrush="{DynamicResource BorderBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="titleText" Grid.Row="0" HorizontalAlignment="Left" Margin="6,5,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Foreground="White" FontSize="18" FontFamily="Cascadia Code"/>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible"  CanContentScroll="True" Height="55" Width="269">
+                <TextBlock x:Name="descText" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Zmienne używające kropki do oddzielenia wartości mają utrudniony dostęp do każdej wartości, ponieważ przez takie ustawienie nie jest możliwe użycie pętli, więc każdą nazwę wartości należy pamiętać. Aby zapobiec temu problemowi, wśród skripterów przyjęło się użycie zmiennych grupowych." Foreground="White" Width="257" FontFamily="Open Sans Medium" FontSize="11.75" Margin="6,0,0,0" TextTrimming="None"/>
+            </ScrollViewer>
+            <TextBlock x:Name="fixText" Grid.Row="3" HorizontalAlignment="Left" Margin="6,12,0,0" TextWrapping="Wrap" Text="Fix" VerticalAlignment="Top" Foreground="#FF376ED4" FontSize="11" FontFamily="Cascadia Code" Width="196" MouseEnter="OnFixMouseEnter" MouseLeave="OnFixMouseLeave" MouseLeftButtonUp="OnFixClick"/>
+            <Separator HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Height="2" RenderTransformOrigin="0.5,0.5" Width="274" Background="{DynamicResource BorderBrush}">
+                <Separator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1" ScaleY="2"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Separator.RenderTransform>
+            </Separator>
+        </Grid>
+    </Border>
 </UserControl>

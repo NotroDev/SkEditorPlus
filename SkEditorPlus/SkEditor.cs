@@ -1,9 +1,5 @@
-﻿using HandyControl.Controls;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.IO;
-using System.IO.MemoryMappedFiles;
-using System.Windows;
 
 namespace SkEditorPlus
 {

@@ -1,6 +1,6 @@
-﻿using HandyControl.Controls;
-using AvalonEditB;
+﻿using AvalonEditB;
 using AvalonEditB.Document;
+using HandyControl.Controls;
 using System.Collections.Generic;
 
 namespace SkEditorPlus.Windows.Generators
