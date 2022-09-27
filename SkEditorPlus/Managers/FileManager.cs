@@ -217,12 +217,21 @@ namespace SkEditorPlus.Managers
                     case '(':
                         textToReplace = "()";
                         break;
-                    case '%':
-                        textToReplace = "%%";
+                    case '[':
+                        textToReplace = "[]";
                         break;
                 }
                 if (!string.IsNullOrEmpty(textToReplace))
                 {
+                    TextEditor codeEditor = GetTextEditor();
+                    int caretOffset = codeEditor.CaretOffset;
+                    int lineStartOffset = codeEditor.Document.GetLineByOffset(caretOffset).Offset;
+                    string textBeforeCaret = codeEditor.Document.GetText(lineStartOffset, caretOffset - lineStartOffset);
+                    int quotesCount = textBeforeCaret.Count(c => c == '"');
+                    if (quotesCount % 2 == 1)
+                    {
+                        return;
+                    }
                     GetTextEditor().Document.Insert(GetTextEditor().CaretOffset, textToReplace);
                     e.Handled = true;
                     GetTextEditor().CaretOffset--;

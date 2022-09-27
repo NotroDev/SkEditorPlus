@@ -16,5 +16,5 @@ C:\Users\Notro\Desktop\Projekty\SkEditorPlus\SkEditorPlus\App.xaml
 214468920012
 MainWindow.xaml;Properties\DesignTimeResources.xaml;Styles\SearchPanelStyle.xaml;Styles\TextEditorStyle.xaml;Windows\FontSelector.xaml;Windows\GenerateWindow.xaml;Windows\Generators\CommandGenerator.xaml;Windows\Generators\GuiGenerator.xaml;Windows\OptionsWindow.xaml;Windows\PublishWindow.xaml;Windows\ServerWindow.xaml;Windows\TooltipWindow.xaml;
 
-True
+False
 
