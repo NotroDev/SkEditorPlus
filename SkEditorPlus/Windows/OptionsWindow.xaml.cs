@@ -3,7 +3,10 @@ using HandyControl.Controls;
 using HandyControl.Data;
 using SkEditorPlus.Managers;
 using System;
+using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 using MessageBox = HandyControl.Controls.MessageBox;
 
@@ -28,6 +31,8 @@ namespace SkEditorPlus.Windows
             }
             else fontChooseButton.Content = "Wybierz czcionkę";
             wrappingCheckbox.IsChecked = Properties.Settings.Default.Wrapping;
+            autoSecondCharCheckbox.IsChecked = Properties.Settings.Default.AutoSecondCharacter;
+            discordRpcCheckbox.IsChecked = Properties.Settings.Default.DiscordRPC;
         }
 
         private void FontButtonClick(object sender, RoutedEventArgs e)
@@ -85,6 +90,26 @@ namespace SkEditorPlus.Windows
             ChangeWrapping(false);
         }
 
+        private void AutoCharChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeAutoChar(true);
+        }
+
+        private void AutoCharUnChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeAutoChar(false);
+        }
+
+        private void DiscordRpcChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeDiscordRpc(true);
+        }
+
+        private void DiscordRpcUnChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeDiscordRpc(false);
+        }
+
         private void ChangeWrapping(bool wrapping)
         {
             Properties.Settings.Default.Wrapping = wrapping;
@@ -94,6 +119,18 @@ namespace SkEditorPlus.Windows
                 TextEditor textEditor = (TextEditor)ti.Content;
                 textEditor.WordWrap = wrapping;
             }
+        }
+
+        private void ChangeAutoChar(bool autoChar)
+        {
+            Properties.Settings.Default.AutoSecondCharacter = autoChar;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ChangeDiscordRpc(bool discordRpc)
+        {
+            Properties.Settings.Default.DiscordRPC = discordRpc;
+            Properties.Settings.Default.Save();
         }
 
         private void UpdateSyntaxClick(object sender, RoutedEventArgs e)
@@ -114,21 +151,29 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        public void UpdateSyntaxFile()
+        public async void UpdateSyntaxFile()
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
-            using var client = new WebClient();
+            using var client = new HttpClient();
             Uri uri = new("https://notro.tech/resources/SkriptHighlighting.xshd");
             try
             {
-                client.DownloadFile(uri, appPath + @"\SkriptHighlighting.xshd");
+                File.Delete(appPath + @"\SkriptHighlighting.xshd");
+                await DownloadFileTaskAsync(client, uri, appPath + @"\SkriptHighlighting.xshd");
                 Growl.Success("Pomyślnie zaaktualizowano plik podświetlania składni!", "SuccessMsg");
                 skEditor.GetMainWindow().GetFileManager().OnTabChanged();
             }
             catch (Exception e)
             {
-                MessageBox.Error("Nie udało się pobrać pliku podświetlania składni!\nMasz połączenie z internetem?", "Błąd");
+                MessageBox.Error($"Nie udało się pobrać pliku podświetlania składni!\nMasz połączenie z internetem?\n\n{e.Message}", "Błąd");
             }
+        }
+
+        public static async Task DownloadFileTaskAsync(HttpClient client, Uri uri, string FileName)
+        {
+            using var s = await client.GetStreamAsync(uri);
+            using var fs = new FileStream(FileName, FileMode.CreateNew);
+            await s.CopyToAsync(fs);
         }
     }
 }

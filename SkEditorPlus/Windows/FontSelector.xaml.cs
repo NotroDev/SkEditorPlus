@@ -30,6 +30,10 @@ namespace SkEditorPlus.Windows
                 else
                     listFont.Add(item.ToString());
             }
+            if (!listFont.Contains("Cascadia Mono"))
+            {
+                listFont.Add("Cascadia Mono");
+            }
             listFont.Sort();
             lboxFont.ItemsSource = listFont;
 

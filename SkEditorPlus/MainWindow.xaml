@@ -13,7 +13,8 @@
     ShowTitle="False"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}">
     <hc:Window.NonClientAreaContent>
         <Grid x:Name="TitleBar">
             <Grid.ColumnDefinitions>
@@ -78,6 +79,9 @@
                         x:Name="Menu_Settings"
                         Header="Ustawienia"
                         InputGestureText="Ctrl+Shift+O" />
+                    <MenuItem
+                        x:Name="Menu_ChangeSyntax"
+                        Header="Zmień podświetlanie składni na Skript"/>
                     <!--
                     <MenuItem
                         x:Name="Menu_Update"

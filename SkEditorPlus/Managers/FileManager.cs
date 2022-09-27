@@ -6,11 +6,10 @@ using HandyControl.Controls;
 using HandyControl.Data;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
-using OpenAI_API;
 using SkEditorPlus.Windows;
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
@@ -88,6 +87,8 @@ namespace SkEditorPlus.Managers
             searchPanel.ShowReplace = true;
             searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
 
+            searchPanel.Localization = new Data.Localization();
+
             codeEditor.PreviewMouseWheel += EditorMouseWheel;
             codeEditor.MouseHover += TextEditorMouseHover;
 
@@ -111,6 +112,8 @@ namespace SkEditorPlus.Managers
         public void Save()
         {
             TabItem ti = tabControl.SelectedItem as TabItem;
+            
+            if (ti == null) return;
 
             if (ti.ToolTip != null)
             {
@@ -130,6 +133,8 @@ namespace SkEditorPlus.Managers
 
         public void SaveDialog()
         {
+            TabItem ti = tabControl.SelectedItem as TabItem;
+            if (ti == null) return;
             SaveFileDialog saveFile = new()
             {
                 Filter = "Skrypt (*.sk)|*.sk|Wszystkie pliki (*.*)|*.*"
@@ -137,7 +142,6 @@ namespace SkEditorPlus.Managers
             if (saveFile.ShowDialog() == true)
             {
                 GetTextEditor().Save(saveFile.FileName);
-                TabItem ti = tabControl.SelectedItem as TabItem;
                 ti.ToolTip = saveFile.FileName.ToString();
                 ti.Header = saveFile.SafeFileName;
                 OnTabChanged();
@@ -197,15 +201,37 @@ namespace SkEditorPlus.Managers
 
         private void OnTextEntering(object sender, TextCompositionEventArgs e)
         {
-            char ch = e.Text[0];
-            if (ch == '"')
+            if (Properties.Settings.Default.AutoSecondCharacter)
             {
-                e.Handled = true;
-                GetTextEditor().Document.Insert(GetTextEditor().CaretOffset, "\"\"");
-                GetTextEditor().CaretOffset--;
+                char ch = e.Text[0];
+
+                string textToReplace = "";
+                switch (ch)
+                {
+                    case '"':
+                        textToReplace = "\"\"";
+                        break;
+                    case '{':
+                        textToReplace = "{}";
+                        break;
+                    case '(':
+                        textToReplace = "()";
+                        break;
+                    case '%':
+                        textToReplace = "%%";
+                        break;
+                }
+                if (!string.IsNullOrEmpty(textToReplace))
+                {
+                    GetTextEditor().Document.Insert(GetTextEditor().CaretOffset, textToReplace);
+                    e.Handled = true;
+                    GetTextEditor().CaretOffset--;
+                }
             }
+
+
             return;
-            if (ch == ':')
+            if (':' == ':')
             {
                 DocumentLine currentLine = GetTextEditor().Document.GetLineByOffset(GetTextEditor().CaretOffset);
                 string currentLineText = GetTextEditor().Document.GetText(currentLine.Offset, currentLine.Length);
@@ -245,7 +271,7 @@ namespace SkEditorPlus.Managers
 
         public void Copilot(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void MakeCopilot()
@@ -292,26 +318,13 @@ namespace SkEditorPlus.Managers
 
             ChangeGeometry();
 
-            var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var skriptHighlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "SkriptHighlighting.xshd");
-
             if (ti.ToolTip != null)
             {
                 string extension = Path.GetExtension(ti.ToolTip.ToString());
 
                 if (extension.Equals(".sk"))
                 {
-                    try
-                    {
-                        using StreamReader s = new StreamReader(skriptHighlightingFile);
-                        using XmlTextReader reader = new XmlTextReader(s);
-                        GetTextEditor().SyntaxHighlighting =
-                            AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                    }
-                    catch (Exception e)
-                    {
-                        HandyControl.Controls.MessageBox.Show("Nie udało się wczytać pliku podświetlanaia składni.\n" + e.Message);
-                    }
+                    ChangeSyntax("Skript");
 
                 }
             }
@@ -409,7 +422,7 @@ namespace SkEditorPlus.Managers
             IconElement.SetWidth(tabItem, size);
         }
 
-        public async void FormatCode()
+        public void FormatCode()
         {
             FixDotVariables();
 
@@ -417,12 +430,12 @@ namespace SkEditorPlus.Managers
             string code = GetTextEditor().Text;
 
             string[] parts = Regex.Split(code, @"(?<=[:])");
-                
+
             code = "";
             foreach (string element in parts)
             {
                 // Remove whitespaces at the start and the end
-                
+
                 code += element.Trim() + "\n\t";
             }
             GetTextEditor().Text = code;
@@ -435,9 +448,8 @@ namespace SkEditorPlus.Managers
 
             Regex regex = new("{([^.}]*)\\.([^}]*)}");
 
-            foreach (Match variableMatch in regex.Matches(code))
+            foreach (Match variableMatch in regex.Matches(code).Cast<Match>())
             {
-                MessageBox.Show("test");
                 string variable = variableMatch.Value.Replace(".", "::");
                 code = code.Replace(variableMatch.Value, variable);
                 GetTextEditor().Text = code;
@@ -486,6 +498,7 @@ namespace SkEditorPlus.Managers
 
             if (tooltipWindow == null)
             {
+                return;
                 if (lineText.Contains('.'))
                 {
                     Regex rg = new("(?<=\\{)(.*?)(?=\\})");
@@ -561,7 +574,7 @@ namespace SkEditorPlus.Managers
             string word = GetWordAtMousePosition(e);
 
             if (string.IsNullOrEmpty(word)) return;
-            
+
             word = char.ToUpper(word[0]) + word.Substring(1);
             tooltipWindow = new(word, $"{word} akutualnie nie jest wsiperane przez skeditor+, prosze usunac", "lol", "https://youtu.be/3Jd3uELOLrA", true, TooltipWindow.FixType.URL, this);
             popup.PlacementTarget = sender as UIElement;
@@ -579,6 +592,23 @@ namespace SkEditorPlus.Managers
                 popup.IsOpen = false;
             };
             e.Handled = true;
+        }
+
+        public void ChangeSyntax(string syntax)
+        {
+            try
+            {
+                var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                var skriptHighlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "SkriptHighlighting.xshd");
+                using StreamReader s = new StreamReader(skriptHighlightingFile);
+                using XmlTextReader reader = new XmlTextReader(s);
+                GetTextEditor().SyntaxHighlighting =
+                    AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Nie udało się wczytać pliku podświetlania składni.\n" + e.Message);
+            }
         }
     }
 }

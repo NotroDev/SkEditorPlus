@@ -8,6 +8,8 @@ namespace SkEditorPlus.Managers
 
         public static void Initialize()
         {
+            if (!Properties.Settings.Default.DiscordRPC) return;
+
             client = new DiscordRpcClient("926880446246187089");
 
             client.Initialize();
@@ -21,7 +23,7 @@ namespace SkEditorPlus.Managers
                         new Button()
                         {
                             Label = "Pobierz SkEditor+",
-                            Url = "https://skript.pl/temat/49197--"
+                            Url = "https://skript.pl/temat/53624--"
                         }
                 },
                 Assets = new Assets()
@@ -33,11 +35,13 @@ namespace SkEditorPlus.Managers
 
         public static void Uninitialize()
         {
+            if (!Properties.Settings.Default.DiscordRPC) return;
             client.Dispose();
         }
 
         public static void SetFile(string name)
         {
+            if (!Properties.Settings.Default.DiscordRPC) return;
             client.UpdateDetails($"Plik: {name}");
         }
     }

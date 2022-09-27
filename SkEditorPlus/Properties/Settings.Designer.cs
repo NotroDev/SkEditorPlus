@@ -58,5 +58,29 @@ namespace SkEditorPlus.Properties {
                 this["Wrapping"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoSecondCharacter {
+            get {
+                return ((bool)(this["AutoSecondCharacter"]));
+            }
+            set {
+                this["AutoSecondCharacter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DiscordRPC {
+            get {
+                return ((bool)(this["DiscordRPC"]));
+            }
+            set {
+                this["DiscordRPC"] = value;
+            }
+        }
     }
 }

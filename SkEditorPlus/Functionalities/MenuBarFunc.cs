@@ -154,6 +154,10 @@ namespace SkEditorPlus.Functionalities
                     AutoUpdater.InstalledVersion = new Version("1.0.0.0");
                     AutoUpdater.Start("https://raw.githubusercontent.com/NotroDev/SkEditorPlus/main/update.xml");
                     break;
+                    
+                case "Menu_ChangeSyntax":
+                    fileManager.ChangeSyntax("Skript");
+                    break;
             }
         }
 
