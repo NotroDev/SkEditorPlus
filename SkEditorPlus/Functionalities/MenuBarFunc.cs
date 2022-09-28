@@ -150,6 +150,7 @@ namespace SkEditorPlus.Functionalities
                     OptionsWindow optionsWindow = new(skEditor);
                     optionsWindow.ShowDialog();
                     break;
+                    
                 case "Menu_Update":
                     AutoUpdater.InstalledVersion = new Version("1.0.0.0");
                     AutoUpdater.Start("https://raw.githubusercontent.com/NotroDev/SkEditorPlus/main/update.xml");
@@ -157,6 +158,13 @@ namespace SkEditorPlus.Functionalities
                     
                 case "Menu_ChangeSyntax":
                     fileManager.ChangeSyntax("Skript");
+                    break;
+                    
+                case "Menu_Parser":
+                    fileManager.OpenParser();
+                    break;
+                case "Menu_Docs":
+                    fileManager.OpenDocs();
                     break;
             }
         }

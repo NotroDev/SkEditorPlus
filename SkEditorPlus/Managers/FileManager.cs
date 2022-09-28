@@ -4,6 +4,7 @@ using AvalonEditB.Highlighting;
 using AvalonEditB.Search;
 using HandyControl.Controls;
 using HandyControl.Data;
+using Microsoft.Web.WebView2.Wpf;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using SkEditorPlus.Windows;
@@ -618,6 +619,53 @@ namespace SkEditorPlus.Managers
             {
                 MessageBox.Show("Nie udało się wczytać pliku podświetlania składni.\n" + e.Message);
             }
+        }
+
+        public void OpenParser()
+        {
+            WebView2 webBrowser = new();
+            webBrowser.Source = new Uri("https://parser.skunity.com/");
+            webBrowser.SourceChanged += (s, e) =>
+            {
+                webBrowser.Source = new Uri("https://parser.skunity.com/");
+            };
+
+            TabItem tabItem = new()
+            {
+                Header = "Parser",
+                ToolTip = "",
+                Content = webBrowser,
+                IsSelected = true,
+            };
+
+            System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
+
+            tabControl.Items.Add(tabItem);
+        }
+
+        public void OpenDocs()
+        {
+            WebView2 webBrowser = new();
+            webBrowser.Source = new Uri("https://docs.skunity.com/");
+            webBrowser.SourceChanged += (s, e) =>
+            {
+                if (!webBrowser.Source.ToString().Contains("docs.skunity.com"))
+                {
+                    webBrowser.Source = new Uri("https://docs.skunity.com/");
+                }
+            };
+
+            TabItem tabItem = new()
+            {
+                Header = "Dokumentacja",
+                ToolTip = "",
+                Content = webBrowser,
+                IsSelected = true,
+            };
+
+            System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
+
+            tabControl.Items.Add(tabItem);
         }
     }
 }

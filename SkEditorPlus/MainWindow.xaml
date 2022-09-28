@@ -82,6 +82,13 @@
                     <MenuItem
                         x:Name="Menu_ChangeSyntax"
                         Header="Zmień podświetlanie składni na Skript"/>
+                    <MenuItem
+                        x:Name="Menu_Parser"
+                        Header="Parser"/>
+                    <MenuItem
+                        x:Name="Menu_Docs"
+                        Header="Dokumentacja"/>
+                    
                     <!--
                     <MenuItem
                         x:Name="Menu_Update"
