@@ -434,6 +434,7 @@ namespace SkEditorPlus.Managers
 
         public void FormatCode()
         {
+            if (GetTextEditor() == null) return;
             FixDotVariables();
 
             return;
@@ -444,7 +445,6 @@ namespace SkEditorPlus.Managers
             code = "";
             foreach (string element in parts)
             {
-                // Remove whitespaces at the start and the end
 
                 code += element.Trim() + "\n\t";
             }
