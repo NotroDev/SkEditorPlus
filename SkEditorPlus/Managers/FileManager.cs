@@ -606,6 +606,7 @@ namespace SkEditorPlus.Managers
 
         public void ChangeSyntax(string syntax)
         {
+            if (GetTextEditor() == null) return;
             try
             {
                 var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
