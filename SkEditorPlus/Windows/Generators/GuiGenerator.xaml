@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Wygeneruj GUI" Height="350" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Nazwa funkcji" hc:InfoElement.Necessary="True" TextChanged="FunctionNameChanged"/>
-        <hc:TextBox x:Name="titleTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Tytuł" hc:InfoElement.Necessary="True" Margin="0,58,0,0"/>
-        <hc:TextBox x:Name="rowsTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Ilość rzędów" hc:InfoElement.Necessary="True" Margin="0,116,0,0"/>
+        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Nazwa funkcji" hc:InfoElement.Necessary="True" TextChanged="FunctionNameChanged" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="titleTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Tytuł" hc:InfoElement.Necessary="True" Margin="0,58,0,0" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="rowsTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Ilość rzędów" hc:InfoElement.Necessary="True" Margin="0,116,0,0" hc:InfoElement.ContentHeight="16"/>
 
 
         <Button Content="Wygeneruj" HorizontalAlignment="Left" Margin="216,285,0,0" Click="Generate" VerticalAlignment="Top"/>
