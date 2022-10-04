@@ -8,7 +8,7 @@ namespace SkEditorPlus.Functionalities
     {
         FileManager fileManager;
 
-        public void onEnable(SkEditorAPI skEditor)
+        public void OnEnable(SkEditorAPI skEditor)
         {
             fileManager = skEditor.GetMainWindow().GetFileManager();
             skEditor.GetMainWindow().tabControl.SelectionChanged += TabControl_SelectionChanged;

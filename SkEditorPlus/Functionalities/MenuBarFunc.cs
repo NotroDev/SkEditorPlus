@@ -1,6 +1,5 @@
 ﻿using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
-using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,7 +47,7 @@ namespace SkEditorPlus.Functionalities
         FileManager fileManager;
         SkEditorAPI skEditor;
 
-        public void onEnable(SkEditorAPI skEditor)
+        public void OnEnable(SkEditorAPI skEditor)
         {
             this.skEditor = skEditor;
             fileManager = skEditor.GetMainWindow().GetFileManager();
@@ -138,11 +137,11 @@ namespace SkEditorPlus.Functionalities
                     OptionsWindow optionsWindow = new(skEditor);
                     optionsWindow.ShowDialog();
                     break;
-                    
+
                 case "Menu_ChangeSyntax":
                     fileManager.ChangeSyntax("Skript");
                     break;
-                    
+
                 case "Menu_Parser":
                     fileManager.OpenParser();
                     break;
@@ -152,7 +151,7 @@ namespace SkEditorPlus.Functionalities
             }
         }
 
-        string GetName(object sender, RoutedEventArgs e)
+        static string GetName(object sender, RoutedEventArgs e)
         {
             if (e.GetType() == typeof(ExecutedRoutedEventArgs))
             {

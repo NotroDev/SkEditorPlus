@@ -8,7 +8,7 @@ namespace SkEditorPlus.Functionalities
     {
         MainWindow mainWindow;
 
-        public void onEnable(SkEditorAPI skEditor)
+        public void OnEnable(SkEditorAPI skEditor)
         {
             mainWindow = skEditor.GetMainWindow();
             mainWindow.Drop += MainWindow_Drop;

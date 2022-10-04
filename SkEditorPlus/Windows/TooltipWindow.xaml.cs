@@ -1,6 +1,7 @@
 ﻿using SkEditorPlus.Managers;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -13,15 +14,15 @@ namespace SkEditorPlus.Windows
 {
     public partial class TooltipWindow : UserControl
     {
-        private FileManager fileManager;
+        private readonly FileManager fileManager;
         public enum FixType
         {
             URL,
             FUNCTION
         }
         string fixUrlOrFunction = "";
-        FixType fixType;
-        
+        readonly FixType fixType;
+
         public TooltipWindow(string title, string description, string fix = null, string url = null, bool isFix = true, FixType fixType = FixType.URL, FileManager fm = null)
         {
             InitializeComponent();
@@ -40,10 +41,9 @@ namespace SkEditorPlus.Windows
             }
 
 
-            BrushConverter bc = new BrushConverter();
+            BrushConverter bc = new();
             Brush brush = (Brush)bc.ConvertFrom("#21201f");
-            
-            string text = descText.Text;
+
             string[] textSplit = descText.Text.Split("`");
             if (textSplit.Length != 3) return;
             descText.Inlines.Clear();
@@ -94,7 +94,7 @@ namespace SkEditorPlus.Windows
             string code = fileManager.GetTextEditor().Text;
 
             Regex regex = new("{([^.}]*)\\.([^}]*)}");
-            foreach (Match variableMatch in regex.Matches(code))
+            foreach (Match variableMatch in regex.Matches(code).Cast<Match>())
             {
                 string variable = variableMatch.Value.Replace(".", "::");
                 code = code.Replace(variableMatch.Value, variable);
@@ -106,7 +106,7 @@ namespace SkEditorPlus.Windows
         {
             string code = fileManager.GetTextEditor().Text;
             Regex regex = new("broadcast \"(.*)\"");
-            foreach (Match broadcastMatch in regex.Matches(code))
+            foreach (Match broadcastMatch in regex.Matches(code).Cast<Match>())
             {
                 string broadcast = broadcastMatch.Value.Replace("broadcast ", "");
                 code = "send " + code.Replace(broadcastMatch.Value, broadcast) + " to all players";

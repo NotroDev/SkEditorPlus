@@ -5,7 +5,7 @@ namespace SkEditorPlus.Windows
 {
     public partial class GenerateWindow : Window
     {
-        private SkEditorAPI skEditor;
+        private readonly SkEditorAPI skEditor;
 
         public GenerateWindow(SkEditorAPI skEditor)
         {

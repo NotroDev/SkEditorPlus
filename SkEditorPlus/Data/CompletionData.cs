@@ -1,11 +1,10 @@
 ﻿using AvalonEditB.CodeCompletion;
 using AvalonEditB.Document;
 using AvalonEditB.Editing;
-using System;
-using SkEditorPlus.Windows;
 using SkEditorPlus.Windows.Generators;
-using System.Windows;
+using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace SkEditorPlus.Data
 {

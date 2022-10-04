@@ -361,7 +361,7 @@ namespace SkEditorPlus.Managers
 
             string geometry;
             int size;
-            
+
             if (extension.Equals(".sk"))
             {
                 geometry = SkriptGeometry;

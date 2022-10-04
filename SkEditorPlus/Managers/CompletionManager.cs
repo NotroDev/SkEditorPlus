@@ -1,11 +1,7 @@
 ﻿using AvalonEditB;
 using AvalonEditB.CodeCompletion;
-using HandyControl.Controls;
-using Newtonsoft.Json.Linq;
 using SkEditorPlus.Data;
 using System.Collections.Generic;
-using System.Net;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Window = System.Windows.Window;
 
@@ -47,7 +43,7 @@ namespace SkEditorPlus.Managers
             {
                 data.Add(new CompletionData("Command", "test"));
             }
-            
+
             completionWindow.Show();
             completionWindow.Closed += delegate
             {

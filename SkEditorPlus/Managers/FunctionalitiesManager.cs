@@ -9,7 +9,7 @@ namespace SkEditorPlus.Managers
 {
     public class FunctionalitiesManager
     {
-        public void LoadAll(SkEditorAPI skEditor)
+        public static void LoadAll(SkEditorAPI skEditor)
         {
             var types = Assembly
                 .GetExecutingAssembly()
@@ -21,7 +21,7 @@ namespace SkEditorPlus.Managers
                 try
                 {
                     var funcInstance = (IFunctionality)Activator.CreateInstance(type);
-                    funcInstance.onEnable(skEditor);
+                    funcInstance.OnEnable(skEditor);
                 }
                 catch (Exception ex)
                 {

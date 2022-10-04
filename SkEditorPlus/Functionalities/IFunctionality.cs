@@ -2,6 +2,6 @@
 {
     public interface IFunctionality
     {
-        public void onEnable(SkEditorAPI skEditor);
+        public void OnEnable(SkEditorAPI skEditor);
     }
 }

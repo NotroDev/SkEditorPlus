@@ -1,10 +1,8 @@
 ﻿using AvalonEditB;
 using HandyControl.Controls;
 using HandyControl.Data;
-using SkEditorPlus.Managers;
 using System;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
