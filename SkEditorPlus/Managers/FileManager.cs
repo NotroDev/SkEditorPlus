@@ -40,8 +40,7 @@ namespace SkEditorPlus.Managers
         public TextEditor GetTextEditor()
         {
             TextEditor textEditor = null;
-            TabItem tp = tabControl.SelectedItem as TabItem;
-            if (tp != null)
+            if (tabControl.SelectedItem is TabItem tp)
                 textEditor = tp.Content as TextEditor;
             return textEditor;
         }
@@ -109,9 +108,8 @@ namespace SkEditorPlus.Managers
         public void Save()
         {
             if (GetTextEditor() == null) return;
-            TabItem ti = tabControl.SelectedItem as TabItem;
-            
-            if (ti == null) return;
+
+            if (tabControl.SelectedItem is not TabItem ti) return;
 
             if (ti.ToolTip != null)
             {
@@ -120,7 +118,7 @@ namespace SkEditorPlus.Managers
                     GetTextEditor().Save(ti.ToolTip.ToString());
                     if (ti.Header.ToString().EndsWith("*"))
                     {
-                        ti.Header = ti.Header.ToString().Substring(0, ti.Header.ToString().Length - 1);
+                        ti.Header = ti.Header.ToString()[..^1];
                     }
                     OnTabChanged();
                     return;
@@ -132,8 +130,7 @@ namespace SkEditorPlus.Managers
         public void SaveDialog()
         {
             if (GetTextEditor() == null) return;
-            TabItem ti = tabControl.SelectedItem as TabItem;
-            if (ti == null) return;
+            if (tabControl.SelectedItem is not TabItem ti) return;
             SaveFileDialog saveFile = new()
             {
                 Filter = "Skrypt (*.sk)|*.sk|Wszystkie pliki (*.*)|*.*"
@@ -253,7 +250,7 @@ namespace SkEditorPlus.Managers
                     }
                 }
 
-                if (clsw(currentLineText, new string[] { "command", "trigger", "if" }))
+                if (Clsw(currentLineText, new string[] { "command", "trigger", "if" }))
                 {
                     e.Handled = true;
                     GetTextEditor().Document.Insert(GetTextEditor().CaretOffset, ":\n");
@@ -265,7 +262,7 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        private bool clsw(string text, string[] startsWith)
+        private static bool Clsw(string text, string[] startsWith)
         {
             foreach (string s in startsWith)
             {
@@ -279,9 +276,7 @@ namespace SkEditorPlus.Managers
 
         public void OnTabChanged()
         {
-            TabItem ti = tabControl.SelectedItem as TabItem;
-
-            if (ti == null) return;
+            if (tabControl.SelectedItem is not TabItem ti) return;
 
             ChangeGeometry();
 
@@ -364,9 +359,9 @@ namespace SkEditorPlus.Managers
 
             string extension = Path.GetExtension(tabItem.ToolTip.ToString());
 
-            string geometry = "";
-            int size = 0;
-
+            string geometry;
+            int size;
+            
             if (extension.Equals(".sk"))
             {
                 geometry = SkriptGeometry;
@@ -522,7 +517,7 @@ namespace SkEditorPlus.Managers
             return GetTextEditor().Document.GetText(offsetStart, offsetEnd - offsetStart);
         }
 
-        private bool IsTodayFirstApril()
+        private static bool IsTodayFirstApril()
         {
             DateTime dateTime = DateTime.Now;
             if (dateTime.Month == 4)
@@ -542,7 +537,7 @@ namespace SkEditorPlus.Managers
 
             if (string.IsNullOrEmpty(word)) return;
 
-            word = char.ToUpper(word[0]) + word.Substring(1);
+            word = char.ToUpper(word[0]) + word[1..];
             tooltipWindow = new(word, $"{word} akutualnie nie jest wsiperane przez skeditor+, prosze usunac", "lol", "https://youtu.be/3Jd3uELOLrA", true, TooltipWindow.FixType.URL, this);
             popup.PlacementTarget = sender as UIElement;
             popup.Placement = PlacementMode.MousePoint;
@@ -568,8 +563,8 @@ namespace SkEditorPlus.Managers
             {
                 var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 var skriptHighlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "SkriptHighlighting.xshd");
-                using StreamReader s = new StreamReader(skriptHighlightingFile);
-                using XmlTextReader reader = new XmlTextReader(s);
+                using StreamReader s = new(skriptHighlightingFile);
+                using XmlTextReader reader = new(s);
                 GetTextEditor().SyntaxHighlighting =
                     AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
             }
@@ -581,8 +576,10 @@ namespace SkEditorPlus.Managers
 
         public void OpenParser()
         {
-            WebView2 webBrowser = new();
-            webBrowser.Source = new Uri("https://parser.skunity.com/");
+            WebView2 webBrowser = new()
+            {
+                Source = new Uri("https://parser.skunity.com/")
+            };
             webBrowser.SourceChanged += (s, e) =>
             {
                 webBrowser.Source = new Uri("https://parser.skunity.com/");
@@ -603,8 +600,10 @@ namespace SkEditorPlus.Managers
 
         public void OpenDocs()
         {
-            WebView2 webBrowser = new();
-            webBrowser.Source = new Uri("https://docs.skunity.com/");
+            WebView2 webBrowser = new()
+            {
+                Source = new Uri("https://docs.skunity.com/")
+            };
             webBrowser.SourceChanged += (s, e) =>
             {
                 if (!webBrowser.Source.ToString().Contains("docs.skunity.com"))
