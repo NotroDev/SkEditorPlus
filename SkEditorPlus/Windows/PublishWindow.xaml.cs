@@ -1,5 +1,6 @@
 ﻿using HandyControl.Controls;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -86,7 +87,11 @@ namespace SkEditorPlus.Windows
 
         private void CopyClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            System.Windows.Clipboard.SetText(urlTextBox.Text);
+            try
+            {
+                System.Windows.Clipboard.SetText(urlTextBox.Text);
+            }
+            catch { }
         }
 
         private static void OpenUrl(string url)

@@ -1,5 +1,4 @@
-﻿using AutoUpdaterDotNET;
-using SkEditorPlus.Managers;
+﻿using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
 using System.Linq;
@@ -45,14 +44,6 @@ namespace SkEditorPlus.Functionalities
                     new KeyGesture(Key.O, ModifierKeys.Control | ModifierKeys.Shift)
                 }.ToList())),
         };
-        static readonly RoutedCommand[] copilotApplicationCommand = new RoutedCommand[]
-        {
-            new RoutedCommand("Copilot", typeof(MenuBarFunc),
-                new InputGestureCollection(new InputGesture[]
-                {
-                    new KeyGesture(Key.C, ModifierKeys.Control | ModifierKeys.Shift)
-                }.ToList())),
-        };
 
         FileManager fileManager;
         SkEditorAPI skEditor;
@@ -86,11 +77,6 @@ namespace SkEditorPlus.Functionalities
                 skEditor.GetMainWindow().CommandBindings.Add(new CommandBinding(command, Other_MenuItem_Click));
             }
 
-            foreach (RoutedCommand command in copilotApplicationCommand)
-            {
-                skEditor.GetMainWindow().CommandBindings.Add(new CommandBinding(command, fileManager.Copilot));
-            }
-
         }
 
         private void File_MenuItem_Click(object sender, RoutedEventArgs e)
@@ -115,6 +101,7 @@ namespace SkEditorPlus.Functionalities
                     break;
                 case "Publish_SaveAs":
                 case "Publish":
+                    if (skEditor.GetMainWindow().GetFileManager().GetTextEditor() == null) return;
                     PublishWindow publishWindow = new(skEditor);
                     publishWindow.ShowDialog();
                     break;
@@ -131,6 +118,7 @@ namespace SkEditorPlus.Functionalities
             {
                 case "Menu_Generate":
                 case "Generate":
+                    if (skEditor.GetMainWindow().GetFileManager().GetTextEditor() == null) return;
                     GenerateWindow generatorWindow = new(skEditor);
                     generatorWindow.ShowDialog();
                     break;
@@ -149,11 +137,6 @@ namespace SkEditorPlus.Functionalities
                 case "Settings":
                     OptionsWindow optionsWindow = new(skEditor);
                     optionsWindow.ShowDialog();
-                    break;
-                    
-                case "Menu_Update":
-                    AutoUpdater.InstalledVersion = new Version("1.0.0.0");
-                    AutoUpdater.Start("https://raw.githubusercontent.com/NotroDev/SkEditorPlus/main/update.xml");
                     break;
                     
                 case "Menu_ChangeSyntax":

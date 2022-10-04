@@ -6,13 +6,10 @@ using HandyControl.Controls;
 using HandyControl.Data;
 using Microsoft.Web.WebView2.Wpf;
 using Microsoft.Win32;
-using Newtonsoft.Json.Linq;
 using SkEditorPlus.Windows;
 using System;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -29,7 +26,6 @@ namespace SkEditorPlus.Managers
         readonly TabControl tabControl;
         static readonly Regex regex = new("Nowy plik [0-9]+");
 
-        System.Windows.Controls.ToolTip toolTip = new();
         public Popup popup = new();
 
         readonly string SkriptGeometry = "M5.8418 5.92578C5.8418 6.28906 5.76758 6.60742 5.61914 6.88086C5.4707 7.1543 5.26367 7.38281 4.99805 7.56641C4.73242 7.74609 4.41211 7.88086 4.03711 7.9707C3.66602 8.06055 3.25586 8.10547 2.80664 8.10547C2.60352 8.10547 2.40039 8.09766 2.19727 8.08203C1.99805 8.06641 1.80469 8.04688 1.61719 8.02344C1.43359 8 1.25977 7.97266 1.0957 7.94141C0.931641 7.91016 0.783203 7.87695 0.650391 7.8418V6.83398C0.943359 6.94336 1.27148 7.0293 1.63477 7.0918C2.00195 7.1543 2.41797 7.18555 2.88281 7.18555C3.21875 7.18555 3.50391 7.16016 3.73828 7.10938C3.97656 7.05469 4.16992 6.97656 4.31836 6.875C4.4707 6.76953 4.58008 6.64258 4.64648 6.49414C4.7168 6.3457 4.75195 6.17578 4.75195 5.98438C4.75195 5.77734 4.69336 5.60156 4.57617 5.45703C4.46289 5.30859 4.3125 5.17773 4.125 5.06445C3.9375 4.94727 3.72266 4.8418 3.48047 4.74805C3.24219 4.65039 2.99805 4.55078 2.74805 4.44922C2.49805 4.34766 2.25195 4.23828 2.00977 4.12109C1.77148 4 1.55859 3.85938 1.37109 3.69922C1.18359 3.53516 1.03125 3.34375 0.914062 3.125C0.800781 2.90625 0.744141 2.64648 0.744141 2.3457C0.744141 2.08398 0.798828 1.82617 0.908203 1.57227C1.01758 1.31836 1.1875 1.09375 1.41797 0.898438C1.64844 0.699219 1.94336 0.539063 2.30273 0.417969C2.66602 0.296875 3.09766 0.236328 3.59766 0.236328C3.72656 0.236328 3.86523 0.242188 4.01367 0.253906C4.16602 0.265625 4.31836 0.283203 4.4707 0.306641C4.62695 0.326172 4.7793 0.349609 4.92773 0.376953C5.08008 0.404297 5.2207 0.433594 5.34961 0.464844V1.40234C5.04883 1.31641 4.74805 1.25195 4.44727 1.20898C4.14648 1.16211 3.85547 1.13867 3.57422 1.13867C2.97656 1.13867 2.53711 1.23828 2.25586 1.4375C1.97461 1.63672 1.83398 1.9043 1.83398 2.24023C1.83398 2.44727 1.89062 2.625 2.00391 2.77344C2.12109 2.92188 2.27344 3.05469 2.46094 3.17188C2.64844 3.28906 2.86133 3.39648 3.09961 3.49414C3.3418 3.58789 3.58789 3.68555 3.83789 3.78711C4.08789 3.88867 4.33203 4 4.57031 4.12109C4.8125 4.24219 5.02734 4.38672 5.21484 4.55469C5.40234 4.71875 5.55273 4.91211 5.66602 5.13477C5.7832 5.35742 5.8418 5.62109 5.8418 5.92578ZM12.7324 8H11.4199L8.55469 4.24414V8H7.51172V0.341797H8.55469V3.89844L11.3613 0.341797H12.5977L9.57422 3.98047L12.7324 8Z";
@@ -112,6 +108,7 @@ namespace SkEditorPlus.Managers
 
         public void Save()
         {
+            if (GetTextEditor() == null) return;
             TabItem ti = tabControl.SelectedItem as TabItem;
             
             if (ti == null) return;
@@ -134,6 +131,7 @@ namespace SkEditorPlus.Managers
 
         public void SaveDialog()
         {
+            if (GetTextEditor() == null) return;
             TabItem ti = tabControl.SelectedItem as TabItem;
             if (ti == null) return;
             SaveFileDialog saveFile = new()
@@ -277,47 +275,6 @@ namespace SkEditorPlus.Managers
                 }
             }
             return false;
-        }
-
-        public void Copilot(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MakeCopilot()
-        {
-            try
-            {
-                HttpClient client = new();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = client.GetAsync($"http://51.83.182.188:3567/code/?code={GetTextEditor().Text}&key=KAY_1&temperature=1").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = response.Content.ReadAsStringAsync().Result;
-                    dynamic data = JObject.Parse(result);
-
-                    string code = data.code;
-
-                    code = code.Replace("<maxq1ampersand>", "&");
-                    code = code.Replace("<maxq1hash>", "&");
-                    code = code.Replace("<maxq1procent>", "%");
-                    code = code.Replace("<maxq1plus>", "+");
-                    code = code.Replace("<maxq1equal>", "=");
-                    code = code.Replace("<maxq1quest>", "?");
-
-                    GetTextEditor().Text = code;
-
-                    TextEditor editor = GetTextEditor();
-
-                    int offset = editor.CaretOffset;
-                    DocumentLine line = editor.Document.GetLineByOffset(offset);
-                    editor.CaretOffset = editor.Document.TextLength;
-                }
-            }
-            catch (Exception)
-            {
-
-            }
         }
 
         public void OnTabChanged()

@@ -1,4 +1,5 @@
-﻿using HandyControl.Controls;
+﻿using Functionalities;
+using HandyControl.Controls;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
@@ -16,6 +17,10 @@ namespace SkEditorPlus
 
         public MainWindow(SkEditorAPI skEditor)
         {
+            NamedPipeManager pipeManager = new("SkEditor+");
+            pipeManager.StartServer();
+            pipeManager.ReceiveString += HandleNamedPipe_OpenRequest;
+
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             if (!Directory.Exists(appPath))
             {
@@ -48,6 +53,7 @@ namespace SkEditorPlus
                 TabItem currentTabItem = tabControl.SelectedItem as TabItem;
                 currentTabItem.ToolTip = startupFile;
                 currentTabItem.Header = Path.GetFileName(startupFile);
+                fileManager.OnTabChanged();
             }
             else
             {
@@ -58,6 +64,7 @@ namespace SkEditorPlus
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             RPCManager.Uninitialize();
+            Environment.Exit(0);
         }
 
         private void TabClosed(object sender, EventArgs e)
@@ -68,6 +75,43 @@ namespace SkEditorPlus
         public FileManager GetFileManager()
         {
             return fileManager;
+        }
+
+        public void HandleNamedPipe_OpenRequest(string filesToOpen)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (!string.IsNullOrEmpty(filesToOpen))
+                {
+                    TabItem lastTab = null;
+                    foreach (string file in filesToOpen.Split(Environment.NewLine))
+                    {
+                        if (string.IsNullOrEmpty(file))
+                        {
+                            continue;
+                        }
+                        fileManager.NewFile();
+                        fileManager.GetTextEditor().Load(file);
+                        TabItem currentTabItem = tabControl.SelectedItem as TabItem;
+                        currentTabItem.ToolTip = file;
+                        currentTabItem.Header = Path.GetFileName(file);
+                        lastTab = currentTabItem;
+                        fileManager.OnTabChanged();
+                    }
+
+
+                    if (lastTab != null)
+                        Dispatcher.InvokeAsync(() => tabControl.SelectedItem = lastTab);
+                }
+
+
+                if (WindowState == WindowState.Minimized)
+                    WindowState = WindowState.Normal;
+
+                this.Topmost = true;
+                this.Activate();
+                Dispatcher.BeginInvoke(new Action(() => { this.Topmost = false; }));
+            });
         }
     }
 }
