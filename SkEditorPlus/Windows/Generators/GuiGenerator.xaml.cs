@@ -24,7 +24,7 @@ namespace SkEditorPlus.Windows.Generators
 
         private void Generate(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(nameTextbox.Text))
+            if (string.IsNullOrWhiteSpace(nameTextbox.Text))
             {
                 MessageBox.Error("Nazwa GUI jest wymagana!", "Błąd");
                 return;

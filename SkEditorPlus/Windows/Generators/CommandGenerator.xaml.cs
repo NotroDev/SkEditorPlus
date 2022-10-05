@@ -27,22 +27,24 @@ namespace SkEditorPlus.Windows.Generators
 
         private void Generate(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(nameTextbox.Text))
+            if (string.IsNullOrWhiteSpace(nameTextbox.Text))
             {
                 MessageBox.Error("Nazwa komendy jest wymagana!", "Błąd");
                 return;
             }
 
-            if (!float.TryParse(cooldownTextbox.Text, out _))
+            if (!string.IsNullOrWhiteSpace(cooldownTextbox.Text))
             {
-                MessageBox.Error("Cooldown musi być liczbą!", "Błąd");
-                return;
-            }
-
-            if (cooldownComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Error("Wybierz jednostkę czasu!", "Błąd");
-                return;
+                if (!float.TryParse(cooldownTextbox.Text, out _))
+                {
+                    MessageBox.Error("Cooldown musi być liczbą!", "Błąd");
+                    return;
+                }
+                if (cooldownComboBox.SelectedIndex == -1)
+                {
+                    MessageBox.Error("Wybierz jednostkę czasu!", "Błąd");
+                    return;
+                }
             }
 
             TextEditor editor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
