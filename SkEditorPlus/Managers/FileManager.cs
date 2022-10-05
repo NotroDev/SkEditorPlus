@@ -17,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml;
+using static System.Net.WebRequestMethods;
 using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Managers
@@ -148,40 +149,46 @@ namespace SkEditorPlus.Managers
         {
             OpenFileDialog openFileDialog = new()
             {
-                Filter = "Skrypt (*.sk)|*.sk|Wszystkie pliki (*.*)|*.*"
+                Filter = "Skrypt (*.sk)|*.sk|Wszystkie pliki (*.*)|*.*",
+                Multiselect = true
             };
 
             if (openFileDialog.ShowDialog() == true)
             {
-                TextEditor codeEditor = new()
+                for (int i = 0; i < openFileDialog.FileNames.Length; i++)
                 {
-                    Style = Application.Current.FindResource("TextEditorStyle") as Style
-                };
-                codeEditor.TextChanged += OnTextChanged;
-                codeEditor.PreviewMouseWheel += EditorMouseWheel;
+                    TextEditor codeEditor = new()
+                    {
+                        Style = Application.Current.FindResource("TextEditorStyle") as Style
+                    };
+                    codeEditor.TextChanged += OnTextChanged;
+                    codeEditor.PreviewMouseWheel += EditorMouseWheel;
 
-                if (Properties.Settings.Default.Font != null)
-                {
-                    codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+                    if (Properties.Settings.Default.Font != null)
+                    {
+                        codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+                    }
+
+                    SearchPanel searchPanel = SearchPanel.Install(codeEditor);
+                    searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
+
+                    TabItem tabItem = new()
+                    {
+                        Header = openFileDialog.SafeFileNames[i],
+                        ToolTip = openFileDialog.FileNames[i],
+                        IsSelected = true,
+                        Content = codeEditor
+                    };
+                    System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
+                    tabControl.Items.Add(tabItem);
+
+                    GetTextEditor().Load(openFileDialog.FileNames[i]);
+                    if (tabItem.Header.ToString().EndsWith("*"))
+                    {
+                        tabItem.Header = tabItem.Header.ToString()[..^1];
+                    }
+                    ChangeGeometry();
                 }
-
-                SearchPanel searchPanel = SearchPanel.Install(codeEditor);
-                searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
-
-                TabItem tabItem = new()
-                {
-                    Header = openFileDialog.SafeFileName,
-                    ToolTip = openFileDialog.FileName,
-                    IsSelected = true,
-                    Content = codeEditor
-                };
-                System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
-
-                tabControl.Items.Add(tabItem);
-
-                GetTextEditor().Load(openFileDialog.FileName);
-                tabItem.Header = tabItem.Header.ToString()[..^1];
-                ChangeGeometry();
             }
         }
 
