@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Wygeneruj komendę" Height="425" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="Wygeneruj komendę" Height="485" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
         <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Nazwa" hc:InfoElement.Necessary="True" hc:InfoElement.ContentHeight="16"/>
         <hc:TextBox x:Name="permTextbox" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Uprawnienie" hc:InfoElement.ContentHeight="16"/>
@@ -20,8 +20,22 @@
             <hc:CheckComboBoxItem Content="console"/>
         </hc:CheckComboBox>
 
+        <hc:TextBox x:Name="cooldownTextbox" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" hc:InfoElement.Title="Cooldown" hc:InfoElement.ContentHeight="16" hc:InfoElement.Placeholder="Ilość"/>
+        <hc:ComboBox x:Name="cooldownComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="166,362,0,0" hc:InfoElement.Placeholder="Jednostka">
+            <hc:AutoCompleteTextBoxItem Content="ticks"/>
+            <hc:AutoCompleteTextBoxItem Content="seconds"/>
+            <hc:AutoCompleteTextBoxItem Content="minutes"/>
+            <hc:AutoCompleteTextBoxItem Content="hours"/>
+            <hc:AutoCompleteTextBoxItem Content="days"/>
+            <hc:AutoCompleteTextBoxItem Content="weeks"/>
+            <hc:AutoCompleteTextBoxItem Content="months"/>
+            <hc:AutoCompleteTextBoxItem Content="years"/>
+        </hc:ComboBox>
 
-        <Button Content="Wygeneruj" HorizontalAlignment="Left" Margin="216,360,0,0" Click="Generate" VerticalAlignment="Top"/>
+
+
+
+        <Button Content="Wygeneruj" HorizontalAlignment="Left" Margin="216,415,0,0" Click="Generate" VerticalAlignment="Top"/>
 
     </Grid>
 </hc:Window>

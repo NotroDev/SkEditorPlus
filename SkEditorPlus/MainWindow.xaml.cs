@@ -15,11 +15,17 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
+        public static string version = "1.1.1-ob";
+
         public MainWindow(SkEditorAPI skEditor)
         {
-            NamedPipeManager pipeManager = new("SkEditor+");
-            pipeManager.StartServer();
-            pipeManager.ReceiveString += HandleNamedPipe_OpenRequest;
+            try
+            {
+                NamedPipeManager pipeManager = new("SkEditor+");
+                pipeManager.StartServer();
+                pipeManager.ReceiveString += HandleNamedPipe_OpenRequest;
+            }
+            catch { }
 
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             if (!Directory.Exists(appPath))
@@ -79,39 +85,43 @@ namespace SkEditorPlus
 
         public void HandleNamedPipe_OpenRequest(string filesToOpen)
         {
-            Dispatcher.Invoke(() =>
+            try
             {
-                if (!string.IsNullOrEmpty(filesToOpen))
+                Dispatcher.Invoke(() =>
                 {
-                    TabItem lastTab = null;
-                    foreach (string file in filesToOpen.Split(Environment.NewLine))
+                    if (!string.IsNullOrEmpty(filesToOpen))
                     {
-                        if (string.IsNullOrEmpty(file))
+                        TabItem lastTab = null;
+                        foreach (string file in filesToOpen.Split(Environment.NewLine))
                         {
-                            continue;
+                            if (string.IsNullOrEmpty(file))
+                            {
+                                continue;
+                            }
+                            fileManager.NewFile();
+                            fileManager.GetTextEditor().Load(file);
+                            TabItem currentTabItem = tabControl.SelectedItem as TabItem;
+                            currentTabItem.ToolTip = file;
+                            currentTabItem.Header = Path.GetFileName(file);
+                            lastTab = currentTabItem;
+                            fileManager.OnTabChanged();
                         }
-                        fileManager.NewFile();
-                        fileManager.GetTextEditor().Load(file);
-                        TabItem currentTabItem = tabControl.SelectedItem as TabItem;
-                        currentTabItem.ToolTip = file;
-                        currentTabItem.Header = Path.GetFileName(file);
-                        lastTab = currentTabItem;
-                        fileManager.OnTabChanged();
+
+
+                        if (lastTab != null)
+                            Dispatcher.InvokeAsync(() => tabControl.SelectedItem = lastTab);
                     }
 
 
-                    if (lastTab != null)
-                        Dispatcher.InvokeAsync(() => tabControl.SelectedItem = lastTab);
-                }
+                    if (WindowState == WindowState.Minimized)
+                        WindowState = WindowState.Normal;
 
-
-                if (WindowState == WindowState.Minimized)
-                    WindowState = WindowState.Normal;
-
-                this.Topmost = true;
-                this.Activate();
-                Dispatcher.BeginInvoke(new Action(() => { this.Topmost = false; }));
-            });
+                    Topmost = true;
+                    Activate();
+                    Dispatcher.BeginInvoke(new Action(() => { Topmost = false; }));
+                });
+            }
+            catch { }
         }
     }
 }

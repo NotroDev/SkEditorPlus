@@ -9,7 +9,7 @@ namespace SkEditorPlus.Managers
 {
     public class FunctionalitiesManager
     {
-        public static void LoadAll(SkEditorAPI skEditor)
+        public void LoadAll(SkEditorAPI skEditor)
         {
             var types = Assembly
                 .GetExecutingAssembly()

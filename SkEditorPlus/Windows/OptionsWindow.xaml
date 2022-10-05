@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Ustawienia" Height="450" Width="800" ResizeMode="NoResize" Loaded="OnWindowLoad" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="Ustawienia" Height="450" Width="800" ResizeMode="NoResize" Loaded="OnWindowLoad" WindowStartupLocation="CenterScreen" KeyUp="OnKey" KeyDown="OnKeyDown">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
             <StackPanel hc:Growl.Token="SuccessMsg" VerticalAlignment="Top" Margin="0,10,10,10"/>

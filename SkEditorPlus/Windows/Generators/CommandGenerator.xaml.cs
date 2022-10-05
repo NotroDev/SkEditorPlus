@@ -2,6 +2,7 @@
 using AvalonEditB.Document;
 using HandyControl.Controls;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace SkEditorPlus.Windows.Generators
 {
@@ -29,6 +30,15 @@ namespace SkEditorPlus.Windows.Generators
             {
                 MessageBox.Error("Nazwa komendy jest wymagana!", "Błąd");
                 return;
+            }
+
+            if (string.IsNullOrEmpty(cooldownTextbox.Text))
+            {
+                if (cooldownComboBox.SelectedIndex == 0)
+                {
+                    MessageBox.Error("Wybierz jednostkę czasu!", "Błąd");
+                    return;
+                }
             }
 
             TextEditor editor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
@@ -83,6 +93,13 @@ namespace SkEditorPlus.Windows.Generators
             {
                 code += $"\n\texecutable by: {executableBy}";
             }
+            
+            if (!string.IsNullOrEmpty(cooldownTextbox.Text))
+            {
+                ComboBoxItem item = (ComboBoxItem)cooldownComboBox.SelectedItem;
+                code += $"\n\tcooldown: {cooldownTextbox.Text} {item.Content}";
+            }    
+
             code += "\n\ttrigger:\n\t\t";
 
             editor.Text += code;

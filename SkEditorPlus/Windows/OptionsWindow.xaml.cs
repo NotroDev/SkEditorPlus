@@ -6,6 +6,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Windows
@@ -13,6 +14,8 @@ namespace SkEditorPlus.Windows
     public partial class OptionsWindow : HandyControl.Controls.Window
     {
         private SkEditorAPI skEditor;
+
+        bool[] debugLetters = new bool[5];
 
         public OptionsWindow(SkEditorAPI skEditor)
         {
@@ -53,7 +56,7 @@ namespace SkEditorPlus.Windows
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Escape)
+            if (e.Key == Key.Escape)
             {
                 optionWindow.Close();
             }
@@ -172,6 +175,51 @@ namespace SkEditorPlus.Windows
             using var s = await client.GetStreamAsync(uri);
             using var fs = new FileStream(FileName, FileMode.CreateNew);
             await s.CopyToAsync(fs);
+        }
+
+        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+            switch (e.Key)
+            {
+                case Key.D:
+                    debugLetters[0] = true;
+                    break;
+                case Key.E:
+                    debugLetters[1] = true;
+                    break;
+                case Key.B:
+                    debugLetters[2] = true;
+                    break;
+                case Key.U:
+                    debugLetters[3] = true;
+                    break;
+                case Key.G:
+                    debugLetters[4] = true;
+                    break;
+                default:
+                    for (int i = 0; i < debugLetters.Length; i++)
+                    {
+                        debugLetters[i] = false;
+                    }
+                    break;
+            }
+
+            if (debugLetters[0] && debugLetters[1] && debugLetters[2] && debugLetters[3] && debugLetters[4])
+            {
+                // Copy to clipboard all system info
+                string systemInfo = "```\n";
+                systemInfo += $"System: {Environment.OSVersion}\n";
+                systemInfo += $"Platforma: {Environment.OSVersion.Platform}\n";
+                systemInfo += $"64-bit: {Environment.Is64BitOperatingSystem}\n".Replace("True", "Tak").Replace("False", "Nie");
+                systemInfo += $"Wersja .NET: {Environment.Version}\n";
+                systemInfo += $"Wersja SkEditora+: {MainWindow.version} \n```";
+
+                Clipboard.SetText(systemInfo);
+
+
+                debugLetters = new bool[5];
+            }
         }
     }
 }
