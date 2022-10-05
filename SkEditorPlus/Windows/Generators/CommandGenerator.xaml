@@ -16,8 +16,8 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="19,286,0,0" TextWrapping="Wrap" Text="Kto może używać komendy" VerticalAlignment="Top"/>
         <hc:CheckComboBox x:Name="executableByComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Width="285" Margin="0,307,0,0">
-            <hc:CheckComboBoxItem Content="player"/>
-            <hc:CheckComboBoxItem Content="console"/>
+            <hc:CheckComboBoxItem Content="Gracz" Tag="player"/>
+            <hc:CheckComboBoxItem Content="Konsola" Tag="console"/>
         </hc:CheckComboBox>
 
         <hc:TextBox x:Name="cooldownTextbox" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" hc:InfoElement.Title="Cooldown" hc:InfoElement.ContentHeight="16" hc:InfoElement.Placeholder="Ilość"/>

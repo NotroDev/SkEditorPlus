@@ -76,7 +76,7 @@ namespace SkEditorPlus.Windows.Generators
             List<string> selectedItems = new List<string>();
             foreach (CheckComboBoxItem item in checkComboBox.SelectedItems)
             {
-                selectedItems.Add(item.Content.ToString());
+                selectedItems.Add(item.Tag.ToString());
             }
 
             string executableBy = "";
