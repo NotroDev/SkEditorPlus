@@ -22,14 +22,14 @@
 
         <hc:TextBox x:Name="cooldownTextbox" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" hc:InfoElement.Title="Cooldown" hc:InfoElement.ContentHeight="16" hc:InfoElement.Placeholder="Ilość"/>
         <hc:ComboBox x:Name="cooldownComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="166,362,0,0" hc:InfoElement.Placeholder="Jednostka">
-            <hc:AutoCompleteTextBoxItem Content="ticks"/>
-            <hc:AutoCompleteTextBoxItem Content="seconds"/>
-            <hc:AutoCompleteTextBoxItem Content="minutes"/>
-            <hc:AutoCompleteTextBoxItem Content="hours"/>
-            <hc:AutoCompleteTextBoxItem Content="days"/>
-            <hc:AutoCompleteTextBoxItem Content="weeks"/>
-            <hc:AutoCompleteTextBoxItem Content="months"/>
-            <hc:AutoCompleteTextBoxItem Content="years"/>
+            <hc:AutoCompleteTextBoxItem Content="ticki" Tag="ticks"/>
+            <hc:AutoCompleteTextBoxItem Content="sekundy" Tag="seconds"/>
+            <hc:AutoCompleteTextBoxItem Content="minuty" Tag="minutes"/>
+            <hc:AutoCompleteTextBoxItem Content="godziny" Tag="hours"/>
+            <hc:AutoCompleteTextBoxItem Content="dni" Tag="days"/>
+            <hc:AutoCompleteTextBoxItem Content="tygodnie" Tag="weeks"/>
+            <hc:AutoCompleteTextBoxItem Content="miesiące" Tag="months"/>
+            <hc:AutoCompleteTextBoxItem Content="lata" Tag="years"/>
         </hc:ComboBox>
 
 

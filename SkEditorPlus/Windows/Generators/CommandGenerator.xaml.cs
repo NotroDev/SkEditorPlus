@@ -1,6 +1,7 @@
 ﻿using AvalonEditB;
 using AvalonEditB.Document;
 using HandyControl.Controls;
+using HandyControl.Tools.Extension;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -32,13 +33,16 @@ namespace SkEditorPlus.Windows.Generators
                 return;
             }
 
-            if (string.IsNullOrEmpty(cooldownTextbox.Text))
+            if (!float.TryParse(cooldownTextbox.Text, out _))
             {
-                if (cooldownComboBox.SelectedIndex == 0)
-                {
-                    MessageBox.Error("Wybierz jednostkę czasu!", "Błąd");
-                    return;
-                }
+                MessageBox.Error("Cooldown musi być liczbą!", "Błąd");
+                return;
+            }
+
+            if (cooldownComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Error("Wybierz jednostkę czasu!", "Błąd");
+                return;
             }
 
             TextEditor editor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
@@ -73,7 +77,7 @@ namespace SkEditorPlus.Windows.Generators
             }
 
             CheckComboBox checkComboBox = executableByComboBox;
-            List<string> selectedItems = new List<string>();
+            List<string> selectedItems = new();
             foreach (CheckComboBoxItem item in checkComboBox.SelectedItems)
             {
                 selectedItems.Add(item.Tag.ToString());
@@ -97,7 +101,7 @@ namespace SkEditorPlus.Windows.Generators
             if (!string.IsNullOrEmpty(cooldownTextbox.Text))
             {
                 ComboBoxItem item = (ComboBoxItem)cooldownComboBox.SelectedItem;
-                code += $"\n\tcooldown: {cooldownTextbox.Text} {item.Content}";
+                code += $"\n\tcooldown: {cooldownTextbox.Text} {item.Tag}";
             }    
 
             code += "\n\ttrigger:\n\t\t";
