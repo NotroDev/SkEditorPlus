@@ -10,6 +10,7 @@
                 <hc:Theme/>
                 <ResourceDictionary Source="/Styles/TextEditorStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/SearchPanelStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/CompletionListStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

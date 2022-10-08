@@ -18,6 +18,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Styles\CompletionListStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>

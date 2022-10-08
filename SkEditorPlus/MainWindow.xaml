@@ -88,6 +88,9 @@
                     <MenuItem
                         x:Name="Menu_Docs"
                         Header="Dokumentacja"/>
+                    <MenuItem
+                        x:Name="Menu_CheckUpdate"
+                        Header="Sprawdź aktualizacje"/>
                     
                     <!--
                     <MenuItem

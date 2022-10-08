@@ -2,6 +2,7 @@
 using AvalonEditB.CodeCompletion;
 using SkEditorPlus.Data;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using Window = System.Windows.Window;
 
@@ -34,14 +35,26 @@ namespace SkEditorPlus.Managers
             {
                 StartOffset = 0
             };
+
+            completionWindow.CompletionList.ListBox.ItemContainerStyle = (Style)Application.Current.FindResource("CompletionListStyle");
+
+            completionWindow.CompletionList.ListBox.Background = System.Windows.Media.Brushes.Transparent;
+            completionWindow.Background = System.Windows.Media.Brushes.Transparent;
+            completionWindow.CompletionList.ListBox.BorderBrush = System.Windows.Media.Brushes.Transparent;
+            completionWindow.CompletionList.ListBox.BorderThickness = new Thickness(0);
+            
             IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
 
             var caretOffset = textEditor.CaretOffset;
             var line = textEditor.Document.GetLineByOffset(caretOffset);
             var wordBeforeCaret = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset);
-            if (wordBeforeCaret.Equals("command"))
+            if (wordBeforeCaret.ToLower().Equals("command"))
             {
-                data.Add(new CompletionData("Command", "test"));
+                data.Add(new CompletionData("Command", "Otwiera generator komendy"));
+            }
+            else if (data.Count > 0)
+            {
+                data.Remove(data[0]);
             }
 
             completionWindow.Show();
@@ -49,6 +62,13 @@ namespace SkEditorPlus.Managers
             {
                 completionWindow = null;
             };
+
+            if (completionWindow.CompletionList.ListBox == null)
+            {
+                completionWindow.Close();
+            }
+
+            completionWindow.CompletionList.ListBox.SelectedIndex = 0;
         }
 
         static void TextEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)

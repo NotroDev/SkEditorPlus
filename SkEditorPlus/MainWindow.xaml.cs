@@ -15,7 +15,7 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
-        public static string version = "1.1.1-ob";
+        public static string version = "1.0.1-ob";
 
         public MainWindow(SkEditorAPI skEditor)
         {

@@ -37,6 +37,7 @@
     <PackageReference Include="HandyControls.Lang.pl" Version="3.4.2" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1343.22" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Octokit" Version="3.0.0" />
     <PackageReference Include="Stylet" Version="1.3.6" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +78,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Styles\CompletionListStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>

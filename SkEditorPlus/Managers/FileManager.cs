@@ -4,6 +4,8 @@ using AvalonEditB.Highlighting;
 using AvalonEditB.Search;
 using HandyControl.Controls;
 using HandyControl.Data;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 using Microsoft.Web.WebView2.Wpf;
 using Microsoft.Win32;
 using SkEditorPlus.Windows;
@@ -17,8 +19,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml;
-using static System.Net.WebRequestMethods;
 using MessageBox = HandyControl.Controls.MessageBox;
+using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
 
 namespace SkEditorPlus.Managers
 {
@@ -583,45 +585,22 @@ namespace SkEditorPlus.Managers
 
         public void OpenParser()
         {
-            WebView2 webBrowser = new()
-            {
-                Source = new Uri("https://parser.skunity.com/")
-            };
-            webBrowser.SourceChanged += (s, e) =>
-            {
-                webBrowser.Source = new Uri("https://parser.skunity.com/");
-            };
-
-            TabItem tabItem = new()
-            {
-                Header = "Parser",
-                ToolTip = "",
-                Content = webBrowser,
-                IsSelected = true,
-            };
-
-            System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
-
-            tabControl.Items.Add(tabItem);
+            OpenSite("Parser", "https://parser.skunity.com/");
         }
 
         public void OpenDocs()
         {
-            WebView2 webBrowser = new()
-            {
-                Source = new Uri("https://docs.skunity.com/")
-            };
-            webBrowser.SourceChanged += (s, e) =>
-            {
-                if (!webBrowser.Source.ToString().Contains("docs.skunity.com"))
-                {
-                    webBrowser.Source = new Uri("https://docs.skunity.com/");
-                }
-            };
+            OpenSite("Dokumentacja", "https://docs.skunity.com/");
+        }
+
+
+        private async void OpenSite(string header, string url)
+        {
+            WebView2 webBrowser = new();
 
             TabItem tabItem = new()
             {
-                Header = "Dokumentacja",
+                Header = header,
                 ToolTip = "",
                 Content = webBrowser,
                 IsSelected = true,
@@ -630,6 +609,16 @@ namespace SkEditorPlus.Managers
             System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
 
             tabControl.Items.Add(tabItem);
+
+            var userDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SkEditor+";
+            var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
+            await webBrowser.EnsureCoreWebView2Async(env);
+            webBrowser.Source = new Uri(url);
+
+            webBrowser.SourceChanged += (s, e) =>
+            {
+                webBrowser.Source = new Uri(url);
+            };
         }
     }
 }

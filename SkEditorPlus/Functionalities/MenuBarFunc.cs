@@ -1,5 +1,7 @@
-﻿using SkEditorPlus.Managers;
+﻿using Octokit;
+using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -148,6 +150,26 @@ namespace SkEditorPlus.Functionalities
                 case "Menu_Docs":
                     fileManager.OpenDocs();
                     break;
+                case "Menu_CheckUpdate":
+                    CheckUpdate();
+                    break;
+            }
+        }
+
+        private static async void CheckUpdate()
+        {
+            var github = new GitHubClient(new ProductHeaderValue("SkEditorPlus"));
+            var releases = await github.Repository.Release.GetAll("NotroDev", "SkEditorPlus");
+            var latest = releases[0].TagName.Replace("v", "");
+            var current = MainWindow.version;
+
+            if (latest != current)
+            {
+                HandyControl.Controls.MessageBox.Show($"Nowa wersja dostępna! \n\nAktualna: v{current}\nNajnowsza: v{latest}", "Nowa wersja!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                HandyControl.Controls.MessageBox.Show($"Wygląda na to, że masz aktualną wersję :)\n\nAktualna: v{current}\nNajnowsza: v{latest}", "SkEditor+ aktualny!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

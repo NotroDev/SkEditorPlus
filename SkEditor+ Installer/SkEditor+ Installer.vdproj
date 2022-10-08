@@ -84,10 +84,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.5.0.x64"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.x64"
                     {
-                    "Name" = "8:Środowisko uruchomieniowe platformy .NET 5.0.17 (x64)"
-                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.5.0.x64"
+                    "Name" = "8:Środowisko uruchomieniowe platformy .NET 6.0.9 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.x64"
                     }
                 }
             }
@@ -112,6 +112,7 @@
                 {
                 "Name" = "8:.NET Core"
                 "Message" = "8:[VSDNETCOREMSG]"
+                "FrameworkVersion" = "8:6.0.9"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
                 "IsNETCore" = "11:TRUE"
@@ -209,18 +210,18 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SkEditor+"
-        "ProductCode" = "8:{F7C71A89-4796-494B-80C8-864C6688E73C}"
-        "PackageCode" = "8:{CEFFE150-3A5C-4F17-B0C8-358482776A7D}"
+        "ProductCode" = "8:{7B36AC0D-81FC-4D9E-9A34-07D37E8644F3}"
+        "PackageCode" = "8:{07AFDF9D-72BC-4645-9A58-E9FCCA1D3EA9}"
         "UpgradeCode" = "8:{200FAE99-AF38-4F0C-A94A-BD51BEF792DF}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:NotroDev"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:Notro#5324"
+        "ARPHELPLINK" = "8:https://github.com/NotroDev/SkEditorPlus"
         "Title" = "8:SkEditor+ Installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:NotroDev"
