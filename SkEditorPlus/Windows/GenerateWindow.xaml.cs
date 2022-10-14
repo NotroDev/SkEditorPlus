@@ -34,5 +34,12 @@ namespace SkEditorPlus.Windows
             generatorWindow.Close();
             guiGenerator.ShowDialog();
         }
+
+        private void EventClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            EventGenerator eventGenerator = new(skEditor);
+            generatorWindow.Close();
+            eventGenerator.ShowDialog();
+        }
     }
 }

@@ -15,7 +15,7 @@
         <Button x:Name="fontChooseButton" Content="Wybierz" HorizontalAlignment="Left" Margin="177,18,0,0" VerticalAlignment="Top" Click="FontButtonClick"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Autozapis:" VerticalAlignment="Top" FontSize="16" FontFamily="Cascadia Mono"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="118,66,0,0" VerticalAlignment="Top" Background="#FF1C1C1C" Width="16" RenderTransformOrigin="-2.181,0.19" Checked="AutoSaveChecked" IsEnabled="False"/>
+        <CheckBox x:Name="autoSaveCheckbox" HorizontalAlignment="Left" Margin="118,66,0,0" VerticalAlignment="Top" Background="#FF1C1C1C" Width="16" RenderTransformOrigin="-2.181,0.19" Checked="AutoSaveChecked" Unchecked="AutoSaveUnchecked"/>
         <CheckBox x:Name="wrappingCheckbox" Content="" HorizontalAlignment="Left" Margin="185,107,0,0"  VerticalAlignment="Top" Background="#FF1C1C1C" Width="16" RenderTransformOrigin="-2.181,0.19" Checked="WrappingChecked" Unchecked="WrappingUnChecked"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,105,0,0" TextWrapping="Wrap" Text="Zawijanie tekstu:" VerticalAlignment="Top" FontSize="16" FontFamily="Cascadia Mono"/>
 
@@ -28,7 +28,7 @@
 
 
         <Button x:Name="updateSyntaxButton" Content="Zaaktualizuj plik składni" HorizontalAlignment="Left" Margin="663,388,0,0" VerticalAlignment="Top" Click="UpdateSyntaxClick" Width="137" FontSize="11" Height="29" Background="#001C1C1C" BorderBrush="#003F3F46"/>
-        <TextBlock HorizontalAlignment="Left" Margin="139,65,0,0" TextWrapping="Wrap" Text="Niedostępne" VerticalAlignment="Top" FontSize="10" FontFamily="Cascadia Mono" Foreground="#FFF43636"/>
+        <!--<TextBlock HorizontalAlignment="Left" Margin="139,65,0,0" TextWrapping="Wrap" Text="Niedostępne" VerticalAlignment="Top" FontSize="10" FontFamily="Cascadia Mono" Foreground="#FFF43636"/>-->
 
     </Grid>
 </hc:Window>

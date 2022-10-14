@@ -34,6 +34,7 @@ namespace SkEditorPlus.Windows
             wrappingCheckbox.IsChecked = Properties.Settings.Default.Wrapping;
             autoSecondCharCheckbox.IsChecked = Properties.Settings.Default.AutoSecondCharacter;
             discordRpcCheckbox.IsChecked = Properties.Settings.Default.DiscordRPC;
+            autoSaveCheckbox.IsChecked = Properties.Settings.Default.AutoSave;
         }
 
         private void FontButtonClick(object sender, RoutedEventArgs e)
@@ -64,22 +65,17 @@ namespace SkEditorPlus.Windows
 
         private void AutoSaveChecked(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
-            {
-                Message = "Próbujesz włączyć opcję, która nie została w pełni przetestowana i może powodować problemy.\nUżywasz na własną odpowiedzialność.",
-                Caption = "Uwaga!",
-                ConfirmContent = "Spoko!"
-
-            });
-
-            if (result == MessageBoxResult.OK)
-            {
-                return;
-            }
-
             System.Windows.Controls.CheckBox checkBox = (System.Windows.Controls.CheckBox)sender;
-            checkBox.IsChecked = false;
+            Properties.Settings.Default.AutoSave = checkBox.IsChecked.Value;
         }
+
+        private void AutoSaveUnchecked(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.CheckBox checkBox = (System.Windows.Controls.CheckBox)sender;
+            Properties.Settings.Default.AutoSave = checkBox.IsChecked.Value;
+        }
+
+
 
         private void WrappingChecked(object sender, RoutedEventArgs e)
         {
@@ -122,13 +118,13 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        private void ChangeAutoChar(bool autoChar)
+        private static void ChangeAutoChar(bool autoChar)
         {
             Properties.Settings.Default.AutoSecondCharacter = autoChar;
             Properties.Settings.Default.Save();
         }
 
-        private void ChangeDiscordRpc(bool discordRpc)
+        private static void ChangeDiscordRpc(bool discordRpc)
         {
             Properties.Settings.Default.DiscordRPC = discordRpc;
             Properties.Settings.Default.Save();

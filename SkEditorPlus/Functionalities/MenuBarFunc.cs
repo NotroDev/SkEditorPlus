@@ -35,6 +35,11 @@ namespace SkEditorPlus.Functionalities
                 new InputGestureCollection(new InputGesture[]
                 {
                     new KeyGesture(Key.F, ModifierKeys.Control | ModifierKeys.Shift)
+                }.ToList())),
+            new RoutedCommand("Backpack", typeof(MenuBarFunc),
+                new InputGestureCollection(new InputGesture[]
+                {
+                    new KeyGesture(Key.B, ModifierKeys.Control | ModifierKeys.Shift)
                 }.ToList()))
         };
         static readonly RoutedCommand[] otherApplicationCommands = new RoutedCommand[]
@@ -126,6 +131,12 @@ namespace SkEditorPlus.Functionalities
                 case "Menu_Format":
                 case "Format":
                     fileManager.FormatCode();
+                    break;
+                case "Menu_Backpack":
+                case "Backpack":
+                    if (skEditor.GetMainWindow().GetFileManager().GetTextEditor() == null) return;
+                    BackpackWindow backpackWindow = new(skEditor);
+                    backpackWindow.Show();
                     break;
             }
         }

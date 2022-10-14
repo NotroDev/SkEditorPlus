@@ -10,9 +10,6 @@
     <Compile Update="Windows\OptionsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\ServerWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\TooltipWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,7 +21,13 @@
     <Page Update="Styles\SearchPanelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\BackpackWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\GenerateWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Generators\EventGenerator.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Generators\GuiGenerator.xaml">
@@ -43,9 +46,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Properties\DesignTimeResources.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Windows\ServerWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextEditorStyle.xaml">

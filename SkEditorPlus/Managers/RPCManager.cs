@@ -35,14 +35,22 @@ namespace SkEditorPlus.Managers
 
         public static void Uninitialize()
         {
-            if (!Properties.Settings.Default.DiscordRPC) return;
-            client.Dispose();
+            try
+            {
+                if (!Properties.Settings.Default.DiscordRPC) return;
+                client.Dispose();
+            }
+            catch { }
         }
 
         public static void SetFile(string name)
         {
-            if (!Properties.Settings.Default.DiscordRPC) return;
-            client.UpdateDetails($"Plik: {name}");
+            try
+            {
+                if (!Properties.Settings.Default.DiscordRPC) return;
+                client.UpdateDetails($"Plik: {name}");
+            }
+            catch { }
         }
     }
 }

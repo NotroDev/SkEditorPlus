@@ -58,6 +58,9 @@
     <Compile Update="Windows\GenerateWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Generators\EventGenerator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Generators\GuiGenerator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -89,6 +92,11 @@
     <Page Update="Windows\GenerateWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Generators\EventGenerator.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Windows\Generators\GuiGenerator.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

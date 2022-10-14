@@ -82,5 +82,28 @@ namespace SkEditorPlus.Properties {
                 this["DiscordRPC"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSave {
+            get {
+                return ((bool)(this["AutoSave"]));
+            }
+            set {
+                this["AutoSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection BackpackCodes {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["BackpackCodes"]));
+            }
+            set {
+                this["BackpackCodes"] = value;
+            }
+        }
     }
 }

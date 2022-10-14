@@ -5,8 +5,6 @@ using AvalonEditB.Search;
 using HandyControl.Controls;
 using HandyControl.Data;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.WinForms;
-using Microsoft.Web.WebView2.Wpf;
 using Microsoft.Win32;
 using SkEditorPlus.Windows;
 using System;
@@ -157,40 +155,45 @@ namespace SkEditorPlus.Managers
 
             if (openFileDialog.ShowDialog() == true)
             {
-                for (int i = 0; i < openFileDialog.FileNames.Length; i++)
+                try
                 {
-                    TextEditor codeEditor = new()
+                    for (int i = 0; i < openFileDialog.FileNames.Length; i++)
                     {
-                        Style = Application.Current.FindResource("TextEditorStyle") as Style
-                    };
-                    codeEditor.TextChanged += OnTextChanged;
-                    codeEditor.PreviewMouseWheel += EditorMouseWheel;
+                        TextEditor codeEditor = new()
+                        {
+                            Style = Application.Current.FindResource("TextEditorStyle") as Style
+                        };
+                        codeEditor.TextChanged += OnTextChanged;
+                        codeEditor.PreviewMouseWheel += EditorMouseWheel;
 
-                    if (Properties.Settings.Default.Font != null)
-                    {
-                        codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+                        if (Properties.Settings.Default.Font != null)
+                        {
+                            codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+                        }
+
+                        SearchPanel searchPanel = SearchPanel.Install(codeEditor);
+                        searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
+
+
+                        TabItem tabItem = new()
+                        {
+                            Header = openFileDialog.SafeFileNames[i],
+                            ToolTip = openFileDialog.FileNames[i],
+                            IsSelected = true,
+                            Content = codeEditor
+                        };
+                        System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
+                        tabControl.Items.Add(tabItem);
+
+                        GetTextEditor().Load(openFileDialog.FileNames[i]);
+                        if (tabItem.Header.ToString().EndsWith("*"))
+                        {
+                            tabItem.Header = tabItem.Header.ToString()[..^1];
+                        }
+                        ChangeGeometry();
                     }
-
-                    SearchPanel searchPanel = SearchPanel.Install(codeEditor);
-                    searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
-
-                    TabItem tabItem = new()
-                    {
-                        Header = openFileDialog.SafeFileNames[i],
-                        ToolTip = openFileDialog.FileNames[i],
-                        IsSelected = true,
-                        Content = codeEditor
-                    };
-                    System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
-                    tabControl.Items.Add(tabItem);
-
-                    GetTextEditor().Load(openFileDialog.FileNames[i]);
-                    if (tabItem.Header.ToString().EndsWith("*"))
-                    {
-                        tabItem.Header = tabItem.Header.ToString()[..^1];
-                    }
-                    ChangeGeometry();
                 }
+                catch { }
             }
         }
 
@@ -198,6 +201,30 @@ namespace SkEditorPlus.Managers
         {
             TabItem tabItem = (TabItem)tabControl.SelectedItem;
 
+            if (Properties.Settings.Default.AutoSave)
+            {
+                string path = tabItem.ToolTip.ToString();
+
+                if (string.IsNullOrWhiteSpace(Path.GetFileName(path)))
+                {
+                    AddAsterisk(tabItem);
+                }
+
+                if (!string.IsNullOrEmpty(path))
+                {
+                    GetTextEditor().Save(path);
+                    return;
+                }
+                AddAsterisk(tabItem);
+            }
+            else
+            {
+                AddAsterisk(tabItem);
+            }
+        }
+
+        private void AddAsterisk(TabItem tabItem)
+        {
             if (!tabItem.Header.ToString().EndsWith("*"))
             {
                 tabItem.Header += "*";
@@ -614,11 +641,6 @@ namespace SkEditorPlus.Managers
             var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
             await webBrowser.EnsureCoreWebView2Async(env);
             webBrowser.Source = new Uri(url);
-
-            webBrowser.SourceChanged += (s, e) =>
-            {
-                webBrowser.Source = new Uri(url);
-            };
         }
     }
 }

@@ -8,9 +8,11 @@
         mc:Ignorable="d"
         Title="Wygeneruj" Height="425" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <Button x:Name="commandButton" Content="Komenda" HorizontalAlignment="Left" Margin="55,77,0,0" VerticalAlignment="Top" Click="CommandClick"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,25,0,0" TextWrapping="Wrap" Text="Co chcesz wygenerować?" VerticalAlignment="Top" FontSize="22" FontFamily="Cascadia Mono" Width="305" TextAlignment="Center"/>
-        <Button x:Name="guiButton" Content="GUI" HorizontalAlignment="Left" Margin="181,77,0,0" VerticalAlignment="Top" Width="72" Click="GUIClick"/>
+
+        <Button x:Name="commandButton" Content="Komenda" HorizontalAlignment="Left" Margin="55,77,0,0" VerticalAlignment="Top" Click="CommandClick"/>
+        <Button x:Name="guiButton" Content="GUI" HorizontalAlignment="Right" Margin="0,77,55,0" VerticalAlignment="Top" Width="72" Click="GUIClick"/>
+        <Button x:Name="eventButton" Content="Event" Margin="0,138,0,0" VerticalAlignment="Top" Click="EventClick" Width="72" RenderTransformOrigin="0.456,-1.305" IsEnabled="False"/>
 
     </Grid>
 </hc:Window>

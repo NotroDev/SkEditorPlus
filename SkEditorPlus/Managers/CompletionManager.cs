@@ -2,6 +2,7 @@
 using AvalonEditB.CodeCompletion;
 using SkEditorPlus.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Window = System.Windows.Window;
@@ -52,21 +53,20 @@ namespace SkEditorPlus.Managers
             {
                 data.Add(new CompletionData("Command", "Otwiera generator komendy"));
             }
-            else if (data.Count > 0)
+
+            else if (data.Count != 0)
             {
-                data.Remove(data[0]);
+                data.Remove(data.First());
             }
 
-            completionWindow.Show();
+
+            if (data.Count != 0)
+                completionWindow.Show();
+            
             completionWindow.Closed += delegate
             {
                 completionWindow = null;
             };
-
-            if (completionWindow.CompletionList.ListBox == null)
-            {
-                completionWindow.Close();
-            }
 
             completionWindow.CompletionList.ListBox.SelectedIndex = 0;
         }

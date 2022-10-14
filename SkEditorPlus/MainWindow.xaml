@@ -73,6 +73,10 @@
                         x:Name="Menu_Format"
                         Header="Formatuj skrypt"
                         InputGestureText="Ctrl+Shift+F" />
+                    <MenuItem
+                        x:Name="Menu_Backpack"
+                        Header="Plecak..."
+                        InputGestureText="Ctrl+Shift+B" />
                 </MenuItem>
                 <MenuItem x:Name="Other_MenuItem" Header="Inne">
                     <MenuItem

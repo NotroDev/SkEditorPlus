@@ -18,7 +18,7 @@ namespace SkEditorPlus.Windows.Generators
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
-                generatorWindow.Close();
+                guiGeneratorWindow.Close();
             }
         }
 
@@ -82,7 +82,7 @@ namespace SkEditorPlus.Windows.Generators
             }
             editor.Text += code;
 
-            generatorWindow.Close();
+            guiGeneratorWindow.Close();
 
             editor.CaretOffset = editor.Document.TextLength;
         }
