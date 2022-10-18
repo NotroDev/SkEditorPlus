@@ -35,6 +35,7 @@ namespace SkEditorPlus.Windows
             autoSecondCharCheckbox.IsChecked = Properties.Settings.Default.AutoSecondCharacter;
             discordRpcCheckbox.IsChecked = Properties.Settings.Default.DiscordRPC;
             autoSaveCheckbox.IsChecked = Properties.Settings.Default.AutoSave;
+            autoNewLineCheckbox.IsChecked = Properties.Settings.Default.AutoNewLineAndTab;
         }
 
         private void FontButtonClick(object sender, RoutedEventArgs e)
@@ -107,6 +108,16 @@ namespace SkEditorPlus.Windows
             ChangeDiscordRpc(false);
         }
 
+        private void AutoNewLineChecked(object sender, RoutedEventArgs e)
+        {
+            ChangeAutoNewLine(true);
+        }
+
+        private void AutoNewLineUnchecked(object sender, RoutedEventArgs e)
+        {
+            ChangeAutoNewLine(false);
+        }
+
         private void ChangeWrapping(bool wrapping)
         {
             Properties.Settings.Default.Wrapping = wrapping;
@@ -121,6 +132,12 @@ namespace SkEditorPlus.Windows
         private static void ChangeAutoChar(bool autoChar)
         {
             Properties.Settings.Default.AutoSecondCharacter = autoChar;
+            Properties.Settings.Default.Save();
+        }
+
+        private static void ChangeAutoNewLine(bool autoNewLine)
+        {
+            Properties.Settings.Default.AutoNewLineAndTab = autoNewLine;
             Properties.Settings.Default.Save();
         }
 
@@ -152,17 +169,20 @@ namespace SkEditorPlus.Windows
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             using var client = new HttpClient();
-            Uri uri = new("https://notro.tech/resources/SkriptHighlighting.xshd");
+            Uri skriptUri = new("https://notro.tech/resources/SkriptHighlighting.xshd");
+            Uri yamlUri = new("https://notro.tech/resources/YAMLHighlighting.xshd");
             try
             {
                 File.Delete(appPath + @"\SkriptHighlighting.xshd");
-                await DownloadFileTaskAsync(client, uri, appPath + @"\SkriptHighlighting.xshd");
-                Growl.Success("Pomyślnie zaaktualizowano plik podświetlania składni!", "SuccessMsg");
+                File.Delete(appPath + @"\YAMLHighlighting.xshd");
+                await DownloadFileTaskAsync(client, skriptUri, appPath + @"\SkriptHighlighting.xshd");
+                await DownloadFileTaskAsync(client, yamlUri, appPath + @"\YAMLHighlighting.xshd");
+                Growl.Success("Pomyślnie zaaktualizowano pliki podświetlania składni!", "SuccessMsg");
                 skEditor.GetMainWindow().GetFileManager().OnTabChanged();
             }
             catch (Exception e)
             {
-                MessageBox.Error($"Nie udało się pobrać pliku podświetlania składni!\nMasz połączenie z internetem?\n\n{e.Message}", "Błąd");
+                MessageBox.Error($"Nie udało się pobrać plików podświetlania składni!\nMasz połączenie z internetem?\n\n{e.Message}", "Błąd");
             }
         }
 

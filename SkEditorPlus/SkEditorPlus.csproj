@@ -11,22 +11,23 @@
     <FileVersion>1.0.0.0</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;Core</DefineConstants>
-    <NoWarn>1701;1702</NoWarn>
+    <NoWarn>1701;1702,NU1701</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;Core</DefineConstants>
-    <NoWarn>1701;1702</NoWarn>
+    <NoWarn>1701;1702,NU1701</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Fonts\CascadiaMono.ttf" />
     <None Remove="Fonts\OpenSans-Medium.ttf" />
-    <None Remove="Images\SkEditor.png" />
+    <None Remove="Images\SkEditor.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\SkEditor.ico" />
+    <Resource Include="Images\SkEditor.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AvalonEditB" Version="1.4.1">
@@ -35,10 +36,10 @@
     <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
     <PackageReference Include="HandyControls" Version="3.4.2" />
     <PackageReference Include="HandyControls.Lang.pl" Version="3.4.2" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1343.22" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1370.28" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Octokit" Version="3.0.0" />
-    <PackageReference Include="Stylet" Version="1.3.6" />
+    <PackageReference Include="Octokit" Version="4.0.0" />
+    <PackageReference Include="SharpVectors" Version="1.8.0" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\CascadiaMono.ttf">
@@ -47,7 +48,7 @@
     <Resource Include="Fonts\OpenSans-Medium.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\SkEditor.png" />
+    <Resource Include="Images\SkEditor.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
@@ -65,6 +66,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Generators\CommandGenerator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\FormattingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\PublishWindow.xaml.cs">
@@ -103,6 +107,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Generators\CommandGenerator.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\FormattingWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

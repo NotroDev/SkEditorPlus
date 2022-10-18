@@ -1,7 +1,6 @@
 ﻿using AvalonEditB;
 using AvalonEditB.Document;
 using HandyControl.Controls;
-using HandyControl.Tools.Extension;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -99,12 +98,12 @@ namespace SkEditorPlus.Windows.Generators
             {
                 code += $"\n\texecutable by: {executableBy}";
             }
-            
+
             if (!string.IsNullOrEmpty(cooldownTextbox.Text))
             {
                 ComboBoxItem item = (ComboBoxItem)cooldownComboBox.SelectedItem;
                 code += $"\n\tcooldown: {cooldownTextbox.Text} {item.Tag}";
-            }    
+            }
 
             code += "\n\ttrigger:\n\t\t";
 

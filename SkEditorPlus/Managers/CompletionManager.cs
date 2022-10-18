@@ -43,7 +43,7 @@ namespace SkEditorPlus.Managers
             completionWindow.Background = System.Windows.Media.Brushes.Transparent;
             completionWindow.CompletionList.ListBox.BorderBrush = System.Windows.Media.Brushes.Transparent;
             completionWindow.CompletionList.ListBox.BorderThickness = new Thickness(0);
-            
+
             IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
 
             var caretOffset = textEditor.CaretOffset;
@@ -62,7 +62,7 @@ namespace SkEditorPlus.Managers
 
             if (data.Count != 0)
                 completionWindow.Show();
-            
+
             completionWindow.Closed += delegate
             {
                 completionWindow = null;

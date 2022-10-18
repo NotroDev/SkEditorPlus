@@ -1,6 +1,4 @@
-﻿using AvalonEditB;
-using AvalonEditB.Document;
-using HandyControl.Controls;
+﻿using HandyControl.Controls;
 
 namespace SkEditorPlus.Windows.Generators
 {
@@ -24,7 +22,7 @@ namespace SkEditorPlus.Windows.Generators
 
         private void Generate(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+
         }
 
         private void rowsTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

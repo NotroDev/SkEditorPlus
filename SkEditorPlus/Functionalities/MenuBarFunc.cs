@@ -1,7 +1,8 @@
-﻿using Octokit;
+﻿using HandyControl.Data;
+using Octokit;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
-using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -176,11 +177,43 @@ namespace SkEditorPlus.Functionalities
 
             if (latest != current)
             {
-                HandyControl.Controls.MessageBox.Show($"Nowa wersja dostępna! \n\nAktualna: v{current}\nNajnowsza: v{latest}", "Nowa wersja!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxResult result = HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
+                {
+                    Message = $"Nowa wersja dostępna! \n\nAktualna: v{current}\nNajnowsza: v{latest}",
+                    Caption = "Nowa wersja!",
+                    Button = MessageBoxButton.YesNo,
+                    YesContent = "Pobierz",
+                    NoContent = "Ignoruj",
+                    IconBrushKey = ResourceToken.DarkInfoBrush,
+                    IconKey = ResourceToken.InfoGeometry
+                });
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    string url = "https://github.com/NotroDev/SkEditorPlus/releases/latest";
+
+                    try
+                    {
+                        Process.Start(url);
+                    }
+                    catch
+                    {
+                        url = url.Replace("&", "^&");
+                        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                    }
+                }
             }
             else
             {
-                HandyControl.Controls.MessageBox.Show($"Wygląda na to, że masz aktualną wersję :)\n\nAktualna: v{current}\nNajnowsza: v{latest}", "SkEditor+ aktualny!", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
+                {
+                    Message = $"Wygląda na to, że masz aktualną wersję :)\n\nAktualna: v{current}\nNajnowsza: v{latest}",
+                    Caption = "SkEditor+ aktualny!",
+                    Button = MessageBoxButton.OK,
+                    ConfirmContent = "OK",
+                    IconBrushKey = ResourceToken.DarkInfoBrush,
+                    IconKey = ResourceToken.InfoGeometry
+                });
             }
         }
 

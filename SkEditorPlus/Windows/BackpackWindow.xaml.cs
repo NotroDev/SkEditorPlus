@@ -1,13 +1,5 @@
 ﻿using AvalonEditB;
-using HandyControl.Controls;
-using HandyControl.Tools.Extension;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Specialized;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using MessageBox = HandyControl.Controls.MessageBox;
@@ -26,7 +18,7 @@ namespace SkEditorPlus.Windows
             StringCollection codes = Properties.Settings.Default.BackpackCodes;
             codes ??= new StringCollection();
 
-            foreach(string code in codes)
+            foreach (string code in codes)
             {
                 ListBoxItem item = new()
                 {
@@ -72,7 +64,7 @@ namespace SkEditorPlus.Windows
             Properties.Settings.Default.BackpackCodes = codes;
             Properties.Settings.Default.Save();
         }
-        
+
         private void DeleteCode(object sender, System.Windows.RoutedEventArgs e)
         {
             if (backpackListbox.SelectedItem != null)

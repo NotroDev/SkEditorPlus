@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
     Title="SkEditor+"
     Width="800"
     Height="450"
@@ -22,12 +23,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image
+            <svgc:SvgViewbox
                 Grid.Column="0"
-                Height="22"
+                Height="20"
                 Margin="4,5"
-                RenderOptions.BitmapScalingMode="HighQuality"
-                Source="Images/SkEditor.png" />
+                Source="Images/SkEditor.svg" />
             <Menu
                 x:Name="MenuBar"
                 Grid.Column="1"

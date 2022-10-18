@@ -105,5 +105,17 @@ namespace SkEditorPlus.Properties {
                 this["BackpackCodes"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoNewLineAndTab {
+            get {
+                return ((bool)(this["AutoNewLineAndTab"]));
+            }
+            set {
+                this["AutoNewLineAndTab"] = value;
+            }
+        }
     }
 }

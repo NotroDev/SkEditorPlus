@@ -77,7 +77,7 @@ namespace SkEditorPlus.Windows.Generators
             code += "\n\t\tevent-inventory is not player's inventory";
             if ((bool)exampleItemCheckbox.IsChecked)
             {
-                code += "\n\t\tif clicked slot is 1:";
+                code += $"\n\t\tif clicked slot is {int.Parse(rowsTextBox.Text) * 9 / 2}:";
                 code += "\n\t\t\tsend \"&7Kliknąłeś przykładowy przedmiot!\"";
             }
             editor.Text += code;

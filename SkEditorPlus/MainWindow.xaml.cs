@@ -32,7 +32,7 @@ namespace SkEditorPlus
             {
                 Directory.CreateDirectory(appPath);
             }
-            if (!File.Exists(appPath + @"\SkriptHighlighting.xshd"))
+            if (!File.Exists(appPath + @"\SkriptHighlighting.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
             {
                 OptionsWindow optionsWindow = new(skEditor);
                 optionsWindow.UpdateSyntaxFile();
