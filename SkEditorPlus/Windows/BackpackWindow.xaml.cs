@@ -40,15 +40,16 @@ namespace SkEditorPlus.Windows
 
         private void AddCode(object sender, System.Windows.RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Zaznacz kod, a następnie kliknij przycisk OK.", "Dodawanie kodu", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Information);
-
-            if (result == MessageBoxResult.Cancel) return;
+            TextEditor textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
+            if (textEditor.SelectionLength == 0)
+            {
+                MessageBox.Show("Aby dodać kod do plecaka, najpierw go zaznacz.", "Nie zaznaczono tekstu!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             StringCollection codes = Properties.Settings.Default.BackpackCodes;
 
             codes ??= new StringCollection();
-
-            TextEditor textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
 
             string selectedCode = textEditor.SelectedText;
 
@@ -72,12 +73,18 @@ namespace SkEditorPlus.Windows
                 StringCollection codes = Properties.Settings.Default.BackpackCodes;
 
                 ListBoxItem item = (ListBoxItem)backpackListbox.SelectedItem;
+                if (item == null) return;
                 codes.Remove(item.Content.ToString());
 
                 Properties.Settings.Default.BackpackCodes = codes;
                 Properties.Settings.Default.Save();
 
                 backpackListbox.Items.Remove(backpackListbox.SelectedItem);
+                
+                if (backpackListbox.HasItems)
+                {
+                    backpackListbox.SelectedIndex = backpackListbox.Items.Count - 1;
+                }
             }
         }
 
@@ -85,6 +92,7 @@ namespace SkEditorPlus.Windows
         {
             TextEditor textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
             ListBoxItem item = (ListBoxItem)backpackListbox.SelectedItem;
+            if (item == null) return;
             string codeToPaste = item.Content.ToString();
 
             textEditor.Document.Insert(textEditor.CaretOffset, codeToPaste);
