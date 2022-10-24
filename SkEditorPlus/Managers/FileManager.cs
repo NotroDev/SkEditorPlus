@@ -36,7 +36,7 @@ namespace SkEditorPlus.Managers
 
         readonly string OtherGeometry = "M74.6484 36.8359C70.2539 32.832 64.1016 30.8301 56.1914 30.8301C48.2812 30.8301 39.4434 33.125 29.6777 37.7148C19.9121 42.207 13.7598 44.4531 11.2207 44.4531C8.7793 44.4531 6.43555 42.8906 4.18945 39.7656C1.94336 36.6406 0.820312 33.3203 0.820312 29.8047V27.4609C0.820312 20.625 7.75391 13.9355 21.6211 7.39258C32.0703 2.50977 43.6426 0.0683594 56.3379 0.0683594L59.2676 0.214844H62.1973C77.334 0.214844 90.2246 4.75586 100.869 13.8379C111.611 22.9199 116.982 34.8828 116.982 49.7266V52.5098C116.982 64.6191 114.59 74.3359 109.805 81.6602C105.117 88.8867 97.4023 97.334 86.6602 107.002C75.918 116.572 70.4004 121.553 70.1074 121.943C67.0801 126.045 65.0781 131.172 64.1016 137.324C63.125 143.477 62.3926 146.943 61.9043 147.725C60.6348 149.775 57.7051 150.801 53.1152 150.801H50.4785C44.2285 150.801 39.9805 149.824 37.7344 147.871C35.4883 146.113 34.3652 141.816 34.3652 134.98C34.3652 120.039 41.7383 105.977 56.4844 92.793C66.3477 84.0039 72.9395 77.1191 76.2598 72.1387C79.5801 67.1582 81.2402 61.0547 81.2402 53.8281C81.2402 46.5039 79.043 40.8398 74.6484 36.8359ZM69.375 186.689L68.9355 192.549C68.9355 197.139 67.3242 200.801 64.1016 203.535C60.9766 206.27 56.3867 207.637 50.332 207.637H47.2559C46.2793 207.441 44.9121 207.344 43.1543 207.344C41.4941 207.344 38.3691 206.025 33.7793 203.389C32.0215 202.412 31.1426 200.41 31.1426 197.383C30.6543 195.43 30.4102 194.014 30.4102 193.135L30.1172 190.938C30.1172 190.449 30.1172 189.961 30.1172 189.473L29.9707 187.129V181.855C29.9707 175.703 30.6055 171.699 31.875 169.844C33.9258 166.719 38.6621 165.156 46.084 165.156H52.2363L57.3633 165.742C61.5625 165.742 64.6387 167.109 66.5918 169.844C68.5449 172.578 69.5215 177.412 69.5215 184.346V185.811L69.375 186.689Z";
 
-        private SkEditorAPI skEditor;
+        private readonly SkEditorAPI skEditor;
 
         public FileManager(SkEditorAPI skEditor)
         {
@@ -67,49 +67,7 @@ namespace SkEditorPlus.Managers
 
         public void NewFile()
         {
-            TabItem tabItem = new()
-            {
-                Header = "Nowy plik " + UntitledCount(),
-                ToolTip = "",
-                IsSelected = true,
-            };
-
-            IconElement.SetGeometry(tabItem,
-                Geometry.Parse(OtherGeometry));
-            IconElement.SetHeight(tabItem, 16);
-            IconElement.SetWidth(tabItem, 16);
-
-            System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
-
-            TextEditor codeEditor = new()
-            {
-                Style = Application.Current.FindResource("TextEditorStyle") as Style,
-            };
-
-            SearchPanel searchPanel = SearchPanel.Install(codeEditor.TextArea);
-            searchPanel.ShowReplace = true;
-            searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
-
-            searchPanel.Localization = new Data.Localization();
-
-            codeEditor.PreviewMouseWheel += EditorMouseWheel;
-            codeEditor.MouseHover += TextEditorMouseHover;
-
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Font))
-            {
-                codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
-            }
-
-            codeEditor.TextChanged += OnTextChanged;
-            codeEditor.TextArea.TextEntering += OnTextEntering;
-
-            codeEditor.TextArea.TextView.LinkTextForegroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a94c4");
-            codeEditor.TextArea.TextView.LinkTextUnderline = true;
-
-            tabItem.Content = codeEditor;
-
-            tabControl.Items.Add(tabItem);
-            //CompletionManager.LoadCompletionManager(GetTextEditor());
+            CreateFile("Nowy plik " + UntitledCount());
         }
 
         public void Save()
@@ -165,38 +123,13 @@ namespace SkEditorPlus.Managers
                 {
                     try
                     {
-                        TextEditor codeEditor = new()
-                        {
-                            Style = Application.Current.FindResource("TextEditorStyle") as Style
-                        };
-                        codeEditor.TextChanged += OnTextChanged;
-                        codeEditor.PreviewMouseWheel += EditorMouseWheel;
-
-                        if (Properties.Settings.Default.Font != null)
-                        {
-                            codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
-                        }
-
-                        SearchPanel searchPanel = SearchPanel.Install(codeEditor);
-                        searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
-
-
-                        TabItem tabItem = new()
-                        {
-                            Header = openFileDialog.SafeFileNames[i],
-                            ToolTip = openFileDialog.FileNames[i],
-                            IsSelected = true,
-                            Content = codeEditor
-                        };
-                        System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
-                        tabControl.Items.Add(tabItem);
-
+                        CreateFile(openFileDialog.SafeFileNames[i], openFileDialog.FileNames[i]);
                         GetTextEditor().Load(openFileDialog.FileNames[i]);
-                        if (tabItem.Header.ToString().EndsWith("*"))
+                        TabItem ti = tabControl.SelectedItem as TabItem;
+                        if (ti.Header.ToString().EndsWith("*"))
                         {
-                            tabItem.Header = tabItem.Header.ToString()[..^1];
+                            ti.Header = ti.Header.ToString()[..^1];
                         }
-                        ChangeGeometry();
                     }
                     catch { }
                 }
@@ -205,6 +138,8 @@ namespace SkEditorPlus.Managers
 
         private void OnTextChanged(object sender, EventArgs e)
         {
+            CheckForHex();
+
             TabItem tabItem = (TabItem)tabControl.SelectedItem;
 
             if (Properties.Settings.Default.AutoSave)
@@ -229,7 +164,7 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        private void AddAsterisk(TabItem tabItem)
+        private static void AddAsterisk(TabItem tabItem)
         {
             if (!tabItem.Header.ToString().EndsWith("*"))
             {
@@ -257,6 +192,9 @@ namespace SkEditorPlus.Managers
                         break;
                     case '[':
                         textToReplace = "[]";
+                        break;
+                    case '%':
+                        textToReplace = "%%";
                         break;
                 }
                 if (!string.IsNullOrEmpty(textToReplace))
@@ -303,8 +241,42 @@ namespace SkEditorPlus.Managers
                         }
                     }
                     break;
-                
+
             }
+        }
+
+        private void CheckForHex()
+        {
+            for (int i = 0; i < GetTextEditor().Document.LineCount; i++)
+            {
+                DocumentLine line = GetTextEditor().Document.GetLineByNumber(i + 1);
+                string lineText = GetTextEditor().Document.GetText(line.Offset, line.Length);
+
+                foreach (Match match in Regex.Matches(lineText, "<#(#)?(?:[0-9a-fA-F]{3}){1,2}>").Cast<Match>())
+                {
+                    string hex = match.Value;
+                    hex = hex.Replace("<##", "#");
+                    hex = hex.Replace("<", "");
+                    hex = hex.Replace(">", "");
+
+                    Color color = (Color)ColorConverter.ConvertFromString(hex);
+
+                    HighlightingSpan span = new()
+                    {
+                        StartExpression = new Regex(match.Value),
+                        EndExpression = new Regex(""),
+                        SpanColor = new HighlightingColor()
+                        {
+                            Foreground = new SimpleHighlightingBrush(color)
+                        },
+                        SpanColorIncludesStart = true,
+                        SpanColorIncludesEnd = true,
+                    };
+
+                    GetTextEditor().SyntaxHighlighting.GetNamedRuleSet("BracedExpressionAndColorsRuleSet").Spans.Add(span);
+                    GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
+                }
+            }            
         }
 
         private static bool Clsw(string text, string[] startsWith)
@@ -329,13 +301,13 @@ namespace SkEditorPlus.Managers
             {
                 string extension = Path.GetExtension(ti.ToolTip.ToString());
 
-                if (extension.Equals(".sk"))
-                {
-                    ChangeSyntax("Skript");
-                }
-                else if (extension.Equals(".yml") || extension.Equals(".yaml"))
+                if (extension.Equals(".yml") || extension.Equals(".yaml"))
                 {
                     ChangeSyntax("YAML");
+                }
+                else //if (extension.Equals(".sk"))
+                {
+                    ChangeSyntax("Skript");
                 }
             }
             if (ti.Header != null)
@@ -381,7 +353,7 @@ namespace SkEditorPlus.Managers
             tabControl.Items.Remove(tabItem);
         }
 
-        private void EditorMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        private void EditorMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (Keyboard.Modifiers == ModifierKeys.Control)
             {
@@ -587,6 +559,7 @@ namespace SkEditorPlus.Managers
         public void ChangeSyntax(string syntax)
         {
             if (GetTextEditor() == null) return;
+
             try
             {
                 var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -595,6 +568,19 @@ namespace SkEditorPlus.Managers
                 using XmlTextReader reader = new(s);
                 GetTextEditor().SyntaxHighlighting =
                     AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                CheckForHex();
+
+                Color color = (Color)ColorConverter.ConvertFromString("#f1ff63");
+
+                HighlightingSpan span = new()
+                {
+                    StartExpression = new Regex("\""),
+                    EndExpression = new Regex("\""),
+                    StartColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
+                    EndColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
+                    RuleSet = GetTextEditor().SyntaxHighlighting.GetNamedRuleSet("BracedExpressionAndColorsRuleSet")
+                };
+                GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
             }
             catch (Exception e)
             {
@@ -633,6 +619,58 @@ namespace SkEditorPlus.Managers
             var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
             await webBrowser.EnsureCoreWebView2Async(env);
             webBrowser.Source = new Uri(url);
+        }
+
+        private void CreateFile(string header, string tooltip = null)
+        {
+            TabItem tabItem = new()
+            {
+                Header = header,
+                ToolTip = "",
+                IsSelected = true,
+            };
+            if (tooltip != null)
+            {
+                tabItem.ToolTip = tooltip;
+            }
+
+            IconElement.SetGeometry(tabItem,
+                Geometry.Parse(OtherGeometry));
+            IconElement.SetHeight(tabItem, 16);
+            IconElement.SetWidth(tabItem, 16);
+
+            System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
+
+            TextEditor codeEditor = new()
+            {
+                Style = Application.Current.FindResource("TextEditorStyle") as Style,
+            };
+
+            SearchPanel searchPanel = SearchPanel.Install(codeEditor.TextArea);
+            searchPanel.ShowReplace = true;
+            searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
+
+            searchPanel.Localization = new Data.Localization();
+
+            codeEditor.PreviewMouseWheel += EditorMouseWheel;
+            codeEditor.MouseHover += TextEditorMouseHover;
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Font))
+            {
+                codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+            }
+
+            codeEditor.TextChanged += OnTextChanged;
+            codeEditor.TextArea.TextEntering += OnTextEntering;
+
+            codeEditor.TextArea.TextView.LinkTextForegroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a94c4");
+            codeEditor.TextArea.TextView.LinkTextUnderline = true;
+
+            tabItem.Content = codeEditor;
+
+            tabControl.Items.Add(tabItem);
+            ChangeGeometry();
+            //CompletionManager.LoadCompletionManager(GetTextEditor());
         }
     }
 }

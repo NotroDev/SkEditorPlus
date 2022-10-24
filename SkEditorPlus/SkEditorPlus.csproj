@@ -33,7 +33,7 @@
     <PackageReference Include="AvalonEditB" Version="1.4.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+    <PackageReference Include="DiscordRichPresence" Version="1.1.1.14" />
     <PackageReference Include="HandyControls" Version="3.4.2" />
     <PackageReference Include="HandyControls.Lang.pl" Version="3.4.2" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1370.28" />

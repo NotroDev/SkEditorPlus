@@ -34,13 +34,13 @@ namespace SkEditorPlus.Windows
             {
                 FixDotVariables();
             }
-            if (commentsCheckBox.IsChecked == true)
-            {
-                RemoveComments();
-            }
             if (spacesCheckBox.IsChecked == true)
             {
                 SpacesToTabs();
+            }
+            if (commentsCheckBox.IsChecked == true)
+            {
+                RemoveComments();
             }
 
             Test();

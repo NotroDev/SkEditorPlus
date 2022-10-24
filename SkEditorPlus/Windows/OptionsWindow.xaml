@@ -32,7 +32,7 @@
 
 
 
-        <Button x:Name="updateSyntaxButton" Content="Zaaktualizuj pliki składni" HorizontalAlignment="Left" Margin="658,388,0,0" VerticalAlignment="Top" Click="UpdateSyntaxClick" Width="142" FontSize="11" Height="29" Background="#001C1C1C" BorderBrush="#003F3F46"/>
+        <Button x:Name="updateSyntaxButton" Content="Zaktualizuj pliki składni" HorizontalAlignment="Left" Margin="658,388,0,0" VerticalAlignment="Top" Click="UpdateSyntaxClick" Width="142" FontSize="11" Height="29" Background="#001C1C1C" BorderBrush="#003F3F46"/>
         <TextBlock HorizontalAlignment="Left" Margin="339,183,0,0" TextWrapping="Wrap" Text="BETA" VerticalAlignment="Top" FontSize="10" FontFamily="Cascadia Mono" Foreground="#FFF9E71B" RenderTransformOrigin="2.204,2.499" ToolTip="Funkcja eksperymentalna - może powodować błędy czy nie zawsze działać." ToolTipService.InitialShowDelay="0"/>
 
     </Grid>

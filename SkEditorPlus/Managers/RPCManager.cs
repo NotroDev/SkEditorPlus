@@ -48,6 +48,7 @@ namespace SkEditorPlus.Managers
             try
             {
                 if (!Properties.Settings.Default.DiscordRPC) return;
+                if (name.EndsWith("*")) name = name[..^1];
                 client.UpdateDetails($"Plik: {name}");
             }
             catch { }

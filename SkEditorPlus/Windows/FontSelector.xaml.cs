@@ -109,8 +109,6 @@ namespace SkEditorPlus.Windows
                 return;
             }
 
-            int selectIndex = -1;
-
             var cond = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.CurrentUICulture.Name);
 
             var list = family.GetTypefaces().ToList();

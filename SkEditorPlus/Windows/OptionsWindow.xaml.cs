@@ -56,7 +56,7 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
+        private void OnKey(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
@@ -151,7 +151,7 @@ namespace SkEditorPlus.Windows
         {
             MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
             {
-                Message = "Jeśli kontynujesz, zostanie pobrany oraz zamieniony plik podświetlania składni. Jeśli robiłeś jakieś zmiany w nim i nie chcesz ich stracić, zrób kopię.",
+                Message = "Jeśli kontynujesz, zostaną pobrane oraz zamienione pliki podświetlania składni. Jeśli robiłeś jakieś zmiany w nich i nie chcesz ich stracić, zrób kopię.",
                 Caption = "Uwaga!",
                 ConfirmContent = "Kontynuuj",
                 CancelContent = "Anuluj",
@@ -223,16 +223,14 @@ namespace SkEditorPlus.Windows
 
             if (debugLetters[0] && debugLetters[1] && debugLetters[2] && debugLetters[3] && debugLetters[4])
             {
-                // Copy to clipboard all system info
                 string systemInfo = "```\n";
                 systemInfo += $"System: {Environment.OSVersion}\n";
                 systemInfo += $"Platforma: {Environment.OSVersion.Platform}\n";
                 systemInfo += $"64-bit: {Environment.Is64BitOperatingSystem}\n".Replace("True", "Tak").Replace("False", "Nie");
                 systemInfo += $"Wersja .NET: {Environment.Version}\n";
-                systemInfo += $"Wersja SkEditora+: {MainWindow.version} \n```";
+                systemInfo += $"Wersja SkEditora+: {MainWindow.Version} \n```";
 
                 Clipboard.SetText(systemInfo);
-
 
                 debugLetters = new bool[5];
             }

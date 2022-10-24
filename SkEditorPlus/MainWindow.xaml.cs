@@ -1,7 +1,7 @@
 ﻿using Functionalities;
 using HandyControl.Controls;
 using SkEditorPlus.Managers;
-using SkEditorPlus.Windows;
+using SkEditorPlus.Windows; 
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -15,7 +15,9 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
-        public static string version = "1.1.4-ob";
+        private static readonly string version = "1.2.1";
+
+        public static string Version { get => version; }
 
         public MainWindow(SkEditorAPI skEditor)
         {

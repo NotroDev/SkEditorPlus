@@ -173,7 +173,7 @@ namespace SkEditorPlus.Functionalities
             var github = new GitHubClient(new ProductHeaderValue("SkEditorPlus"));
             var releases = await github.Repository.Release.GetAll("NotroDev", "SkEditorPlus");
             var latest = releases[0].TagName.Replace("v", "");
-            var current = MainWindow.version;
+            var current = MainWindow.Version;
 
             if (latest != current)
             {

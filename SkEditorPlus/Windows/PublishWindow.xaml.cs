@@ -1,13 +1,13 @@
 ﻿using HandyControl.Controls;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Diagnostics;
-using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Text.Json;
 
 namespace SkEditorPlus.Windows
 {
-    public partial class PublishWindow : HandyControl.Controls.Window
+    public partial class PublishWindow : Window
     {
         private SkEditorAPI skEditor;
 
@@ -32,42 +32,32 @@ namespace SkEditorPlus.Windows
                 return;
             }
 
-            PostSkript();
+            Post();
         }
 
-        private async void PostSkript()
+        private async void Post()
         {
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://code.skript.pl/api/v1/codes/create");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                string json = JsonSerializer.Serialize(new
                 {
-                    string json = JsonSerializer.Serialize(new
-                    {
-                        key = apiTextBox.Text,
-                        language = langComboBox.Text.ToLower(),
-                        content = skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text,
-                        anonymous = anonymousCheckBox.IsChecked
-                    });
-                    await streamWriter.WriteAsync(json);
-                    await streamWriter.FlushAsync();
-                    streamWriter.Close();
-                }
+                    key = apiTextBox.Text,
+                    language = langComboBox.Text.ToLower(),
+                    content = skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text,
+                    anonymous = anonymousCheckBox.IsChecked
+                });
 
-                var httpResponse = await httpWebRequest.GetResponseAsync() as HttpWebResponse;
-                using var streamReader = new StreamReader(httpResponse.GetResponseStream());
-                var result = await streamReader.ReadToEndAsync();
-                dynamic resultJson = JObject.Parse(result);
+                HttpClient client = new();
+                HttpResponseMessage response = await client.PostAsync("https://code.skript.pl/api/v1/codes/create", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
+                string responseString = await response.Content.ReadAsStringAsync();
 
-                urlTextBox.Text = resultJson.url.ToString();
+                JObject jsonResult = JObject.Parse(responseString);
+                string url = jsonResult["url"].ToString();
+                urlTextBox.Text = url;
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Error("Coś nie zadziałało.\nMasz połączenie z internetem? Wkleiłeś prawidłowy klucz API?", "Wystąpił błąd");
+                MessageBox.Error($"Coś nie zadziałało.\nMasz połączenie z internetem? Wkleiłeś prawidłowy klucz API?\n\n{e.Message}", "Wystąpił błąd");
             }
         }
 

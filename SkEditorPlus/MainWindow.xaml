@@ -32,7 +32,7 @@
                 x:Name="MenuBar"
                 Grid.Column="1"
                 Margin="0,2.5,0,0"
-                hc:MenuAttach.AnimationMode="Fade"
+                hc:MenuAttach.AnimationMode="Top2BottomWithFade"
                 hc:MenuAttach.IsEnabledAnimation="True"
                 Background="Transparent"
                 FontFamily="Open Sans Medium"
