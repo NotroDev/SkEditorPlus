@@ -330,7 +330,7 @@ namespace SkEditorPlus.Managers
                 {
                     Message = "Plik nie został zapisany. Czy na pewno chcesz go zamknąć?",
                     Caption = "Uwaga!",
-                    ConfirmContent = "Ta",
+                    ConfirmContent = "Tak",
                     CancelContent = "Anuluj",
                     Button = MessageBoxButton.OKCancel
 
