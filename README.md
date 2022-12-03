@@ -31,7 +31,7 @@
 <img src='https://img.shields.io/badge/Discord-PL-%23bf1327?style=for-the-badge'>
   
 </a>
-<a href='https://discord.gg/rK4AQnvMc5E'>
+<a href='https://discord.gg/rK4AQnvMc5'>
   
 <img src='https://img.shields.io/badge/Discord-EN-%231369bf?style=for-the-badge'>
   
