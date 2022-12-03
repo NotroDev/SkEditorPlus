@@ -31,7 +31,7 @@
 <img src='https://img.shields.io/badge/Discord-PL-%23bf1327?style=for-the-badge'>
   
 </a>
-<a href='https://discord.gg/rK4AQnvMc5'>
+<a href='https://discord.gg/rK4AQnvMc5E'>
   
 <img src='https://img.shields.io/badge/Discord-EN-%231369bf?style=for-the-badge'>
   
@@ -48,13 +48,12 @@
 
 # 🐧 Linux?
 
-I'm sorry, but I'm not able to release SkEditor+ without rewriting it to another framework or language that I know less.
-You can try using e.g. [Wine](https://www.winehq.org/), but I can't officially  support it.
+I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language I know more undersized. You can try using something like [Wine](https://www.winehq.org), but I can't officially support it.
 
 
 # 🔧 Tech stack
 
-SkEditor+ is written in WPF, C#, using HandyControls to frontend and AvalonEdit to editor.
+SkEditor+ is written in WPF, C#, using HandyControls to frontend and AvalonEdit to the editor.
 
 # 📣 Spread the word!
 
