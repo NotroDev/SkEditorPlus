@@ -22,6 +22,22 @@
 <img src='https://img.shields.io/github/downloads/NotroDev/SkEditorPlus/total?color=%230fa621&style=flat-square'>
   
 </a>
+
+<br />
+<br />
+
+<a href='https://discord.gg/meFfPGYvr5'>
+  
+<img src='https://img.shields.io/badge/Discord-PL-%23bf1327?style=for-the-badge'>
+  
+</a>
+<a href='https://discord.gg/rK4AQnvMc5E'>
+  
+<img src='https://img.shields.io/badge/Discord-EN-%231369bf?style=for-the-badge'>
+  
+</a>
+
+
   
 </div>
 
