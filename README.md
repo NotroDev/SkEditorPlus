@@ -48,7 +48,7 @@
 
 # 🐧 Linux?
 
-I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language I know more undersized. You can try using something like [Wine](https://www.winehq.org), but I can't officially support it.
+I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language I know less. You can try using something like [Wine](https://www.winehq.org), but I can't officially support it.
 
 
 # 🔧 Tech stack
