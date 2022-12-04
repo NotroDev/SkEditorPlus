@@ -1,0 +1,165 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Polski</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">Plik</system:String>
+    <system:String x:Key="MenuEdit">Edycja</system:String>
+    <system:String x:Key="MenuOther">Inne</system:String>
+
+    <system:String x:Key="MenuFileNew">Nowy</system:String>
+    <system:String x:Key="MenuFileOpen">Otwórz</system:String>
+    <system:String x:Key="MenuFileSave">Zapisz</system:String>
+    <system:String x:Key="MenuFileSaveAs">Zapisz jako</system:String>
+    <system:String x:Key="MenuFilePublish">Opublikuj...</system:String>
+    <system:String x:Key="MenuFileExport">Wyeksportuj</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">Konfiguracja eksportu</system:String>
+    <system:String x:Key="MenuFileClose">Zamknij</system:String>
+
+    <system:String x:Key="MenuEditGenerate">Wygeneruj...</system:String>
+    <system:String x:Key="MenuEditFormat">Szybkie edycje...</system:String>
+    <system:String x:Key="MenuEditBackpack">Plecak</system:String>
+
+    <system:String x:Key="MenuOtherSettings">Ustawienia</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Zmień składnię na Skript</system:String>
+    <system:String x:Key="MenuOtherParser">Parser</system:String>
+    <system:String x:Key="MenuOtherDocs">Dokumentacja</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">Sprawdź aktualizację</system:String>
+
+    <!-- Options menu -->
+    <system:String x:Key="OptionsMenuGeneral">Ogólne</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">Personalizacja</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+    <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+
+    <!-- Other -->
+
+    <system:String x:Key="NewFileName">Nowy plik {0}</system:String>
+    <system:String x:Key="TypeAllFiles">Wszystkie pliki</system:String>
+    <system:String x:Key="TypeScript">Skrypt</system:String>
+    <system:String x:Key="Error">Błąd</system:String>
+    
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">Opublikuj kod</system:String>
+    <system:String x:Key="GenerateWindowTitle">Wygeneruj</system:String>
+    <system:String x:Key="GenerateCommandWindowTitle">Generacja komendy</system:String>
+    <system:String x:Key="GenerateGUIWindowTitle">Generacja GUI</system:String>
+    <system:String x:Key="FormatWindowTitle">Szybkie edycje</system:String>
+    <system:String x:Key="BackpackWindowTitle">Plecak</system:String>
+    <system:String x:Key="SettingsWindowTitle">Ustawienia</system:String>
+
+    <!-- Labels -->
+    
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Wklej tu swój klucz API</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">Klucz API znajdziesz na code.skript.pl/api-key po zalogowaniu</system:String>
+    <system:String x:Key="AnonymousCheckbox">Anonimowo</system:String>
+    <system:String x:Key="PublishButton">Opublikuj</system:String>
+    <system:String x:Key="GenerateButton">Wygeneruj</system:String>
+    <system:String x:Key="ApplyButton">Zastosuj</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Tu będzie link do Twojego kodu :)</system:String>
+    
+    <system:String x:Key="WhatDoYouWantToGenerate">Co chcesz wygenerować?</system:String>
+    <system:String x:Key="CommandButton">Komenda</system:String>
+    <system:String x:Key="GUIButton">GUI</system:String>
+
+    <system:String x:Key="CmdGenName">Nazwa</system:String>
+    <system:String x:Key="CmdGenPermission">Uprawnienie</system:String>
+    <system:String x:Key="CmdGenPermissionMsg">Wiadomość o braku uprawnienia</system:String>
+    <system:String x:Key="CmdGenAliases">Aliasy</system:String>
+    <system:String x:Key="CmdGenUsageMsg">Wiadomość o błędnym użyciu</system:String>
+    <system:String x:Key="CmdGenExecutors">Kto może używac komendy</system:String>
+    <system:String x:Key="CmdGenCooldown">Cooldown</system:String>
+    <system:String x:Key="CmdGenQuantity">Ilość</system:String>
+    <system:String x:Key="CmdGenUnit">Jednostka</system:String>
+    
+    <system:String x:Key="Player">Gracz</system:String>
+    <system:String x:Key="Console">Konsola</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Nazwa funkcji</system:String>
+    <system:String x:Key="GUIGenTitle">Tytuł</system:String>
+    <system:String x:Key="GUIGenRows">Ilość rzędów</system:String>
+    <system:String x:Key="GUIGenExampleItem">Dodaj przykładowy przedmiot</system:String>
+    <system:String x:Key="GUIGenBackground">Dodaj tło</system:String>
+    <system:String x:Key="GUIGenHint">Aby otworzyć to GUI, użyj {0}</system:String>
+    <system:String x:Key="GUIGenExampleItemName">Przykładowy przedmiot</system:String>
+    <system:String x:Key="GUIGenExampleItemLore">Przykładowy opis</system:String>
+    <system:String x:Key="GUIGenExampleItemClicked">Kliknąłeś na przykładowy przedmiot!</system:String>
+    
+    <system:String x:Key="QuickEditsVariablesCheckbox">Zamień kropki w zmiennych w dwukropki</system:String>
+    <system:String x:Key="QuickEditsSpacesCheckbox">Zamień spacje na taby</system:String>
+    <system:String x:Key="QuickEditsCommentsCheckbox">Usuń komentarze</system:String>
+    
+    <system:String x:Key="BackpackAddButton">Dodaj</system:String>
+    <system:String x:Key="BackpackRemoveButton">Usuń</system:String>
+    <system:String x:Key="BackpackPasteButton">Wklej</system:String>
+
+    <system:String x:Key="DocumentationTitle">Dokumentacja</system:String>
+
+    <system:String x:Key="NewVersion">Nowa wersja</system:String>
+    <system:String x:Key="NoNewVersion">SkEditor+ aktualny!</system:String>
+    <system:String x:Key="UpdateAvailable">Nowa wersja dostępna! {n}{n}Aktualnie: v{0}{n}Najnowsza: v{1}</system:String>
+    <system:String x:Key="UpdateNotAvailable">Wygląda na to, że masz najnowsza wersję :){n}{n}Wersja: v{0}</system:String>
+    <system:String x:Key="Download">Pobierz</system:String>
+    <system:String x:Key="Ignore">Zignoruj</system:String>
+    
+    <system:String x:Key="OptionsAutoSave">Autozapis:</system:String>
+    <system:String x:Key="OptionsWrapping">Zawijanie tekstu:</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Automatyczne wstawianie drugiego znaku:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">Automatyczne wstawianie nowej linii</system:String>
+    <system:String x:Key="OptionsFont">Czcionka:</system:String>
+    <system:String x:Key="OptionsSelectFont">Wybierz czcionkę</system:String>
+    <system:String x:Key="OptionsMica">Efekt Mica:</system:String>
+    <system:String x:Key="OptionsTransparency">Przezroczystość edytora:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
+    <system:String x:Key="OptionsWindows11Required">Wymagany Windows 11</system:String>
+    <system:String x:Key="OptionsBeta">beta</system:String>
+    <system:String x:Key="OptionsLanguage">Język</system:String>
+    <system:String x:Key="Version">Wersja:</system:String>
+    <system:String x:Key="SyntaxHighlighting">Podświetlanie składni:</system:String>
+    <system:String x:Key="Update">Zaktualizuj</system:String>
+    <system:String x:Key="UpdateConfirmation">Jeśli kontynuujesz, pliki podświetlania składni zostaną pobrane i zastąpią stare. Jeśli robiłeś w nich zmiany i nie chcesz ich utracić, zrób kopię.</system:String>
+    <system:String x:Key="UpdateSuccess">Pomyślnie zaktualizowano plik składni!</system:String>
+    <system:String x:Key="UpdateFailed">Nie udało się pobrać plików podświetlania składni!\nCzy masz połączenie z internetem?{n}{n}{0}</system:String>
+
+    <!-- Things I forgot before. So they're here. -->
+
+    <system:String x:Key="NoResults">Nie znaleziono</system:String>
+
+    <system:String x:Key="CloseConfirmation">Plik nie został zapisany. Na pewno chcesz go zamknąć?</system:String>
+    <system:String x:Key="Attention">Uwaga!</system:String>
+    <system:String x:Key="Yeah">Nom</system:String>
+    <system:String x:Key="Cancel">Anuluj</system:String>
+    <system:String x:Key="Continue">Kontynuuj</system:String>
+
+    <system:String x:Key="SyntaxError">Nie udało się załadować pliku podświetlania składni.{n}{0}</system:String>
+
+    <system:String x:Key="DiscordRPCFile">Plik: {0}</system:String>
+    <system:String x:Key="DiscordRPCNone">brak</system:String>
+    <system:String x:Key="DiscordRPCDownload">Pobierz SkEditor+</system:String>
+
+    <!-- * Errors * -->
+    <system:String x:Key="GUIGenNameError">Nazwa GUI jest wymagana!</system:String>
+    <system:String x:Key="GUIGenTitleError">Tytuł GUI jest wymagany!</system:String>
+    <system:String x:Key="GUIGenRowsError">Ilość rzędów musi być w zakresie 1-6!</system:String>
+    <system:String x:Key="GUIGenRowsError2">Ilość rzędów musi być liczbą!</system:String>
+
+    <system:String x:Key="CmdGenNameError">Nazwa komendy jest wymagana!</system:String>
+    <system:String x:Key="CmdGenCooldownError">Cooldown musi być liczbą!</system:String>
+    <system:String x:Key="CmdGenCooldownUnitError">Wybierz jednostkę cooldownu!</system:String>
+
+    <system:String x:Key="BackpackSelectionError">Aby dodać kod do plecaka, najpierw go zaznacz!</system:String>
+
+    <!-- Units -->
+    <system:String x:Key="Ticks">ticki</system:String>
+    <system:String x:Key="Seconds">sekundy</system:String>
+    <system:String x:Key="Minutes">minuty</system:String>
+    <system:String x:Key="Hours">godziny</system:String>
+    <system:String x:Key="Days">dni</system:String>
+    <system:String x:Key="Weeks">tygodnie</system:String>
+    <system:String x:Key="Months">miesiące</system:String>
+    <system:String x:Key="Years">lata</system:String>
+
+</ResourceDictionary>

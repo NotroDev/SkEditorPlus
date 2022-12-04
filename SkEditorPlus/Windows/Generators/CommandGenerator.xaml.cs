@@ -1,6 +1,7 @@
 ﻿using AvalonEditB;
 using AvalonEditB.Document;
 using HandyControl.Controls;
+using SkEditorPlus.Managers;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -14,6 +15,8 @@ namespace SkEditorPlus.Windows.Generators
         {
             InitializeComponent();
             this.skEditor = skEditor;
+            BackgroundFixManager.FixBackground(this);
+
         }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
@@ -26,9 +29,14 @@ namespace SkEditorPlus.Windows.Generators
 
         private void Generate(object sender, System.Windows.RoutedEventArgs e)
         {
+            string nameError = (string)FindResource("CmdGenNameError");
+            string cooldownError = (string)FindResource("CmdGenCooldownError");
+            string unitError = (string)FindResource("CmdGenCooldownUnitError");
+            string error = (string)FindResource("Error");
+
             if (string.IsNullOrWhiteSpace(nameTextbox.Text))
             {
-                MessageBox.Error("Nazwa komendy jest wymagana!", "Błąd");
+                MessageBox.Error(nameError, error);
                 return;
             }
 
@@ -36,12 +44,12 @@ namespace SkEditorPlus.Windows.Generators
             {
                 if (!float.TryParse(cooldownTextbox.Text, out _))
                 {
-                    MessageBox.Error("Cooldown musi być liczbą!", "Błąd");
+                    MessageBox.Error(cooldownError, error);
                     return;
                 }
                 if (cooldownComboBox.SelectedIndex == -1)
                 {
-                    MessageBox.Error("Wybierz jednostkę czasu!", "Błąd");
+                    MessageBox.Error(unitError, error);
                     return;
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using Functionalities;
+using HandyControl.Properties.Langs;
 using System;
 using System.Text;
 using System.Threading;
@@ -44,7 +45,6 @@ namespace SkEditorPlus
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
             try
             {
                 new SkEditor(e.Args).Run();

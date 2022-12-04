@@ -1,4 +1,5 @@
 ﻿using DiscordRPC;
+using System.Windows;
 
 namespace SkEditorPlus.Managers
 {
@@ -14,16 +15,20 @@ namespace SkEditorPlus.Managers
 
             client.Initialize();
 
+            string file = (string)Application.Current.FindResource("DiscordRPCFile");
+            string none = (string)Application.Current.FindResource("DiscordRPCNone");
+            string download = (string)Application.Current.FindResource("DiscordRPCDownload");
+
             client.SetPresence(new RichPresence()
             {
-                Details = "Plik: brak",
+                Details = file.Replace("{0}", none),
                 Timestamps = Timestamps.Now,
                 Buttons = new Button[]
                 {
                         new Button()
                         {
-                            Label = "Pobierz SkEditor+",
-                            Url = "https://skript.pl/temat/53624--"
+                            Label = download,
+                            Url = "https://github.com/NotroDev/SkEditorPlus"
                         }
                 },
                 Assets = new Assets()
@@ -49,7 +54,8 @@ namespace SkEditorPlus.Managers
             {
                 if (!Properties.Settings.Default.DiscordRPC) return;
                 if (name.EndsWith("*")) name = name[..^1];
-                client.UpdateDetails($"Plik: {name}");
+                string file = (string)Application.Current.FindResource("DiscordRPCFile");
+                client.UpdateDetails(file.Replace("{0}", name));
             }
             catch { }
         }

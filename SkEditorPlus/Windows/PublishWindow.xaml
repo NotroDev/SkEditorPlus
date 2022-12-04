@@ -6,18 +6,18 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Opublikuj kod" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="OnClosing" KeyUp="OnKey">
+        Title="{DynamicResource PublishWindowTitle}" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="OnClosing" KeyUp="OnKey">
     <Grid>
 
-        <Button x:Name="PublishButton" Content="Opublikuj" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,185,0,0" Click="PublishClick" VerticalAlignment="Top"/>
+        <Button x:Name="PublishButton" Content="{DynamicResource PublishButton}" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,185,0,0" Click="PublishClick" VerticalAlignment="Top"/>
         <ComboBox x:Name="langComboBox" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="138" SelectedIndex="0">
             <ComboBoxItem Content="Skript"/>
             <ComboBoxItem Content="YAML"/>
         </ComboBox>
-        <hc:TextBox x:Name="apiTextBox" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="Wklej tu swój klucz API" Margin="0,10,0,0" AutomationProperties.IsRequiredForForm="True" Height="30"/>
-        <hc:TextBox x:Name="urlTextBox" HorizontalAlignment="Center" Margin="0,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="Tu będzie link do Twojego kodu :)" IsReadOnlyCaretVisible="True"/>
-        <CheckBox x:Name="anonymousCheckBox" Background="#FF1C1C1C" Content="Anonimowo" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="helpText" HorizontalAlignment="Center" Margin="0,45,0,0" TextWrapping="Wrap" Text="Klucz znajdziesz na code.skript.pl/api-key po zalogowaniu" VerticalAlignment="Top" Width="285" MouseLeftButtonUp="HelpClicked"/>
+        <hc:TextBox x:Name="apiTextBox" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="{DynamicResource PasteAPIKeyTextboxPlaceholder}" Margin="0,10,0,0" AutomationProperties.IsRequiredForForm="True" Height="30"/>
+        <hc:TextBox x:Name="urlTextBox" HorizontalAlignment="Center" Margin="0,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="{DynamicResource PublishResultUrlPlaceholder}" IsReadOnlyCaretVisible="True"/>
+        <CheckBox x:Name="anonymousCheckBox" Background="#FF1C1C1C" Content="{DynamicResource AnonymousCheckbox}" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="helpText" HorizontalAlignment="Center" Margin="0,45,0,0" TextWrapping="Wrap" Text="{DynamicResource PasteAPIKeyTextboxHint}" VerticalAlignment="Top" Width="285" MouseLeftButtonUp="HelpClicked"/>
         <Button Content="📋" HorizontalAlignment="Left" Margin="262,234,0,0" VerticalAlignment="Top" Width="33" Click="CopyClick"/>
     </Grid>
 </hc:Window>

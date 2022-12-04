@@ -2,11 +2,13 @@
 using Octokit;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Application = System.Windows.Application;
 
 namespace SkEditorPlus.Functionalities
 {
@@ -23,6 +25,11 @@ namespace SkEditorPlus.Functionalities
                 new InputGestureCollection(new InputGesture[]
                 {
                     new KeyGesture(Key.P, ModifierKeys.Control | ModifierKeys.Shift)
+                }.ToList())),
+            new RoutedCommand("Export", typeof(MenuBarFunc),
+                new InputGestureCollection(new InputGesture[]
+                {
+                    new KeyGesture(Key.E, ModifierKeys.Control | ModifierKeys.Shift)
                 }.ToList()))
         };
         static readonly RoutedCommand[] editApplicationCommands = new RoutedCommand[]
@@ -94,24 +101,39 @@ namespace SkEditorPlus.Functionalities
                 case "New":
                     fileManager.NewFile();
                     break;
+
                 case "Menu_Open":
                 case "Open":
                     fileManager.OpenFile();
                     break;
+
                 case "Menu_Save":
                 case "Save":
                     fileManager.Save();
                     break;
+
                 case "Menu_SaveAs":
                 case "SaveAs":
                     fileManager.SaveDialog();
                     break;
-                case "Publish_SaveAs":
+
+                case "Menu_Publish":
                 case "Publish":
                     if (skEditor.GetMainWindow().GetFileManager().GetTextEditor() == null) return;
                     PublishWindow publishWindow = new(skEditor);
                     publishWindow.ShowDialog();
                     break;
+
+                case "Menu_Export":
+                case "Export":
+                    fileManager.Export();
+                    break;
+
+                case "Menu_ExportOptions":
+                    ExportOptionsWindow exportOptionsWindow = new(skEditor);
+                    exportOptionsWindow.ShowDialog();
+                    break;
+
                 case "Menu_CloseFile":
                 case "Close":
                     fileManager.CloseFile();
@@ -148,7 +170,8 @@ namespace SkEditorPlus.Functionalities
             {
                 case "Menu_Settings":
                 case "Settings":
-                    OptionsWindow optionsWindow = new(skEditor);
+                    //OptionsWindow optionsWindow = new(skEditor);
+                    NewOptionsWindow optionsWindow = new(skEditor);
                     optionsWindow.ShowDialog();
                     break;
 
@@ -172,18 +195,32 @@ namespace SkEditorPlus.Functionalities
         {
             var github = new GitHubClient(new ProductHeaderValue("SkEditorPlus"));
             var releases = await github.Repository.Release.GetAll("NotroDev", "SkEditorPlus");
-            var latest = releases[0].TagName.Replace("v", "");
+            string latest = "";
+            foreach (var release in releases)
+            {
+                if (!release.Prerelease)
+                {
+                    latest = release.TagName.Replace("v", "");
+                    break;
+                }
+            }
+
             var current = MainWindow.Version;
 
             if (latest != current)
             {
+                string newVersionTitle = (string)Application.Current.FindResource("NewVersion");
+                string updateAvailable = (string)Application.Current.FindResource("UpdateAvailable");
+                string download = (string)Application.Current.FindResource("Download");
+                string ignore = (string)Application.Current.FindResource("Ignore");
+
                 MessageBoxResult result = HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
                 {
-                    Message = $"Nowa wersja dostępna! \n\nAktualna: v{current}\nNajnowsza: v{latest}",
-                    Caption = "Nowa wersja!",
+                    Message = updateAvailable.Replace("{0}", latest).Replace("{1}", current).Replace("{n}", Environment.NewLine),
+                    Caption = newVersionTitle,
                     Button = MessageBoxButton.YesNo,
-                    YesContent = "Pobierz",
-                    NoContent = "Ignoruj",
+                    YesContent = download,
+                    NoContent = ignore,
                     IconBrushKey = ResourceToken.DarkInfoBrush,
                     IconKey = ResourceToken.InfoGeometry
                 });
@@ -205,10 +242,12 @@ namespace SkEditorPlus.Functionalities
             }
             else
             {
+                string noNewVersionTitle = (string)Application.Current.FindResource("NoNewVersion");
+                string noNewVersion = (string)Application.Current.FindResource("UpdateNotAvailable");
                 HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
                 {
-                    Message = $"Wygląda na to, że masz aktualną wersję :)\n\nAktualna: v{current}\nNajnowsza: v{latest}",
-                    Caption = "SkEditor+ aktualny!",
+                    Message = noNewVersion.Replace("{0}", current).Replace("{n}", Environment.NewLine),
+                    Caption = noNewVersionTitle,
                     Button = MessageBoxButton.OK,
                     ConfirmContent = "OK",
                     IconBrushKey = ResourceToken.DarkInfoBrush,

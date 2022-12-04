@@ -6,12 +6,12 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Formatowanie" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="{DynamicResource FormatWindowTitle}" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <CheckBox x:Name="variablesCheckBox" Background="#FF1C1C1C" Content="Zamień kropki w zmiennych na dwukropki" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="spacesCheckBox" Background="#FF1C1C1C" Content="Zamień spacje na taby" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="commentsCheckBox" Background="#FF1C1C1C" Content="Usuń komentarze" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <CheckBox x:Name="variablesCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsVariablesCheckbox}" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="spacesCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="commentsCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
 
-        <Button x:Name="formatButton" Content="Formatuj" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,230,0,0" Click="FormatClick" VerticalAlignment="Top"/>
+        <Button x:Name="formatButton" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,230,0,0" Click="FormatClick" VerticalAlignment="Top"/>
     </Grid>
 </hc:Window>

@@ -4,7 +4,6 @@
     xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit">
     <Style x:Key="TextEditorStyle" TargetType="avalonedit:TextEditor">
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="Background" Value="#1e1e1e" />
         <Setter Property="Foreground" Value="#e6e6e6" />
         <Setter Property="ShowLineNumbers" Value="True" />
         <Setter Property="LineNumbersForeground" Value="#2884a8" />

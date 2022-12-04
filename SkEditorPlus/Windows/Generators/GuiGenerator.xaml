@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="Wygeneruj GUI" Height="350" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="{DynamicResource GenerateGUIWindowTitle}" Height="350" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Nazwa funkcji" hc:InfoElement.Necessary="True" TextChanged="FunctionNameChanged" hc:InfoElement.ContentHeight="16"/>
-        <hc:TextBox x:Name="titleTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Tytuł" hc:InfoElement.Necessary="True" Margin="0,58,0,0" hc:InfoElement.ContentHeight="16"/>
-        <hc:TextBox x:Name="rowsTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="Ilość rzędów" hc:InfoElement.Necessary="True" Margin="0,116,0,0" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource GUIGenFunctionName}" hc:InfoElement.Necessary="True" TextChanged="FunctionNameChanged" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="titleTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="{DynamicResource GUIGenTitle}" hc:InfoElement.Necessary="True" Margin="0,58,0,0" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="rowsTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:TitleElement.Title="{DynamicResource GUIGenRows}" hc:InfoElement.Necessary="True" Margin="0,116,0,0" hc:InfoElement.ContentHeight="16"/>
 
 
-        <Button Content="Wygeneruj" HorizontalAlignment="Left" Margin="216,285,0,0" Click="Generate" VerticalAlignment="Top"/>
+        <Button Content="{DynamicResource GenerateButton}" HorizontalAlignment="Left" Margin="216,285,0,0" Click="Generate" VerticalAlignment="Top"/>
         <TextBlock x:Name="howToOpenText" HorizontalAlignment="Left" Margin="10,249.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="32"/>
-        <CheckBox x:Name="exampleItemCheckbox" Content="Dodaj przykładowy przedmiot" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="backgroundCheckbox" Content="Dodaj tło" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="exampleItemCheckbox" Content="{DynamicResource GUIGenExampleItem}" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="backgroundCheckbox" Content="{DynamicResource GUIGenBackground}" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </hc:Window>

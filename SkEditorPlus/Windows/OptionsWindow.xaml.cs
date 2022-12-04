@@ -1,8 +1,10 @@
 ﻿using AvalonEditB;
 using HandyControl.Controls;
 using HandyControl.Data;
+using SkEditorPlus.Managers;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +23,8 @@ namespace SkEditorPlus.Windows
         {
             InitializeComponent();
             this.skEditor = skEditor;
+            BackgroundFixManager.FixBackground(this);
+
         }
 
         private void OnWindowLoad(object sender, RoutedEventArgs e)
@@ -221,7 +225,7 @@ namespace SkEditorPlus.Windows
                     break;
             }
 
-            if (debugLetters[0] && debugLetters[1] && debugLetters[2] && debugLetters[3] && debugLetters[4])
+            if (debugLetters.All(x => x))
             {
                 string systemInfo = "```\n";
                 systemInfo += $"System: {Environment.OSVersion}\n";

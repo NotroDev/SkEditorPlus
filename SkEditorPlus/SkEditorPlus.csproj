@@ -27,19 +27,26 @@
     <None Remove="Images\SkEditor.svg" />
   </ItemGroup>
   <ItemGroup>
+    <Page Remove="Languages\English.xaml" />
+    <Page Remove="Languages\Polski.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\SkEditor.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AvalonEditB" Version="1.4.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="DiscordRichPresence" Version="1.1.1.14" />
-    <PackageReference Include="HandyControls" Version="3.4.2" />
-    <PackageReference Include="HandyControls.Lang.pl" Version="3.4.2" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1370.28" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Octokit" Version="4.0.0" />
-    <PackageReference Include="SharpVectors" Version="1.8.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
+    <PackageReference Include="HandyControls" Version="3.4.4" />
+    <PackageReference Include="HandyControls.Lang.pl" Version="3.4.4" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1418.22" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Octokit" Version="4.0.2" />
+    <PackageReference Include="Renci.SshNet.Async" Version="1.4.0" />
+    <PackageReference Include="SharpVectors" Version="1.8.1" />
+    <PackageReference Include="SSH.NET" Version="2020.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\CascadiaMono.ttf">
@@ -49,12 +56,23 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\SkEditor.svg" />
+    <Content Include="Languages\English.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Polski.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Windows\ExportOptionsWindow.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\GenerateWindow.xaml.cs">
       <SubType>Code</SubType>
@@ -69,6 +87,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\FormattingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\NewOptionsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\PublishWindow.xaml.cs">
@@ -93,6 +114,22 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\OptionsTabControlStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TabControlStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\MessageBoxStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\ExportOptionsWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\GenerateWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
@@ -111,6 +148,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\FormattingWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\NewOptionsWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

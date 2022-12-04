@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkEditorPlus.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -18,6 +19,8 @@ namespace SkEditorPlus.Windows
         public FontSelector()
         {
             InitializeComponent();
+            BackgroundFixManager.FixBackground(this);
+
 
             Control control = this;
             ResultFontFamily = control.FontFamily;

@@ -6,13 +6,13 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Wygeneruj" Height="425" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="{DynamicResource GenerateWindowTitle}" Height="425" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,25,0,0" TextWrapping="Wrap" Text="Co chcesz wygenerować?" VerticalAlignment="Top" FontSize="22" FontFamily="Cascadia Mono" Width="305" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,19,0,0" TextWrapping="Wrap" Text="{DynamicResource WhatDoYouWantToGenerate}" VerticalAlignment="Top" FontSize="22" FontFamily="Cascadia Mono" Width="305" TextAlignment="Center" Height="57"/>
 
-        <Button x:Name="commandButton" Content="Komenda" HorizontalAlignment="Left" Margin="55,77,0,0" VerticalAlignment="Top" Click="CommandClick"/>
-        <Button x:Name="guiButton" Content="GUI" HorizontalAlignment="Right" Margin="0,77,55,0" VerticalAlignment="Top" Width="72" Click="GUIClick"/>
-        <Button x:Name="eventButton" Content="Event" Margin="0,138,0,0" VerticalAlignment="Top" Click="EventClick" Width="72" RenderTransformOrigin="0.456,-1.305" IsEnabled="False"/>
+        <Button x:Name="commandButton" Content="{DynamicResource CommandButton}" HorizontalAlignment="Left" Margin="55,99,0,0" VerticalAlignment="Top" Click="CommandClick" Width="80"/>
+        <Button x:Name="guiButton" Content="{DynamicResource GUIButton}" HorizontalAlignment="Right" Margin="0,99,55,0" VerticalAlignment="Top" Width="80" Click="GUIClick"/>
+        <Button x:Name="eventButton" Content="???" Margin="0,160,0,0" VerticalAlignment="Top" Click="EventClick" Width="72" RenderTransformOrigin="0.456,-1.305" IsEnabled="False"/>
 
     </Grid>
 </hc:Window>

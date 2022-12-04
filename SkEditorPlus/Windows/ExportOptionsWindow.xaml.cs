@@ -1,13 +1,14 @@
 ﻿using HandyControl.Controls;
 using SkEditorPlus.Managers;
+using SkEditorPlus.Windows.Generators;
 
-namespace SkEditorPlus.Windows.Generators
+namespace SkEditorPlus.Windows
 {
-    public partial class EventGenerator : Window
+    public partial class ExportOptionsWindow : Window
     {
-        private SkEditorAPI skEditor;
+        private readonly SkEditorAPI skEditor;
 
-        public EventGenerator(SkEditorAPI skEditor)
+        public ExportOptionsWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
             this.skEditor = skEditor;
@@ -19,16 +20,16 @@ namespace SkEditorPlus.Windows.Generators
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
-                eventGeneratorWindow.Close();
+                exportOptionsWindow.Close();
             }
         }
 
-        private void Generate(object sender, System.Windows.RoutedEventArgs e)
+        private void LocalPathChecked(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }
 
-        private void rowsTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void SftpChecked(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }

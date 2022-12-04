@@ -1,4 +1,5 @@
 ﻿using AvalonEditB;
+using SkEditorPlus.Managers;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,8 @@ namespace SkEditorPlus.Windows
 
                 backpackListbox.Items.Add(item);
             }
+            BackgroundFixManager.FixBackground(this);
+
         }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
@@ -40,10 +43,13 @@ namespace SkEditorPlus.Windows
 
         private void AddCode(object sender, System.Windows.RoutedEventArgs e)
         {
+            string error = (string)FindResource("Error");
+            string selectionError = (string)FindResource("BackpackSelectionError");
+
             TextEditor textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
             if (textEditor.SelectionLength == 0)
             {
-                MessageBox.Show("Aby dodać kod do plecaka, najpierw go zaznacz.", "Nie zaznaczono tekstu!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(selectionError, error, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -80,7 +86,7 @@ namespace SkEditorPlus.Windows
                 Properties.Settings.Default.Save();
 
                 backpackListbox.Items.Remove(backpackListbox.SelectedItem);
-                
+
                 if (backpackListbox.HasItems)
                 {
                     backpackListbox.SelectedIndex = backpackListbox.Items.Count - 1;

@@ -6,13 +6,13 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Plecak" Height="300" Width="305" ResizeMode="CanResize"  WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="{DynamicResource BackpackWindowTitle}" Height="300" Width="305" ResizeMode="CanResize"  WindowStartupLocation="CenterScreen" KeyUp="OnKey">
 
     <Grid>
         <ListBox x:Name="backpackListbox" Margin="10,10,10,51"/>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Dodaj" Click="AddCode" Margin="10,0,0,10"/>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Usuń" Click="DeleteCode" Margin="75,0,0,10"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="{DynamicResource BackpackAddButton}" Click="AddCode" Margin="10,0,0,10"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="{DynamicResource BackpackRemoveButton}" Click="DeleteCode" Margin="75,0,0,10"/>
 
-        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Wklej" Click="PasteCode" Margin="0,0,10,10"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="{DynamicResource BackpackPasteButton}" Click="PasteCode" Margin="0,0,10,10"/>
     </Grid>
 </hc:Window>

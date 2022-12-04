@@ -1,5 +1,6 @@
 ﻿using HandyControl.Controls;
 using Newtonsoft.Json.Linq;
+using SkEditorPlus.Managers;
 using System;
 using System.Diagnostics;
 using System.Net.Http;
@@ -16,6 +17,8 @@ namespace SkEditorPlus.Windows
             InitializeComponent();
             this.skEditor = skEditor;
             apiTextBox.Text = Properties.Settings.Default.ApiKey;
+            BackgroundFixManager.FixBackground(this);
+
         }
 
         private void PublishClick(object sender, System.Windows.RoutedEventArgs e)

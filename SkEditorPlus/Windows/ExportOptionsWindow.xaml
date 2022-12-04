@@ -1,0 +1,23 @@
+﻿<hc:Window x:Name="exportOptionsWindow" x:Class="SkEditorPlus.Windows.ExportOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:SkEditorPlus"
+        mc:Ignorable="d"
+        Title="Konfiguracja eksportu" Height="425" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="Tryb zapisywania:" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <RadioButton Content="Lokalna ścieżka" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" IsChecked="True" Checked="LocalPathChecked"/>
+        <RadioButton Content="SFTP" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Click="SftpChecked"/>
+
+        <hc:TextBox x:Name="hostNameTextbox" Margin="10,105,0,0" TextWrapping="Wrap" hc:InfoElement.Title="Nazwa hosta"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+        <hc:TextBox x:Name="userNameTextbox" Margin="10,163,0,0" TextWrapping="Wrap" hc:TitleElement.Title="Użytkownik"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+        <hc:PasswordBox x:Name="passwordTextbox" Margin="0,105,10,0" PasswordChar="•" hc:TitleElement.Title="Hasło"  VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"/>
+        <hc:TextBox x:Name="portTextbox" Margin="0,163,10,0" TextWrapping="Wrap" hc:TitleElement.Title="Port"  VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"/>
+
+        <hc:TextBox x:Name="localPathTextbox" Margin="0,226,0,0" TextWrapping="Wrap" hc:TitleElement.Title="Lokalna ścieżka" hc:InfoElement.Placeholder="C:\Users\Notro\Desktop\skrypty" VerticalAlignment="Top" HorizontalAlignment="Center" Width="330"/>
+        <hc:TextBox x:Name="ftpPathTextbox" Margin="0,284,0,0" TextWrapping="Wrap" hc:TitleElement.Title="Ścieżka FTP" hc:InfoElement.Placeholder="plugins/Skript/scripts" VerticalAlignment="Top" HorizontalAlignment="Center" Width="330"/>
+    </Grid>
+</hc:Window>

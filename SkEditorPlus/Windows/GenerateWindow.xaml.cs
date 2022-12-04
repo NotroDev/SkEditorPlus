@@ -1,4 +1,5 @@
 ﻿using HandyControl.Controls;
+using SkEditorPlus.Managers;
 using SkEditorPlus.Windows.Generators;
 
 namespace SkEditorPlus.Windows
@@ -11,6 +12,8 @@ namespace SkEditorPlus.Windows
         {
             InitializeComponent();
             this.skEditor = skEditor;
+            BackgroundFixManager.FixBackground(this);
+
         }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)

@@ -64,7 +64,6 @@ namespace SkEditorPlus.Windows
 
         private void OnFixClick(object sender, MouseButtonEventArgs e)
         {
-
             if (fixType == FixType.URL)
             {
                 if (fixUrlOrFunction != null)
@@ -82,7 +81,7 @@ namespace SkEditorPlus.Windows
             }
             else if (fixType == FixType.FUNCTION)
             {
-                Type thisType = this.GetType();
+                Type thisType = GetType();
                 MethodInfo theMethod = thisType.GetMethod(fixUrlOrFunction);
                 theMethod.Invoke(this, null);
             }

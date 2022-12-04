@@ -1,0 +1,190 @@
+﻿<hc:Window x:Name="newOptionsWindow" x:Class="SkEditorPlus.Windows.NewOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:SkEditorPlus"
+        mc:Ignorable="d"
+        Title="{DynamicResource SettingsWindowTitle}" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey" Background="#1c1c1c">
+    <Grid>
+        <TabControl 
+            x:Name="tabControl"
+            SelectedIndex="0" 
+            TabStripPlacement="Left"
+            Background="Transparent">
+
+            <TabItem 
+                x:Name="GeneralTabItem" 
+                Header="{DynamicResource OptionsMenuGeneral}"
+                Background="Transparent">
+                <Grid x:Name="optionsGrid" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Margin="10,5,5,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <DockPanel 
+                                x:Name="Language"
+                                Grid.Row="0" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsLanguage}" FontSize="16" Margin="0,0,15,0" />
+                            <hc:ComboBox 
+                                    x:Name="languageComboBox" HorizontalAlignment="Left"
+                                    Background="#FF1C1C1C" Width="124" SelectionChanged="OnLanguageChange" >
+                                <ComboBoxItem Content="English"/>
+                                <ComboBoxItem Content="Polski"/>
+                            </hc:ComboBox>
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="Wrapping"
+                                Grid.Row="1" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsWrapping}" FontSize="16" Margin="0,0,15,0" />
+                            <CheckBox 
+                                    x:Name="wrappingCheckbox" IsChecked="{Binding IsWrappingEnabled}"
+                                    Background="#FF1C1C1C" Height="30" Click="CheckboxClicked" />
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="AutoSecondChar"
+                                Grid.Row="2" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsAutoSecondChar}" FontSize="16" Margin="0,0,15,0" />
+                            <CheckBox 
+                                    x:Name="autoSecondCharacterCheckbox" IsChecked="{Binding IsAutoSecondCharacterEnabled}"
+                                    Background="#FF1C1C1C" Height="30" Click="CheckboxClicked" />
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="AutoNewLine"
+                                Grid.Row="3" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsAutoNewLine}" FontSize="16" Margin="0,0,15,0" />
+                            <hc:Badge Value="12" HorizontalAlignment="Left" Text="{DynamicResource OptionsBeta}" BadgeMargin="10,0,0,25" Style="{DynamicResource BadgeWarning}" FontSize="11">
+                                <CheckBox 
+                                    x:Name="autoNewLineAndTabCheckbox" IsChecked="{Binding IsAutoNewLineAndTabEnabled}"
+                                    Background="#FF1C1C1C" Height="30" Click="CheckboxClicked" />
+                            </hc:Badge>
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="UpdateSyntax"
+                                Grid.Row="4" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource SyntaxHighlighting}" FontSize="16" Margin="0,0,15,0" />
+                            <Button 
+                                    x:Name="updateSyntaxButton" HorizontalAlignment="Left"
+                                    Content="{DynamicResource Update}" Height="30" Click="UpdateSyntaxClick" />
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="Version"
+                                Grid.Row="5" Margin="0,0,0,5">
+                            <TextBlock x:Name="versionText" 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="Version: 1.3.0" FontSize="16" Margin="0,0,15,0" HorizontalAlignment="Left" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem 
+                x:Name="PersonalizationTabItem" 
+                Header="{DynamicResource OptionsMenuPersonalization}"
+                Background="Transparent">
+                <Grid 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Margin="10,5,5,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <DockPanel 
+                                x:Name="Font"
+                                Grid.Row="0" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsFont}" FontSize="16" Margin="0,0,15,0" />
+                            <Button 
+                                    x:Name="fontPickerButton" HorizontalAlignment="Left"
+                                    Content="{DynamicResource OptionsSelectFont}" Height="30" Click="OnFontButtonClick" />
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="Mica"
+                                Grid.Row="1" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsMica}" FontSize="16" Margin="0,0,15,0" />
+                            <hc:Badge Value="12" HorizontalAlignment="Left" Text="{DynamicResource OptionsWindows11Required}" BadgeMargin="10,0,0,25" Style="{DynamicResource BadgeInfo}" FontSize="11">
+                                <CheckBox 
+                                    x:Name="micaCheckbox" IsChecked="{Binding IsMicaEnabled}"
+                                    Background="#FF1C1C1C" Height="30" Click="CheckboxClicked" />
+                            </hc:Badge>
+                        </DockPanel>
+                        <DockPanel 
+                                x:Name="Transparency"
+                                Grid.Row="2" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsTransparency}" FontSize="16" Margin="0,0,15,0" />
+                            <Slider 
+                                x:Name="editorTransparency" HorizontalAlignment="Left"
+                                Height="18" Width="150" Value="125" Maximum="255" Background="#50000000" ValueChanged="TransparencyChanged" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem 
+                x:Name="DiscordTabItem" 
+                Header="{DynamicResource OptionsMenuDiscord}"
+                Background="Transparent">
+                <Grid 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Margin="10,5,5,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <DockPanel 
+                                x:Name="Discord"
+                                Grid.Row="0" Margin="0,0,0,5">
+                            <TextBlock 
+                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    Text="{DynamicResource OptionsDiscordRPC}" FontSize="16" Margin="0,0,15,0" />
+                            <CheckBox 
+                                    x:Name="discordRPCCheckbox" IsChecked="{Binding IsDiscordRPCEnabled}"
+                                    Background="#FF1C1C1C" Height="30" Click="CheckboxClicked" />
+                            <!--
+                            <hc:Badge Value="12" Text="beta" BadgeMargin="0,-14,-20,0" Height="30" Style="{DynamicResource BadgeWarning}">
+                                
+                            </hc:Badge>
+                            -->
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem 
+                x:Name="FTPTabItem"
+                Header="{DynamicResource OptionsMenuFTP}"
+                Background="Transparent" IsEnabled="False">
+                <Grid 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Margin="5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</hc:Window>

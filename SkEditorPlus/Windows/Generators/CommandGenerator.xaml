@@ -6,36 +6,36 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="Wygeneruj komendę" Height="485" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
+        Title="{DynamicResource GenerateCommandWindowTitle}" Height="485" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Nazwa" hc:InfoElement.Necessary="True" hc:InfoElement.ContentHeight="16"/>
-        <hc:TextBox x:Name="permTextbox" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Uprawnienie" hc:InfoElement.ContentHeight="16"/>
-        <hc:TextBox x:Name="permMessTextbox" HorizontalAlignment="Center" Margin="0,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Wiadomość o braku uprawnienia" hc:InfoElement.ContentHeight="16"/>
-        <hc:TextBox x:Name="aliasesTextbox" HorizontalAlignment="Center" Margin="0,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Aliasy" hc:InfoElement.ContentHeight="16"/>
-        <hc:TextBox x:Name="usageTextbox" HorizontalAlignment="Center" Margin="0,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="Wiadomość o błędnym użyciu" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="nameTextbox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource CmdGenName}" hc:InfoElement.Necessary="True" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="permTextbox" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource CmdGenPermission}" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="permMessTextbox" HorizontalAlignment="Center" Margin="0,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource CmdGenPermissionMsg}" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="aliasesTextbox" HorizontalAlignment="Center" Margin="0,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource CmdGenAliases}" hc:InfoElement.ContentHeight="16"/>
+        <hc:TextBox x:Name="usageTextbox" HorizontalAlignment="Center" Margin="0,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource CmdGenUsageMsg}" hc:InfoElement.ContentHeight="16"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="19,286,0,0" TextWrapping="Wrap" Text="Kto może używać komendy" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="19,286,0,0" TextWrapping="Wrap" Text="{DynamicResource CmdGenExecutors}" VerticalAlignment="Top"/>
         <hc:CheckComboBox x:Name="executableByComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Width="285" Margin="0,307,0,0">
-            <hc:CheckComboBoxItem Content="Gracz" Tag="player"/>
-            <hc:CheckComboBoxItem Content="Konsola" Tag="console"/>
+            <hc:CheckComboBoxItem Content="{DynamicResource Player}" Tag="player"/>
+            <hc:CheckComboBoxItem Content="{DynamicResource Console}" Tag="console"/>
         </hc:CheckComboBox>
 
-        <hc:TextBox x:Name="cooldownTextbox" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" hc:InfoElement.Title="Cooldown" hc:InfoElement.ContentHeight="16" hc:InfoElement.Placeholder="Ilość"/>
-        <hc:ComboBox x:Name="cooldownComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="166,362,0,0" hc:InfoElement.Placeholder="Jednostka">
-            <hc:AutoCompleteTextBoxItem Content="ticki" Tag="ticks"/>
-            <hc:AutoCompleteTextBoxItem Content="sekundy" Tag="seconds"/>
-            <hc:AutoCompleteTextBoxItem Content="minuty" Tag="minutes"/>
-            <hc:AutoCompleteTextBoxItem Content="godziny" Tag="hours"/>
-            <hc:AutoCompleteTextBoxItem Content="dni" Tag="days"/>
-            <hc:AutoCompleteTextBoxItem Content="tygodnie" Tag="weeks"/>
-            <hc:AutoCompleteTextBoxItem Content="miesiące" Tag="months"/>
-            <hc:AutoCompleteTextBoxItem Content="lata" Tag="years"/>
+        <hc:TextBox x:Name="cooldownTextbox" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" hc:InfoElement.Title="{DynamicResource CmdGenCooldown}" hc:InfoElement.ContentHeight="16" hc:InfoElement.Placeholder="{DynamicResource CmdGenQuantity}"/>
+        <hc:ComboBox x:Name="cooldownComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="166,362,0,0" hc:InfoElement.Placeholder="{DynamicResource CmdGenUnit}">
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Ticks}" Tag="ticks"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Seconds}" Tag="seconds"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Minutes}" Tag="minutes"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Hours}" Tag="hours"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Days}" Tag="days"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Weeks}" Tag="weeks"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Months}" Tag="months"/>
+            <hc:AutoCompleteTextBoxItem Content="{DynamicResource Years}" Tag="years"/>
         </hc:ComboBox>
 
 
 
 
-        <Button Content="Wygeneruj" HorizontalAlignment="Left" Margin="216,415,0,0" Click="Generate" VerticalAlignment="Top"/>
+        <Button Content="{DynamicResource GenerateButton}" HorizontalAlignment="Left" Margin="216,415,0,0" Click="Generate" VerticalAlignment="Top"/>
 
     </Grid>
 </hc:Window>

@@ -1,6 +1,7 @@
 ﻿using AvalonEditB;
 using AvalonEditB.Document;
 using HandyControl.Controls;
+using SkEditorPlus.Managers;
 
 namespace SkEditorPlus.Windows.Generators
 {
@@ -12,6 +13,8 @@ namespace SkEditorPlus.Windows.Generators
         {
             InitializeComponent();
             this.skEditor = skEditor;
+            BackgroundFixManager.FixBackground(this);
+
         }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
@@ -24,9 +27,15 @@ namespace SkEditorPlus.Windows.Generators
 
         private void Generate(object sender, System.Windows.RoutedEventArgs e)
         {
+            string nameError = (string)FindResource("GUIGenNameError");
+            string titleError = (string)FindResource("GUIGenTitleError");
+            string rowsError = (string)FindResource("GUIGenRowsError");
+            string rowsError2 = (string)FindResource("GUIGenRowsError2");
+            string error = (string)FindResource("Error");
+
             if (string.IsNullOrWhiteSpace(nameTextbox.Text))
             {
-                MessageBox.Error("Nazwa GUI jest wymagana!", "Błąd");
+                MessageBox.Error(nameError, error);
                 return;
             }
 
@@ -34,19 +43,19 @@ namespace SkEditorPlus.Windows.Generators
             {
                 if (rows < 1 || rows > 6)
                 {
-                    MessageBox.Error("Liczba rzędów musi być w zakresie od 1 do 6!", "Błąd");
+                    MessageBox.Error(rowsError, error);
                     return;
                 }
             }
             else
             {
-                MessageBox.Error("Liczba wierszy musi być liczbą!", "Błąd");
+                MessageBox.Error(rowsError2, error);
                 return;
             }
 
             if (string.IsNullOrEmpty(titleTextbox.Text))
             {
-                MessageBox.Error("Tytuł GUI jest wymagany!", "Błąd");
+                MessageBox.Error(titleError, error);
                 return;
             }
 
@@ -54,6 +63,10 @@ namespace SkEditorPlus.Windows.Generators
 
             int offset = editor.CaretOffset;
             DocumentLine line = editor.Document.GetLineByOffset(offset);
+
+            string exampleItemName = (string)FindResource("GUIGenExampleItemName");
+            string exampleItemLore = (string)FindResource("GUIGenExampleItemLore");
+            string exampleItemClicked = (string)FindResource("GUIGenExampleItemClicked");
 
             string code = "";
 
@@ -68,7 +81,7 @@ namespace SkEditorPlus.Windows.Generators
             if ((bool)backgroundCheckbox.IsChecked)
                 code += $"\n\tset slot (numbers between 0 and {int.Parse(rowsTextBox.Text) * 9}) of {{_gui}} to black stained glass pane";
             if ((bool)exampleItemCheckbox.IsChecked)
-                code += $"\n\tset slot {int.Parse(rowsTextBox.Text) * 9 / 2} of {{_gui}} to diamond named \"&aPrzykładowy przedmiot\" with lore \"&7Oto opis tego\" and \"&7wspaniałego przedmiotu!\"\n\t";
+                code += $"\n\tset slot {int.Parse(rowsTextBox.Text) * 9 / 2} of {{_gui}} to diamond named \"&a{exampleItemName}\" with lore \"{exampleItemLore}\"\n\t";
             code += "\n\topen {_gui} to {_p}";
 
             code += "\n\non inventory click:";
@@ -78,7 +91,7 @@ namespace SkEditorPlus.Windows.Generators
             if ((bool)exampleItemCheckbox.IsChecked)
             {
                 code += $"\n\t\tif clicked slot is {int.Parse(rowsTextBox.Text) * 9 / 2}:";
-                code += "\n\t\t\tsend \"&7Kliknąłeś przykładowy przedmiot!\"";
+                code += $"\n\t\t\tsend \"&7{exampleItemClicked}\"";
             }
             editor.Text += code;
 
@@ -94,7 +107,10 @@ namespace SkEditorPlus.Windows.Generators
                 howToOpenText.Text = "";
                 return;
             }
-            howToOpenText.Text = $"Aby wyświetlić GUI, użyj {nameTextbox.Text}(player)";
+
+            string hint = (string)System.Windows.Application.Current.Resources["GUIGenHint"];
+
+            howToOpenText.Text = hint.Replace("{0}", nameTextbox.Text + "(player)");
         }
     }
 }

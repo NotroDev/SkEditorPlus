@@ -1,5 +1,6 @@
 ﻿using AvalonEditB;
 using HandyControl.Controls;
+using SkEditorPlus.Managers;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -16,9 +17,11 @@ namespace SkEditorPlus.Windows
             InitializeComponent();
             this.skEditor = skEditor;
             textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
+            BackgroundFixManager.FixBackground(this);
+
         }
 
-        
+
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -65,7 +68,7 @@ namespace SkEditorPlus.Windows
         private void Test()
         {
             return;
-            
+
             string code = textEditor.Text;
 
             string[] parts = Regex.Split(code, @"(?<=[:])");
@@ -107,7 +110,7 @@ namespace SkEditorPlus.Windows
                 {
                     var regex = new Regex("    ");
                     var lineWithTabs = regex.Replace(line, "\t", 1);
-                    
+
                     textEditor.Document.Replace(GetOffsetByLine(line), line.Length, lineWithTabs);
                 }
             }

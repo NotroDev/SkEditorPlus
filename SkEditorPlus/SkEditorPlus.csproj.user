@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Windows\ExportOptionsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\OptionsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,13 +18,28 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Languages\Polski.xaml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Update="Languages\English.xaml">
+      <SubType>Designer</SubType>
+    </Content>
     <Page Update="Styles\CompletionListStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\OptionsTabControlStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TabControlStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\BackpackWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\ExportOptionsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\GenerateWindow.xaml">
@@ -37,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\FormattingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\NewOptionsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\PublishWindow.xaml">

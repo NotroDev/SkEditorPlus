@@ -1,21 +1,28 @@
-﻿using Functionalities;
+﻿using AvalonEditB;
+using Functionalities;
 using HandyControl.Controls;
+using HandyControl.Themes;
+using HandyControl.Tools;
 using SkEditorPlus.Managers;
-using SkEditorPlus.Windows; 
+using SkEditorPlus.Windows;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Media;
+using Window = HandyControl.Controls.Window;
 
 namespace SkEditorPlus
 {
-    public partial class MainWindow : HandyControl.Controls.Window
+    public partial class MainWindow : Window
     {
         public SkEditorAPI skEditor;
         private FileManager fileManager;
         private readonly string startupFile;
 
-        private static readonly string version = "1.2.1";
+        private static readonly string version = "1.3.0";
 
         public static string Version { get => version; }
 
@@ -43,13 +50,41 @@ namespace SkEditorPlus
             startupFile = skEditor.GetStartupFile();
             this.skEditor = skEditor;
             InitializeComponent();
-
             Process process = Process.GetCurrentProcess();
 
+            string countryName = RegionInfo.CurrentRegion.Name;
+            if (countryName.Equals("PL"))
+            {
+                ConfigHelper.Instance.SetLang("pl");
+            }
+            else
+            {
+                ConfigHelper.Instance.SetLang("en");
+            }
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            string lang = Properties.Settings.Default.Language;
+            string appDirectory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
+
+            string langFile = appDirectory + @"\Languages\" + lang + ".xaml";
+            if (File.Exists(langFile))
+            {
+                ResourceDictionary dict = new()
+                {
+                    Source = new Uri(langFile, UriKind.RelativeOrAbsolute)
+                };
+                Application.Current.Resources.MergedDictionaries.Add(dict);
+            }
+            else
+            {
+                Properties.Settings.Default.Language = "English";
+                Properties.Settings.Default.Save();
+            }
+            SetUpMica();
+            BackgroundFixManager.FixBackground(this);
+
             fileManager = new FileManager(skEditor);
             new FunctionalitiesManager().LoadAll(skEditor);
 
@@ -66,6 +101,36 @@ namespace SkEditorPlus
             else
             {
                 fileManager.NewFile();
+            }
+        }
+
+        public void SetUpMica(bool firstTime = true)
+        {
+            bool mica = false;
+            if (MicaHelper.IsSupported(BackdropType.Mica)) mica = true;
+
+            var oldStyle = (Style)Application.Current.FindResource("TextEditorStyle");
+            Style newStyle = new(typeof(TextEditor));
+            foreach (Setter setter in oldStyle.Setters.Cast<Setter>())
+            {
+                newStyle.Setters.Add(setter);
+            }
+
+            byte transparency = (byte)Properties.Settings.Default.EditorTransparency;
+
+            
+            
+            newStyle.Setters.Add(new Setter(BackgroundProperty, mica ? new SolidColorBrush(Color.FromArgb(transparency, 30, 30, 30)) : new SolidColorBrush(Color.FromRgb(0x1e, 0x1e, 0x1e))));
+
+            Application.Current.Resources["TextEditorStyle"] = newStyle;
+
+            if (mica && firstTime)
+            {
+                tabControl.Style = (Style)Application.Current.FindResource("TabControlStyle");
+                tabControl.Background = Brushes.Transparent;
+
+                ThemeResources.Current.Add("SecondaryRegionBrush", Brushes.Transparent);
+                ThemeResources.Current.Add("SecondaryTextBrush", Brushes.Transparent);
             }
         }
 
