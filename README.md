@@ -50,7 +50,7 @@
 
 I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language I know less. You can try using something like [Wine](https://www.winehq.org), but I can't officially support it
 
-# 🥺 Maybe even Windows 7?
+# 🥺 Maybe at least Windows 7?
 I'm sorry again, but it isn't possible. SkEditor+ runs on .Net 6, which isn't supported on it without paid [ESU](https://learn.microsoft.com/pl-pl/lifecycle/faq/extended-security-updates). I won't change the version to older one.
 
 
