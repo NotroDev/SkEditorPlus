@@ -1,133 +1,110 @@
-﻿using AvalonEditB;
 using HandyControl.Controls;
+using Newtonsoft.Json.Linq;
 using SkEditorPlus.Managers;
-using System.Linq;
-using System.Text.RegularExpressions;
+using System;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace SkEditorPlus.Windows
 {
-    public partial class FormattingWindow : Window
+    public partial class PublishWindow : Window
     {
         private SkEditorAPI skEditor;
 
-        private TextEditor textEditor;
-
-        public FormattingWindow(SkEditorAPI skEditor)
+        public PublishWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
             this.skEditor = skEditor;
-            textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
+            apiTextBox.Text = Properties.Settings.Default.ApiKey;
             BackgroundFixManager.FixBackground(this);
 
         }
 
+        private void PublishClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(apiTextBox.Text))
+            {
+                MessageBox.Error("API key not entered.", "Error");
+                return;
+            }
 
+            if (string.IsNullOrEmpty(skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text))
+            {
+                MessageBox.Error("Your code is empty!", "Error");
+                return;
+            }
+
+            Post();
+        }
+
+        private async void Post()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(new
+                {
+                    key = apiTextBox.Text,
+                    language = langComboBox.Text.ToLower(),
+                    content = skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text,
+                    anonymous = anonymousCheckBox.IsChecked
+                });
+
+                HttpClient client = new();
+                HttpResponseMessage response = await client.PostAsync("https://code.skript.pl/api/v1/codes/create", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                JObject jsonResult = JObject.Parse(responseString);
+                string url = jsonResult["url"].ToString();
+                urlTextBox.Text = url;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Error($"Something didn't work.\nAre you connected to the internet? Did you paste the correct API key?\n\n{e.Message}", "An error occurred");
+            }
+        }
+
+
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.ApiKey = apiTextBox.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void HelpClicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            OpenUrl("https://code.skript.pl/api-key");
+        }
+
+        private void CopyClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            try
+            {
+                System.Windows.Clipboard.SetText(urlTextBox.Text);
+            }
+            catch { }
+        }
+
+        private static void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                url = url.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
+        }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
-                formattingWindow.Close();
+                publishWindow.Close();
             }
-        }
-
-        private void FormatClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (variablesCheckBox.IsChecked == true)
-            {
-                FixDotVariables();
-            }
-            if (spacesCheckBox.IsChecked == true)
-            {
-                SpacesToTabs();
-            }
-            if (commentsCheckBox.IsChecked == true)
-            {
-                RemoveComments();
-            }
-
-            Test();
-
-            formattingWindow.Close();
-        }
-
-        private void FixDotVariables()
-        {
-            string code = textEditor.Text;
-
-            Regex regex = new("{([^.}]*)\\.([^}]*)}");
-
-            foreach (Match variableMatch in regex.Matches(code).Cast<Match>())
-            {
-                string variable = variableMatch.Value.Replace(".", "::");
-                code = code.Replace(variableMatch.Value, variable);
-                textEditor.Text = code;
-            }
-        }
-
-        private void Test()
-        {
-            return;
-
-            string code = textEditor.Text;
-
-            string[] parts = Regex.Split(code, @"(?<=[:])");
-
-            code = "";
-            foreach (string element in parts)
-            {
-
-                code += element.Trim() + "\n\t";
-            }
-            textEditor.Text = code;
-        }
-
-        private void RemoveComments()
-        {
-            foreach (string line in textEditor.Text.Split("\n"))
-            {
-                if (line.StartsWith("#"))
-                {
-                    int offset = GetOffsetByLine(line);
-
-                    if (offset - 1 > 0)
-                    {
-                        textEditor.Document.Remove(offset - 1, line.Length + 1);
-                    }
-                    else
-                    {
-                        textEditor.Document.Remove(offset, line.Length + 1);
-                    }
-                }
-            }
-        }
-
-        private void SpacesToTabs()
-        {
-            foreach (string line in textEditor.Text.Split("\n"))
-            {
-                if (line.StartsWith("    "))
-                {
-                    var regex = new Regex("    ");
-                    var lineWithTabs = regex.Replace(line, "\t", 1);
-
-                    textEditor.Document.Replace(GetOffsetByLine(line), line.Length, lineWithTabs);
-                }
-            }
-        }
-
-        private int GetOffsetByLine(string line)
-        {
-            int offset = 0;
-            foreach (string element in textEditor.Text.Split("\n"))
-            {
-                if (element == line)
-                {
-                    return offset;
-                }
-                offset += element.Length + 1;
-            }
-            return -1;
         }
     }
 }
