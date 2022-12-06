@@ -5,10 +5,12 @@ using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
+using System.Windows;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Windows
 {
-    public partial class PublishWindow : Window
+    public partial class PublishWindow : HandyControl.Controls.Window
     {
         private SkEditorAPI skEditor;
 
@@ -21,17 +23,21 @@ namespace SkEditorPlus.Windows
 
         }
 
-        private void PublishClick(object sender, System.Windows.RoutedEventArgs e)
+        private void PublishClick(object sender, RoutedEventArgs e)
         {
+            string error = (string)Application.Current.FindResource("Error");
+            string emptyCodeError = (string)Application.Current.FindResource("EmptyCodeError");
+            string emptyAPIKeyError = (string)Application.Current.FindResource("EmptyAPIKeyError");
+
             if (string.IsNullOrEmpty(apiTextBox.Text))
             {
-                MessageBox.Error("Nie wprowadzono klucza API.", "Błąd");
+                MessageBox.Error(emptyAPIKeyError, error);
                 return;
             }
 
             if (string.IsNullOrEmpty(skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text))
             {
-                MessageBox.Error("Twój kod jest pusty!", "Błąd");
+                MessageBox.Error(emptyCodeError, error);
                 return;
             }
 
@@ -60,7 +66,9 @@ namespace SkEditorPlus.Windows
             }
             catch (Exception e)
             {
-                MessageBox.Error($"Coś nie zadziałało.\nMasz połączenie z internetem? Wkleiłeś prawidłowy klucz API?\n\n{e.Message}", "Wystąpił błąd");
+                string error = (string)Application.Current.FindResource("Error");
+                string publishingError = (string)Application.Current.FindResource("PublishingError");
+                MessageBox.Error(publishingError.Replace("{n}", Environment.NewLine).Replace("{0}", e.Message), error);
             }
         }
 

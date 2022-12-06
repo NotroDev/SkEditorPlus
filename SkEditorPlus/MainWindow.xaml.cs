@@ -107,7 +107,7 @@ namespace SkEditorPlus
         public void SetUpMica(bool firstTime = true)
         {
             bool mica = false;
-            if (MicaHelper.IsSupported(BackdropType.Mica)) mica = true;
+            if (MicaHelper.IsSupported(BackdropType.Mica) && Properties.Settings.Default.Mica) mica = true;
 
             var oldStyle = (Style)Application.Current.FindResource("TextEditorStyle");
             Style newStyle = new(typeof(TextEditor));

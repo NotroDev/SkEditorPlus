@@ -41,12 +41,16 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        private void AddCode(object sender, System.Windows.RoutedEventArgs e)
+        private void AddCode(object sender, RoutedEventArgs e)
         {
             string error = (string)FindResource("Error");
             string selectionError = (string)FindResource("BackpackSelectionError");
 
             TextEditor textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
+            if (textEditor == null)
+            {
+                return;
+            }
             if (textEditor.SelectionLength == 0)
             {
                 MessageBox.Show(selectionError, error, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -72,7 +76,7 @@ namespace SkEditorPlus.Windows
             Properties.Settings.Default.Save();
         }
 
-        private void DeleteCode(object sender, System.Windows.RoutedEventArgs e)
+        private void DeleteCode(object sender, RoutedEventArgs e)
         {
             if (backpackListbox.SelectedItem != null)
             {
@@ -94,11 +98,11 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        private void PasteCode(object sender, System.Windows.RoutedEventArgs e)
+        private void PasteCode(object sender, RoutedEventArgs e)
         {
             TextEditor textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
             ListBoxItem item = (ListBoxItem)backpackListbox.SelectedItem;
-            if (item == null) return;
+            if (item == null || textEditor == null) return;
             string codeToPaste = item.Content.ToString();
 
             textEditor.Document.Insert(textEditor.CaretOffset, codeToPaste);

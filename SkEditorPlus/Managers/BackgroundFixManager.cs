@@ -16,7 +16,9 @@ namespace SkEditorPlus.Managers
 
         public static void FixBackground(HandyControl.Controls.Window window)
         {
-            window.SystemBackdropType = MicaHelper.IsSupported(BackdropType.Mica) ? BackdropType.Mica : BackdropType.Disable;
+            window.SystemBackdropType = (MicaHelper.IsSupported(BackdropType.Mica) && Properties.Settings.Default.Mica) ? BackdropType.Mica : BackdropType.Disable;
+            
+            
             var hwnd = new WindowInteropHelper(window).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }

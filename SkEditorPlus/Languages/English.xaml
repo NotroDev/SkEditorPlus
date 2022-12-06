@@ -50,6 +50,7 @@
     <system:String x:Key="FormatWindowTitle">Quick edits</system:String>
     <system:String x:Key="BackpackWindowTitle">Backpack</system:String>
     <system:String x:Key="SettingsWindowTitle">Settings</system:String>
+    <system:String x:Key="FontSelectorTitle">Select font</system:String>
 
     <!-- Labels -->
     
@@ -112,7 +113,7 @@
     <system:String x:Key="OptionsFont">Font:</system:String>
     <system:String x:Key="OptionsSelectFont">Select font</system:String>
     <system:String x:Key="OptionsMica">Mica effect:</system:String>
-    <system:String x:Key="OptionsTransparency">Transparency of editor:</system:String>
+    <system:String x:Key="OptionsTransparency">Editor opacity:</system:String>
     <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
     <system:String x:Key="OptionsWindows11Required">Windows 11 required</system:String>
     <system:String x:Key="OptionsBeta">beta</system:String>
@@ -151,6 +152,10 @@
     <system:String x:Key="CmdGenCooldownUnitError">Select cooldown unit!</system:String>
 
     <system:String x:Key="BackpackSelectionError">To add a code to your backpack, first select it.</system:String>
+    
+    <system:String x:Key="EmptyCodeError">Your code is empty!</system:String>
+    <system:String x:Key="EmptyAPIKeyError">API key not entered.</system:String>
+    <system:String x:Key="PublishingError">Something didn't work.{n}Are you connected to the internet? Did you paste the correct API key?{n}{n}{0}</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">ticks</system:String>
