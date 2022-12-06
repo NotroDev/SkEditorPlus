@@ -1,4 +1,4 @@
-﻿using HandyControl.Controls;
+using HandyControl.Controls;
 using Newtonsoft.Json.Linq;
 using SkEditorPlus.Managers;
 using System;
@@ -25,13 +25,13 @@ namespace SkEditorPlus.Windows
         {
             if (string.IsNullOrEmpty(apiTextBox.Text))
             {
-                MessageBox.Error("Nie wprowadzono klucza API.", "Błąd");
+                MessageBox.Error("API key not entered.", "Error");
                 return;
             }
 
             if (string.IsNullOrEmpty(skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text))
             {
-                MessageBox.Error("Twój kod jest pusty!", "Błąd");
+                MessageBox.Error("Your code is empty!", "Error");
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace SkEditorPlus.Windows
             }
             catch (Exception e)
             {
-                MessageBox.Error($"Coś nie zadziałało.\nMasz połączenie z internetem? Wkleiłeś prawidłowy klucz API?\n\n{e.Message}", "Wystąpił błąd");
+                MessageBox.Error($"Something didn't work.\nAre you connected to the internet? Did you paste the correct API key?\n\n{e.Message}", "An error occurred");
             }
         }
 
