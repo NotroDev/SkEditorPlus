@@ -1,6 +1,5 @@
 ﻿using AvalonEditB;
 using Functionalities;
-using HandyControl.Controls;
 using HandyControl.Themes;
 using HandyControl.Tools;
 using SkEditorPlus.Managers;
@@ -11,7 +10,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using ScrollViewer = HandyControl.Controls.ScrollViewer;
 using Window = HandyControl.Controls.Window;
 
 namespace SkEditorPlus
@@ -22,7 +23,7 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
-        private static readonly string version = "1.3.0";
+        private static readonly string version = "1.3.2";
 
         public static string Version { get => version; }
 

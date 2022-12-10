@@ -1,5 +1,8 @@
-﻿using System;
+﻿using HandyControl.Controls;
+using System;
+using System.DirectoryServices.ActiveDirectory;
 using System.IO;
+using System.Net.Http;
 
 namespace SkEditorPlus
 {
@@ -20,9 +23,25 @@ namespace SkEditorPlus
         {
             if (args.Length > 0)
             {
-                if (!File.Exists(args[0]))
-                    throw new FileNotFoundException("File not found... How did you do that?");
-                else startupFile = args[0];
+                if (File.Exists(args[0]))
+                {
+                    startupFile = args[0];
+                }
+                else
+                {
+                    string fileId = args[0].Replace("skeditor:", "");
+
+                    string url = "https://code.skript.pl/" + fileId + "/raw";
+                    string file;
+                    using (var client = new HttpClient())
+                    {
+                        file = client.GetStringAsync(url).Result;
+                    }
+
+                    string tempFile = Path.GetTempFileName();
+                    File.WriteAllText(tempFile, file);
+                    startupFile = tempFile;
+                }
             }
 
             mainWindow = new MainWindow(this);

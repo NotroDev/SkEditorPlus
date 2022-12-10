@@ -159,7 +159,11 @@ namespace SkEditorPlus.Managers
 
                 if (!string.IsNullOrEmpty(path))
                 {
-                    GetTextEditor().Save(path);
+                    try
+                    {
+                        GetTextEditor().Save(path);
+                    }
+                    catch { }
                     return;
                 }
                 AddAsterisk(tabItem);
