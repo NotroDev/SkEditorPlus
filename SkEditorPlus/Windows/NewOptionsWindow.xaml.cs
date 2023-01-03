@@ -26,6 +26,10 @@ namespace SkEditorPlus.Windows
         private readonly SkEditorAPI skEditor;
         private SettingsBindings settingsBindings;
 
+        // This is polish easter egg :)
+        private static string pozdrowieniaSwirek = "pozdrowieniaswiateczne";
+        private static bool[] pozdrowieniaSwirekBools = new bool[pozdrowieniaSwirek.Length];
+
         public NewOptionsWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
@@ -126,6 +130,28 @@ namespace SkEditorPlus.Windows
             if (e.Key == Key.Escape)
             {
                 newOptionsWindow.Close();
+            }
+
+            // This is polish easter egg :)
+            
+            if (e.Key.ToString().ToLower() == pozdrowieniaSwirek[Array.IndexOf(pozdrowieniaSwirekBools, false)].ToString())
+            {
+                pozdrowieniaSwirekBools[Array.IndexOf(pozdrowieniaSwirekBools, false)] = true;
+            }
+            else
+            {
+                Array.Clear(pozdrowieniaSwirekBools, 0, pozdrowieniaSwirekBools.Length);
+            }
+            if (pozdrowieniaSwirekBools.All(x => x))
+            {
+                DateTime christmas = new(DateTime.Now.Year, 12, 25);
+                if (DateTime.Now > christmas)
+                {
+                    christmas = christmas.AddYears(1);
+                }
+                int daysLeft = (christmas - DateTime.Now).Days;
+                MessageBox.Show($"pozdrowienia świąteczne byniu, {daysLeft} dni do świąt", "Siema świrek", MessageBoxButton.OK, MessageBoxImage.Information);
+                Array.Clear(pozdrowieniaSwirekBools, 0, pozdrowieniaSwirekBools.Length);
             }
         }
 

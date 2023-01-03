@@ -78,41 +78,49 @@ namespace SkEditorPlus.Managers
 
         public void Save()
         {
-            if (GetTextEditor() == null) return;
-
-            if (tabControl.SelectedItem is not TabItem ti) return;
-
-            if (ti.ToolTip != null)
+            try
             {
-                if (ti.ToolTip.ToString() != null && ti.ToolTip.ToString() != "")
+                if (GetTextEditor() == null) return;
+
+                if (tabControl.SelectedItem is not TabItem ti) return;
+
+                if (ti.ToolTip != null)
                 {
-                    GetTextEditor().Save(ti.ToolTip.ToString());
-                    if (ti.Header.ToString().EndsWith("*"))
+                    if (ti.ToolTip.ToString() != null && ti.ToolTip.ToString() != "")
                     {
-                        ti.Header = ti.Header.ToString()[..^1];
+                        GetTextEditor().Save(ti.ToolTip.ToString());
+                        if (ti.Header.ToString().EndsWith("*"))
+                        {
+                            ti.Header = ti.Header.ToString()[..^1];
+                        }
+                        OnTabChanged();
+                        return;
                     }
-                    OnTabChanged();
-                    return;
+                    SaveDialog();
                 }
-                SaveDialog();
             }
+            catch { }
         }
 
         public void SaveDialog()
         {
-            if (GetTextEditor() == null) return;
-            if (tabControl.SelectedItem is not TabItem ti) return;
-            SaveFileDialog saveFile = new()
+            try
             {
-                Filter = filter
-            };
-            if (saveFile.ShowDialog() == true)
-            {
-                GetTextEditor().Save(saveFile.FileName);
-                ti.ToolTip = saveFile.FileName.ToString();
-                ti.Header = saveFile.SafeFileName;
-                OnTabChanged();
+                if (GetTextEditor() == null) return;
+                if (tabControl.SelectedItem is not TabItem ti) return;
+                SaveFileDialog saveFile = new()
+                {
+                    Filter = filter
+                };
+                if (saveFile.ShowDialog() == true)
+                {
+                    GetTextEditor().Save(saveFile.FileName);
+                    ti.ToolTip = saveFile.FileName.ToString();
+                    ti.Header = saveFile.SafeFileName;
+                    OnTabChanged();
+                }
             }
+            catch { }
         }
 
         public void OpenFile()
@@ -140,6 +148,7 @@ namespace SkEditorPlus.Managers
                     catch { }
                 }
             }
+            
         }
 
         private void OnTextChanged(object sender, EventArgs e)

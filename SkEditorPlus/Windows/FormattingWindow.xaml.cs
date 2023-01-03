@@ -106,12 +106,15 @@ namespace SkEditorPlus.Windows
         {
             foreach (string line in textEditor.Text.Split("\n"))
             {
-                if (line.StartsWith("    "))
-                {
-                    var regex = new Regex("    ");
-                    var lineWithTabs = regex.Replace(line, "\t", 1);
+                int offset = GetOffsetByLine(line);
+                int spaces = line.TakeWhile(c => c == ' ').Count();
+                int tabs = spaces / 4;
+                int remainder = spaces % 4;
 
-                    textEditor.Document.Replace(GetOffsetByLine(line), line.Length, lineWithTabs);
+                if (tabs > 0)
+                {
+                    textEditor.Document.Remove(offset, spaces);
+                    textEditor.Document.Insert(offset, new string('\t', tabs));
                 }
             }
         }

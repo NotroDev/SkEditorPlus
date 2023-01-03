@@ -23,7 +23,7 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
-        private static readonly string version = "1.3.2";
+        private static readonly string version = "1.3.3";
 
         public static string Version { get => version; }
 
