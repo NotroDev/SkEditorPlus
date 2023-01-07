@@ -47,19 +47,16 @@
 <br />
 
 # 🐧 Linux?
-
 I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language I know less. You can try using something like [Wine](https://www.winehq.org), but I can't officially support it.
 
 # 🥺 Maybe at least Windows 7?
-I'm sorry again, but it isn't possible. SkEditor+ runs on .NET 6, which isn't supported on it without paid [ESU](https://learn.microsoft.com/pl-pl/lifecycle/faq/extended-security-updates). I won't change the version to older one.
+I'm sorry again, but it isn't possible. SkEditor+ runs on .NET 6, which isn't supported without paid [ESU](https://learn.microsoft.com/pl-pl/lifecycle/faq/extended-security-updates). I won't change the version to the older one.
 
 
 # 🔧 Tech stack
-
-SkEditor+ is written in WPF, C#, using HandyControls for frontend and AvalonEdit for the editor.
+SkEditor+ is written in WPF, C#, using HandyControls for the front end and AvalonEdit for the editor.
 
 # 📣 Spread the word!
-
 If you would like to support us and promote SkEditor+, you can:
 - Add a GitHub Star to the project!
 - Recommend to friends!
