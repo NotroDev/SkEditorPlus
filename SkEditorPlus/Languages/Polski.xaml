@@ -11,6 +11,7 @@
 
     <system:String x:Key="MenuFileNew">Nowy</system:String>
     <system:String x:Key="MenuFileOpen">Otwórz</system:String>
+    <system:String x:Key="MenuFileOpenFolder">Otwórz folder</system:String>
     <system:String x:Key="MenuFileSave">Zapisz</system:String>
     <system:String x:Key="MenuFileSaveAs">Zapisz jako</system:String>
     <system:String x:Key="MenuFilePublish">Opublikuj...</system:String>

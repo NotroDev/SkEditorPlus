@@ -102,6 +102,7 @@ namespace SkEditorPlus
             else
             {
                 fileManager.NewFile();
+
             }
         }
 

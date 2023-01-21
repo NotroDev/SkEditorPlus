@@ -36,7 +36,7 @@
                 hc:MenuAttach.IsEnabledAnimation="True"
                 Background="Transparent"
                 FontFamily="Open Sans Medium"
-                IsMainMenu="True">
+                IsMainMenu="True" Style="{DynamicResource MenuBaseStyle}">
                 <MenuItem x:Name="File_MenuItem" Header="{DynamicResource MenuFile}">
                     <MenuItem
                         x:Name="Menu_NewFile"
@@ -46,6 +46,9 @@
                         x:Name="Menu_Open"
                         Header="{DynamicResource MenuFileOpen}"
                         InputGestureText="Ctrl+O" />
+                    <MenuItem
+                        x:Name="Menu_OpenFolder"
+                        Header="{DynamicResource MenuFileOpenFolder}"/>
                     <MenuItem
                         x:Name="Menu_Save"
                         Header="{DynamicResource MenuFileSave}"
@@ -118,6 +121,12 @@
             ShowContextMenu="False"
             ShowOverflowButton="True"
             TabItemWidth="150"/>
+        <!--<TreeView Margin="0,0,314,0">
+            <TreeViewItem Header="Project">
+                <TreeViewItem Header="Scripts" />
+                <TreeViewItem Header="Assets" />
+            </TreeViewItem>
+        </TreeView>-->
     </Grid>
 
     <Window.InputBindings>

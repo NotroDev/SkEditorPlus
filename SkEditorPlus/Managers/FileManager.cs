@@ -148,7 +148,29 @@ namespace SkEditorPlus.Managers
                     catch { }
                 }
             }
-            
+        }
+
+        public void OpenFolder()
+        {
+            using var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] files = Directory.GetFiles(dialog.SelectedPath);
+                foreach (string file in files)
+                {
+                    if (file.EndsWith(".sk"))
+                    {
+                        CreateFile(Path.GetFileName(file), file);
+                        GetTextEditor().Load(file);
+                        TabItem ti = tabControl.SelectedItem as TabItem;
+                        if (ti.Header.ToString().EndsWith("*"))
+                        {
+                            ti.Header = ti.Header.ToString()[..^1];
+                        }
+                    }
+                }
+            }
         }
 
         private void OnTextChanged(object sender, EventArgs e)

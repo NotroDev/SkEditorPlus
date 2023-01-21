@@ -107,6 +107,10 @@ namespace SkEditorPlus.Functionalities
                     fileManager.OpenFile();
                     break;
 
+                case "Menu_OpenFolder":
+                    fileManager.OpenFolder();
+                    break;
+
                 case "Menu_Save":
                 case "Save":
                     fileManager.Save();

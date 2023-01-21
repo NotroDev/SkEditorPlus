@@ -27,10 +27,16 @@
     <Page Update="Styles\CompletionListStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\ScrollViewerStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\OptionsTabControlStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\MenuStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TabControlStyle.xaml">

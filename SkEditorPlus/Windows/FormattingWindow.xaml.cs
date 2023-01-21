@@ -104,12 +104,36 @@ namespace SkEditorPlus.Windows
 
         private void SpacesToTabs()
         {
+            // Get amount of spaces that user uses for tabs
+            // Like, if we have code like this:
+            //command /test:
+            //  trigger:
+            //    send "test"
+            // then it will be 2 spaces
+            // if we have code like this:
+            //command /test:
+            //    trigger:
+            //        send "test"
+            // then it will be 4 spaces
+            // and so on
+            int howMuchSpacesInTab = 0;
+            foreach (string line in textEditor.Text.Split("\n"))
+            {
+                if (line.StartsWith(" "))
+                {
+                    howMuchSpacesInTab = line.TakeWhile(c => c == ' ').Count();
+                    break;
+                }
+            }
+            MessageBox.Show(howMuchSpacesInTab.ToString());
+
+
             foreach (string line in textEditor.Text.Split("\n"))
             {
                 int offset = GetOffsetByLine(line);
                 int spaces = line.TakeWhile(c => c == ' ').Count();
-                int tabs = spaces / 4;
-                int remainder = spaces % 4;
+                int tabs = spaces / howMuchSpacesInTab;
+                int remainder = spaces % howMuchSpacesInTab;
 
                 if (tabs > 0)
                 {
