@@ -93,6 +93,7 @@
     <system:String x:Key="QuickEditsVariablesCheckbox">Zamień kropki w zmiennych w dwukropki</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Zamień spacje na taby</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Usuń komentarze</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">Skróć "else if"</system:String>
     
     <system:String x:Key="BackpackAddButton">Dodaj</system:String>
     <system:String x:Key="BackpackRemoveButton">Usuń</system:String>
@@ -126,7 +127,7 @@
     <system:String x:Key="UpdateSuccess">Pomyślnie zaktualizowano plik składni!</system:String>
     <system:String x:Key="UpdateFailed">Nie udało się pobrać plików podświetlania składni!\nCzy masz połączenie z internetem?{n}{n}{0}</system:String>
 
-    <!-- Things I forgot before. So they're here. -->
+    <!-- Things I forgot before. So they're here :P -->
 
     <system:String x:Key="NoResults">Nie znaleziono</system:String>
 
@@ -141,6 +142,9 @@
     <system:String x:Key="DiscordRPCFile">Plik: {0}</system:String>
     <system:String x:Key="DiscordRPCNone">brak</system:String>
     <system:String x:Key="DiscordRPCDownload">Pobierz SkEditor+</system:String>
+
+    <system:String x:Key="UnsavedFiles">Niezapisane pliki</system:String>
+    <system:String x:Key="UnsavedFilesMessage">Masz niezapisane pliki. Jesteś pewny, że chcesz zamknąć program?</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Nazwa GUI jest wymagana!</system:String>

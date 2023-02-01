@@ -93,6 +93,7 @@
     <system:String x:Key="QuickEditsVariablesCheckbox">Change dots in variables to colons</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Change spaces to tabs</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Remove comments</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">Shorten "else if"</system:String>
     
     <system:String x:Key="BackpackAddButton">Add</system:String>
     <system:String x:Key="BackpackRemoveButton">Remove</system:String>
@@ -141,6 +142,10 @@
     <system:String x:Key="DiscordRPCFile">File: {0}</system:String>
     <system:String x:Key="DiscordRPCNone">none</system:String>
     <system:String x:Key="DiscordRPCDownload">Download SkEditor+</system:String>
+
+
+    <system:String x:Key="UnsavedFiles">Unsaved files</system:String>
+    <system:String x:Key="UnsavedFilesMessage">You have unsaved files. Are you sure you want to close the program?</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Name of GUI is required!</system:String>

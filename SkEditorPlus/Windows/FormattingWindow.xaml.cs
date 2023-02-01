@@ -3,6 +3,9 @@ using HandyControl.Controls;
 using SkEditorPlus.Managers;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System;
+using System.Windows.Shapes;
+using AvalonEditB.Document;
 
 namespace SkEditorPlus.Windows
 {
@@ -33,18 +36,10 @@ namespace SkEditorPlus.Windows
 
         private void FormatClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (variablesCheckBox.IsChecked == true)
-            {
-                FixDotVariables();
-            }
-            if (spacesCheckBox.IsChecked == true)
-            {
-                SpacesToTabs();
-            }
-            if (commentsCheckBox.IsChecked == true)
-            {
-                RemoveComments();
-            }
+            if (variablesCheckBox.IsChecked == true) FixDotVariables();
+            if (spacesCheckBox.IsChecked == true) SpacesToTabs();
+            if (commentsCheckBox.IsChecked == true) RemoveComments();
+            if (elseIfCheckBox.IsChecked == true) FixElseIf();
 
             Test();
 
@@ -61,8 +56,8 @@ namespace SkEditorPlus.Windows
             {
                 string variable = variableMatch.Value.Replace(".", "::");
                 code = code.Replace(variableMatch.Value, variable);
-                textEditor.Text = code;
             }
+            textEditor.Document.Text = code;
         }
 
         private void Test()
@@ -79,7 +74,7 @@ namespace SkEditorPlus.Windows
 
                 code += element.Trim() + "\n\t";
             }
-            textEditor.Text = code;
+            textEditor.Document.Text = code;
         }
 
         private void RemoveComments()
@@ -104,18 +99,6 @@ namespace SkEditorPlus.Windows
 
         private void SpacesToTabs()
         {
-            // Get amount of spaces that user uses for tabs
-            // Like, if we have code like this:
-            //command /test:
-            //  trigger:
-            //    send "test"
-            // then it will be 2 spaces
-            // if we have code like this:
-            //command /test:
-            //    trigger:
-            //        send "test"
-            // then it will be 4 spaces
-            // and so on
             int howMuchSpacesInTab = 0;
             foreach (string line in textEditor.Text.Split("\n"))
             {
@@ -125,7 +108,6 @@ namespace SkEditorPlus.Windows
                     break;
                 }
             }
-            MessageBox.Show(howMuchSpacesInTab.ToString());
 
 
             foreach (string line in textEditor.Text.Split("\n"))
@@ -155,6 +137,57 @@ namespace SkEditorPlus.Windows
                 offset += element.Length + 1;
             }
             return -1;
+        }
+
+        private void FixElseIf()
+        {
+            string code = textEditor.Text;
+            string[] lines = code.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                string trimmedLine = line.Trim();
+                if (trimmedLine.Equals("else:"))
+                {
+                    if (i + 1 < lines.Length)
+                    {
+                        string nextLine = lines[i + 1];
+                        string trimmedNextLine = nextLine.Trim();
+
+                        //int y = 0;
+                        //while (string.IsNullOrWhiteSpace(trimmedNextLine) || trimmedNextLine.StartsWith("#"))
+                        //{
+                        //    y++;
+                        //    if (i + y + 1 < lines.Length)
+                        //    {
+                        //        nextLine = lines[i + y + 1];
+                        //        trimmedNextLine = nextLine.Trim();
+                        //    }
+                        //    else
+                        //    {
+                        //        break;
+                        //    }
+                        //}
+
+                        if (trimmedNextLine.StartsWith("if "))
+                        {
+                            string beforeElse = line[..line.IndexOf("else:")];
+
+                            trimmedNextLine = trimmedNextLine[trimmedNextLine.IndexOf("if ")..];
+
+                            string newLine = beforeElse + "else " + trimmedNextLine;
+
+                            code = code.Replace(line, newLine.TrimEnd());
+
+                            DocumentLine line1 = textEditor.Document.GetLineByOffset(textEditor.Document.Text.IndexOf(nextLine));
+                            code = code.Remove(line1.Offset - 2, line1.Length + 2);
+
+                            textEditor.Document.Text = code;
+                        }
+                    }
+                }
+            }
         }
     }
 }

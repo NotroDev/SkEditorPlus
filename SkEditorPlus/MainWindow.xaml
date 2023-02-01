@@ -15,7 +15,7 @@
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d"
-    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}">
+    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing">
     <hc:Window.NonClientAreaContent>
         <Grid x:Name="TitleBar">
             <Grid.ColumnDefinitions>

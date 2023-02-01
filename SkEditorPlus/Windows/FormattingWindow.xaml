@@ -11,6 +11,7 @@
         <CheckBox x:Name="variablesCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsVariablesCheckbox}" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="spacesCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="commentsCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <CheckBox x:Name="elseIfCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsElseIfCheckbox}" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="12"/>
 
         <Button x:Name="formatButton" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,230,0,0" Click="FormatClick" VerticalAlignment="Top"/>
     </Grid>

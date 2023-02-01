@@ -23,7 +23,7 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
-        private static readonly string version = "1.3.3";
+        private static readonly string version = "1.3.4";
 
         public static string Version { get => version; }
 
@@ -136,9 +136,27 @@ namespace SkEditorPlus
             }
         }
 
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (tabControl.Items.Count > 0)
+            {
+                if (tabControl.Items.Cast<TabItem>().Any(tab => tab.Header.ToString().EndsWith("*")))
+                {
+                    string title = (string)Application.Current.FindResource("UnsavedFiles");
+                    string message = (string)Application.Current.FindResource("UnsavedFilesMessage");
+                    MessageBoxResult result = HandyControl.Controls.MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result != MessageBoxResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
+        }
+
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             RPCManager.Uninitialize();
+
             Environment.Exit(0);
         }
 
