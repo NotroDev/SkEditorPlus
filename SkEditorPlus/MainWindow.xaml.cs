@@ -2,7 +2,6 @@
 using Functionalities;
 using HandyControl.Themes;
 using HandyControl.Tools;
-using HandyControl.Tools.Extension;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
@@ -10,27 +9,37 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using ScrollViewer = HandyControl.Controls.ScrollViewer;
 using Window = HandyControl.Controls.Window;
 
 namespace SkEditorPlus
 {
+    public delegate void LoadFinishedEvent();
+    
     public partial class MainWindow : Window
     {
+
         public SkEditorAPI skEditor;
         private FileManager fileManager;
         private readonly string startupFile;
+        public Menu GetMenu()
+        {
+            return MenuBar;
+        }
 
-        private static readonly string version = "1.3.5";
+        
+        public event LoadFinishedEvent LoadFinished;
+
+
+        private static readonly string version = "1.3.6";
 
         public static string Version { get => version; }
 
         public MainWindow(SkEditorAPI skEditor)
         {
+            
             try
             {
                 NamedPipeManager pipeManager = new("SkEditor+");
@@ -122,6 +131,13 @@ namespace SkEditorPlus
                 fileManager.NewFile();
 
             }
+
+            OnFinishedLoad();
+        }
+
+        protected virtual void OnFinishedLoad()
+        {
+            LoadFinished?.Invoke();
         }
 
         public void SetUpMica(bool firstTime = true)

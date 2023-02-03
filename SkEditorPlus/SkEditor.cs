@@ -47,25 +47,6 @@ namespace SkEditorPlus
             mainWindow = new MainWindow(this);
             WindowOpen?.Invoke(mainWindow, EventArgs.Empty);
             mainWindow.Show();
-
-            /*
-            string procName = Process.GetCurrentProcess().ProcessName;
-
-            Process[] processes = Process.GetProcessesByName(procName);
-
-            if (processes.Length > 1)
-            {
-
-                Process.GetCurrentProcess().Close();
-                return;
-            }
-            else
-            {
-                mainWindow = new MainWindow(this);
-                WindowOpen?.Invoke(mainWindow, EventArgs.Empty);
-                mainWindow.Show();
-            }
-            */
         }
 
         public MainWindow GetMainWindow()
