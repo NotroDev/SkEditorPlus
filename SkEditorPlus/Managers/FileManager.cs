@@ -415,6 +415,9 @@ namespace SkEditorPlus.Managers
                         GetTextEditor().FontSize = fontSize;
                 }
 
+                // TODO: We need to make some space at bottom, so user can scroll past the end of the file
+                
+
                 e.Handled = true;
             }
         }

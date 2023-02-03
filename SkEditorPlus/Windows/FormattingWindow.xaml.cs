@@ -109,6 +109,8 @@ namespace SkEditorPlus.Windows
                 }
             }
 
+            if (howMuchSpacesInTab == 0) return;
+
 
             foreach (string line in textEditor.Text.Split("\n"))
             {

@@ -151,7 +151,7 @@ namespace SkEditorPlus.Windows
             Properties.Settings.Default.Save();
         }
 
-        private void UpdateSyntaxClick(object sender, RoutedEventArgs e)
+        private async void UpdateSyntaxClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
             {
@@ -165,11 +165,11 @@ namespace SkEditorPlus.Windows
 
             if (result.Equals(MessageBoxResult.OK))
             {
-                UpdateSyntaxFile();
+                await UpdateSyntaxFile();
             }
         }
 
-        public async void UpdateSyntaxFile()
+        public async Task UpdateSyntaxFile()
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             using var client = new HttpClient();
@@ -181,12 +181,11 @@ namespace SkEditorPlus.Windows
                 File.Delete(appPath + @"\YAMLHighlighting.xshd");
                 await DownloadFileTaskAsync(client, skriptUri, appPath + @"\SkriptHighlighting.xshd");
                 await DownloadFileTaskAsync(client, yamlUri, appPath + @"\YAMLHighlighting.xshd");
-                Growl.Success("Pomyślnie zaaktualizowano pliki podświetlania składni!", "SuccessMsg");
                 skEditor.GetMainWindow().GetFileManager().OnTabChanged();
             }
-            catch (Exception e)
+            catch
             {
-                MessageBox.Error($"Nie udało się pobrać plików podświetlania składni!\nMasz połączenie z internetem?\n\n{e.Message}", "Błąd");
+                
             }
         }
 

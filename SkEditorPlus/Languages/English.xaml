@@ -127,6 +127,10 @@
     <system:String x:Key="UpdateSuccess">Syntax highlighting files updated successfully!</system:String>
     <system:String x:Key="UpdateFailed">Failed to download syntax highlighting files!\nAre you connected to the internet?{n}{n}{0}</system:String>
 
+    <system:String x:Key="NoFilesTitle">No files</system:String>
+    <system:String x:Key="NoFilesDescription">Missing syntax highlighting files detected! Click to download.</system:String>
+    <system:String x:Key="NoFilesDownloaded">Successfully downloaded!</system:String>
+
     <!-- Things I forgot before. So they're here :P -->
     
     <system:String x:Key="NoResults">Not found</system:String>

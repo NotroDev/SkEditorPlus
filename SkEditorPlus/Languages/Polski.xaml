@@ -127,6 +127,8 @@
     <system:String x:Key="UpdateSuccess">Pomyślnie zaktualizowano plik składni!</system:String>
     <system:String x:Key="UpdateFailed">Nie udało się pobrać plików podświetlania składni!\nCzy masz połączenie z internetem?{n}{n}{0}</system:String>
 
+
+
     <!-- Things I forgot before. So they're here :P -->
 
     <system:String x:Key="NoResults">Nie znaleziono</system:String>

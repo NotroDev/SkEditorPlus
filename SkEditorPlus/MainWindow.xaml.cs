@@ -2,6 +2,7 @@
 using Functionalities;
 using HandyControl.Themes;
 using HandyControl.Tools;
+using HandyControl.Tools.Extension;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
@@ -9,6 +10,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -23,7 +25,7 @@ namespace SkEditorPlus
         private FileManager fileManager;
         private readonly string startupFile;
 
-        private static readonly string version = "1.3.4";
+        private static readonly string version = "1.3.5";
 
         public static string Version { get => version; }
 
@@ -37,6 +39,14 @@ namespace SkEditorPlus
             }
             catch { }
 
+            startupFile = skEditor.GetStartupFile();
+            this.skEditor = skEditor;
+            Process process = Process.GetCurrentProcess();
+            InitializeComponent();
+        }
+
+        async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             if (!Directory.Exists(appPath))
             {
@@ -44,14 +54,24 @@ namespace SkEditorPlus
             }
             if (!File.Exists(appPath + @"\SkriptHighlighting.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
             {
-                OptionsWindow optionsWindow = new(skEditor);
-                optionsWindow.UpdateSyntaxFile();
-            }
+                // get NoFilesTitle, NoFilesDescription, NoFilesDownloaded
+                string noFilesTitle = (string)FindResource("NoFilesTitle");
+                string noFilesDescription = (string)FindResource("NoFilesDescription");
+                string noFilesDownloaded = (string)FindResource("NoFilesDownloaded");
 
-            startupFile = skEditor.GetStartupFile();
-            this.skEditor = skEditor;
-            InitializeComponent();
-            Process process = Process.GetCurrentProcess();
+                OptionsWindow optionsWindow = new(skEditor);
+                HandyControl.Controls.MessageBox.Show(noFilesDescription, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                IsEnabled = false;
+                await optionsWindow.UpdateSyntaxFile().ContinueWith((t) =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        IsEnabled = true;
+                        HandyControl.Controls.MessageBox.Show(noFilesDownloaded, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                    });
+                });
+
+            }
 
             string countryName = RegionInfo.CurrentRegion.Name;
             if (countryName.Equals("PL"))
@@ -62,10 +82,8 @@ namespace SkEditorPlus
             {
                 ConfigHelper.Instance.SetLang("en");
             }
-        }
 
-        void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
+
             string lang = Properties.Settings.Default.Language;
             string appDirectory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
 
