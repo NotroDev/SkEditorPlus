@@ -2,10 +2,13 @@
 using Newtonsoft.Json.Linq;
 using SkEditorPlus.Managers;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
+using static System.Windows.Forms.DataFormats;
 using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Windows
@@ -18,13 +21,13 @@ namespace SkEditorPlus.Windows
         {
             InitializeComponent();
             this.skEditor = skEditor;
-            apiTextBox.Text = Properties.Settings.Default.ApiKey;
             BackgroundFixManager.FixBackground(this);
 
+            helpText.Text = helpText.Text.Replace("{0}", "pastebin.com/doc_api");
         }
 
         private void PublishClick(object sender, RoutedEventArgs e)
-        {
+        {   
             string error = (string)Application.Current.FindResource("Error");
             string emptyCodeError = (string)Application.Current.FindResource("EmptyCodeError");
             string emptyAPIKeyError = (string)Application.Current.FindResource("EmptyAPIKeyError");
@@ -41,7 +44,40 @@ namespace SkEditorPlus.Windows
                 return;
             }
 
-            Post();
+            switch (websiteComboBox.Text)
+            {
+                case "code.skript.pl":
+                    Post();
+                    break;
+                case "Pastebin":
+                    PostPastebin();
+                    break;
+            }
+        }
+
+        private async void PostPastebin()
+        {
+            string apiKey = apiTextBox.Text;
+            string code = skEditor.GetTextEditor().Text;
+
+            var values = new Dictionary<string, string>
+            {
+                { "api_dev_key", apiKey },
+                { "api_option", "paste" },
+                { "api_paste_code", code },
+            };
+
+            var client = new HttpClient();
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("https://pastebin.com/api/api_post.php", content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                urlTextBox.Text = responseString;
+            }
         }
 
         private async void Post()
@@ -76,20 +112,34 @@ namespace SkEditorPlus.Windows
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.ApiKey = apiTextBox.Text;
+            switch (websiteComboBox.Text)
+            {
+                case "code.skript.pl":
+                    Properties.Settings.Default.CodeSkriptApiKey = apiTextBox.Text;
+                    break;
+                case "Pastebin":
+                    Properties.Settings.Default.PastebinApiKey = apiTextBox.Text;
+                    break;
+            }
             Properties.Settings.Default.Save();
         }
 
         private void HelpClicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            OpenUrl("https://code.skript.pl/api-key");
+            string website = "https://pastebin.com/doc_api";
+            if (websiteComboBox.Text.Equals("code.skript.pl"))
+            {
+                website = "https://code.skript.pl/api-key";
+            }
+
+            OpenUrl(website);
         }
 
         private void CopyClick(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
-                System.Windows.Clipboard.SetText(urlTextBox.Text);
+                Clipboard.SetText(urlTextBox.Text);
             }
             catch { }
         }
@@ -113,6 +163,25 @@ namespace SkEditorPlus.Windows
             {
                 publishWindow.Close();
             }
+        }
+
+        private void OnWebsiteChange(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            ComboBoxItem comboBoxItem = (ComboBoxItem)websiteComboBox.SelectedItem;
+            string website = comboBoxItem.Content.ToString();
+            switch (website)
+            {
+                case "code.skript.pl":
+                    apiTextBox.Text = Properties.Settings.Default.CodeSkriptApiKey;
+                    helpText.Text = helpText.Text.Replace("pastebin.com/doc_api", "code.skript.pl/api-key");
+                    break;
+                case "Pastebin":
+                    apiTextBox.Text = Properties.Settings.Default.PastebinApiKey;
+                    helpText.Text = helpText.Text.Replace("code.skript.pl/api-key", "pastebin.com/doc_api");
+                    break;
+            }
+
+            anonymousCheckBox.IsEnabled = langComboBox.IsEnabled = !website.Equals("Pastebin");
         }
     }
 }

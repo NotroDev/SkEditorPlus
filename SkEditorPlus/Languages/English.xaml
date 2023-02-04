@@ -56,7 +56,7 @@
     <!-- Labels -->
     
     <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Paste your API key here</system:String>
-    <system:String x:Key="PasteAPIKeyTextboxHint">You will find your key on code.skript.pl/api-key after logging up</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">You will find your key {0} after logging up</system:String>
     <system:String x:Key="AnonymousCheckbox">Anonymously</system:String>
     <system:String x:Key="PublishButton">Publish</system:String>
     <system:String x:Key="GenerateButton">Generate</system:String>

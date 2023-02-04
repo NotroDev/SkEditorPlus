@@ -416,7 +416,7 @@ namespace SkEditorPlus.Managers
                 }
 
                 // TODO: We need to make some space at bottom, so user can scroll past the end of the file
-                
+
 
                 e.Handled = true;
             }
@@ -628,15 +628,7 @@ namespace SkEditorPlus.Managers
 
                 Color color = (Color)ColorConverter.ConvertFromString("#f1ff63");
 
-                HighlightingSpan span = new()
-                {
-                    StartExpression = new Regex("\""),
-                    EndExpression = new Regex("\""),
-                    StartColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
-                    EndColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
-                    RuleSet = GetTextEditor().SyntaxHighlighting.GetNamedRuleSet("ColorsPreview")
-                };
-                GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
+                
             }
             catch (Exception e)
             {

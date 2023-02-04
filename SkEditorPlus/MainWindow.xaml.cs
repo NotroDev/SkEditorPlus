@@ -63,7 +63,6 @@ namespace SkEditorPlus
             }
             if (!File.Exists(appPath + @"\SkriptHighlighting.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
             {
-                // get NoFilesTitle, NoFilesDescription, NoFilesDownloaded
                 string noFilesTitle = (string)FindResource("NoFilesTitle");
                 string noFilesDescription = (string)FindResource("NoFilesDescription");
                 string noFilesDownloaded = (string)FindResource("NoFilesDownloaded");

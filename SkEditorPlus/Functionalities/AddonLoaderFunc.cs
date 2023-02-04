@@ -1,5 +1,6 @@
 ﻿using SkEditorPlus.Functionalities;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,8 +17,8 @@ namespace SkEditorPlus.Functionalities
             var directory = Directory.CreateDirectory(Path.Combine(appdataFolder, "SkEditor Plus", "Addons"));
             directory.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             var addonFolder = Path.Combine(appdataFolder, "SkEditor Plus", "Addons");
-            
-            
+
+
             foreach (var dllFile in Directory.EnumerateFiles(addonFolder, "*.dll", SearchOption.AllDirectories))
             {
                 var assembly = Assembly.LoadFrom(dllFile);

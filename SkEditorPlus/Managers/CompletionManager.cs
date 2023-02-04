@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup;
 using Window = System.Windows.Window;
 
 namespace SkEditorPlus.Managers
@@ -18,8 +19,9 @@ namespace SkEditorPlus.Managers
         public static void LoadCompletionManager(TextEditor textEditor)
         {
             CompletionManager.textEditor = textEditor;
-            textEditor.TextArea.TextEntering += TextEditor_TextArea_TextEntering;
-            textEditor.TextArea.TextEntered += TextEditor_TextArea_TextEntered;
+            textEditor.TextArea.TextEntering += OnTextEntering;
+            textEditor.TextArea.TextEntered += OnTextEntered;
+            textEditor.PreviewKeyDown += OnKeyDown;
         }
 
         public static MainWindow GetMainWindow()
@@ -30,7 +32,15 @@ namespace SkEditorPlus.Managers
             return (MainWindow)windowList.Find(window => window.GetType() == typeof(MainWindow));
         }
 
-        static void TextEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        private static void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                OnTextEntered(sender, new TextCompositionEventArgs(InputManager.Current.PrimaryKeyboardDevice, new TextComposition(InputManager.Current, textEditor, e.Key.ToString())));
+            }
+        }
+
+        static void OnTextEntered(object sender, TextCompositionEventArgs e)
         {
             completionWindow = new CompletionWindow(textEditor.TextArea)
             {
@@ -49,6 +59,7 @@ namespace SkEditorPlus.Managers
             var caretOffset = textEditor.CaretOffset;
             var line = textEditor.Document.GetLineByOffset(caretOffset);
             var wordBeforeCaret = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset);
+            
             if (wordBeforeCaret.ToLower().Equals("command"))
             {
                 data.Add(new CompletionData("Command", "Otwiera generator komendy"));
@@ -71,7 +82,7 @@ namespace SkEditorPlus.Managers
             completionWindow.CompletionList.ListBox.SelectedIndex = 0;
         }
 
-        static void TextEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        static void OnTextEntering(object sender, TextCompositionEventArgs e)
         {
             if (e.Text.Length > 0 && completionWindow != null)
             {
