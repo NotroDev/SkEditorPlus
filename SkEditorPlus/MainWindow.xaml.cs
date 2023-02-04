@@ -33,7 +33,7 @@ namespace SkEditorPlus
         public event LoadFinishedEvent LoadFinished;
 
 
-        private static readonly string version = "1.3.6";
+        private static readonly string version = "1.4.0";
 
         public static string Version { get => version; }
 
