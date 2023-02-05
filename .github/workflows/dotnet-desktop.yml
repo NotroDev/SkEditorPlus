@@ -92,7 +92,7 @@ jobs:
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
       run: |
-        $directoryPath = "SkEditorPlus\SkEditorPlus\bin\Release\net6.0-windows"
+        $directoryPath = "SkEditorPlus\bin\Release\net6.0-windows"
         $zipFilePath = "$directoryPath.zip"
         Add-Type -AssemblyName System.IO.Compression.FileSystem
         [System.IO.Compression.ZipFile]::CreateFromDirectory("$directoryPath", "$zipFilePath")
