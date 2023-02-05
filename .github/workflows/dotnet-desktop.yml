@@ -92,7 +92,7 @@ jobs:
     - name: Show files and directories in bin directory
       run: |
         Write-Output "hello"
-        Get-ChildItem SkEditorPlus\bin -Recurse | 
+        Get-ChildItem bin -Recurse | 
         Foreach-Object {Write-Output $_.FullName}
 
     # Create the app package by building and packaging the Windows Application Packaging project
