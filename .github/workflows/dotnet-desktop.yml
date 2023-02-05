@@ -57,8 +57,8 @@ jobs:
 
     env:
       Solution_Name: SkEditorPlus/SkEditorPlus.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      Wap_Project_Directory: SkEditorPlus/SkEditorPlus.Package    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      Wap_Project_Path: SkEditorPlus/SkEditorPlus.Package.wapproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+      Wap_Project_Directory: SkEditorPlusWapProject    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+      Wap_Project_Path: SkEditorPlusWapProject/SkEditorPlusWapProject.wapproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
     - name: Checkout
@@ -86,7 +86,7 @@ jobs:
     - name: Decode the pfx
       run: |
         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $certificatePath = Join-Path -Path 'SkEditorPlus/' -ChildPath 'GitHubActionsWorkflow.pfx'
+        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
     # Create the app package by building and packaging the Windows Application Packaging project
