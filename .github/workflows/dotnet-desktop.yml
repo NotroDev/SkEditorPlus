@@ -91,6 +91,7 @@ jobs:
 
     - name: Show files and directories in bin directory
       run: |
+        Write-Output "hello"
         Get-ChildItem SkEditorPlus\bin -Recurse | 
         Foreach-Object {Write-Output $_.FullName}
 
