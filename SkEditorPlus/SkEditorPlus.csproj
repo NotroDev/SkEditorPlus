@@ -57,6 +57,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\SkEditor.svg" />
+    <Content Include="Images\SkEditor.ico" />
     <Content Include="Languages\English.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

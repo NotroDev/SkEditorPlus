@@ -36,7 +36,7 @@
                                 x:Name="Language"
                                 Grid.Row="0" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsLanguage}" FontSize="16" Margin="0,0,15,0" />
                             <hc:ComboBox 
                                     x:Name="languageComboBox" HorizontalAlignment="Left"
@@ -49,7 +49,7 @@
                                 x:Name="AutoSave"
                                 Grid.Row="1" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsAutoSave}" FontSize="16" Margin="0,0,15,0" />
                             <CheckBox 
                                     x:Name="autosaveCheckbox" IsChecked="{Binding IsAutoSaveEnabled}"
@@ -59,7 +59,7 @@
                                 x:Name="Wrapping"
                                 Grid.Row="2" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsWrapping}" FontSize="16" Margin="0,0,15,0" />
                             <CheckBox 
                                     x:Name="wrappingCheckbox" IsChecked="{Binding IsWrappingEnabled}"
@@ -69,7 +69,7 @@
                                 x:Name="AutoSecondChar"
                                 Grid.Row="3" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsAutoSecondChar}" FontSize="16" Margin="0,0,15,0" />
                             <CheckBox 
                                     x:Name="autoSecondCharacterCheckbox" IsChecked="{Binding IsAutoSecondCharacterEnabled}"
@@ -79,7 +79,7 @@
                                 x:Name="AutoNewLine"
                                 Grid.Row="4" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsAutoNewLine}" FontSize="16" Margin="0,0,15,0" />
                             <hc:Badge Value="12" HorizontalAlignment="Left" Text="{DynamicResource OptionsBeta}" BadgeMargin="10,0,0,25" Style="{DynamicResource BadgeWarning}" FontSize="11">
                                 <CheckBox 
@@ -91,7 +91,7 @@
                                 x:Name="UpdateSyntax"
                                 Grid.Row="5" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource SyntaxHighlighting}" FontSize="16" Margin="0,0,15,0" />
                             <Button 
                                     x:Name="updateSyntaxButton" HorizontalAlignment="Left"
@@ -101,7 +101,7 @@
                                 x:Name="Version"
                                 Grid.Row="6" Margin="0,0,0,5">
                             <TextBlock x:Name="versionText" 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="Version: 1.3.0" FontSize="16" Margin="0,0,15,0" HorizontalAlignment="Left" />
                         </DockPanel>
                     </Grid>
@@ -126,7 +126,7 @@
                                 x:Name="Font"
                                 Grid.Row="0" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsFont}" FontSize="16" Margin="0,0,15,0" />
                             <Button 
                                     x:Name="fontPickerButton" HorizontalAlignment="Left"
@@ -136,7 +136,7 @@
                                 x:Name="Mica"
                                 Grid.Row="1" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsMica}" FontSize="16" Margin="0,0,15,0" />
                             <hc:Badge Value="12" HorizontalAlignment="Left" Text="{DynamicResource OptionsWindows11Required}" BadgeMargin="10,0,0,25" Style="{DynamicResource BadgeInfo}" FontSize="11">
                                 <CheckBox 
@@ -148,7 +148,7 @@
                                 x:Name="Transparency"
                                 Grid.Row="2" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsTransparency}" FontSize="16" Margin="0,0,15,0" />
                             <Slider 
                                 x:Name="editorTransparency" HorizontalAlignment="Left"
@@ -173,7 +173,7 @@
                                 x:Name="Discord"
                                 Grid.Row="0" Margin="0,0,0,5">
                             <TextBlock 
-                                    VerticalAlignment="Center" FontFamily="Cascadia Code"
+                                    VerticalAlignment="Center" FontFamily="Cascadia Mono"
                                     Text="{DynamicResource OptionsDiscordRPC}" FontSize="16" Margin="0,0,15,0" />
                             <CheckBox 
                                     x:Name="discordRPCCheckbox" IsChecked="{Binding IsDiscordRPCEnabled}"

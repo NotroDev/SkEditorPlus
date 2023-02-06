@@ -17,11 +17,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="titleText" Grid.Row="0" HorizontalAlignment="Left" Margin="6,5,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Foreground="White" FontSize="18" FontFamily="Cascadia Code"/>
+            <TextBlock x:Name="titleText" Grid.Row="0" HorizontalAlignment="Left" Margin="6,5,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Foreground="White" FontSize="18" FontFamily="Cascadia Mono"/>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible"  CanContentScroll="True" Height="55" Width="269">
                 <TextBlock x:Name="descText" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Zmienne używające kropki do oddzielenia wartości mają utrudniony dostęp do każdej wartości, ponieważ przez takie ustawienie nie jest możliwe użycie pętli, więc każdą nazwę wartości należy pamiętać. Aby zapobiec temu problemowi, wśród skripterów przyjęło się użycie zmiennych grupowych." Foreground="White" Width="257" FontFamily="Open Sans Medium" FontSize="11.75" Margin="6,0,0,0" TextTrimming="None"/>
             </ScrollViewer>
-            <TextBlock x:Name="fixText" Grid.Row="3" HorizontalAlignment="Left" Margin="6,12,0,0" TextWrapping="Wrap" Text="Fix" VerticalAlignment="Top" Foreground="#FF376ED4" FontSize="11" FontFamily="Cascadia Code" Width="196" MouseEnter="OnFixMouseEnter" MouseLeave="OnFixMouseLeave" MouseLeftButtonUp="OnFixClick"/>
+            <TextBlock x:Name="fixText" Grid.Row="3" HorizontalAlignment="Left" Margin="6,12,0,0" TextWrapping="Wrap" Text="Fix" VerticalAlignment="Top" Foreground="#FF376ED4" FontSize="11" FontFamily="Cascadia Mono" Width="196" MouseEnter="OnFixMouseEnter" MouseLeave="OnFixMouseLeave" MouseLeftButtonUp="OnFixClick"/>
             <Separator HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Height="2" RenderTransformOrigin="0.5,0.5" Width="274" Background="{DynamicResource BorderBrush}">
                 <Separator.RenderTransform>
                     <TransformGroup>
