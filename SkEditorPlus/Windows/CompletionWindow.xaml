@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="SkEditorPlus.Windows.CompletionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SkEditorPlus.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    MinWidth="80"
+    MinHeight="50"
+    MaxWidth="300"
+    MaxHeight="200"
+    mc:Ignorable="d" Width="200" Height="100">
+    <Border Background="Transparent">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListBox x:Name="completionList" HorizontalAlignment="Left" Height="100" Width="200" VerticalAlignment="Center" Grid.Row="1" PreviewKeyDown="OnCompletionListKeyDown"/>
+        </Grid>
+    </Border>
+</UserControl>

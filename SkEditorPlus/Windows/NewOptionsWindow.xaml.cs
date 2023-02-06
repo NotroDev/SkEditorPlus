@@ -27,8 +27,8 @@ namespace SkEditorPlus.Windows
         private SettingsBindings settingsBindings;
 
         // This is polish easter egg :)
-        private static string pozdrowieniaSwirek = "pozdrowieniaswiateczne";
-        private static bool[] pozdrowieniaSwirekBools = new bool[pozdrowieniaSwirek.Length];
+        private static readonly string pozdrowieniaSwirek = "pozdrowieniaswiateczne";
+        private static readonly bool[] pozdrowieniaSwirekBools = new bool[pozdrowieniaSwirek.Length];
 
         public NewOptionsWindow(SkEditorAPI skEditor)
         {
@@ -57,6 +57,7 @@ namespace SkEditorPlus.Windows
             foreach (string file in files)
             {
                 string fileName = Path.GetFileNameWithoutExtension(file);
+                if (fileName != null)
                 if (fileName != null)
                 {
                     if (languageComboBox.Items.Cast<ComboBoxItem>().All(item => item.Content.ToString() != fileName))
@@ -97,6 +98,7 @@ namespace SkEditorPlus.Windows
 
                 foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
                 {
+                    if (!skEditor.IsFileOpen()) continue;
                     TextEditor textEditor = (TextEditor)ti.Content;
                     textEditor.FontFamily = new FontFamily(fontSelector.ResultFontFamily.Source);
                 }
@@ -118,6 +120,7 @@ namespace SkEditorPlus.Windows
 
             foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
             {
+                if (!skEditor.IsFileOpen()) continue;
                 TextEditor textEditor = (TextEditor)ti.Content;
                 textEditor.Background = new SolidColorBrush(Color.FromArgb((byte)Properties.Settings.Default.EditorTransparency, 30, 30, 30));
             }

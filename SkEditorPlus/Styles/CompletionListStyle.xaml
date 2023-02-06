@@ -7,8 +7,8 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Border Name="Bd"
 					        Background="Transparent"
-					        BorderBrush="{TemplateBinding BorderBrush}"
-					        BorderThickness="{TemplateBinding BorderThickness}"
+					        BorderBrush="Transparent"
+					        BorderThickness="0"
 					        Padding="{TemplateBinding Padding}"
 					        SnapsToDevicePixels="true">
                         <ContentPresenter
@@ -28,7 +28,8 @@
                     <cc:CompletionListBox x:Name="PART_ListBox"
 						ItemContainerStyle="{StaticResource CompletionListStyle}"
 						Background="Transparent"
-						TextBlock.Foreground="White">
+						TextBlock.Foreground="White"
+                                          TextBlock.FontFamily="Cascadia Mono">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

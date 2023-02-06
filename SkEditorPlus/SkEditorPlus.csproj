@@ -99,6 +99,9 @@
     <Compile Update="Windows\FontSelector.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\CompletionWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Update="Properties\Settings.settings">

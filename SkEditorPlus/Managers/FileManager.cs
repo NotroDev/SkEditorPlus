@@ -827,7 +827,9 @@ namespace SkEditorPlus.Managers
 
             tabControl.Items.Add(tabItem);
             ChangeGeometry();
-            //CompletionManager.LoadCompletionManager(GetTextEditor());
+
+            CompletionManager completionManager = new(skEditor);
+            //completionManager.LoadCompletionManager(GetTextEditor());
         }
     }
 }

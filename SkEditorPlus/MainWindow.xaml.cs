@@ -9,8 +9,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using Window = HandyControl.Controls.Window;
 
@@ -29,11 +32,23 @@ namespace SkEditorPlus
             return MenuBar;
         }
 
-        
+        [DllImport("user32.dll")]
+        static extern IntPtr GetWindow(IntPtr hWnd, uint wCmd);
+        const uint GW_HWNDNEXT = 2;
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsWindowVisible(IntPtr hWnd);
+
+
         public event LoadFinishedEvent LoadFinished;
 
 
-        private static readonly string version = "1.4.0";
+        private static readonly string version = "1.4.1";
 
         public static string Version { get => version; }
 
@@ -242,6 +257,33 @@ namespace SkEditorPlus
                 });
             }
             catch { }
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            FixCut();
+        }
+
+        private void FixCut()
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                IntPtr hWnd = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+
+                IntPtr hNext = hWnd;
+                do
+                    hNext = GetWindow(hNext, GW_HWNDNEXT);
+                while (!IsWindowVisible(hNext));
+
+                SetForegroundWindow(hNext);
+
+                Activate();
+            }
+        }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            FixCut();
         }
     }
 }

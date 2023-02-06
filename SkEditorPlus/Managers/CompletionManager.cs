@@ -1,96 +1,263 @@
 ﻿using AvalonEditB;
-using AvalonEditB.CodeCompletion;
+using HandyControl.Controls;
 using SkEditorPlus.Data;
+using SkEditorPlus.Windows;
+using SkEditorPlus.Windows.Generators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Markup;
-using Window = System.Windows.Window;
+using System.Windows.Media;
 
 namespace SkEditorPlus.Managers
 {
     public class CompletionManager
     {
-        static CompletionWindow completionWindow;
-
         public static TextEditor textEditor;
 
-        public static void LoadCompletionManager(TextEditor textEditor)
+        private readonly SkEditorAPI skEditor;
+
+        private static ListBoxItem[] completionList = System.Array.Empty<ListBoxItem>();
+
+        private CompletionWindow completionWindow;
+
+        private Popup popup;
+
+        public static CompletionManager instance;
+
+        public CompletionManager(SkEditorAPI skEditor)
+        {
+            instance = this;
+            this.skEditor = skEditor;
+        }
+
+        public void LoadCompletionManager(TextEditor textEditor)
         {
             CompletionManager.textEditor = textEditor;
-            textEditor.TextArea.TextEntering += OnTextEntering;
             textEditor.TextArea.TextEntered += OnTextEntered;
+
             textEditor.PreviewKeyDown += OnKeyDown;
         }
 
-        public static MainWindow GetMainWindow()
+
+        public void OnKeyDown(object sender, KeyEventArgs e)
         {
-            List<Window> windowList = new();
-            foreach (Window window in System.Windows.Application.Current.Windows)
-                windowList.Add(window);
-            return (MainWindow)windowList.Find(window => window.GetType() == typeof(MainWindow));
-        }
-
-        private static void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Back)
-            {
-                OnTextEntered(sender, new TextCompositionEventArgs(InputManager.Current.PrimaryKeyboardDevice, new TextComposition(InputManager.Current, textEditor, e.Key.ToString())));
-            }
-        }
-
-        static void OnTextEntered(object sender, TextCompositionEventArgs e)
-        {
-            completionWindow = new CompletionWindow(textEditor.TextArea)
-            {
-                StartOffset = 0
-            };
-
-            completionWindow.CompletionList.ListBox.ItemContainerStyle = (Style)Application.Current.FindResource("CompletionListStyle");
-
-            completionWindow.CompletionList.ListBox.Background = System.Windows.Media.Brushes.Transparent;
-            completionWindow.Background = System.Windows.Media.Brushes.Transparent;
-            completionWindow.CompletionList.ListBox.BorderBrush = System.Windows.Media.Brushes.Transparent;
-            completionWindow.CompletionList.ListBox.BorderThickness = new Thickness(0);
-
-            IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
-
             var caretOffset = textEditor.CaretOffset;
             var line = textEditor.Document.GetLineByOffset(caretOffset);
-            var wordBeforeCaret = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset);
-            
-            if (wordBeforeCaret.ToLower().Equals("command"))
+            var text = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset);
+            if (textEditor.SelectedText.Equals(text)) text = "";
+            else if (text.Length > 0) text = text.Remove(text.Length - 1);
+
+            if (e.Key == Key.Back || e.Key == Key.Left)
             {
-                data.Add(new CompletionData("Command", "Otwiera generator komendy"));
+                HidePopup();
+                ShowCompletionWindow(text);
             }
 
-            else if (data.Count != 0)
+            else if (e.Key == Key.Right)
             {
-                data.Remove(data.First());
-            }
-
-
-            if (data.Count != 0)
-                completionWindow.Show();
-
-            completionWindow.Closed += delegate
-            {
-                completionWindow = null;
-            };
-
-            completionWindow.CompletionList.ListBox.SelectedIndex = 0;
-        }
-
-        static void OnTextEntering(object sender, TextCompositionEventArgs e)
-        {
-            if (e.Text.Length > 0 && completionWindow != null)
-            {
-                if (!char.IsLetterOrDigit(e.Text[0]))
+                if (text.Length > 0)
                 {
-                    completionWindow.CompletionList.RequestInsertion(e);
+                    try
+                    {
+                        var caretText = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset + 1);
+                        HidePopup();
+                        ShowCompletionWindow(caretText);
+                    }
+                    catch { }
                 }
             }
+
+            else if (e.Key == Key.Down && completionWindow != null)
+            {
+                int selectedIndex = completionWindow.completionList.SelectedIndex;
+                if (selectedIndex < completionWindow.completionList.Items.Count - 1)
+                {
+                    completionWindow.completionList.SelectedIndex++;
+                    completionWindow.completionList.ScrollIntoView(completionWindow.completionList.SelectedItem);
+                }
+            }
+            else if (e.Key == Key.Up && completionWindow != null)
+            {
+                int selectedIndex = completionWindow.completionList.SelectedIndex;
+                if (selectedIndex > 0)
+                {
+                    completionWindow.completionList.SelectedIndex--;
+                    completionWindow.completionList.ScrollIntoView(completionWindow.completionList.SelectedItem);
+                }
+            }
+            else if (e.Key == Key.Enter || e.Key == Key.Tab)
+            {
+                if (completionWindow == null) return;
+                if (!popup.IsOpen) return;
+
+                int selectedIndex = completionWindow.completionList.SelectedIndex;
+                if (selectedIndex < 0) return;
+
+                ListBoxItem item = (ListBoxItem)completionWindow.completionList.SelectedItem;
+
+                var split = text.Split(' ');
+                var lastWord = split[^1].TrimStart();
+                var index = text.LastIndexOf(lastWord);
+                var newText = text.Remove(index, lastWord.Length);
+
+                switch (item.Content)
+                {
+                    case "commandgen":
+                        textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, "");
+                        CommandGenerator commandGenerator = new(skEditor);
+                        commandGenerator.ShowDialog();
+                        break;
+
+                    default:
+                        CompletionDataElement element = null;
+                        foreach (CompletionDataElement dataElement in CompletionData.completionList)
+                        {
+                            if (dataElement.Name.Equals(item.Content))
+                            {
+                                element = dataElement;
+                                break;
+                            }
+                        }
+
+
+                        newText += element.Word;
+
+                        string[] lines = newText.Split("\n");
+                        string firstLine = lines[0];
+
+                        int tabs = GetTabCount(firstLine);
+
+                        for (int i = 0; i < lines.Length; i++)
+                        {
+                            if (i == 0) continue;
+                            lines[i] = new string('\t', tabs) + lines[i];
+                        }
+
+                        newText = string.Join("\n", lines);
+
+
+                        if (element.Word.Contains("{c}"))
+                        {
+                            var caretIndex = newText.IndexOf("{c}");
+                            newText = newText.Replace("{c}", "");
+
+                            textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, newText);
+
+                            caretIndex = Math.Min(caretIndex, newText.Length);
+                            textEditor.CaretOffset = line.Offset + caretIndex;
+                        }
+                        else
+                        {
+                            textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, newText);
+                        }
+
+                        break;
+                }
+
+                completionWindow.completionList.SelectedIndex = -1;
+                completionWindow.completionList.ItemsSource = null;
+                completionWindow = null;
+                popup.IsOpen = false;
+                popup = null;
+                e.Handled = true;
+            }
         }
+
+        private static int GetTabCount(string line)
+        {
+            return line.TakeWhile(c => c == '\t').Count();
+        }
+
+
+        private void OnTextEntered(object sender, TextCompositionEventArgs e)
+        {
+            string text = GetText();
+            string lastWord = GetLastWord(text);
+
+            if (IsInQuote(text, lastWord))
+            {
+                return;
+            }
+
+            HidePopup();
+            ShowCompletionWindow(lastWord);
+        }
+
+        private string GetText()
+        {
+            var caretOffset = textEditor.CaretOffset;
+            var line = textEditor.Document.GetLineByOffset(caretOffset);
+            return textEditor.Document.GetText(line.Offset, caretOffset - line.Offset);
+        }
+
+        private string GetLastWord(string text)
+        {
+            if (text.Contains(' '))
+            {
+                var split = text.Split(' ');
+                return split[^1];
+            }
+
+            return text;
+        }
+
+        private bool IsInQuote(string text, string lastWord)
+        {
+            string textBeforeLastWord = text[..^lastWord.Length];
+            return textBeforeLastWord.Count(c => c == '"') % 2 == 1;
+        }
+
+        private void HidePopup()
+        {
+            if (popup != null)
+            {
+                popup.IsOpen = false;
+            }
+        }
+
+        private void ShowCompletionWindow(string lastWord)
+        {
+            lastWord = lastWord.TrimStart();
+
+            var completionList = CompletionData.GetCompletionData(lastWord);
+
+            if (lastWord.Length <= 0 || completionList.Length <= 0)
+            {
+                return;
+            }
+
+            completionWindow = new CompletionWindow
+            {
+                completionList =
+                {
+                    ItemsSource = completionList
+                }
+            };
+
+            popup = new Popup
+            {
+                PlacementTarget = textEditor,
+                Placement = PlacementMode.Absolute,
+                HorizontalOffset = -5,
+                VerticalOffset = -5,
+                AllowsTransparency = true,
+                StaysOpen = false,
+                Child = completionWindow,
+                IsOpen = true
+            };
+
+            var caret = textEditor.TextArea.Caret.CalculateCaretRectangle();
+            var pointOnScreen = textEditor.TextArea.TextView.PointToScreen(caret.Location - textEditor.TextArea.TextView.ScrollOffset);
+
+            popup.HorizontalOffset = pointOnScreen.X + 10;
+            popup.VerticalOffset = pointOnScreen.Y + 10;
+
+            completionWindow.completionList.SelectedIndex = 0;
+        }
+
     }
 }

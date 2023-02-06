@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System;
 using System.Windows.Shapes;
 using AvalonEditB.Document;
+using System.Text;
 
 namespace SkEditorPlus.Windows
 {
@@ -58,6 +59,50 @@ namespace SkEditorPlus.Windows
                 code = code.Replace(variableMatch.Value, variable);
             }
             textEditor.Document.Text = code;
+
+            
+            return;
+
+            string valuePattern = @"%.+?%";
+            string optionalPattern = @"\[.*?\]";
+            string groupPattern = @"\(([^)]+)\)";
+            string optionalGroupPattern = @"\[\(([^)]+)\)\]";
+
+            Regex patternCompiler = new(
+            "(?<VALUE>" + valuePattern + ")"
+            + "|(?<OPTIONAL>" + optionalPattern + ")"
+            + "|(?<GROUP>" + groupPattern + ")"
+            + "|(?<OPTIONALGROUP>" + optionalGroupPattern + ")",
+            RegexOptions.Compiled
+            );
+
+            string input = textEditor.Text;
+
+            MatchCollection matches = patternCompiler.Matches(input);
+
+            foreach (Match match in matches)
+            {
+                if (match.Groups["OPTIONAL"].Success)
+                {
+                    string value = match.Groups["OPTIONAL"].Value;
+                    value = value.Substring(1, value.Length - 2);
+                    input = input.Replace(match.Value, value);
+                }
+                else if (match.Groups["GROUP"].Success)
+                {
+                    string value = match.Groups["GROUP"].Value;
+                    value = value.Substring(1, value.Length - 2).Split('|')[0];
+                    input = input.Replace(match.Value, value);
+                }
+                else if (match.Groups["OPTIONALGROUP"].Success)
+                {
+                    string value = match.Groups["OPTIONALGROUP"].Value;
+                    value = value.Substring(2, value.Length - 4).Split('|')[0];
+                    input = input.Replace(match.Value, value);
+                }
+            }
+
+            textEditor.Document.Text = input;
         }
 
         private void Test()

@@ -86,6 +86,9 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\CompletionWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\TooltipWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

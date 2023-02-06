@@ -52,6 +52,9 @@ namespace SkEditorPlus.Managers
         {
             try
             {
+                client.UpdateDetails("Pracuje nad nową funkcją :)");
+                return;
+                
                 if (!Properties.Settings.Default.DiscordRPC) return;
                 if (name.EndsWith("*")) name = name[..^1];
                 string file = (string)Application.Current.FindResource("DiscordRPCFile");

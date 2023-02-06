@@ -1,54 +1,42 @@
-﻿using AvalonEditB.CodeCompletion;
-using AvalonEditB.Document;
-using AvalonEditB.Editing;
-using SkEditorPlus.Windows.Generators;
+﻿using HandyControl.Controls;
 using System;
 using System.Collections.Generic;
-using System.Windows;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace SkEditorPlus.Data
 {
-    public class CompletionData : ICompletionData
+    public class CompletionData
     {
-        public CompletionData(string text, string description = "Brak opisu")
+
+        public static List<CompletionDataElement> completionList = new()
         {
-            Text = text;
-            Description = description;
-        }
+            new CompletionDataElement("command", "command /{c}:\n\t"),
+            new CompletionDataElement("commandgen"),
+            new CompletionDataElement("options", "options:\n\t"),
+            new CompletionDataElement("variables", "variables:\n\t"),
+            new CompletionDataElement("trigger", "trigger:\n\t"),
+            new CompletionDataElement("if", "if {c}:"),
+            new CompletionDataElement("ifelse", "if {c}:\n\t\nelse:\n\t"),
+            new CompletionDataElement("else"),
+            new CompletionDataElement("send", "send \"{c}\""),
+            new CompletionDataElement("sendallp", "send \"{c}\" to all players"),
+        };
 
-        public System.Windows.Media.ImageSource Image
+        public static ListBoxItem[] GetCompletionData(string word)
         {
-            get { return null; }
-        }
-
-        public string Text { get; private set; }
-
-        public object Content
-        {
-            get { return this.Text; }
-        }
-
-        public object Description
-        { get; private set; }
-
-        double ICompletionData.Priority => 1;
-
-        public void Complete(TextArea textArea, ISegment completionSegment,
-            EventArgs insertionRequestEventArgs)
-        {
-            var caretOffset = textArea.Caret.Offset;
-            var line = textArea.Document.GetLineByOffset(caretOffset);
-            textArea.Document.Replace(line.Offset, caretOffset - line.Offset, "");
-
-            CommandGenerator commandGenerator = new(GetMainWindow().skEditor);
-            commandGenerator.ShowDialog();
-        }
-        public static MainWindow GetMainWindow()
-        {
-            List<Window> windowList = new();
-            foreach (Window window in System.Windows.Application.Current.Windows)
-                windowList.Add(window);
-            return (MainWindow)windowList.Find(window => window.GetType() == typeof(MainWindow));
+            List<ListBoxItem> completions = new();
+            foreach (var item in completionList)
+            {
+                if (item.Name.StartsWith(word))
+                {
+                    //if (item.Name.Equals(word)) continue;
+                    completions.Add(new ListBoxItem { Content = item.Name });
+                }
+            }
+            return completions.ToArray();
         }
 
     }
