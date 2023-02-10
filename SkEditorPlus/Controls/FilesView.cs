@@ -38,7 +38,7 @@ namespace SkEditorPlus.Controls
             if (Path == null) return;
             if (treeView == null)
             {
-                MessageBox.Error("Something went wrong! Please try again", "GlitchCode");
+                MessageBox.Error("Something went wrong! Please try again", "SkEditorPlus");
                 return;
             }
             treeView.Items.Clear();
@@ -129,7 +129,7 @@ namespace SkEditorPlus.Controls
         {
             treeView = GetTemplateChild("PART_TreeView") as TreeView;
             ((Button)GetTemplateChild("PART_ReloadButton")).Click += delegate { LoadFiles(); };
-            //((Button)GetTemplateChild("PART_OpenProjectButton")).Click += delegate { FileManager.OpenProject(); };
+            ((Button)GetTemplateChild("PART_OpenProjectButton")).Click += delegate { FileManager.instance.OpenFolder(); };
             base.OnApplyTemplate();
         }
     }

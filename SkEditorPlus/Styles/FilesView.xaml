@@ -77,7 +77,7 @@
                                             Height="22"
                                             Padding="0"
                                             Content="&#xe8e5;"
-                                            FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons"
+                                            FontFamily="/SkEditorPlus;component/Fonts/#Segoe Fluent Icons"
                                             Visibility="Collapsed" />
                                         <Button
                                             x:Name="PART_NewDirButton"
@@ -86,7 +86,7 @@
                                             Margin="5,0,0,0"
                                             Padding="0"
                                             Content="&#xe838;"
-                                            FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons"
+                                            FontFamily="/SkEditorPlus;component/Fonts/#Segoe Fluent Icons"
                                             Visibility="Collapsed" />
                                         <Button
                                             x:Name="PART_DelButton"
@@ -95,7 +95,7 @@
                                             Margin="5,0,0,0"
                                             Padding="0"
                                             Content="&#xe711;"
-                                            FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons"
+                                            FontFamily="/SkEditorPlus;component/Fonts/#Segoe Fluent Icons"
                                             Visibility="Collapsed" />
                                     </DockPanel>
                                 </Grid>
@@ -187,7 +187,7 @@
                                         Padding="0"
                                         HorizontalAlignment="Right"
                                         Content="&#xe838;"
-                                        FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons" />
+                                        FontFamily="/SkEditorPlus;component/Fonts/#Segoe Fluent Icons" />
                                     <Button
                                         x:Name="PART_ReloadButton"
                                         Grid.Column="1"
@@ -197,7 +197,7 @@
                                         Padding="0"
                                         HorizontalAlignment="Right"
                                         Content="&#xe777;"
-                                        FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons" />
+                                        FontFamily="/SkEditorPlus;component/Fonts/#Segoe Fluent Icons" />
                                 </Grid>
                             </Border>
                             <TreeView

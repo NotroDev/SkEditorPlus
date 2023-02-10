@@ -44,6 +44,9 @@
     <Page Update="Styles\MenuStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\TabControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\TabControlStyle.xaml">
       <SubType>Designer</SubType>
     </Page>

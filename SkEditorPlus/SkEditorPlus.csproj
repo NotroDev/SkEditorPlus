@@ -119,6 +119,9 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\FilesView.xaml">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Page>
     <Page Update="Styles\ScrollViewerStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>

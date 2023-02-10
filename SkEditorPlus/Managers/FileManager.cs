@@ -19,6 +19,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using System.Xml;
 using FontFamily = System.Windows.Media.FontFamily;
 using MessageBox = HandyControl.Controls.MessageBox;
@@ -185,6 +186,7 @@ namespace SkEditorPlus.Managers
 
                 fileTreeViewItem.MouseDoubleClick += (sender, e) =>
                 {
+                    if (e.ChangedButton == MouseButton.Right) return;
                     CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
                     GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
                     TabItem ti = tabControl.SelectedItem as TabItem;
@@ -221,7 +223,18 @@ namespace SkEditorPlus.Managers
 
         public void OpenFolder()
         {
-            MessageBox.Show("Hejcia remix, fajnie korzystać z własnej wersji, której nie ma nikt inny?");
+            string dirPath;
+            using var folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            dirPath = folderBrowserDialog.SelectedPath;
+            skEditor.GetMainWindow().LeftTabControl.SelectedItem = skEditor.GetMainWindow().FilesView.Parent;
+            Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => skEditor.GetMainWindow().FilesView.Path = dirPath));
+            skEditor.GetMainWindow().FilesView.LoadFiles();
+
+
+
             return;
             using var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
@@ -452,6 +465,8 @@ namespace SkEditorPlus.Managers
                     Caption = attention,
                     ConfirmContent = yeah,
                     CancelContent = cancel,
+                    IconBrushKey = ResourceToken.DarkWarningBrush,
+                    IconKey = ResourceToken.WarningGeometry,
                     Button = MessageBoxButton.OKCancel
 
                 });
