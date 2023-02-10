@@ -27,7 +27,7 @@ namespace SkEditorPlus.Data
                 Word = word;
                 return;
             }
-            Word = word;
+            Word = name;
         }
     }
 }

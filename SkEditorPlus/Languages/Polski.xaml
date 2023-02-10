@@ -24,7 +24,7 @@
     <system:String x:Key="MenuEditBackpack">Plecak</system:String>
 
     <system:String x:Key="MenuOtherSettings">Ustawienia</system:String>
-    <system:String x:Key="MenuOtherChangeSyntax">Zmień składnię na Skript</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Wyłącz podświetlanie składni</system:String>
     <system:String x:Key="MenuOtherParser">Parser</system:String>
     <system:String x:Key="MenuOtherDocs">Dokumentacja</system:String>
     <system:String x:Key="MenuOtherCheckForUpdate">Sprawdź aktualizację</system:String>
@@ -103,7 +103,7 @@
 
     <system:String x:Key="NewVersion">Nowa wersja</system:String>
     <system:String x:Key="NoNewVersion">SkEditor+ aktualny!</system:String>
-    <system:String x:Key="UpdateAvailable">Nowa wersja dostępna! {n}{n}Aktualnie: v{0}{n}Najnowsza: v{1}</system:String>
+    <system:String x:Key="UpdateAvailable">Nowa wersja dostępna! {n}{n}Aktualnie: v{0}{n}Najnowsza: v{1}{n}{n}Po pobraniu aplikacja zostanie zamknięta. Upewnij się, że zapisałeś wszystkie pliki.</system:String>
     <system:String x:Key="UpdateNotAvailable">Wygląda na to, że masz najnowsza wersję :){n}{n}Wersja: v{0}</system:String>
     <system:String x:Key="Download">Pobierz</system:String>
     <system:String x:Key="Ignore">Zignoruj</system:String>
@@ -117,7 +117,7 @@
     <system:String x:Key="OptionsMica">Efekt Mica:</system:String>
     <system:String x:Key="OptionsTransparency">Nieprzezroczystość edytora:</system:String>
     <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
-    <system:String x:Key="OptionsWindows11Required">Wymagany Windows 11</system:String>
+    <system:String x:Key="OptionsWindows11Required">Wymagany Windows 11 i restart programu</system:String>
     <system:String x:Key="OptionsBeta">beta</system:String>
     <system:String x:Key="OptionsLanguage">Język</system:String>
     <system:String x:Key="Version">Wersja:</system:String>

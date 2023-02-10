@@ -15,6 +15,7 @@ namespace SkEditorPlus.Data
         {
             new CompletionDataElement("command", "command /{c}:\n\t"),
             new CompletionDataElement("commandgen"),
+            new CompletionDataElement("guigen"),
             new CompletionDataElement("options", "options:\n\t"),
             new CompletionDataElement("variables", "variables:\n\t"),
             new CompletionDataElement("trigger", "trigger:\n\t"),
@@ -23,9 +24,11 @@ namespace SkEditorPlus.Data
             new CompletionDataElement("else"),
             new CompletionDataElement("send", "send \"{c}\""),
             new CompletionDataElement("sendallp", "send \"{c}\" to all players"),
+            new CompletionDataElement("loop", "loop {c}:\n\t"),
+            new CompletionDataElement("function", "function {c}:\n\t"),
         };
 
-        public static ListBoxItem[] GetCompletionData(string word)
+        public static ListBoxItem[] GetCompletionData(string word, string code)
         {
             List<ListBoxItem> completions = new();
             foreach (var item in completionList)

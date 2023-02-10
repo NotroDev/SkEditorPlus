@@ -1,0 +1,217 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:SkEditorPlus.Controls"
+    xmlns:hc="https://handyorg.github.io/handycontrol">
+
+    <Style
+        x:Key="{x:Type controls:FilesViewItem}"
+        BasedOn="{StaticResource BaseStyle}"
+        TargetType="controls:FilesViewItem">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualRadius0Margin0}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="10,0" />
+        <Setter Property="MaxWidth" Value="229" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="MinHeight" Value="{StaticResource DefaultControlHeight}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:FilesViewItem">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="{TemplateBinding MinHeight}" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border
+                            x:Name="Bd"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{Binding Path=(hc:BorderElement.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            SnapsToDevicePixels="true">
+                            <DockPanel Margin="{Binding Converter={StaticResource TreeViewItemMarginConverter}, RelativeSource={RelativeSource TemplatedParent}}" LastChildFill="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ToggleButton
+                                        x:Name="Expander"
+                                        Grid.Column="0"
+                                        Margin="-3,0,3,0"
+                                        ClickMode="Press"
+                                        IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Style="{StaticResource ExpandCollapseToggleStyle}"
+                                        Visibility="Collapsed" />
+                                    <Path
+                                        x:Name="Icon"
+                                        Grid.Column="1"
+                                        Width="{TemplateBinding hc:IconElement.Width}"
+                                        Height="{TemplateBinding hc:IconElement.Height}"
+                                        Margin="0,0,5,0"
+                                        Data="{TemplateBinding hc:IconElement.Geometry}"
+                                        Fill="{DynamicResource SecondaryTextBrush}"
+                                        SnapsToDevicePixels="True"
+                                        Stretch="Uniform" />
+                                    <TextBlock
+                                        x:Name="PART_Header"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Text="{TemplateBinding Header}"
+                                        TextTrimming="CharacterEllipsis" />
+                                    <DockPanel
+                                        x:Name="PART_ButtonPanel"
+                                        Grid.Column="3"
+                                        MinWidth="22"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center">
+                                        <Button
+                                            x:Name="PART_NewFileButton"
+                                            Width="22"
+                                            Height="22"
+                                            Padding="0"
+                                            Content="&#xe8e5;"
+                                            FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons"
+                                            Visibility="Collapsed" />
+                                        <Button
+                                            x:Name="PART_NewDirButton"
+                                            Width="22"
+                                            Height="22"
+                                            Margin="5,0,0,0"
+                                            Padding="0"
+                                            Content="&#xe838;"
+                                            FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons"
+                                            Visibility="Collapsed" />
+                                        <Button
+                                            x:Name="PART_DelButton"
+                                            Width="22"
+                                            Height="22"
+                                            Margin="5,0,0,0"
+                                            Padding="0"
+                                            Content="&#xe711;"
+                                            FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons"
+                                            Visibility="Collapsed" />
+                                    </DockPanel>
+                                </Grid>
+                            </DockPanel>
+                        </Border>
+                        <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="Bd" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource SecondaryRegionBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsDirectory" Value="True">
+                            <Setter TargetName="Expander" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource SecondaryRegionBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextIconBrush}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="IsSelectionActive" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource DarkDefaultBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="Bd" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsDirectory" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_NewDirButton" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="PART_NewFileButton" Property="Visibility" Value="Visible" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="Bd" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsTopItem" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_DelButton" Property="Visibility" Value="Visible" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FilesView" TargetType="controls:FilesView">
+        <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:FilesView">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,1,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border
+                                Grid.Row="0"
+                                Padding="2"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,1,0,1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        x:Name="PART_OpenProjectButton"
+                                        Grid.Column="0"
+                                        Width="22"
+                                        Height="22"
+                                        Padding="0"
+                                        HorizontalAlignment="Right"
+                                        Content="&#xe838;"
+                                        FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons" />
+                                    <Button
+                                        x:Name="PART_ReloadButton"
+                                        Grid.Column="1"
+                                        Width="22"
+                                        Height="22"
+                                        Margin="2,0,0,0"
+                                        Padding="0"
+                                        HorizontalAlignment="Right"
+                                        Content="&#xe777;"
+                                        FontFamily="/GlitchCode;component/Fonts/#Segoe Fluent Icons" />
+                                </Grid>
+                            </Border>
+                            <TreeView
+                                x:Name="PART_TreeView"
+                                Grid.Row="1"
+                                hc:Empty.ShowEmpty="true"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

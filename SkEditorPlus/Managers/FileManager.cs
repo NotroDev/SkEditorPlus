@@ -26,6 +26,9 @@ using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
 
 namespace SkEditorPlus.Managers
 {
+
+    public delegate void TabChangedEvent();
+
     public class FileManager
     {
         static string newFileName = (string)Application.Current.Resources["NewFileName"];
@@ -44,10 +47,17 @@ namespace SkEditorPlus.Managers
 
         private readonly SkEditorAPI skEditor;
 
+        public CompletionManager completionManager;
+
+        public event TabChangedEvent TabChanged;
+
+        public static FileManager instance;
+
         public FileManager(SkEditorAPI skEditor)
         {
             tabControl = skEditor.GetMainWindow().tabControl;
             this.skEditor = skEditor;
+            instance = this;
         }
 
         public TextEditor GetTextEditor()
@@ -56,6 +66,11 @@ namespace SkEditorPlus.Managers
             if (tabControl.SelectedItem is TabItem tp)
                 textEditor = tp.Content as TextEditor;
             return textEditor;
+        }
+
+        public TabControl GetTabControl()
+        {
+            return tabControl;
         }
 
         int UntitledCount()
@@ -150,26 +165,75 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        public void OpenFolder()
+        private void AddDirectoriesAndFiles(DirectoryInfo directory, System.Windows.Controls.TreeViewItem treeViewItem)
         {
-            using var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            foreach (DirectoryInfo subDirectory in directory.GetDirectories())
             {
-                string[] files = Directory.GetFiles(dialog.SelectedPath);
-                foreach (string file in files)
+                System.Windows.Controls.TreeViewItem subTreeViewItem = new();
+                subTreeViewItem.Header = subDirectory.Name;
+                subTreeViewItem.Tag = subDirectory.FullName;
+                treeViewItem.Items.Add(subTreeViewItem);
+
+                AddDirectoriesAndFiles(subDirectory, subTreeViewItem);
+            }
+
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                System.Windows.Controls.TreeViewItem fileTreeViewItem = new();
+                fileTreeViewItem.Header = file.Name;
+                fileTreeViewItem.Tag = file.FullName;
+
+                fileTreeViewItem.MouseDoubleClick += (sender, e) =>
                 {
-                    if (file.EndsWith(".sk"))
+                    CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
+                    GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
+                    TabItem ti = tabControl.SelectedItem as TabItem;
+                    if (ti.Header.ToString().EndsWith("*"))
                     {
-                        CreateFile(Path.GetFileName(file), file);
-                        GetTextEditor().Load(file);
+                        ti.Header = ti.Header.ToString()[..^1];
+                    }
+                };
+
+                fileTreeViewItem.MouseRightButtonUp += (sender, e) =>
+                {
+                    System.Windows.Controls.ContextMenu contextMenu = new();
+                    System.Windows.Controls.MenuItem openFile = new()
+                    {
+                        Header = "Open File"
+                    };
+                    openFile.Click += (sender, e) =>
+                    {
+                        CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
+                        GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
                         TabItem ti = tabControl.SelectedItem as TabItem;
                         if (ti.Header.ToString().EndsWith("*"))
                         {
                             ti.Header = ti.Header.ToString()[..^1];
                         }
-                    }
-                }
+                    };
+                    contextMenu.Items.Add(openFile);
+                    fileTreeViewItem.ContextMenu = contextMenu;
+                };
+
+                treeViewItem.Items.Add(fileTreeViewItem);
+            }
+        }
+
+        public void OpenFolder()
+        {
+            MessageBox.Show("Hejcia remix, fajnie korzystać z własnej wersji, której nie ma nikt inny?");
+            return;
+            using var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                System.Windows.Controls.TreeViewItem treeViewItem = new()
+                {
+                    Header = Path.GetFileName(dialog.SelectedPath),
+                    Tag = dialog.SelectedPath
+                };
+                //skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
+                AddDirectoriesAndFiles(new DirectoryInfo(dialog.SelectedPath), treeViewItem);
             }
         }
 
@@ -346,7 +410,7 @@ namespace SkEditorPlus.Managers
                 {
                     ChangeSyntax("YAML");
                 }
-                else //if (extension.Equals(".sk"))
+                else
                 {
                     ChangeSyntax("Skript");
                 }
@@ -357,12 +421,22 @@ namespace SkEditorPlus.Managers
             }
             else
             {
-                RPCManager.SetFile("brak");
+                RPCManager.SetFile("none");
             }
+
+            completionManager ??= new(skEditor);
+            //completionManager.LoadCompletionManager(GetTextEditor());
+            OnTabChangedEvent();
+        }
+
+        protected virtual void OnTabChangedEvent()
+        {
+            TabChanged?.Invoke();
         }
 
         public void CloseFile()
         {
+            if (!skEditor.IsFileOpen()) return;
             TabItem tabItem = tabControl.SelectedItem as TabItem;
 
             if (tabItem.Header.ToString().EndsWith("*"))
@@ -464,7 +538,7 @@ namespace SkEditorPlus.Managers
         {
             if (GetTextEditor() == null) return;
 
-            FormattingWindow formattingWindow = new(skEditor);
+            FormattingWindow formattingWindow = FormattingWindow.instance;
             formattingWindow.ShowDialog();
         }
 
@@ -472,11 +546,6 @@ namespace SkEditorPlus.Managers
         {
             // Quick fixes need rewriting, so they are currently disabled
             return;
-            if (IsTodayFirstApril())
-            {
-                AprilFoolsTooltip(sender, e);
-                return;
-            }
 
             var mousePosition = GetTextEditor().GetPositionFromPoint(e.GetPosition(GetTextEditor()));
 
@@ -573,51 +642,17 @@ namespace SkEditorPlus.Managers
             return GetTextEditor().Document.GetText(offsetStart, offsetEnd - offsetStart);
         }
 
-        private static bool IsTodayFirstApril()
-        {
-            DateTime dateTime = DateTime.Now;
-            if (dateTime.Month == 4)
-            {
-                if (dateTime.Day == 1)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void AprilFoolsTooltip(object sender, MouseEventArgs e)
-        {
-            TooltipWindow tooltipWindow = null;
-            string word = GetWordAtMousePosition(e);
-
-            if (string.IsNullOrEmpty(word)) return;
-
-            word = char.ToUpper(word[0]) + word[1..];
-            tooltipWindow = new(word, $"{word} akutualnie nie jest wsiperane przez skeditor+, prosze usunac", "lol", "https://youtu.be/3Jd3uELOLrA", true, TooltipWindow.FixType.URL, this);
-            popup.PlacementTarget = sender as UIElement;
-            popup.Placement = PlacementMode.MousePoint;
-            popup.HorizontalOffset = -5;
-            popup.VerticalOffset = -5;
-            popup.AllowsTransparency = true;
-            popup.StaysOpen = false;
-            popup.Child = tooltipWindow;
-            popup.PopupAnimation = PopupAnimation.Fade;
-            popup.IsOpen = true;
-
-            tooltipWindow.MouseLeave += (s, ee) =>
-            {
-                popup.IsOpen = false;
-            };
-            e.Handled = true;
-        }
-
         public void ChangeSyntax(string syntax)
         {
             if (GetTextEditor() == null) return;
 
             try
             {
+                if (syntax.Equals("none"))
+                {
+                    GetTextEditor().SyntaxHighlighting = null;
+                    return;
+                }
                 var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 var highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", $"{syntax}Highlighting.xshd");
                 using StreamReader s = new(highlightingFile);
@@ -776,7 +811,7 @@ namespace SkEditorPlus.Managers
             catch { }
         }
 
-        private void CreateFile(string header, string tooltip = null)
+        public void CreateFile(string header, string tooltip = null)
         {
             TabItem tabItem = new()
             {
@@ -827,9 +862,6 @@ namespace SkEditorPlus.Managers
 
             tabControl.Items.Add(tabItem);
             ChangeGeometry();
-
-            CompletionManager completionManager = new(skEditor);
-            //completionManager.LoadCompletionManager(GetTextEditor());
         }
     }
 }

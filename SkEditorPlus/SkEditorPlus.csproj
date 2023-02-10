@@ -6,11 +6,11 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>SkEditorPlus</AssemblyName>
     <RootNamespace>SkEditorPlus</RootNamespace>
-    <Version>1.0.0.0</Version>
+    <Version>1.4.1</Version>
     <Configurations>Debug;Release</Configurations>
-    <Copyright>Copyright © notro 2022</Copyright>
-    <FileVersion>1.0.0.0</FileVersion>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Copyright>Copyright © Notro 2022</Copyright>
+    <FileVersion>1.4.2</FileVersion>
+    <AssemblyVersion>1.4.2</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
@@ -25,6 +25,7 @@
   <ItemGroup>
     <None Remove="Fonts\CascadiaMono.ttf" />
     <None Remove="Fonts\OpenSans-Medium.ttf" />
+    <None Remove="Fonts\Segoe Fluent Icons.ttf" />
     <None Remove="Images\SkEditor.svg" />
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +33,9 @@
     <Page Remove="Languages\Polski.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Fonts\Segoe Fluent Icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\SkEditor.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -54,7 +58,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\OpenSans-Medium.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\SkEditor.svg" />
     <Content Include="Images\SkEditor.ico" />
@@ -174,5 +178,8 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+	<FrameworkReference Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms" TargetingPackVersion="6.0.0" />
   </ItemGroup>
 </Project>

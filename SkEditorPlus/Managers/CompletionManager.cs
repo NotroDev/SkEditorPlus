@@ -112,6 +112,12 @@ namespace SkEditorPlus.Managers
                         commandGenerator.ShowDialog();
                         break;
 
+                    case "guigen":
+                        textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, "");
+                        GuiGenerator guiGenerator = new(skEditor);
+                        guiGenerator.ShowDialog();
+                        break;
+
                     default:
                         CompletionDataElement element = null;
                         foreach (CompletionDataElement dataElement in CompletionData.completionList)
@@ -223,7 +229,7 @@ namespace SkEditorPlus.Managers
         {
             lastWord = lastWord.TrimStart();
 
-            var completionList = CompletionData.GetCompletionData(lastWord);
+            var completionList = CompletionData.GetCompletionData(lastWord, skEditor.GetTextEditor().Text);
 
             if (lastWord.Length <= 0 || completionList.Length <= 0)
             {

@@ -7,24 +7,47 @@ using System;
 using System.Windows.Shapes;
 using AvalonEditB.Document;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace SkEditorPlus.Windows
 {
-    public partial class FormattingWindow : Window
+    public partial class FormattingWindow : HandyControl.Controls.Window
     {
         private SkEditorAPI skEditor;
 
         private TextEditor textEditor;
 
+        public static FormattingWindow instance;
+
         public FormattingWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
+            instance = this;
             this.skEditor = skEditor;
             textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
             BackgroundFixManager.FixBackground(this);
 
         }
 
+        //public void AddQuickEdit(string name, string text)
+        //{
+        //    int checkBoxCount = LogicalTreeHelper.GetChildren(this).OfType<CheckBox>().Count();
+
+        //    HandyControl.Controls.MessageBox.Show(checkBoxCount.ToString());
+
+        //    CheckBox checkBox = new()
+        //    {
+        //        Name = name,
+        //        Content = text,
+        //        FontSize = 12,
+        //        Margin = new(10, 102, 0, 0),
+        //        HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+        //        VerticalAlignment = System.Windows.VerticalAlignment.Top,
+        //    };
+
+        //    this.AddChild(checkBox);
+        //}
 
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)

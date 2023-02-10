@@ -24,7 +24,7 @@
     <system:String x:Key="MenuEditBackpack">Backpack</system:String>
 
     <system:String x:Key="MenuOtherSettings">Settings</system:String>
-    <system:String x:Key="MenuOtherChangeSyntax">Change syntax</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Disable syntax highlighting</system:String>
     <system:String x:Key="MenuOtherParser">Parser</system:String>
     <system:String x:Key="MenuOtherDocs">Docs</system:String>
     <system:String x:Key="MenuOtherCheckForUpdate">Check for update</system:String>
@@ -103,7 +103,7 @@
 
     <system:String x:Key="NewVersion">New version!</system:String>
     <system:String x:Key="NoNewVersion">SkEditor+ up to date!</system:String>
-    <system:String x:Key="UpdateAvailable">New version available! {n}{n}Current: v{0}{n}Latest: v{1}</system:String>
+    <system:String x:Key="UpdateAvailable">New version available! {n}{n}Current: v{0}{n}Latest: v{1}{n}{n}After downloading, the app will close. Make sure you save all files before.</system:String>
     <system:String x:Key="UpdateNotAvailable">It seems that you have the latest version :){n}{n}Version: v{0}</system:String>
     <system:String x:Key="Download">Download</system:String>
     <system:String x:Key="Ignore">Ignore</system:String>
@@ -117,7 +117,7 @@
     <system:String x:Key="OptionsMica">Mica effect:</system:String>
     <system:String x:Key="OptionsTransparency">Editor opacity:</system:String>
     <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
-    <system:String x:Key="OptionsWindows11Required">Windows 11 required</system:String>
+    <system:String x:Key="OptionsWindows11Required">Windows 11 and app restart required</system:String>
     <system:String x:Key="OptionsBeta">beta</system:String>
     <system:String x:Key="OptionsLanguage">Language:</system:String>
     <system:String x:Key="Version">Version:</system:String>

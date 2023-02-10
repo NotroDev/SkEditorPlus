@@ -4,11 +4,17 @@ using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using Application = System.Windows.Application;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Functionalities
 {
@@ -180,7 +186,7 @@ namespace SkEditorPlus.Functionalities
                     break;
 
                 case "Menu_ChangeSyntax":
-                    fileManager.ChangeSyntax("Skript");
+                    fileManager.ChangeSyntax("none");
                     break;
 
                 case "Menu_Parser":
@@ -197,6 +203,7 @@ namespace SkEditorPlus.Functionalities
 
         private static async void CheckUpdate()
         {
+
             var github = new GitHubClient(new ProductHeaderValue("SkEditorPlus"));
             var releases = await github.Repository.Release.GetAll("NotroDev", "SkEditorPlus");
             string latest = "";
@@ -218,9 +225,9 @@ namespace SkEditorPlus.Functionalities
                 string download = (string)Application.Current.FindResource("Download");
                 string ignore = (string)Application.Current.FindResource("Ignore");
 
-                MessageBoxResult result = HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
+                MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
                 {
-                    Message = updateAvailable.Replace("{0}", latest).Replace("{1}", current).Replace("{n}", Environment.NewLine),
+                    Message = updateAvailable.Replace("{0}", current).Replace("{1}", latest).Replace("{n}", Environment.NewLine),
                     Caption = newVersionTitle,
                     Button = MessageBoxButton.YesNo,
                     YesContent = download,
@@ -231,24 +238,35 @@ namespace SkEditorPlus.Functionalities
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string url = "https://github.com/NotroDev/SkEditorPlus/releases/latest";
+                    Release release1 = github.Repository.Release.Get("NotroDev", "SkEditorPlus", latest).Result;
+                    string msiUrl = string.Empty;
+                    foreach (var releaseAsset in release1.Assets)
+                    {
+                        if (releaseAsset.BrowserDownloadUrl.EndsWith(".msi"))
+                        {
+                            msiUrl = releaseAsset.BrowserDownloadUrl;
+                            break;
+                        }
+                    }
 
-                    try
-                    {
-                        Process.Start(url);
-                    }
-                    catch
-                    {
-                        url = url.Replace("&", "^&");
-                        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
-                    }
+                    HttpClient client = new();
+                    var response = await client.GetAsync(msiUrl);
+                    var bytes = await response.Content.ReadAsByteArrayAsync();
+                    var tempFile = Path.GetTempFileName();
+                    File.WriteAllBytes(tempFile, bytes);
+
+                    var installer = tempFile.Replace(".tmp", "skeditor.msi");
+                    File.Move(tempFile, installer);
+
+                    Process.Start(new ProcessStartInfo { FileName = installer, UseShellExecute = true });
+                    Application.Current.Shutdown();
                 }
             }
             else
             {
                 string noNewVersionTitle = (string)Application.Current.FindResource("NoNewVersion");
                 string noNewVersion = (string)Application.Current.FindResource("UpdateNotAvailable");
-                HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
+                MessageBox.Show(new MessageBoxInfo
                 {
                     Message = noNewVersion.Replace("{0}", current).Replace("{n}", Environment.NewLine),
                     Caption = noNewVersionTitle,

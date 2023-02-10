@@ -48,7 +48,7 @@ namespace SkEditorPlus
         public event LoadFinishedEvent LoadFinished;
 
 
-        private static readonly string version = "1.4.1";
+        private static readonly string version = "1.4.2";
 
         public static string Version { get => version; }
 
@@ -143,8 +143,9 @@ namespace SkEditorPlus
             else
             {
                 fileManager.NewFile();
-
             }
+
+            FormattingWindow formattingWindow = new(skEditor);
 
             OnFinishedLoad();
         }

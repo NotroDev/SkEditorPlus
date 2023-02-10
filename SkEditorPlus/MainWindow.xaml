@@ -121,11 +121,8 @@
             ShowContextMenu="False"
             ShowOverflowButton="True"
             TabItemWidth="150"/>
-        <!--<TreeView Margin="0,0,314,0">
-            <TreeViewItem Header="Project">
-                <TreeViewItem Header="Scripts" />
-                <TreeViewItem Header="Assets" />
-            </TreeViewItem>
+        <!--<TreeView x:Name="fileTreeView" Margin="0,0,314,0">
+            
         </TreeView>-->
     </Grid>
 

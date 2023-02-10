@@ -52,8 +52,8 @@ namespace SkEditorPlus.Managers
         {
             try
             {
-                client.UpdateDetails("Pracuje nad nową funkcją :)");
-                return;
+                //client.UpdateDetails("Pracuje nad nową funkcją :)");
+                //return;
                 
                 if (!Properties.Settings.Default.DiscordRPC) return;
                 if (name.EndsWith("*")) name = name[..^1];
