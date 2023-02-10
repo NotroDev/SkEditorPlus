@@ -5,7 +5,7 @@
 
 # SkEditor+
   
-<a href='https://github.com/chroline/well_app/releases'>
+<a href='https://github.com/NotroDev/SkEditorPlus/releases'>
   
 <img src='https://img.shields.io/github/v/release/NotroDev/SkEditorPlus?color=%237a34eb&label=version&style=flat-square'>
   
@@ -17,7 +17,7 @@
   
 </a>
 
-<a href='https://github.com/NotroDev/SkEditorPlus/blob/main/LICENSE'>
+<a href='https://github.com/NotroDev/SkEditorPlus/releases/latest'>
   
 <img src='https://img.shields.io/github/downloads/NotroDev/SkEditorPlus/total?color=%230fa621&style=flat-square'>
   
