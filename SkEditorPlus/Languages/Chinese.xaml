@@ -1,0 +1,180 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Simplified Chinese</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">文件</system:String>
+    <system:String x:Key="MenuEdit">编辑</system:String>
+    <system:String x:Key="MenuOther">其他</system:String>
+
+    <system:String x:Key="MenuFileNew">新建</system:String>
+    <system:String x:Key="MenuFileOpen">打开</system:String>
+    <system:String x:Key="MenuFileOpenFolder">Open folder</system:String>
+    <system:String x:Key="MenuFileSave">保存</system:String>
+    <system:String x:Key="MenuFileSaveAs">另存为</system:String>
+    <system:String x:Key="MenuFilePublish">发布...</system:String>
+    <system:String x:Key="MenuFileExport">导出</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">导出的配制</system:String>
+    <system:String x:Key="MenuFileClose">关闭</system:String>
+    
+    <system:String x:Key="MenuEditGenerate">生成...</system:String>
+    <system:String x:Key="MenuEditFormat">快速编辑...</system:String>
+    <system:String x:Key="MenuEditBackpack">背包</system:String>
+
+    <system:String x:Key="MenuOtherSettings">设置</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">禁用语法高亮显示</system:String>
+    <system:String x:Key="MenuOtherParser">解析器</system:String>
+    <system:String x:Key="MenuOtherDocs">文档</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">检查更新</system:String>
+
+    <!-- Options menu -->
+    <system:String x:Key="OptionsMenuGeneral">通用</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">个性化</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+    <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+
+    <!-- Other -->
+
+    <system:String x:Key="NewFileName">New file {0}</system:String>
+    <system:String x:Key="TypeAllFiles">所有文件</system:String>
+    <system:String x:Key="TypeScript">脚本</system:String>
+    <system:String x:Key="Error">错误</system:String>
+
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">Publish code</system:String>
+    <system:String x:Key="GenerateWindowTitle">Generate</system:String>
+    <system:String x:Key="GenerateCommandWindowTitle">生成 命令</system:String>
+    <system:String x:Key="GenerateGUIWindowTitle">生成 GUI</system:String>
+    <system:String x:Key="FormatWindowTitle">Quick edits</system:String>
+    <system:String x:Key="BackpackWindowTitle">Backpack</system:String>
+    <system:String x:Key="SettingsWindowTitle">设置</system:String>
+    <system:String x:Key="FontSelectorTitle">选择字体</system:String>
+
+    <!-- Labels -->
+    
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Paste your API key here</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">You will find your key {0} after logging up</system:String>
+    <system:String x:Key="AnonymousCheckbox">Anonymously</system:String>
+    <system:String x:Key="PublishButton">Publish</system:String>
+    <system:String x:Key="GenerateButton">Generate</system:String>
+    <system:String x:Key="ApplyButton">应用</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">这里将有一个指向您代码的链接 :)</system:String>
+    
+    <system:String x:Key="WhatDoYouWantToGenerate">What do you want to generate?</system:String>
+    <system:String x:Key="CommandButton">Command</system:String>
+    <system:String x:Key="GUIButton">GUI</system:String>
+
+    <system:String x:Key="CmdGenName">Name</system:String>
+    <system:String x:Key="CmdGenPermission">Permission</system:String>
+    <system:String x:Key="CmdGenPermissionMsg">No permission message</system:String>
+    <system:String x:Key="CmdGenAliases">Aliases</system:String>
+    <system:String x:Key="CmdGenUsageMsg">Invalid usage message</system:String>
+    <system:String x:Key="CmdGenExecutors">Who can use the command</system:String>
+    <system:String x:Key="CmdGenCooldown">Cooldown</system:String>
+    <system:String x:Key="CmdGenQuantity">Quantity</system:String>
+    <system:String x:Key="CmdGenUnit">Unit</system:String>
+    
+    <system:String x:Key="Player">Player</system:String>
+    <system:String x:Key="Console">Console</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Name of function</system:String>
+    <system:String x:Key="GUIGenTitle">Title</system:String>
+    <system:String x:Key="GUIGenRows">Rows's quantity</system:String>
+    <system:String x:Key="GUIGenExampleItem">Add example item</system:String>
+    <system:String x:Key="GUIGenBackground">Add background</system:String>
+    <system:String x:Key="GUIGenHint">To show your GUI, use {0}</system:String>
+    <system:String x:Key="GUIGenExampleItemName">Example item</system:String>
+    <system:String x:Key="GUIGenExampleItemLore">Example lore</system:String>
+    <system:String x:Key="GUIGenExampleItemClicked">You clicked the example item!</system:String>
+    
+    <system:String x:Key="QuickEditsVariablesCheckbox">Change dots in variables to colons</system:String>
+    <system:String x:Key="QuickEditsSpacesCheckbox">Change spaces to tabs</system:String>
+    <system:String x:Key="QuickEditsCommentsCheckbox">Remove comments</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">Shorten "else if"</system:String>
+    
+    <system:String x:Key="BackpackAddButton">Add</system:String>
+    <system:String x:Key="BackpackRemoveButton">Remove</system:String>
+    <system:String x:Key="BackpackPasteButton">Paste</system:String>
+
+    <system:String x:Key="DocumentationTitle">Docs</system:String>
+
+    <system:String x:Key="NewVersion">New version!</system:String>
+    <system:String x:Key="NoNewVersion">SkEditor+ up to date!</system:String>
+    <system:String x:Key="UpdateAvailable">New version available! {n}{n}Current: v{0}{n}Latest: v{1}{n}{n}After downloading, the app will close. Make sure you save all files before.</system:String>
+    <system:String x:Key="UpdateNotAvailable">It seems that you have the latest version :){n}{n}Version: v{0}</system:String>
+    <system:String x:Key="Download">下载</system:String>
+    <system:String x:Key="Ignore">忽略</system:String>
+    
+    <system:String x:Key="OptionsAutoSave">Autosave:</system:String>
+    <system:String x:Key="OptionsWrapping">Wrapping</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">Automatic newline insertion:</system:String>
+    <system:String x:Key="OptionsFont">Font:</system:String>
+    <system:String x:Key="OptionsSelectFont">Select font</system:String>
+    <system:String x:Key="OptionsMica">Mica effect:</system:String>
+    <system:String x:Key="OptionsTransparency">Editor opacity:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
+    <system:String x:Key="OptionsWindows11Required">Windows 11 and app restart required</system:String>
+    <system:String x:Key="OptionsBeta">beta</system:String>
+    <system:String x:Key="OptionsLanguage">语言:</system:String>
+    <system:String x:Key="Version">Version:</system:String>
+    <system:String x:Key="SyntaxHighlighting">Syntax Highlighting:</system:String>
+    <system:String x:Key="Update">Update</system:String>
+    <system:String x:Key="UpdateConfirmation">If you continue, the syntax highlighting files will be downloaded and replaced. If you've made any changes to them and don't want to lose them, make a copy.</system:String>
+    <system:String x:Key="UpdateSuccess">Syntax highlighting files updated successfully!</system:String>
+    <system:String x:Key="UpdateFailed">Failed to download syntax highlighting files!\nAre you connected to the internet?{n}{n}{0}</system:String>
+
+    <system:String x:Key="NoFilesTitle">No files</system:String>
+    <system:String x:Key="NoFilesDescription">Missing syntax highlighting files detected! Click to download.</system:String>
+    <system:String x:Key="NoFilesDownloaded">Successfully downloaded!</system:String>
+
+    <!-- Things I forgot before. So they're here :P -->
+    
+    <system:String x:Key="NoResults">Not found</system:String>
+    
+    <system:String x:Key="CloseConfirmation">The file has not been saved. Are you sure you want to close it?</system:String>
+    <system:String x:Key="Attention">Attention!</system:String>
+    <system:String x:Key="Yeah">Yeah</system:String>
+    <system:String x:Key="Cancel">Cancel</system:String>
+    <system:String x:Key="Continue">Continue</system:String>
+
+    <system:String x:Key="SyntaxError">Failed to load syntax highlighting file.{n}{0}</system:String>
+
+    <system:String x:Key="DiscordRPCFile">File: {0}</system:String>
+    <system:String x:Key="DiscordRPCNone">none</system:String>
+    <system:String x:Key="DiscordRPCDownload">Download SkEditor+</system:String>
+
+
+    <system:String x:Key="UnsavedFiles">Unsaved files</system:String>
+    <system:String x:Key="UnsavedFilesMessage">You have unsaved files. Are you sure you want to close the program?</system:String>
+
+    <!-- * Errors * -->
+    <system:String x:Key="GUIGenNameError">Name of GUI is required!</system:String>
+    <system:String x:Key="GUIGenTitleError">Title of GUI is required!</system:String>
+    <system:String x:Key="GUIGenRowsError">Rows's quantity must be between 1 and 6!</system:String>
+    <system:String x:Key="GUIGenRowsError2">Rows's quantity must be a number!</system:String>
+
+    <system:String x:Key="CmdGenNameError">Name of command is required!</system:String>
+    <system:String x:Key="CmdGenCooldownError">Cooldown must be a number!</system:String>
+    <system:String x:Key="CmdGenCooldownUnitError">Select cooldown unit!</system:String>
+
+    <system:String x:Key="BackpackSelectionError">To add a code to your backpack, first select it.</system:String>
+    
+    <system:String x:Key="EmptyCodeError">Your code is empty!</system:String>
+    <system:String x:Key="EmptyAPIKeyError">API key not entered.</system:String>
+    <system:String x:Key="PublishingError">Something didn't work.{n}Are you connected to the internet? Did you paste the correct API key?{n}{n}{0}</system:String>
+
+    <!-- Units -->
+    <system:String x:Key="Ticks">ticks</system:String>
+    <system:String x:Key="Seconds">seconds</system:String>
+    <system:String x:Key="Minutes">minutes</system:String>
+    <system:String x:Key="Hours">hours</system:String>
+    <system:String x:Key="Days">days</system:String>
+    <system:String x:Key="Weeks">weeks</system:String>
+    <system:String x:Key="Months">months</system:String>
+    <system:String x:Key="Years">years</system:String>
+
+</ResourceDictionary>
