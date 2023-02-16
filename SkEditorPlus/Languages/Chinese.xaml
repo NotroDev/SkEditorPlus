@@ -108,28 +108,28 @@
     <system:String x:Key="Download">下载</system:String>
     <system:String x:Key="Ignore">忽略</system:String>
     
-    <system:String x:Key="OptionsAutoSave">Autosave:</system:String>
+    <system:String x:Key="OptionsAutoSave">启用自动保存:</system:String>
     <system:String x:Key="OptionsWrapping">Wrapping</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
-    <system:String x:Key="OptionsAutoNewLine">Automatic newline insertion:</system:String>
-    <system:String x:Key="OptionsFont">Font:</system:String>
-    <system:String x:Key="OptionsSelectFont">Select font</system:String>
-    <system:String x:Key="OptionsMica">Mica effect:</system:String>
-    <system:String x:Key="OptionsTransparency">Editor opacity:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">自动插入换行符:</system:String>
+    <system:String x:Key="OptionsFont">字体:</system:String>
+    <system:String x:Key="OptionsSelectFont">选择字体</system:String>
+    <system:String x:Key="OptionsMica">云母效果:</system:String>
+    <system:String x:Key="OptionsTransparency">编辑不透明度:</system:String>
     <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
-    <system:String x:Key="OptionsWindows11Required">Windows 11 and app restart required</system:String>
-    <system:String x:Key="OptionsBeta">beta</system:String>
+    <system:String x:Key="OptionsWindows11Required">需要Windows11并重启应用</system:String>
+    <system:String x:Key="OptionsBeta">测试版</system:String>
     <system:String x:Key="OptionsLanguage">语言:</system:String>
-    <system:String x:Key="Version">Version:</system:String>
-    <system:String x:Key="SyntaxHighlighting">Syntax Highlighting:</system:String>
+    <system:String x:Key="Version">版本:</system:String>
+    <system:String x:Key="SyntaxHighlighting">语法高亮显示:</system:String>
     <system:String x:Key="Update">Update</system:String>
-    <system:String x:Key="UpdateConfirmation">If you continue, the syntax highlighting files will be downloaded and replaced. If you've made any changes to them and don't want to lose them, make a copy.</system:String>
-    <system:String x:Key="UpdateSuccess">Syntax highlighting files updated successfully!</system:String>
-    <system:String x:Key="UpdateFailed">Failed to download syntax highlighting files!\nAre you connected to the internet?{n}{n}{0}</system:String>
+    <system:String x:Key="UpdateConfirmation">如果继续，将下载并替换语法高亮显示文件。如果您对它们进行了任何更改，并且不想丢失它们，请创建一个复制它们来创建一个副本。</system:String>
+    <system:String x:Key="UpdateSuccess">语法突出显示文件更新成功！</system:String>
+    <system:String x:Key="UpdateFailed">无法下载语法高亮显示文件！\n您是否已连接到互联网？{n}{n}{0}</system:String>
 
-    <system:String x:Key="NoFilesTitle">No files</system:String>
-    <system:String x:Key="NoFilesDescription">Missing syntax highlighting files detected! Click to download.</system:String>
-    <system:String x:Key="NoFilesDownloaded">Successfully downloaded!</system:String>
+    <system:String x:Key="NoFilesTitle">缺少文件</system:String>
+    <system:String x:Key="NoFilesDescription">检测到缺少语法突出显示文件！点击下载。</system:String>
+    <system:String x:Key="NoFilesDownloaded">下载成功！</system:String>
 
     <!-- Things I forgot before. So they're here :P -->
     
