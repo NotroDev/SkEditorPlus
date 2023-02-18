@@ -1,0 +1,180 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Simplified Chinese</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">文件</system:String>
+    <system:String x:Key="MenuEdit">编辑</system:String>
+    <system:String x:Key="MenuOther">其他</system:String>
+
+    <system:String x:Key="MenuFileNew">新建</system:String>
+    <system:String x:Key="MenuFileOpen">打开</system:String>
+    <system:String x:Key="MenuFileOpenFolder">打开文件夹</system:String>
+    <system:String x:Key="MenuFileSave">保存</system:String>
+    <system:String x:Key="MenuFileSaveAs">另存为</system:String>
+    <system:String x:Key="MenuFilePublish">发布...</system:String>
+    <system:String x:Key="MenuFileExport">导出</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">导出的配制</system:String>
+    <system:String x:Key="MenuFileClose">关闭</system:String>
+    
+    <system:String x:Key="MenuEditGenerate">生成...</system:String>
+    <system:String x:Key="MenuEditFormat">快速编辑...</system:String>
+    <system:String x:Key="MenuEditBackpack">背包</system:String>
+
+    <system:String x:Key="MenuOtherSettings">设置</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">禁用语法高亮显示</system:String>
+    <system:String x:Key="MenuOtherParser">解析器</system:String>
+    <system:String x:Key="MenuOtherDocs">文档</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">检查更新</system:String>
+
+    <!-- Options menu -->
+    <system:String x:Key="OptionsMenuGeneral">通用</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">个性化</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
+
+    <!-- Other -->
+
+    <system:String x:Key="NewFileName">新文件 {0}</system:String>
+    <system:String x:Key="TypeAllFiles">所有文件</system:String>
+    <system:String x:Key="TypeScript">脚本</system:String>
+    <system:String x:Key="Error">错误</system:String>
+
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">发布代码</system:String>
+	<system:String x:Key="GenerateWindowTitle">生成</system:String>
+	<system:String x:Key="GenerateCommandWindowTitle">生成 命令</system:String>
+	<system:String x:Key="GenerateGUIWindowTitle">生成 GUI</system:String>
+	<system:String x:Key="FormatWindowTitle">快速编辑</system:String>
+	<system:String x:Key="BackpackWindowTitle">背包</system:String>
+    <system:String x:Key="SettingsWindowTitle">设置</system:String>
+    <system:String x:Key="FontSelectorTitle">选择字体</system:String>
+
+    <!-- Labels -->
+    
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">在此粘贴您的API密钥</system:String>
+	<system:String x:Key="PasteAPIKeyTextboxHint">在登录后您会在{0}找到您的密钥</system:String>
+	<system:String x:Key="AnonymousCheckbox">匿名</system:String>
+	<system:String x:Key="PublishButton">发布</system:String>
+	<system:String x:Key="GenerateButton">生成</system:String>
+	<system:String x:Key="ApplyButton">应用</system:String>
+	<system:String x:Key="PublishResultUrlPlaceholder">这里将有一个指向您代码的链接 :)</system:String>
+
+	<system:String x:Key="WhatDoYouWantToGenerate">您想要生成什么？</system:String>
+	<system:String x:Key="CommandButton">命令</system:String>
+	<system:String x:Key="GUIButton">图形用户界面</system:String>
+
+	<system:String x:Key="CmdGenName">名称</system:String>
+	<system:String x:Key="CmdGenPermission">权限</system:String>
+	<system:String x:Key="CmdGenPermissionMsg">无权限消息</system:String>
+	<system:String x:Key="CmdGenAliases">别名</system:String>
+	<system:String x:Key="CmdGenUsageMsg">无效的用法消息</system:String>
+	<system:String x:Key="CmdGenExecutors">谁可以使用该命令</system:String>
+	<system:String x:Key="CmdGenCooldown">冷却</system:String>
+	<system:String x:Key="CmdGenQuantity">数量</system:String>
+	<system:String x:Key="CmdGenUnit">单位</system:String>
+
+	<system:String x:Key="Player">玩家</system:String>
+	<system:String x:Key="Console">控制台</system:String>
+
+	<system:String x:Key="GUIGenFunctionName">功能名称</system:String>
+	<system:String x:Key="GUIGenTitle">标题</system:String>
+	<system:String x:Key="GUIGenRows">行数</system:String>
+	<system:String x:Key="GUIGenExampleItem">添加示例物品</system:String>
+	<system:String x:Key="GUIGenBackground">添加背景</system:String>
+	<system:String x:Key="GUIGenHint">使用{0}显示您的GUI</system:String>
+	<system:String x:Key="GUIGenExampleItemName">示例物品</system:String>
+	<system:String x:Key="GUIGenExampleItemLore">示例描述</system:String>
+	<system:String x:Key="GUIGenExampleItemClicked">您单击了示例物品！</system:String>
+
+	<system:String x:Key="QuickEditsVariablesCheckbox">将变量中的点改为冒号</system:String>
+	<system:String x:Key="QuickEditsSpacesCheckbox">将空格改为制表符</system:String>
+	<system:String x:Key="QuickEditsCommentsCheckbox">删除注释</system:String>
+	<system:String x:Key="QuickEditsElseIfCheckbox">缩短"else if"</system:String>
+
+	<system:String x:Key="BackpackAddButton">添加</system:String>
+	<system:String x:Key="BackpackRemoveButton">移除</system:String>
+	<system:String x:Key="BackpackPasteButton">粘贴</system:String>
+
+    <system:String x:Key="DocumentationTitle">文档</system:String>
+
+    <system:String x:Key="NewVersion">新版本！</system:String>
+	<system:String x:Key="NoNewVersion">SkEditor+ 已更新！</system:String>
+	<system:String x:Key="UpdateAvailable">有新版本可用！{n}{n}当前版本: v{0}{n}最新版本: v{1}{n}{n}下载后，应用程序将关闭。请确保在此之前保存所有文件。</system:String>
+	<system:String x:Key="UpdateNotAvailable">看起来您已经拥有最新版本了 :) {n}{n}版本: v{0}</system:String>
+    <system:String x:Key="Download">下载</system:String>
+    <system:String x:Key="Ignore">忽略</system:String>
+    
+    <system:String x:Key="OptionsAutoSave">启用自动保存:</system:String>
+    <system:String x:Key="OptionsWrapping">自动换行</system:String>
+	<system:String x:Key="OptionsAutoSecondChar">自动插入第二个字符</system:String>
+    <system:String x:Key="OptionsAutoNewLine">自动插入换行符:</system:String>
+	<system:String x:Key="OptionsDocsLink">文档链接:</system:String>
+    <system:String x:Key="OptionsFont">字体:</system:String>
+    <system:String x:Key="OptionsSelectFont">选择字体</system:String>
+    <system:String x:Key="OptionsMica">云母效果:</system:String>
+    <system:String x:Key="OptionsTransparency">编辑不透明度:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
+    <system:String x:Key="OptionsWindows11Required">需要Windows11并重启应用</system:String>
+    <system:String x:Key="OptionsBeta">测试版</system:String>
+    <system:String x:Key="OptionsLanguage">语言:</system:String>
+    <system:String x:Key="Version">版本:</system:String>
+    <system:String x:Key="SyntaxHighlighting">语法高亮显示:</system:String>
+    <system:String x:Key="Update">Update</system:String>
+    <system:String x:Key="UpdateConfirmation">如果继续，将下载并替换语法高亮显示文件。如果您对它们进行了任何更改，并且不想丢失它们，请创建一个复制它们来创建一个副本。</system:String>
+    <system:String x:Key="UpdateSuccess">语法突出显示文件更新成功！</system:String>
+    <system:String x:Key="UpdateFailed">无法下载语法高亮显示文件！\n您是否已连接到互联网？{n}{n}{0}</system:String>
+
+    <system:String x:Key="NoFilesTitle">缺少文件</system:String>
+    <system:String x:Key="NoFilesDescription">检测到缺少语法突出显示文件！点击下载。</system:String>
+    <system:String x:Key="NoFilesDownloaded">下载成功！</system:String>
+
+    <!-- Things I forgot before. So they're here :P -->
+    
+    <system:String x:Key="NoResults">未找到</system:String>
+
+	<system:String x:Key="CloseConfirmation">文件未保存。确定要关闭吗？</system:String>
+	<system:String x:Key="Attention">注意！</system:String>
+	<system:String x:Key="Yeah">是</system:String>
+	<system:String x:Key="Cancel">取消</system:String>
+	<system:String x:Key="Continue">继续</system:String>
+
+	<system:String x:Key="SyntaxError">无法加载语法突出显示文件。{n}{0}</system:String>
+
+	<system:String x:Key="DiscordRPCFile">文件：{0}</system:String>
+	<system:String x:Key="DiscordRPCNone">无</system:String>
+	<system:String x:Key="DiscordRPCDownload">下载 SkEditor+</system:String>
+
+	<system:String x:Key="UnsavedFiles">未保存的文件</system:String>
+	<system:String x:Key="UnsavedFilesMessage">您有未保存的文件。确定要关闭程序吗？</system:String>
+	<!-- * 错误 * -->
+
+	<system:String x:Key="GUIGenNameError">GUI 名称不能为空！</system:String>
+	<system:String x:Key="GUIGenTitleError">GUI 标题不能为空！</system:String>
+	<system:String x:Key="GUIGenRowsError">行数必须介于 1 和 6 之间！</system:String>
+	<system:String x:Key="GUIGenRowsError2">行数必须是数字！</system:String>
+
+	<system:String x:Key="CmdGenNameError">命令名称不能为空！</system:String>
+	<system:String x:Key="CmdGenCooldownError">冷却时间必须是数字！</system:String>
+	<system:String x:Key="CmdGenCooldownUnitError">请选择冷却时间单位！</system:String>
+
+	<system:String x:Key="BackpackSelectionError">要将代码添加到背包中，请先选择它。</system:String>
+
+	<system:String x:Key="EmptyCodeError">您的代码为空！</system:String>
+	<system:String x:Key="EmptyAPIKeyError">API 密钥未输入。</system:String>
+	<system:String x:Key="PublishingError">出了些问题。{n}您是否连接到互联网？是否粘贴了正确的 API 密钥？{n}{n}{0}</system:String>
+	<!-- 时间单位 -->
+
+	<system:String x:Key="Ticks">游戏刻</system:String>
+	<system:String x:Key="Seconds">秒</system:String>
+	<system:String x:Key="Minutes">分钟</system:String>
+	<system:String x:Key="Hours">小时</system:String>
+	<system:String x:Key="Days">天</system:String>
+	<system:String x:Key="Weeks">周</system:String>
+	<system:String x:Key="Months">月</system:String>
+	<system:String x:Key="Years">年</system:String>
+
+</ResourceDictionary>

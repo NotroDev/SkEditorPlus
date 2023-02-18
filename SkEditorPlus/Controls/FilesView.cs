@@ -73,21 +73,28 @@ namespace SkEditorPlus.Controls
 
         public void UpdateFile(FilesViewItem parent, string path, WatcherChangeTypes type)
         {
-            if (type == WatcherChangeTypes.Created)
+            try
             {
-                FilesViewItem item = new FilesViewItem()
+                if (type == WatcherChangeTypes.Created)
                 {
-                    Header = System.IO.Path.GetFileName(path),
-                    Tag = path,
-                    FilesView = this
-                };
-                item.MouseDoubleClick += Item_MouseDoubleClick;
-                parent.Items.Add(item);
+                    FilesViewItem item = new()
+                    {
+                        Header = System.IO.Path.GetFileName(path),
+                        Tag = path,
+                        FilesView = this
+                    };
+                    item.MouseDoubleClick += Item_MouseDoubleClick;
+                    parent.Items.Add(item);
+                }
+                else if (type == WatcherChangeTypes.Deleted)
+                {
+                    parent.Items.Remove(parent.Items.OfType<FilesViewItem>().Single(item => item.Tag.Equals(path)));
+                    File.Delete(path);
+                }
             }
-            else if (type == WatcherChangeTypes.Deleted)
+            catch
             {
-                parent.Items.Remove(parent.Items.OfType<FilesViewItem>().Single(item => item.Tag.Equals(path)));
-                File.Delete(path);
+
             }
         }
 

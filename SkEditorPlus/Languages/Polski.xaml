@@ -41,7 +41,7 @@
     <system:String x:Key="TypeAllFiles">Wszystkie pliki</system:String>
     <system:String x:Key="TypeScript">Skrypt</system:String>
     <system:String x:Key="Error">Błąd</system:String>
-    
+
     <!-- Window names -->
 
     <system:String x:Key="PublishWindowTitle">Opublikuj kod</system:String>
@@ -112,6 +112,7 @@
     <system:String x:Key="OptionsWrapping">Zawijanie tekstu:</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Automatyczne wstawianie drugiego znaku:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Automatyczne wstawianie nowej linii</system:String>
+    <system:String x:Key="OptionsDocsLink">Link do dokumentacji</system:String>
     <system:String x:Key="OptionsFont">Czcionka:</system:String>
     <system:String x:Key="OptionsSelectFont">Wybierz czcionkę</system:String>
     <system:String x:Key="OptionsMica">Efekt Mica:</system:String>

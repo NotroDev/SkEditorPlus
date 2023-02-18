@@ -1,0 +1,182 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Français</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">Fichier</system:String>
+	<system:String x:Key="MenuEdit">Modifier</system:String>
+	<system:String x:Key="MenuOther">Autre</system:String>
+
+	<system:String x:Key="MenuFileNew">Nouveau</system:String>
+	<system:String x:Key="MenuFileOpen">Ouvrir</system:String>
+	<system:String x:Key="MenuFileOpenFolder">Ouvrir le dossier</system:String>
+	<system:String x:Key="MenuFileSave">Enregistrer</system:String>
+	<system:String x:Key="MenuFileSaveAs">Enregistrer sous</system:String>
+	<system:String x:Key="MenuFilePublish">Publier...</system:String>
+	<system:String x:Key="MenuFileExport">Exporter</system:String>
+	<system:String x:Key="MenuFileExportConfiguration">Configuration d'exportation</system:String>
+	<system:String x:Key="MenuFileClose">Fermer</system:String>
+
+    
+    <system:String x:Key="MenuEditGenerate">Générer...</system:String>
+	<system:String x:Key="MenuEditFormat">Modifications rapides...</system:String>
+	<system:String x:Key="MenuEditBackpack">Sac à dos</system:String>
+
+	<system:String x:Key="MenuOtherSettings">Paramètres</system:String>
+	<system:String x:Key="MenuOtherChangeSyntax">Désactiver la coloration syntaxique</system:String>
+	<system:String x:Key="MenuOtherParser">Analyseur</system:String>
+	<system:String x:Key="MenuOtherDocs">Docs</system:String>
+	<system:String x:Key="MenuOtherCheckForUpdate">Vérifier les mises à jour</system:String>
+	<!-- Menu des options -->
+
+	<system:String x:Key="OptionsMenuGeneral">Général</system:String>
+	<system:String x:Key="OptionsMenuPersonalization">Personnalisation</system:String>
+	<system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
+	<!-- Autres -->
+
+	<system:String x:Key="NewFileName">Nouveau fichier {0}</system:String>
+	<system:String x:Key="TypeAllFiles">Tous les fichiers</system:String>
+	<system:String x:Key="TypeScript">Script</system:String>
+    <system:String x:Key="Error">Erreur</system:String>
+
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">Publier le code</system:String>
+	<system:String x:Key="GenerateWindowTitle">Générer</system:String>
+	<system:String x:Key="GenerateCommandWindowTitle">Générer une commande</system:String>
+	<system:String x:Key="GenerateGUIWindowTitle">Générer une interface graphique</system:String>
+	<system:String x:Key="FormatWindowTitle">Modifications rapides</system:String>
+	<system:String x:Key="BackpackWindowTitle">Sac à dos</system:String>
+	<system:String x:Key="SettingsWindowTitle">Paramètres</system:String>
+	<system:String x:Key="FontSelectorTitle">Sélectionner la police</system:String>
+
+	<!-- Étiquettes -->
+
+	<system:String x:Key="PasteAPIKeyTextboxPlaceholder">Collez votre clé API ici</system:String>
+	<system:String x:Key="PasteAPIKeyTextboxHint">Vous trouverez votre clé {0} après vous être connecté</system:String>
+	<system:String x:Key="AnonymousCheckbox">Anonymement</system:String>
+	<system:String x:Key="PublishButton">Publier</system:String>
+	<system:String x:Key="GenerateButton">Générer</system:String>
+	<system:String x:Key="ApplyButton">Appliquer</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Voici le lien vers votre code :)</system:String>
+
+    <system:String x:Key="WhatDoYouWantToGenerate">Que voulez-vous générer?</system:String>
+	<system:String x:Key="CommandButton">Commande</system:String>
+	<system:String x:Key="GUIButton">Interface utilisateur</system:String>
+
+	<system:String x:Key="CmdGenName">Nom</system:String>
+	<system:String x:Key="CmdGenPermission">Permission</system:String>
+	<system:String x:Key="CmdGenPermissionMsg">Message de non-autorisation</system:String>
+	<system:String x:Key="CmdGenAliases">Alias</system:String>
+	<system:String x:Key="CmdGenUsageMsg">Message d'utilisation invalide</system:String>
+	<system:String x:Key="CmdGenExecutors">Qui peut utiliser la commande</system:String>
+	<system:String x:Key="CmdGenCooldown">Temps de récupération</system:String>
+	<system:String x:Key="CmdGenQuantity">Quantité</system:String>
+	<system:String x:Key="CmdGenUnit">Unité</system:String>
+
+	<system:String x:Key="Player">Joueur</system:String>
+	<system:String x:Key="Console">Console</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Nom de la fonction</system:String>
+	<system:String x:Key="GUIGenTitle">Titre</system:String>
+	<system:String x:Key="GUIGenRows">Nombre de lignes</system:String>
+	<system:String x:Key="GUIGenExampleItem">Ajouter un exemple d'objet</system:String>
+	<system:String x:Key="GUIGenBackground">Ajouter un arrière-plan</system:String>
+	<system:String x:Key="GUIGenHint">Pour afficher votre GUI, utilisez {0}</system:String>
+	<system:String x:Key="GUIGenExampleItemName">Nom de l'exemple d'objet</system:String>
+	<system:String x:Key="GUIGenExampleItemLore">Description de l'exemple d'objet</system:String>
+	<system:String x:Key="GUIGenExampleItemClicked">Vous avez cliqué sur l'exemple d'objet !</system:String>
+
+	<system:String x:Key="QuickEditsVariablesCheckbox">Remplacer les points dans les variables par des deux-points</system:String>
+	<system:String x:Key="QuickEditsSpacesCheckbox">Remplacer les espaces par des tabulations</system:String>
+	<system:String x:Key="QuickEditsCommentsCheckbox">Supprimer les commentaires</system:String>
+	<system:String x:Key="QuickEditsElseIfCheckbox">Raccourcir "else if"</system:String>
+
+	<system:String x:Key="BackpackAddButton">Ajouter</system:String>
+	<system:String x:Key="BackpackRemoveButton">Supprimer</system:String>
+	<system:String x:Key="BackpackPasteButton">Coller</system:String>
+
+	<system:String x:Key="DocumentationTitle">Docs</system:String>
+
+    <system:String x:Key="NewVersion">Nouvelle version !</system:String>
+	<system:String x:Key="NoNewVersion">SkEditor+ est à jour !</system:String>
+	<system:String x:Key="UpdateAvailable">Nouvelle version disponible ! {n}{n}Actuelle : v{0}{n}Dernière : v{1}{n}{n}Après le téléchargement, l'application va se fermer. Assurez-vous de sauvegarder tous les fichiers avant.</system:String>
+	<system:String x:Key="UpdateNotAvailable">Il semble que vous ayez la dernière version :) {n}{n}Version : v{0}</system:String>
+	<system:String x:Key="Download">Télécharger</system:String>
+	<system:String x:Key="Ignore">Ignorer</system:String>
+    
+    <system:String x:Key="OptionsAutoSave">Sauvegarde automatique:</system:String>
+	<system:String x:Key="OptionsWrapping">Retour à la ligne automatique</system:String>
+	<system:String x:Key="OptionsAutoSecondChar">Insertion automatique du deuxième caractère:</system:String>
+	<system:String x:Key="OptionsAutoNewLine">Insertion automatique d'une nouvelle ligne:</system:String>
+	<system:String x:Key="OptionsDocsLink">Lien vers la documentation:</system:String>
+	<system:String x:Key="OptionsFont">Police de caractères:</system:String>
+	<system:String x:Key="OptionsSelectFont">Sélectionner une police de caractères</system:String>
+	<system:String x:Key="OptionsMica">Effet mica:</system:String>
+	<system:String x:Key="OptionsTransparency">Opacité de l'éditeur:</system:String>
+	<system:String x:Key="OptionsDiscordRPC">RPC Discord:</system:String>
+	<system:String x:Key="OptionsWindows11Required">Requiert Windows 11 et redémarrage de l'application</system:String>
+	<system:String x:Key="OptionsBeta">beta</system:String>
+	<system:String x:Key="OptionsLanguage">Langue:</system:String>
+	<system:String x:Key="Version">Version:</system:String>
+	<system:String x:Key="SyntaxHighlighting">Coloration syntaxique:</system:String>
+	<system:String x:Key="Update">Mise à jour</system:String>
+	<system:String x:Key="UpdateConfirmation">Si vous continuez, les fichiers de coloration syntaxique seront téléchargés et remplacés. Si vous avez effectué des modifications et ne voulez pas les perdre, faites une copie.</system:String>
+	<system:String x:Key="UpdateSuccess">Les fichiers de coloration syntaxique ont été mis à jour avec succès !</system:String>
+	<system:String x:Key="UpdateFailed">Échec du téléchargement des fichiers de coloration syntaxique!\nÊtes-vous connecté à Internet?{n}{n}{0}</system:String>
+
+    <system:String x:Key="NoFilesTitle">Aucun fichier</system:String>
+	<system:String x:Key="NoFilesDescription">Fichiers de mise en évidence de la syntaxe manquants détectés! Cliquez pour télécharger.</system:String>
+	<system:String x:Key="NoFilesDownloaded">Téléchargé avec succès !</system:String>
+
+	<!-- Choses que j'ai oubliées auparavant. Alors ils sont ici: P -->
+
+	<system:String x:Key="NoResults">Pas trouvé</system:String>
+
+	<system:String x:Key="CloseConfirmation">Le fichier n'a pas été enregistré. Êtes-vous sûr de vouloir le fermer ?</system:String>
+	<system:String x:Key="Attention">Attention !</system:String>
+	<system:String x:Key="Yeah">Oui</system:String>
+	<system:String x:Key="Cancel">Annuler</system:String>
+	<system:String x:Key="Continue">Continuer</system:String>
+
+	<system:String x:Key="SyntaxError">Impossible de charger le fichier de mise en évidence de la syntaxe.{n}{0}</system:String>
+
+	<system:String x:Key="DiscordRPCFile">Fichier: {0}</system:String>
+	<system:String x:Key="DiscordRPCNone">aucun</system:String>
+	<system:String x:Key="DiscordRPCDownload">Télécharger SkEditor+</system:String>
+
+
+
+    <system:String x:Key="UnsavedFiles">Fichiers non enregistrés</system:String>
+	<system:String x:Key="UnsavedFilesMessage">Vous avez des fichiers non enregistrés. Êtes-vous sûr de vouloir fermer le programme ?</system:String>
+
+	<!-- * Erreurs * -->
+	<system:String x:Key="GUIGenNameError">Le nom de l'interface graphique est requis !</system:String>
+	<system:String x:Key="GUIGenTitleError">Le titre de l'interface graphique est requis !</system:String>
+	<system:String x:Key="GUIGenRowsError">La quantité de lignes doit être comprise entre 1 et 6 !</system:String>
+	<system:String x:Key="GUIGenRowsError2">La quantité de lignes doit être un nombre !</system:String>
+
+	<system:String x:Key="CmdGenNameError">Le nom de la commande est requis !</system:String>
+	<system:String x:Key="CmdGenCooldownError">Le temps de recharge doit être un nombre !</system:String>
+	<system:String x:Key="CmdGenCooldownUnitError">Sélectionnez une unité de temps pour le temps de recharge !</system:String>
+
+	<system:String x:Key="BackpackSelectionError">Pour ajouter un code à votre sac à dos, sélectionnez-le d'abord.</system:String>
+
+	<system:String x:Key="EmptyCodeError">Votre code est vide !</system:String>
+	<system:String x:Key="EmptyAPIKeyError">La clé API n'a pas été saisie.</system:String>
+	<system:String x:Key="PublishingError">Quelque chose n'a pas fonctionné.{n}Êtes-vous connecté à Internet ? Avez-vous collé la clé API correcte ?{n}{n}{0}</system:String>
+
+
+    <!-- Units -->
+    <system:String x:Key="Ticks">tics</system:String>
+	<system:String x:Key="Seconds">secondes</system:String>
+	<system:String x:Key="Minutes">minutes</system:String>
+	<system:String x:Key="Hours">heures</system:String>
+	<system:String x:Key="Days">jours</system:String>
+	<system:String x:Key="Weeks">semaines</system:String>
+	<system:String x:Key="Months">mois</system:String>
+	<system:String x:Key="Years">années</system:String>
+</ResourceDictionary>

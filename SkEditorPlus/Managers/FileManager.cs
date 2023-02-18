@@ -229,9 +229,9 @@ namespace SkEditorPlus.Managers
                 return;
 
             dirPath = folderBrowserDialog.SelectedPath;
-            skEditor.GetMainWindow().LeftTabControl.SelectedItem = skEditor.GetMainWindow().FilesView.Parent;
-            Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => skEditor.GetMainWindow().FilesView.Path = dirPath));
-            skEditor.GetMainWindow().FilesView.LoadFiles();
+            //skEditor.GetMainWindow().LeftTabControl.SelectedItem = skEditor.GetMainWindow().FilesView.Parent;
+            //Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => skEditor.GetMainWindow().FilesView.Path = dirPath));
+            //skEditor.GetMainWindow().FilesView.LoadFiles();
 
 
 
@@ -437,8 +437,11 @@ namespace SkEditorPlus.Managers
                 RPCManager.SetFile("none");
             }
 
-            completionManager ??= new(skEditor);
-            //completionManager.LoadCompletionManager(GetTextEditor());
+            if (skEditor.IsFileOpen())
+            {
+                completionManager ??= new(skEditor);
+                completionManager.LoadCompletionManager(GetTextEditor());
+            }
             OnTabChangedEvent();
         }
 
@@ -553,7 +556,7 @@ namespace SkEditorPlus.Managers
         {
             if (GetTextEditor() == null) return;
 
-            FormattingWindow formattingWindow = FormattingWindow.instance;
+            FormattingWindow formattingWindow = new(skEditor);
             formattingWindow.ShowDialog();
         }
 
@@ -704,7 +707,18 @@ namespace SkEditorPlus.Managers
         public void OpenDocs()
         {
             string documentation = (string)Application.Current.Resources["DocumentationTitle"];
-            OpenSite(documentation, "https://docs.skunity.com/");
+            string link = Properties.Settings.Default.DocsLink;
+
+            bool result = Uri.TryCreate(link, UriKind.Absolute, out Uri uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+            if (!result)
+            {
+                MessageBox.Error("You provided incorrect link to documentation in the settings.\nCorrect it and try again.", "Incorrect url");
+                return;
+            }
+
+            OpenSite(documentation, link);
         }
 
 

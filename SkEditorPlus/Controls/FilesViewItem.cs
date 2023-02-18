@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Controls
 {
@@ -61,6 +62,7 @@ namespace SkEditorPlus.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Button Clicked");
             Button button = sender as Button;
             switch (button.Name)
             {

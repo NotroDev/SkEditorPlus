@@ -18,6 +18,7 @@ using HandyControl.Data;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MessageBox = HandyControl.Controls.MessageBox;
+using System.Windows.Markup;
 
 namespace SkEditorPlus.Windows
 {
@@ -58,19 +59,25 @@ namespace SkEditorPlus.Windows
             {
                 string fileName = Path.GetFileNameWithoutExtension(file);
                 if (fileName != null)
-                if (fileName != null)
                 {
-                    if (languageComboBox.Items.Cast<ComboBoxItem>().All(item => item.Content.ToString() != fileName))
+
+                    if (languageComboBox.Items.Cast<ComboBoxItem>().All(item => item.Tag.ToString() != fileName))
                     {
+                        var resourceDictionary = new ResourceDictionary();
+                        resourceDictionary.Source = new Uri(file);
+                        var langName = resourceDictionary["LangName"] as string;
+
                         ComboBoxItem comboBoxItem = new()
                         {
-                            Content = fileName
+                            Content = langName,
+                            Tag = fileName
                         };
                         languageComboBox.Items.Add(comboBoxItem);
                     }
                 }
             }
-            ComboBoxItem item = languageComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == Properties.Settings.Default.Language);
+
+            ComboBoxItem item = languageComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Tag.ToString() == Properties.Settings.Default.Language);
             if (item != null)
             {
                 languageComboBox.SelectedItem = item;
@@ -80,6 +87,12 @@ namespace SkEditorPlus.Windows
             versionText.Text = $"{versionLabel} {MainWindow.Version}";
 
             fontPickerButton.Content = Properties.Settings.Default.Font;
+
+            if (string.IsNullOrEmpty(fontPickerButton.Content.ToString()))
+            {
+                fontPickerButton.Content = "Cascadia Mono";
+            }
+
             if (!MicaHelper.IsSupported(BackdropType.Mica))
             {
                 micaCheckbox.IsEnabled = false;
@@ -173,18 +186,20 @@ namespace SkEditorPlus.Windows
         private void OnLanguageChange(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)languageComboBox.SelectedItem;
-            string content = typeItem.Content.ToString();
+            string tag = typeItem.Tag.ToString();
 
-            Properties.Settings.Default.Language = content;
+            Properties.Settings.Default.Language = tag;
             Properties.Settings.Default.Save();
 
             string appDirectory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
 
             ResourceDictionary dict = new()
             {
-                Source = new Uri(appDirectory + @"\Languages\" + content + ".xaml", UriKind.Absolute)
+                Source = new Uri(appDirectory + @"\Languages\" + tag + ".xaml", UriKind.Absolute)
             };
             Application.Current.Resources.MergedDictionaries.Add(dict);
+            string versionLabel = (string)Application.Current.FindResource("Version");
+            versionText.Text = $"{versionLabel} {MainWindow.Version}";
         }
 
         private void UpdateSyntaxClick(object sender, RoutedEventArgs e)
@@ -242,6 +257,13 @@ namespace SkEditorPlus.Windows
             using var s = await client.GetStreamAsync(uri);
             using var fs = new FileStream(FileName, FileMode.CreateNew);
             await s.CopyToAsync(fs);
+        }
+
+        private void OnDocsLinkChanged(object sender, TextChangedEventArgs e)
+        {
+            string link = docsLinkTextBox.Text;
+            Properties.Settings.Default.DocsLink = link;
+            Properties.Settings.Default.Save();
         }
     }
 }

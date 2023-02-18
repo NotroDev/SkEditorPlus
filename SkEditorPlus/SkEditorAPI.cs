@@ -3,6 +3,7 @@ using HandyControl.Controls;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
+using System.Diagnostics;
 using System.Windows.Controls;
 
 namespace SkEditorPlus
@@ -55,6 +56,19 @@ namespace SkEditorPlus
         public void ShowMessage(string title, string text)
         {
             MessageBox.Show(text, title);
+        }
+
+        public void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                url = url.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
         }
     }
 }

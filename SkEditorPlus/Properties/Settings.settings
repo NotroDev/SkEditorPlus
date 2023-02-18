@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="Font" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Cascadia Mono</Value>
     </Setting>
     <Setting Name="Wrapping" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AutoSecondCharacter" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DiscordRPC" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -37,6 +37,9 @@
     </Setting>
     <Setting Name="PastebinApiKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DocsLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://docs.skunity.com/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

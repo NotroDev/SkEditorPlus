@@ -9,6 +9,7 @@ using AvalonEditB.Document;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Windows
 {
@@ -70,8 +71,24 @@ namespace SkEditorPlus.Windows
             formattingWindow.Close();
         }
 
+        private void AddNodesToTreeView()
+        {
+            TreeViewItem rootItem = new();
+            rootItem.Header = "Skrypt";
+            TreeViewItem currentParent = rootItem;
+
+            string[] lines = textEditor.Text.Split(Environment.NewLine, StringSplitOptions.None);
+        }
+
+
+
         private void FixDotVariables()
         {
+            AddNodesToTreeView();
+
+
+            return;
+
             string code = textEditor.Text;
 
             Regex regex = new("{([^.}]*)\\.([^}]*)}");

@@ -114,30 +114,30 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TabControl
+        <!--<TabControl
             x:Name="LeftTabControl"
             Grid.Column="0"
             Padding="0"
             HorizontalAlignment="Left"
             SelectedIndex="0"
-            TabStripPlacement="Left" Background="Transparent"
+            TabStripPlacement="Left"
             Style="{StaticResource TabControl}">
                 <TabItem
             x:Name="HiddenTabItem"
             Style="{StaticResource TabItem}"
             Visibility="Collapsed" />
-                <controls:SlimTabItem
+            <controls:SlimTabItem
                 x:Name="ProjectTabItem"
-                Header="Projekt" Background="Transparent" BorderThickness="0"
+                Header="Projekt" BorderThickness="0"
                 Style="{StaticResource TabItem}">
-                    <controls:FilesView
+                <controls:FilesView
                     x:Name="FilesView"
                     Width="230"
                     MaxWidth="230"
                     x:FieldModifier="public"
                     Style="{StaticResource FilesView}" />
-                </controls:SlimTabItem>
-        </TabControl>
+            </controls:SlimTabItem>
+        </TabControl>-->
         
         
         <hc:TabControl
@@ -152,7 +152,7 @@
             ShowContextMenu="False"
             ShowOverflowButton="True"
             TabItemWidth="150"/>
-        <!--<TreeView x:Name="fileTreeView" Margin="0,0,314,0" Width="300" HorizontalAlignment="Left"></TreeView>-->
+        <!--<TreeView x:Name="structureTreeView" Grid.Column="1" Width="300" HorizontalAlignment="Right"></TreeView>-->
     </Grid>
     <Window.InputBindings>
         <KeyBinding

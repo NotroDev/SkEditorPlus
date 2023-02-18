@@ -1,0 +1,174 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:system="clr-namespace:System;assembly=mscorlib">
+	<system:String x:Key="LangName">Español</system:String>
+
+	<!-- Menú -->
+
+	<system:String x:Key="MenuFile">Archivo</system:String>
+	<system:String x:Key="MenuEdit">Editar</system:String>
+	<system:String x:Key="MenuOther">Otro</system:String>
+
+	<system:String x:Key="MenuFileNew">Nuevo</system:String>
+	<system:String x:Key="MenuFileOpen">Abrir</system:String>
+	<system:String x:Key="MenuFileOpenFolder">Abrir carpeta</system:String>
+	<system:String x:Key="MenuFileSave">Guardar</system:String>
+	<system:String x:Key="MenuFileSaveAs">Guardar como</system:String>
+	<system:String x:Key="MenuFilePublish">Publicar...</system:String>
+	<system:String x:Key="MenuFileExport">Exportar</system:String>
+	<system:String x:Key="MenuFileExportConfiguration">Configuración de exportación</system:String>
+	<system:String x:Key="MenuFileClose">Cerrar</system:String>
+
+	<system:String x:Key="MenuEditGenerate">Generar...</system:String>
+	<system:String x:Key="MenuEditFormat">Ediciones rápidas...</system:String>
+	<system:String x:Key="MenuEditBackpack">Mochila</system:String>
+
+	<system:String x:Key="MenuOtherSettings">Configuración</system:String>
+	<system:String x:Key="MenuOtherChangeSyntax">Deshabilitar resaltado de sintaxis</system:String>
+	<system:String x:Key="MenuOtherParser">Analizador</system:String>
+	<system:String x:Key="MenuOtherDocs">Documentación</system:String>
+	<system:String x:Key="MenuOtherCheckForUpdate">Buscar actualizaciones</system:String>
+
+	<!-- Menú de opciones -->
+	<system:String x:Key="OptionsMenuGeneral">General</system:String>
+	<system:String x:Key="OptionsMenuPersonalization">Personalización</system:String>
+	<system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
+
+	<!-- Otros -->
+
+	<system:String x:Key="NewFileName">Nuevo archivo {0}</system:String>
+	<system:String x:Key="TypeAllFiles">Todos los archivos</system:String>
+	<system:String x:Key="TypeScript">Script</system:String>
+    <system:String x:Key="Error">Error</system:String>
+
+
+    <!-- Nombres de ventana -->
+
+	<system:String x:Key="PublishWindowTitle">Publicar código</system:String>
+	<system:String x:Key="GenerateWindowTitle">Generar</system:String>
+	<system:String x:Key="GenerateCommandWindowTitle">Generar comando</system:String>
+	<system:String x:Key="GenerateGUIWindowTitle">Generar GUI</system:String>
+	<system:String x:Key="FormatWindowTitle">Ediciones rápidas</system:String>
+	<system:String x:Key="BackpackWindowTitle">Mochila</system:String>
+	<system:String x:Key="SettingsWindowTitle">Configuración</system:String>
+	<system:String x:Key="FontSelectorTitle">Seleccionar fuente</system:String>
+
+	<!-- Etiquetas -->
+	<system:String x:Key="PasteAPIKeyTextboxPlaceholder">Pegue su clave API aquí</system:String>
+	<system:String x:Key="PasteAPIKeyTextboxHint">Encontrarás tu clave en {0} después de iniciar sesión</system:String>
+	<system:String x:Key="AnonymousCheckbox">Anónimamente</system:String>
+	<system:String x:Key="PublishButton">Publicar</system:String>
+	<system:String x:Key="GenerateButton">Generar</system:String>
+	<system:String x:Key="ApplyButton">Aplicar</system:String>
+	<system:String x:Key="PublishResultUrlPlaceholder">Aquí habrá un enlace a su código :)</system:String>
+
+	<system:String x:Key="WhatDoYouWantToGenerate">¿Qué desea generar?</system:String>
+	<system:String x:Key="CommandButton">Comando</system:String>
+	<system:String x:Key="GUIButton">GUI</system:String>
+
+	<system:String x:Key="CmdGenName">Nombre</system:String>
+	<system:String x:Key="CmdGenPermission">Permiso</system:String>
+	<system:String x:Key="CmdGenPermissionMsg">Mensaje sin permiso</system:String>
+	<system:String x:Key="CmdGenAliases">Alias</system:String>
+	<system:String x:Key="CmdGenUsageMsg">Mensaje de uso inválido</system:String>
+	<system:String x:Key="CmdGenExecutors">Quién puede usar el comando</system:String>
+	<system:String x:Key="CmdGenCooldown">Enfriamiento</system:String>
+	<system:String x:Key="CmdGenQuantity">Cantidad</system:String>
+	<system:String x:Key="CmdGenUnit">Unidad</system:String>
+
+	<system:String x:Key="Player">Jugador</system:String>
+	<system:String x:Key="Console">Consola</system:String>
+
+	<system:String x:Key="GUIGenFunctionName">Nombre de la función</system:String>
+	<system:String x:Key="GUIGenTitle">Título</system:String>
+	<system:String x:Key="GUIGenRows">Cantidad de filas</system:String>
+	<system:String x:Key="GUIGenExampleItem">Agregar item de ejemplo</system:String>
+	<system:String x:Key="GUIGenBackground">Agregar fondo</system:String>
+	<system:String x:Key="GUIGenHint">Para mostrar su GUI, use {0}</system:String>
+	<system:String x:Key="GUIGenExampleItemName">Item de ejemplo</system:String>
+	<system:String x:Key="GUIGenExampleItemLore">Descripción de ejemplo</system:String>
+	<system:String x:Key="GUIGenExampleItemClicked">¡Ha hecho clic en el item de ejemplo!</system:String>
+
+	<system:String x:Key="QuickEditsVariablesCheckbox">Cambiar puntos en variables por dos puntos</system:String>
+	<system:String x:Key="QuickEditsSpacesCheckbox">Cambiar espacios por tabulaciones</system:String>
+	<system:String x:Key="QuickEditsCommentsCheckbox">Eliminar comentarios</system:String>
+	<system:String x:Key="QuickEditsElseIfCheckbox">Acortar "else if"</system:String>
+
+	<system:String x:Key="BackpackAddButton">Agregar</system:String>
+	<system:String x:Key="BackpackRemoveButton">Eliminar</system:String>
+	<system:String x:Key="BackpackPasteButton">Pegar</system:String>
+
+	<system:String x:Key="DocumentationTitle">Documentación</system:String>
+
+	<system:String x:Key="NewVersion">¡Nueva versión!</system:String>
+	<system:String x:Key="NoNewVersion">¡SkEditor+ está actualizado!</system:String>
+	<system:String x:Key="UpdateAvailable">¡Nueva versión disponible! {n}{n}Actual: v{0}{n}Última: v{1}{n}{n}Después de la descarga, la aplicación se cerrará. Asegúrate de guardar todos los archivos antes.</system:String>
+	<system:String x:Key="UpdateNotAvailable">Parece que tienes la última versión :){n}{n}Versión: v{0}</system:String>
+	<system:String x:Key="Download">Descargar</system:String>
+	<system:String x:Key="Ignore">Ignorar</system:String>
+
+	<system:String x:Key="OptionsAutoSave">Autoguardado:</system:String>
+	<system:String x:Key="OptionsWrapping">Ajuste de línea</system:String>
+	<system:String x:Key="OptionsAutoSecondChar">Inserción automática del segundo carácter:</system:String>
+	<system:String x:Key="OptionsAutoNewLine">Inserción automática de nueva línea:</system:String>
+	<system:String x:Key="OptionsDocsLink">Enlace a la documentación:</system:String>
+	<system:String x:Key="OptionsFont">Fuente:</system:String>
+	<system:String x:Key="OptionsSelectFont">Seleccionar fuente</system:String>
+	<system:String x:Key="OptionsMica">Efecto mica:</system:String>
+	<system:String x:Key="OptionsTransparency">Opacidad del editor:</system:String>
+	<system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
+	<system:String x:Key="OptionsWindows11Required">Se requiere Windows 11 y reinicio de la aplicación</system:String>
+	<system:String x:Key="OptionsBeta">beta</system:String>
+	<system:String x:Key="OptionsLanguage">Idioma:</system:String>
+	<system:String x:Key="Version">Versión:</system:String>
+	<system:String x:Key="SyntaxHighlighting">Resaltado de sintaxis:</system:String>
+	<system:String x:Key="Update">Actualizar</system:String>
+	<system:String x:Key="UpdateConfirmation">Si continúas, los archivos de resaltado de sintaxis se descargarán y reemplazarán. Si has hecho algún cambio en ellos y no quieres perderlos, haz una copia.</system:String>
+	<system:String x:Key="UpdateSuccess">¡Los archivos de resaltado de sintaxis se han actualizado correctamente!</system:String>
+	<system:String x:Key="UpdateFailed">¡Error al descargar archivos de resaltado de sintaxis!\n¿Está conectado a internet?{n}{n}{0}</system:String>
+	<!-- Cosas que olvidé antes. Así que están aquí :P -->
+
+	<system:String x:Key="NoResults">No encontrado</system:String>
+
+	<system:String x:Key="CloseConfirmation">El archivo no ha sido guardado. ¿Estás seguro de que quieres cerrarlo?</system:String>
+	<system:String x:Key="Attention">¡Atención!</system:String>
+	<system:String x:Key="Yeah">Sí</system:String>
+	<system:String x:Key="Cancel">Cancelar</system:String>
+	<system:String x:Key="Continue">Continuar</system:String>
+
+	<system:String x:Key="SyntaxError">Error al cargar el archivo de resaltado de sintaxis.{n}{0}</system:String>
+
+	<system:String x:Key="DiscordRPCFile">Archivo: {0}</system:String>
+	<system:String x:Key="DiscordRPCNone">ninguno</system:String>
+	<system:String x:Key="DiscordRPCDownload">Descargar SkEditor+</system:String>
+
+	<system:String x:Key="UnsavedFiles">Archivos sin guardar</system:String>
+	<system:String x:Key="UnsavedFilesMessage">Tiene archivos sin guardar. ¿Está seguro de que desea cerrar el programa?</system:String>
+	<system:String x:Key="GUIGenNameError">¡El nombre de la GUI es obligatorio!</system:String>
+	<system:String x:Key="GUIGenTitleError">¡El título de la GUI es obligatorio!</system:String>
+	<system:String x:Key="GUIGenRowsError">¡La cantidad de filas debe estar entre 1 y 6!</system:String>
+	<system:String x:Key="GUIGenRowsError2">¡La cantidad de filas debe ser un número!</system:String>
+
+	<system:String x:Key="CmdGenNameError">¡El nombre del comando es obligatorio!</system:String>
+	<system:String x:Key="CmdGenCooldownError">¡El tiempo de enfriamiento debe ser un número!</system:String>
+	<system:String x:Key="CmdGenCooldownUnitError">¡Seleccione la unidad de enfriamiento!</system:String>
+
+	<system:String x:Key="BackpackSelectionError">Para agregar un código a su mochila, primero selecciónelo.</system:String>
+
+	<system:String x:Key="EmptyCodeError">¡Tu código está vacío!</system:String>
+	<system:String x:Key="EmptyAPIKeyError">No se ha ingresado una clave de API.</system:String>
+	<system:String x:Key="PublishingError">Algo no funcionó.{n}¿Estás conectado a internet? ¿Pegaste la clave de API correcta?{n}{n}{0}</system:String>
+	
+	<!-- Units -->
+
+	<system:String x:Key="Ticks">tics</system:String>
+	<system:String x:Key="Seconds">segundos</system:String>
+	<system:String x:Key="Minutes">minutos</system:String>
+	<system:String x:Key="Hours">horas</system:String>
+	<system:String x:Key="Days">días</system:String>
+	<system:String x:Key="Weeks">semanas</system:String>
+	<system:String x:Key="Months">meses</system:String>
+	<system:String x:Key="Years">años</system:String>
+	
+</ResourceDictionary>

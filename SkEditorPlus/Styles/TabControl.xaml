@@ -11,7 +11,7 @@
                 <ControlTemplate TargetType="TabControl">
                     <Grid
                         x:Name="templateRoot"
-                        Background="{TemplateBinding Background}"
+                        Background="Transparent"
                         ClipToBounds="true"
                         KeyboardNavigation.TabNavigation="Local"
                         SnapsToDevicePixels="true">
@@ -29,7 +29,7 @@
                             Grid.Column="0"
                             Margin="0"
                             Panel.ZIndex="1"
-                            Background="{DynamicResource RegionBrush}"
+                            Background="Transparent"
                             IsItemsHost="true"
                             KeyboardNavigation.TabIndex="1" />
                         <Border
@@ -38,8 +38,8 @@
                             Grid.Column="0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{DynamicResource RegionBrush}"
-                            BorderBrush="{DynamicResource BorderBrush}"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
                             BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ThicknessSplitConverter}, ConverterParameter='0,1,0,0'}"
                             KeyboardNavigation.DirectionalNavigation="Contained"
                             KeyboardNavigation.TabIndex="2"
@@ -89,9 +89,9 @@
 
     <Style x:Key="TabItem" TargetType="TabItem">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource RegionBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0,1,0,1" />
-        <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="HeaderTemplate">
             <Setter.Value>
@@ -120,7 +120,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
                 <Setter Property="Background" Value="{DynamicResource SecondaryRegionBrush}" />
             </Trigger>
         </Style.Triggers>
@@ -146,7 +146,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
         <Setter Property="Background" Value="{DynamicResource SecondaryRegionBrush}" />
         <Setter Property="BorderThickness" Value="1,1,1,1" />
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="10,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -174,7 +174,7 @@
                             <Border
                                 x:Name="innerBorder"
                                 Margin="0,0,0,-1"
-                                Background="{DynamicResource RegionBrush}"
+                                Background="Transparent"
                                 Visibility="Collapsed" />
                         </Border>
                         <Path
@@ -232,7 +232,7 @@
                         <Trigger Property="IsSelected" Value="true">
                             <Setter Property="Panel.ZIndex" Value="1" />
                             <Setter TargetName="innerBorder" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="BorderMask" Property="Background" Value="{DynamicResource RegionBrush}" />
+                            <Setter TargetName="BorderMask" Property="Background" Value="Transparent" />
                         </Trigger>
                         <Trigger Property="hc:IconElement.Geometry" Value="{x:Null}">
                             <Setter TargetName="PathMain" Property="Visibility" Value="Collapsed" />
@@ -256,8 +256,8 @@
     </Style>
 
     <Style x:Key="TabControl2" TargetType="TabControl">
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
-        <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource TabItemStyle}" />
@@ -284,7 +284,7 @@
                             Grid.Column="0"
                             Margin="0"
                             Panel.ZIndex="1"
-                            Background="{DynamicResource RegionBrush}"
+                            Background="Transparent"
                             IsItemsHost="true"
                             KeyboardNavigation.TabIndex="1" />
                         <Border
@@ -294,7 +294,7 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Background="{TemplateBinding Background}"
-                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderBrush="Transparent"
                             BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ThicknessSplitConverter}, ConverterParameter='0,1,0,0'}"
                             KeyboardNavigation.DirectionalNavigation="Contained"
                             KeyboardNavigation.TabIndex="2"
@@ -367,8 +367,8 @@
                     Margin="0,-1,0,0"
                     HorizontalAlignment="Left"
                     Panel.ZIndex="2"
-                    Background="{DynamicResource RegionBrush}"
-                    BorderBrush="{DynamicResource BorderBrush}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
                     BorderThickness="0,0,1,1"
                     Visibility="{TemplateBinding ShowScrollButton,
                                                  Converter={StaticResource Boolean2VisibilityConverter}}">
@@ -396,7 +396,7 @@
                     <Border
                         Name="PART_HeaderBorder"
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderBrush="Transparent"
                         BorderThickness="0,0,0,1">
                         <hc:TabPanel
                             x:Name="PART_HeaderPanel"
@@ -425,8 +425,8 @@
                     Grid.Column="2"
                     Margin="0,-1,0,0"
                     HorizontalAlignment="Right"
-                    Background="{DynamicResource RegionBrush}"
-                    BorderBrush="{DynamicResource BorderBrush}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
                     BorderThickness="0,0,0,1">
                     <Border.CacheMode>
                         <BitmapCache SnapsToDevicePixels="True" />
@@ -437,7 +437,7 @@
                             Padding="8"
                             hc:IconElement.Geometry="{StaticResource RightGeometry}"
                             Background="{DynamicResource SecondaryRegionBrush}"
-                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderBrush="Transparent"
                             Focusable="False"
                             Foreground="{DynamicResource PrimaryTextBrush}"
                             Style="{StaticResource RepeatButtonIcon}"
@@ -445,7 +445,7 @@
                                                          Converter={StaticResource Boolean2VisibilityConverter}}" />
                         <Border
                             Width="1"
-                            Background="{DynamicResource BorderBrush}"
+                            Background="Transparent"
                             Visibility="{Binding Visibility, ElementName=PART_OverflowButton}" />
                         <hc:ContextMenuToggleButton
                             x:Name="PART_OverflowButton"
