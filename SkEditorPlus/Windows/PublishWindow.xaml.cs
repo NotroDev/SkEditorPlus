@@ -132,7 +132,7 @@ namespace SkEditorPlus.Windows
                 website = "https://code.skript.pl/api-key";
             }
 
-            OpenUrl(website);
+            skEditor.OpenUrl(website);
         }
 
         private void CopyClick(object sender, System.Windows.RoutedEventArgs e)
@@ -142,19 +142,6 @@ namespace SkEditorPlus.Windows
                 Clipboard.SetText(urlTextBox.Text);
             }
             catch { }
-        }
-
-        private static void OpenUrl(string url)
-        {
-            try
-            {
-                Process.Start(url);
-            }
-            catch
-            {
-                url = url.Replace("&", "^&");
-                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
-            }
         }
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)

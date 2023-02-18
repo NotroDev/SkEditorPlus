@@ -38,7 +38,7 @@ namespace SkEditorPlus.Controls
             if (Path == null) return;
             if (treeView == null)
             {
-                MessageBox.Error("Something went wrong! Please try again", "GlitchCode");
+                MessageBox.Error("Something went wrong! Please try again", "SkEditorPlus");
                 return;
             }
             treeView.Items.Clear();
@@ -73,21 +73,28 @@ namespace SkEditorPlus.Controls
 
         public void UpdateFile(FilesViewItem parent, string path, WatcherChangeTypes type)
         {
-            if (type == WatcherChangeTypes.Created)
+            try
             {
-                FilesViewItem item = new FilesViewItem()
+                if (type == WatcherChangeTypes.Created)
                 {
-                    Header = System.IO.Path.GetFileName(path),
-                    Tag = path,
-                    FilesView = this
-                };
-                item.MouseDoubleClick += Item_MouseDoubleClick;
-                parent.Items.Add(item);
+                    FilesViewItem item = new()
+                    {
+                        Header = System.IO.Path.GetFileName(path),
+                        Tag = path,
+                        FilesView = this
+                    };
+                    item.MouseDoubleClick += Item_MouseDoubleClick;
+                    parent.Items.Add(item);
+                }
+                else if (type == WatcherChangeTypes.Deleted)
+                {
+                    parent.Items.Remove(parent.Items.OfType<FilesViewItem>().Single(item => item.Tag.Equals(path)));
+                    File.Delete(path);
+                }
             }
-            else if (type == WatcherChangeTypes.Deleted)
+            catch
             {
-                parent.Items.Remove(parent.Items.OfType<FilesViewItem>().Single(item => item.Tag.Equals(path)));
-                File.Delete(path);
+
             }
         }
 
@@ -129,7 +136,7 @@ namespace SkEditorPlus.Controls
         {
             treeView = GetTemplateChild("PART_TreeView") as TreeView;
             ((Button)GetTemplateChild("PART_ReloadButton")).Click += delegate { LoadFiles(); };
-            //((Button)GetTemplateChild("PART_OpenProjectButton")).Click += delegate { FileManager.OpenProject(); };
+            ((Button)GetTemplateChild("PART_OpenProjectButton")).Click += delegate { FileManager.instance.OpenFolder(); };
             base.OnApplyTemplate();
         }
     }

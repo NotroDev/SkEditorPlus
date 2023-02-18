@@ -112,6 +112,7 @@
     <system:String x:Key="OptionsWrapping">Wrapping</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Automatic newline insertion:</system:String>
+    <system:String x:Key="OptionsDocsLink">Link to documentation:</system:String>
     <system:String x:Key="OptionsFont">Font:</system:String>
     <system:String x:Key="OptionsSelectFont">Select font</system:String>
     <system:String x:Key="OptionsMica">Mica effect:</system:String>

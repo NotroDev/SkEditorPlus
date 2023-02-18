@@ -25,7 +25,7 @@ namespace SkEditorPlus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Cascadia Mono")]
         public string Font {
             get {
                 return ((string)(this["Font"]));
@@ -49,7 +49,7 @@ namespace SkEditorPlus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AutoSecondCharacter {
             get {
                 return ((bool)(this["AutoSecondCharacter"]));
@@ -163,6 +163,18 @@ namespace SkEditorPlus.Properties {
             }
             set {
                 this["PastebinApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://docs.skunity.com/")]
+        public string DocsLink {
+            get {
+                return ((string)(this["DocsLink"]));
+            }
+            set {
+                this["DocsLink"] = value;
             }
         }
     }

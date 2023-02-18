@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="/Styles/OptionsTabControlStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/MenuStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/TabControl.xaml"/>
                 <ResourceDictionary Source="/Styles/FilesView.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Languages/English.xaml"/>
             </ResourceDictionary.MergedDictionaries>

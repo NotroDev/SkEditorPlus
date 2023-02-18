@@ -1,11 +1,12 @@
 ﻿<hc:Window
     x:Class="SkEditorPlus.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:hc="https://handyorg.github.io/handycontrol"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:hc="https://handyorg.github.io/handycontrol"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+	xmlns:controls="clr-namespace:SkEditorPlus.Controls"
     Title="SkEditor+"
     Width="800"
     Height="450"
@@ -108,11 +109,41 @@
             </Menu>
         </Grid>
     </hc:Window.NonClientAreaContent>
-
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--<TabControl
+            x:Name="LeftTabControl"
+            Grid.Column="0"
+            Padding="0"
+            HorizontalAlignment="Left"
+            SelectedIndex="0"
+            TabStripPlacement="Left"
+            Style="{StaticResource TabControl}">
+                <TabItem
+            x:Name="HiddenTabItem"
+            Style="{StaticResource TabItem}"
+            Visibility="Collapsed" />
+            <controls:SlimTabItem
+                x:Name="ProjectTabItem"
+                Header="Projekt" BorderThickness="0"
+                Style="{StaticResource TabItem}">
+                <controls:FilesView
+                    x:Name="FilesView"
+                    Width="230"
+                    MaxWidth="230"
+                    x:FieldModifier="public"
+                    Style="{StaticResource FilesView}" />
+            </controls:SlimTabItem>
+        </TabControl>-->
+        
+        
         <hc:TabControl
             x:Name="tabControl"
             hc:TabItem.Closed="TabClosed"
+            Grid.Column="1"
             AllowDrop="True"
             IsAnimationEnabled="True"
             IsDraggable="True"
@@ -121,11 +152,8 @@
             ShowContextMenu="False"
             ShowOverflowButton="True"
             TabItemWidth="150"/>
-        <!--<TreeView x:Name="fileTreeView" Margin="0,0,314,0">
-            
-        </TreeView>-->
+        <!--<TreeView x:Name="structureTreeView" Grid.Column="1" Width="300" HorizontalAlignment="Right"></TreeView>-->
     </Grid>
-
     <Window.InputBindings>
         <KeyBinding
             Key="N"

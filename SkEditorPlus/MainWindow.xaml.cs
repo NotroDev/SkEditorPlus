@@ -1,7 +1,9 @@
 ﻿using AvalonEditB;
 using Functionalities;
+using HandyControl.Data;
 using HandyControl.Themes;
 using HandyControl.Tools;
+using SharpVectors.Dom;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
@@ -10,11 +12,13 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.AccessControl;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Window = HandyControl.Controls.Window;
 
 namespace SkEditorPlus
@@ -48,13 +52,15 @@ namespace SkEditorPlus
         public event LoadFinishedEvent LoadFinished;
 
 
-        private static readonly string version = "1.4.2";
+        private static readonly string version = "1.4.3";
 
         public static string Version { get => version; }
 
         public MainWindow(SkEditorAPI skEditor)
         {
-            
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
+
             try
             {
                 NamedPipeManager pipeManager = new("SkEditor+");
@@ -131,7 +137,29 @@ namespace SkEditorPlus
             new FunctionalitiesManager().LoadAll(skEditor);
 
             RPCManager.Initialize();
-            if (startupFile != null)
+
+            string tempPath = Path.GetTempPath();
+
+            string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
+            if (!Directory.Exists(skEditorFolder))
+            {
+                Directory.CreateDirectory(skEditorFolder);
+            }
+
+            if (Directory.GetFiles(skEditorFolder).Length > 0)
+            {
+                foreach (string file in Directory.GetFiles(skEditorFolder))
+                {
+                    fileManager.NewFile();
+                    fileManager.GetTextEditor().Load(file);
+                    TabItem currentTabItem = tabControl.SelectedItem as TabItem;
+                    currentTabItem.Header = Path.GetFileName(file);
+
+                    File.Delete(file);
+                }
+            }   
+
+            else if (startupFile != null)
             {
                 fileManager.NewFile();
                 fileManager.GetTextEditor().Load(startupFile);
@@ -285,6 +313,80 @@ namespace SkEditorPlus
         private void Window_StateChanged(object sender, EventArgs e)
         {
             FixCut();
+        }
+
+        private void OnProjectClick(object sender, MouseButtonEventArgs e)
+        {
+            //LeftTabControl.SelectedIndex ^= 1;
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+
+            string crashTitle = "Crash";
+            string crashDescription = "Sorry, but the program has crashed.{n}Don't worry, though, all your files will be saved!";
+            string crashDescription2 = "If you can, please report the error in the issues section on GitHub.{n}{n}Error:{n}{0}";
+            string copyAndOpenWebsite = "Copy and open website";
+            string ok = "OK";
+
+            HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
+            {
+                Message = crashDescription.Replace("{n}", Environment.NewLine),
+                Caption = crashTitle,
+                Button = MessageBoxButton.OK,
+                ConfirmContent = ok,
+                IconBrushKey = ResourceToken.DangerBrush,
+                IconKey = ResourceToken.ErrorGeometry
+            });
+
+            MessageBoxResult result = HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
+            {
+                Message = crashDescription2.Replace("{n}", Environment.NewLine).Replace("{0}", e.StackTrace),
+                Caption = crashTitle,
+                Button = MessageBoxButton.OKCancel,
+                ConfirmContent = copyAndOpenWebsite,
+                CancelContent = ok,
+                IconBrushKey = ResourceToken.DangerBrush,
+                IconKey = ResourceToken.ErrorGeometry
+            });
+            if (result == MessageBoxResult.OK)
+            {
+                Clipboard.SetText(e.StackTrace);
+                skEditor.OpenUrl("https://github.com/NotroDev/SkEditorPlus/issues");
+            }
+
+            foreach (TabItem tabItem in tabControl.Items)
+            {
+                if (tabItem.Content is not TextEditor textEditor)
+                {
+                    continue;
+                }
+
+                string tempPath = Path.GetTempPath();
+
+                string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
+                if (!Directory.Exists(skEditorFolder))
+                {
+                    Directory.CreateDirectory(skEditorFolder);
+                }
+
+                string fileName = tabItem.Header.ToString();
+                if (fileName.EndsWith("*"))
+                {
+                    fileName = fileName[..^1];
+                }
+
+                string tempFile = Path.Combine(skEditorFolder, fileName);
+
+                tabItem.ToolTip = tempFile;
+
+                if (!string.IsNullOrEmpty(tabItem.ToolTip.ToString()))
+                {
+                    textEditor.Save(tabItem.ToolTip.ToString());
+                    continue;
+                }
+            }
         }
     }
 }

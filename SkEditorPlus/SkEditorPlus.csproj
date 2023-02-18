@@ -6,11 +6,11 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>SkEditorPlus</AssemblyName>
     <RootNamespace>SkEditorPlus</RootNamespace>
-    <Version>1.4.1</Version>
+    <Version>1.4.3</Version>
     <Configurations>Debug;Release</Configurations>
     <Copyright>Copyright © Notro 2022</Copyright>
-    <FileVersion>1.4.2</FileVersion>
-    <AssemblyVersion>1.4.2</AssemblyVersion>
+    <FileVersion>1.4.3</FileVersion>
+    <AssemblyVersion>1.4.3</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
@@ -29,8 +29,11 @@
     <None Remove="Images\SkEditor.svg" />
   </ItemGroup>
   <ItemGroup>
+    <Page Remove="Languages\Chinese.xaml" />
     <Page Remove="Languages\English.xaml" />
+    <Page Remove="Languages\French.xaml" />
     <Page Remove="Languages\Polski.xaml" />
+    <Page Remove="Languages\Spanish.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\Segoe Fluent Icons.ttf">
@@ -62,12 +65,21 @@
     </Resource>
     <Resource Include="Images\SkEditor.svg" />
     <Content Include="Images\SkEditor.ico" />
+    <Content Include="Languages\Chinese.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Languages\English.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\French.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Languages\Polski.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Spanish.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -118,6 +130,9 @@
     <Page Update="Styles\CompletionListStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FilesView.xaml">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
     </Page>
     <Page Update="Styles\ScrollViewerStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
