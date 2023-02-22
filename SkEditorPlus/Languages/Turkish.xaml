@@ -1,0 +1,181 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Turkish</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">Dosya</system:String>
+    <system:String x:Key="MenuEdit">Düzenle</system:String>
+    <system:String x:Key="MenuOther">Diğer</system:String>
+
+    <system:String x:Key="MenuFileNew">Yeni</system:String>
+    <system:String x:Key="MenuFileOpen">Aç</system:String>
+    <system:String x:Key="MenuFileOpenFolder">Klasör Aç</system:String>
+    <system:String x:Key="MenuFileSave">Kaydet</system:String>
+    <system:String x:Key="MenuFileSaveAs">Farklı Kaydet</system:String>
+    <system:String x:Key="MenuFilePublish">Yayınla...</system:String>
+    <system:String x:Key="MenuFileExport">Dışa Aktar</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">Dışa Aktarma Ayarları</system:String>
+    <system:String x:Key="MenuFileClose">Kapat</system:String>
+    
+    <system:String x:Key="MenuEditGenerate">Oluştur...</system:String>
+    <system:String x:Key="MenuEditFormat">Hızlı Düzenleme...</system:String>
+    <system:String x:Key="MenuEditBackpack">Çanta</system:String>
+
+    <system:String x:Key="MenuOtherSettings">Ayarlar</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Renklendirmeyi devre dışı bırak</system:String>
+    <system:String x:Key="MenuOtherParser">Ayrıştırıcı</system:String>
+    <system:String x:Key="MenuOtherDocs">Dökümanlar</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">Güncelleme Denetle</system:String>
+
+    <!-- Options menu -->
+    <system:String x:Key="OptionsMenuGeneral">General</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">Kişiselleştirme</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+    <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+
+    <!-- Other -->
+
+    <system:String x:Key="NewFileName">Yeni Dosya {0}</system:String>
+    <system:String x:Key="TypeAllFiles">Tüm Dosyalar</system:String>
+    <system:String x:Key="TypeScript">Script</system:String>
+    <system:String x:Key="Error">Hata</system:String>
+
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">Kod Yayınla</system:String>
+    <system:String x:Key="GenerateWindowTitle">Oluştur</system:String>
+    <system:String x:Key="GenerateCommandWindowTitle">Komut Oluştur</system:String>
+    <system:String x:Key="GenerateGUIWindowTitle">GUI Oluştur</system:String>
+    <system:String x:Key="FormatWindowTitle">Hızlı Düzenleme</system:String>
+    <system:String x:Key="BackpackWindowTitle">Çanta</system:String>
+    <system:String x:Key="SettingsWindowTitle">Ayarlar</system:String>
+    <system:String x:Key="FontSelectorTitle">Yazı Tipi Seç</system:String>
+
+    <!-- Labels -->
+    
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">API anahtarını buraya yapıştır</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">API anahtarını kayıt olduktan sonra burada bulacaksın {0}</system:String>
+    <system:String x:Key="AnonymousCheckbox">Gizli Olarak</system:String>
+    <system:String x:Key="PublishButton">Yayınla</system:String>
+    <system:String x:Key="GenerateButton">Oluştur</system:String>
+    <system:String x:Key="ApplyButton">Uygula</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Kodunun linki burada olacak :)</system:String>
+    
+    <system:String x:Key="WhatDoYouWantToGenerate">Ne Oluşturmak İstiyorsun?</system:String>
+    <system:String x:Key="CommandButton">Komut</system:String>
+    <system:String x:Key="GUIButton">GUI</system:String>
+
+    <system:String x:Key="CmdGenName">İsim</system:String>
+    <system:String x:Key="CmdGenPermission">Yetki</system:String>
+    <system:String x:Key="CmdGenPermissionMsg">Yetki Yok Hatası</system:String>
+    <system:String x:Key="CmdGenAliases">Diğer İsimler</system:String>
+    <system:String x:Key="CmdGenUsageMsg">Yanlış Kullanım Mesajı</system:String>
+    <system:String x:Key="CmdGenExecutors">Komudu Kim Kullanabilir</system:String>
+    <system:String x:Key="CmdGenCooldown">Geri Sayım</system:String>
+    <system:String x:Key="CmdGenQuantity">Miktar</system:String>
+    <system:String x:Key="CmdGenUnit">Birim</system:String>
+    
+    <system:String x:Key="Player">Oyuncu</system:String>
+    <system:String x:Key="Console">Konsol</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Fonksiyon Adı</system:String>
+    <system:String x:Key="GUIGenTitle">Başlık</system:String>
+    <system:String x:Key="GUIGenRows">Sıra Miktarı</system:String>
+    <system:String x:Key="GUIGenExampleItem">Örnek Eşya Ekle</system:String>
+    <system:String x:Key="GUIGenBackground">Arkaplan Ekle</system:String>
+    <system:String x:Key="GUIGenHint">GUI'yı göstermek için {0} kullan.</system:String>
+    <system:String x:Key="GUIGenExampleItemName">Örnek Eşya</system:String>
+    <system:String x:Key="GUIGenExampleItemLore">Örnek Bilgi (lore)</system:String>
+    <system:String x:Key="GUIGenExampleItemClicked">Örnek Eşyaya Tıkladın!</system:String>
+    
+    <system:String x:Key="QuickEditsVariablesCheckbox">Değişken isimlerindeki noktaları iki nokta yap</system:String>
+    <system:String x:Key="QuickEditsSpacesCheckbox">Boşlukları TABla değiştir</system:String>
+    <system:String x:Key="QuickEditsCommentsCheckbox">Yorumları kaldır</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">"else if"leri Kısalt</system:String>
+    
+    <system:String x:Key="BackpackAddButton">Ekle</system:String>
+    <system:String x:Key="BackpackRemoveButton">Kaldır</system:String>
+    <system:String x:Key="BackpackPasteButton">Yapıştır</system:String>
+
+    <system:String x:Key="DocumentationTitle">Dökümasyon</system:String>
+
+    <system:String x:Key="NewVersion">Yeni Versiyon!</system:String>
+    <system:String x:Key="NoNewVersion">SkEditor+ Güncel!</system:String>
+    <system:String x:Key="UpdateAvailable">Yeni Versiyon Mevcut! {n}{n}Şuanki: v{0}{n}Sonuncu: v{1}{n}{n}İndirdikten sonra program kapanacak. Bu yüzden tüm dosyaları kaydetmeyi unutma.</system:String>
+    <system:String x:Key="UpdateNotAvailable">Görünüşe göre en son versiyonu kullanıyorsun :){n}{n}Versiyon: v{0}</system:String>
+    <system:String x:Key="Download">İndir</system:String>
+    <system:String x:Key="Ignore">Görmezden Gel</system:String>
+    
+    <system:String x:Key="OptionsAutoSave">Otomatik Kaydet:</system:String>
+    <system:String x:Key="OptionsWrapping">Toparlama</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Otomatik ikinci karakter ekleme:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">Otomatik yeni satır ekleme:</system:String>
+    <system:String x:Key="OptionsDocsLink">Dökümasyon linki:</system:String>
+    <system:String x:Key="OptionsFont">Yazı tipi:</system:String>
+    <system:String x:Key="OptionsSelectFont">Yazı tipi seç</system:String>
+    <system:String x:Key="OptionsMica">Mica efekti:</system:String>
+    <system:String x:Key="OptionsTransparency">Editör opaklığı:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord durumu:</system:String>
+    <system:String x:Key="OptionsWindows11Required">Windows 11 ve uygulamanın yeniden başlatılması gerekli</system:String>
+    <system:String x:Key="OptionsBeta">beta</system:String>
+    <system:String x:Key="OptionsLanguage">Dil:</system:String>
+    <system:String x:Key="Version">Versiyon:</system:String>
+    <system:String x:Key="SyntaxHighlighting">Kod renklendirmesi:</system:String>
+    <system:String x:Key="Update">Güncelle</system:String>
+    <system:String x:Key="UpdateConfirmation">Devam edersen, kod renklendirme dosyaları şuankilerin yerine indirilecek. Eğer onlara bir değişiklik yaptıysan ve kaybetmek istemiyosan yedek oluştur.</system:String>
+    <system:String x:Key="UpdateSuccess">Kod renklendirme dosyaları başarıyla güncellendi!</system:String>
+    <system:String x:Key="UpdateFailed">Kod renklendirme dosyaları indirilemedi!\nİnternete bağlı mısın?{n}{n}{0}</system:String>
+
+    <system:String x:Key="NoFilesTitle">Dosya yok</system:String>
+    <system:String x:Key="NoFilesDescription">Kayıp kod renklendirme dosyaları algılandı! İndirmek için tıkla.</system:String>
+    <system:String x:Key="NoFilesDownloaded">Başarıyla indirildi!</system:String>
+
+    <!-- Things I forgot before. So they're here :P -->
+    
+    <system:String x:Key="NoResults">Bulunamadı</system:String>
+    
+    <system:String x:Key="CloseConfirmation">Dosya kaydedilmedi. Kapatmak istediğine emin misin?</system:String>
+    <system:String x:Key="Attention">Dikkat!</system:String>
+    <system:String x:Key="Yeah">Evet</system:String>
+    <system:String x:Key="Cancel">İptal</system:String>
+    <system:String x:Key="Continue">Devam</system:String>
+
+    <system:String x:Key="SyntaxError">Kod renklendirme dosyası yüklenemedi.{n}{0}</system:String>
+
+    <system:String x:Key="DiscordRPCFile">Dosya: {0}</system:String>
+    <system:String x:Key="DiscordRPCNone">hiçbir şey</system:String>
+    <system:String x:Key="DiscordRPCDownload">SkEditor+ İndir</system:String>
+
+
+    <system:String x:Key="UnsavedFiles">Kaydedilmeyen dosyalar</system:String>
+    <system:String x:Key="UnsavedFilesMessage">Kaydedilmeyen dosyaların var. Programı kapatmak istediğine emin misin?</system:String>
+
+    <!-- * Errors * -->
+    <system:String x:Key="GUIGenNameError">GUI adı zorunlu!</system:String>
+    <system:String x:Key="GUIGenTitleError">GUI başlığı zorunlu!</system:String>
+    <system:String x:Key="GUIGenRowsError">Satır miktarı 1 ve 6 arasında olmalı!</system:String>
+    <system:String x:Key="GUIGenRowsError2">Satır miktarı bir sayı olmalı!</system:String>
+
+    <system:String x:Key="CmdGenNameError">Komutun adı zorunlu!</system:String>
+    <system:String x:Key="CmdGenCooldownError">Geri sayım bir sayı olmalı!</system:String>
+    <system:String x:Key="CmdGenCooldownUnitError">Geri sayım birimi seç!</system:String>
+
+    <system:String x:Key="BackpackSelectionError">Eğer çantana bir dosya eklemek istiyorsan önce onu seçmelisin.</system:String>
+    
+    <system:String x:Key="EmptyCodeError">Kodun yok!</system:String>
+    <system:String x:Key="EmptyAPIKeyError">API anahtarı koyulmadı.</system:String>
+    <system:String x:Key="PublishingError">Bir şey çalışmadı.{n}İnternete bağlı mısın? Doğru API anahtarını yapıştırdın mı?{n}{n}{0}</system:String>
+
+    <!-- Units -->
+    <system:String x:Key="Ticks">tik</system:String>
+    <system:String x:Key="Seconds">saniye</system:String>
+    <system:String x:Key="Minutes">dakika</system:String>
+    <system:String x:Key="Hours">saat</system:String>
+    <system:String x:Key="Days">gün</system:String>
+    <system:String x:Key="Weeks">hafta</system:String>
+    <system:String x:Key="Months">ay</system:String>
+    <system:String x:Key="Years">yıl</system:String>
+
+</ResourceDictionary>
