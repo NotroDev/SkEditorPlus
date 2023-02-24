@@ -1,0 +1,181 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Русский</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">Файл</system:String>
+    <system:String x:Key="MenuEdit">Изменить</system:String>
+    <system:String x:Key="MenuOther">Other</system:String>
+
+    <system:String x:Key="MenuFileNew">Создать</system:String>
+    <system:String x:Key="MenuFileOpen">Открыть</system:String>
+    <system:String x:Key="MenuFileOpenFolder">Открыть папку</system:String>
+    <system:String x:Key="MenuFileSave">Сохранить</system:String>
+    <system:String x:Key="MenuFileSaveAs">Сохранить как</system:String>
+    <system:String x:Key="MenuFilePublish">Опубликовать...</system:String>
+    <system:String x:Key="MenuFileExport">Экспорт</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">Настройки экспорта</system:String>
+    <system:String x:Key="MenuFileClose">Закрыть</system:String>
+    
+    <system:String x:Key="MenuEditGenerate">Сгенерировать...</system:String>
+    <system:String x:Key="MenuEditFormat">Быстрое редактирование...</system:String>
+    <system:String x:Key="MenuEditBackpack">Рюкзак</system:String>
+
+    <system:String x:Key="MenuOtherSettings">Настройки</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Отключить подсветку синтаксиса</system:String>
+    <system:String x:Key="MenuOtherParser">Парсер</system:String>
+    <system:String x:Key="MenuOtherDocs">Документация</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">Проверить обновления</system:String>
+
+    <!-- Options menu -->
+    <system:String x:Key="OptionsMenuGeneral">Основное</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">Персонализация</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+    <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+
+    <!-- Other -->
+
+    <system:String x:Key="NewFileName">Новый файл {0}</system:String>
+    <system:String x:Key="TypeAllFiles">Все файлы</system:String>
+    <system:String x:Key="TypeScript">Скрипт</system:String>
+    <system:String x:Key="Error">Ошибка</system:String>
+
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">Опубликовать код</system:String>
+    <system:String x:Key="GenerateWindowTitle">Сгенерировать</system:String>
+    <system:String x:Key="GenerateCommandWindowTitle">Сгенерировать команду</system:String>
+    <system:String x:Key="GenerateGUIWindowTitle">Сгенерировать GUI</system:String>
+    <system:String x:Key="FormatWindowTitle">Быстрое редактирование</system:String>
+    <system:String x:Key="BackpackWindowTitle">Рюкзак</system:String>
+    <system:String x:Key="SettingsWindowTitle">Настройки</system:String>
+    <system:String x:Key="FontSelectorTitle">Выбрать шрифт</system:String>
+
+    <!-- Labels -->
+    
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Вставьте свой API ключ</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">Вы найдёте ключ {0} после регистрации</system:String>
+    <system:String x:Key="AnonymousCheckbox">Анонимно</system:String>
+    <system:String x:Key="PublishButton">Опубликовать</system:String>
+    <system:String x:Key="GenerateButton">Сгенерировать</system:String>
+    <system:String x:Key="ApplyButton">Применить</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Тут появится ссылка на Ваш код :)</system:String>
+    
+    <system:String x:Key="WhatDoYouWantToGenerate">Что вы хотите сгенерировать?</system:String>
+    <system:String x:Key="CommandButton">Команду</system:String>
+    <system:String x:Key="GUIButton">GUI</system:String>
+
+    <system:String x:Key="CmdGenName">Имя</system:String>
+    <system:String x:Key="CmdGenPermission">Право</system:String>
+    <system:String x:Key="CmdGenPermissionMsg">Сообщение об отсутствии прав</system:String>
+    <system:String x:Key="CmdGenAliases">Сокращения</system:String>
+    <system:String x:Key="CmdGenUsageMsg">Сообщение о неправильном использовании</system:String>
+    <system:String x:Key="CmdGenExecutors">Кто может использовать команду</system:String>
+    <system:String x:Key="CmdGenCooldown">Задержка</system:String>
+    <system:String x:Key="CmdGenQuantity">Количество</system:String>
+    <system:String x:Key="CmdGenUnit">Ед. измерения</system:String>
+    
+    <system:String x:Key="Player">Игрок</system:String>
+    <system:String x:Key="Console">Консоль</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Название функции</system:String>
+    <system:String x:Key="GUIGenTitle">Заголовок</system:String>
+    <system:String x:Key="GUIGenRows">Количество рядов</system:String>
+    <system:String x:Key="GUIGenExampleItem">Пример предмета</system:String>
+    <system:String x:Key="GUIGenBackground">Добавить фон</system:String>
+    <system:String x:Key="GUIGenHint">Для показа GUI используйте {0}</system:String>
+    <system:String x:Key="GUIGenExampleItemName">Пример предмета</system:String>
+    <system:String x:Key="GUIGenExampleItemLore">Пример описания</system:String>
+    <system:String x:Key="GUIGenExampleItemClicked">Вы нажали на пример предмета!</system:String>
+    
+    <system:String x:Key="QuickEditsVariablesCheckbox">Заменить точки в переменных на двоеточия</system:String>
+    <system:String x:Key="QuickEditsSpacesCheckbox">Заменить пробелы на табы</system:String>
+    <system:String x:Key="QuickEditsCommentsCheckbox">Удалить комментарии</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">Упростить конструкцию "else if"</system:String>
+    
+    <system:String x:Key="BackpackAddButton">Добавить</system:String>
+    <system:String x:Key="BackpackRemoveButton">Удалить</system:String>
+    <system:String x:Key="BackpackPasteButton">Вставить</system:String>
+
+    <system:String x:Key="DocumentationTitle">Документация</system:String>
+
+    <system:String x:Key="NewVersion">Новая версия доступна!</system:String>
+    <system:String x:Key="NoNewVersion">У Вас новейшая версия SkEditor+!</system:String>
+    <system:String x:Key="UpdateAvailable">Новая версия доступна! {n}{n}Установлена: v{0}{n}Последняя: v{1}{n}{n}После скачивания приложение закроется, так что сохраните свои файлы!</system:String>
+    <system:String x:Key="UpdateNotAvailable">Кажется, у Вас установлена новейшая версия :){n}{n}Версия: v{0}</system:String>
+    <system:String x:Key="Download">Скачать</system:String>
+    <system:String x:Key="Ignore">Игнорировать</system:String>
+    
+    <system:String x:Key="OptionsAutoSave">Автосохранение:</system:String>
+    <system:String x:Key="OptionsWrapping">Wrapping</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">Автоматический перенос строки:</system:String>
+    <system:String x:Key="OptionsDocsLink">Ссылка на документацию:</system:String>
+    <system:String x:Key="OptionsFont">Шрифт:</system:String>
+    <system:String x:Key="OptionsSelectFont">Выбрать шрифт</system:String>
+    <system:String x:Key="OptionsMica">Эффект слюды:</system:String>
+    <system:String x:Key="OptionsTransparency">Прозрачность редактора:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
+    <system:String x:Key="OptionsWindows11Required">Требует Windows 11 и перезапуск приложения</system:String>
+    <system:String x:Key="OptionsBeta">бета</system:String>
+    <system:String x:Key="OptionsLanguage">Язык:</system:String>
+    <system:String x:Key="Version">Версия:</system:String>
+    <system:String x:Key="SyntaxHighlighting">Подсветка синтаксиса:</system:String>
+    <system:String x:Key="Update">Обновить</system:String>
+    <system:String x:Key="UpdateConfirmation">Если вы продолжите, файлы подсветки синтаксиса будут скачаны заново и заменены. Если Вы вносили в них изменения, сделайте копию, чтобы не потерять свои старания.</system:String>
+    <system:String x:Key="UpdateSuccess">Файлы подсветки синтаксиса были успешно обновлены!</system:String>
+    <system:String x:Key="UpdateFailed">Мы не смогли скачать файлы подсветки синтаксиса...\nВы подключены к интернету?{n}{n}{0}</system:String>
+
+    <system:String x:Key="NoFilesTitle">Файлы отсутствуют</system:String>
+    <system:String x:Key="NoFilesDescription">Мы заметили, что файлы подсветки синтаксиса отсутствуют. Нажмите, чтобы скачать.</system:String>
+    <system:String x:Key="NoFilesDownloaded">Скачивание успешно!</system:String>
+
+    <!-- Things I forgot before. So they're here :P -->
+    
+    <system:String x:Key="NoResults">Не найдено</system:String>
+    
+    <system:String x:Key="CloseConfirmation">Файл не был сохранён. Вы уверены, что хотите закрыть его?</system:String>
+    <system:String x:Key="Attention">Внимание!</system:String>
+    <system:String x:Key="Yeah">Ага</system:String>
+    <system:String x:Key="Cancel">Отмена</system:String>
+    <system:String x:Key="Continue">Продолжить</system:String>
+
+    <system:String x:Key="SyntaxError">Мы не смогли загрузить файлы подсветки синтаксиса.{n}{0}</system:String>
+
+    <system:String x:Key="DiscordRPCFile">Файл: {0}</system:String>
+    <system:String x:Key="DiscordRPCNone">none</system:String>
+    <system:String x:Key="DiscordRPCDownload">Скачать SkEditor+</system:String>
+
+
+    <system:String x:Key="UnsavedFiles">Несохранённые файлы</system:String>
+    <system:String x:Key="UnsavedFilesMessage">У Вас есть несохранённые файлы. Вы уверены, что хотите закрыть программу?</system:String>
+
+    <!-- * Errors * -->
+    <system:String x:Key="GUIGenNameError">Введите название GUI!</system:String>
+    <system:String x:Key="GUIGenTitleError">Введите заголовок GUI!</system:String>
+    <system:String x:Key="GUIGenRowsError">Количество строк может быть от 1 до 6!</system:String>
+    <system:String x:Key="GUIGenRowsError2">Количество строк должно быть числом!</system:String>
+
+    <system:String x:Key="CmdGenNameError">Введите название команды!</system:String>
+    <system:String x:Key="CmdGenCooldownError">Задержка должна быть числом!</system:String>
+    <system:String x:Key="CmdGenCooldownUnitError">Выберите ед. измерения задержки!</system:String>
+
+    <system:String x:Key="BackpackSelectionError">Чтобы добавить код в рюкзак, сначала выделите его.</system:String>
+    
+    <system:String x:Key="EmptyCodeError">Ваш код пустой!</system:String>
+    <system:String x:Key="EmptyAPIKeyError">API ключ не введён.</system:String>
+    <system:String x:Key="PublishingError">Что-то не работает...{n}Вы подключены к интернету? Вы ввели верный ключ API?{n}{n}{0}</system:String>
+
+    <!-- Units -->
+    <system:String x:Key="Ticks">тики</system:String>
+    <system:String x:Key="Seconds">секунды</system:String>
+    <system:String x:Key="Minutes">минуты</system:String>
+    <system:String x:Key="Hours">часы</system:String>
+    <system:String x:Key="Days">дни</system:String>
+    <system:String x:Key="Weeks">недели</system:String>
+    <system:String x:Key="Months">месяцы</system:String>
+    <system:String x:Key="Years">годы</system:String>
+
+</ResourceDictionary>
