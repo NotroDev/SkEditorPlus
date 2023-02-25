@@ -41,69 +41,86 @@
                 <MenuItem x:Name="File_MenuItem" Header="{DynamicResource MenuFile}">
                     <MenuItem
                         x:Name="Menu_NewFile"
+                        Icon="&#xe7c3;"
                         Header="{DynamicResource MenuFileNew}"
                         InputGestureText="Ctrl+N" />
                     <MenuItem
                         x:Name="Menu_Open"
+                        Icon="&#xe8e5;"
                         Header="{DynamicResource MenuFileOpen}"
                         InputGestureText="Ctrl+O" />
                     <MenuItem
                         x:Name="Menu_OpenFolder"
+                        Icon="&#xed25;"
                         Header="{DynamicResource MenuFileOpenFolder}"/>
                     <MenuItem
                         x:Name="Menu_Save"
+                        Icon="&#xe74e;"
                         Header="{DynamicResource MenuFileSave}"
                         InputGestureText="Ctrl+S" />
                     <MenuItem
                         x:Name="Menu_SaveAs"
+                        Icon="&#xe792;"
                         Header="{DynamicResource MenuFileSaveAs}"
                         InputGestureText="Ctrl+Shift+S" />
                     <MenuItem
                         x:Name="Menu_Publish"
+                        Icon="&#xe72d;"
                         Header="{DynamicResource MenuFilePublish}"
                         InputGestureText="Ctrl+Shift+P" />
-                    <MenuItem
+                    <!--<MenuItem
                         x:Name="Menu_Export"
+                        Icon="&#xe8e5;"
                         Header="{DynamicResource MenuFileExport}"
                         InputGestureText="Ctrl+Shift+E" IsEnabled="False"/>
                     <MenuItem
                         x:Name="Menu_ExportOptions"
-                        Header="{DynamicResource MenuFileExportConfiguration}" IsEnabled="False" />
+                        Icon="&#xe8e5;"
+                        Header="{DynamicResource MenuFileExportConfiguration}" IsEnabled="False" />-->
                     <MenuItem
                         x:Name="Menu_CloseFile"
+                        Icon="&#xE894;"
                         Header="{DynamicResource MenuFileClose}"
                         InputGestureText="Ctrl+W" />
                 </MenuItem>
                 <MenuItem x:Name="Edit_MenuItem" Header="{DynamicResource MenuEdit}">
                     <MenuItem
                         x:Name="Menu_Generate"
+                        Icon="&#xe710;"
                         Header="{DynamicResource MenuEditGenerate}"
                         InputGestureText="Ctrl+Shift+G" />
                     <MenuItem
                         x:Name="Menu_Format"
                         Header="{DynamicResource MenuEditFormat}"
+                        Icon="&#xe70f;"
                         InputGestureText="Ctrl+Shift+F" />
                     <MenuItem
                         x:Name="Menu_Backpack"
                         Header="{DynamicResource MenuEditBackpack}"
+                        Icon="&#xe77f;"
                         InputGestureText="Ctrl+Shift+B" />
                 </MenuItem>
                 <MenuItem x:Name="Other_MenuItem" Header="{DynamicResource MenuOther}">
                     <MenuItem
                         x:Name="Menu_Settings"
                         Header="{DynamicResource MenuOtherSettings}"
+                        Icon="&#xe713;"
                         InputGestureText="Ctrl+Shift+O" />
                     <MenuItem
                         x:Name="Menu_ChangeSyntax"
-                        Header="{DynamicResource MenuOtherChangeSyntax}"/>
+                        Header="{DynamicResource MenuOtherChangeSyntax}"
+                        Icon="&#xE74D;"/>
                     <MenuItem
                         x:Name="Menu_Parser"
+                        Icon="&#xe721;"
                         Header="{DynamicResource MenuOtherParser}"/>
                     <MenuItem
                         x:Name="Menu_Docs"
+                        Icon="&#xe8f1;"
                         Header="{DynamicResource MenuOtherDocs}"/>
                     <MenuItem
                         x:Name="Menu_CheckUpdate"
+                        Icon="&#xe777;"
                         Header="{DynamicResource MenuOtherCheckForUpdate}"/>
                 </MenuItem>
             </Menu>

@@ -1,8 +1,15 @@
-﻿using HandyControl.Controls;
+﻿using AvalonEditB;
+using HandyControl.Controls;
+using HandyControl.Data;
+using SharpVectors.Dom;
+using SkEditorPlus.Managers;
+using SkEditorPlus.Windows;
 using System;
-using System.DirectoryServices.ActiveDirectory;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace SkEditorPlus
 {
@@ -27,21 +34,6 @@ namespace SkEditorPlus
                 {
                     startupFile = args[0];
                 }
-                else
-                {
-                    string fileId = args[0].Replace("skeditor:", "");
-
-                    string url = "https://code.skript.pl/" + fileId + "/raw";
-                    string file;
-                    using (var client = new HttpClient())
-                    {
-                        file = client.GetStringAsync(url).Result;
-                    }
-
-                    string tempFile = Path.GetTempFileName();
-                    File.WriteAllText(tempFile, file);
-                    startupFile = tempFile;
-                }
             }
 
             mainWindow = new MainWindow(this);
@@ -49,14 +41,88 @@ namespace SkEditorPlus
             mainWindow.Show();
         }
 
+        /// <returns>Main window</returns>
         public MainWindow GetMainWindow()
         {
             return mainWindow;
         }
 
+        /// <returns>Startup file</returns>
         public string GetStartupFile()
         {
             return startupFile;
+        }
+
+
+        /// <returns>App's main menu</returns>
+        public Menu GetMenu()
+        {
+            return GetMainWindow().GetMenu();
+        }
+
+        /// <returns>True if any file is opened</returns>
+        public bool IsFileOpen()
+        {
+            return GetMainWindow().GetFileManager().GetTextEditor() != null;
+        }
+
+        /// <returns>Current opened text editor if exists, otherwise null</returns>
+        public TextEditor GetTextEditor()
+        {
+            return GetFileManager().GetTextEditor();
+        }
+
+        /// <returns>App's tabcontrol</returns>
+        public HandyControl.Controls.TabControl GetTabControl()
+        {
+            return GetMainWindow().tabControl;
+        }
+
+        public FormattingWindow GetQuickEditsWindow()
+        {
+            return FormattingWindow.instance;
+        }
+
+        /// <returns>FileManager instance</returns>
+        public FileManager GetFileManager()
+        {
+            return GetMainWindow().GetFileManager();
+        }
+
+        /// <summary>
+        /// Shows MessageBox
+        /// </summary>
+        /// <param name="title">Title of messagebox</param>
+        /// <param name="text">Text of messagebox</param>
+        public void ShowMessage(string text, string title)
+        {
+            HandyControl.Controls.MessageBox.Show(text, title);
+        }
+
+        /// <summary>
+        /// Shows MessageBox
+        /// </summary>
+        /// <param name="title">Title of messagebox</param>
+        /// <param name="text">Text of messagebox</param>
+        public void ShowError(string text, string title)
+        {
+            HandyControl.Controls.MessageBox.Error(text, title);
+        }
+
+        /// <summary>
+        /// Opens provided URL in default browser
+        /// </summary>
+        public void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                url = url.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
         }
     }
 }

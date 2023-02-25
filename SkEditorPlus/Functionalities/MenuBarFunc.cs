@@ -238,7 +238,7 @@ namespace SkEditorPlus.Functionalities
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    Release release1 = github.Repository.Release.Get("NotroDev", "SkEditorPlus", latest).Result;
+                    Release release1 = github.Repository.Release.Get("NotroDev", "SkEditorPlus", "v" + latest).Result;
                     string msiUrl = string.Empty;
                     foreach (var releaseAsset in release1.Assets)
                     {

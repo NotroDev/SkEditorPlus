@@ -31,25 +31,6 @@ namespace SkEditorPlus.Windows
 
         }
 
-        //public void AddQuickEdit(string name, string text)
-        //{
-        //    int checkBoxCount = LogicalTreeHelper.GetChildren(this).OfType<CheckBox>().Count();
-
-        //    HandyControl.Controls.MessageBox.Show(checkBoxCount.ToString());
-
-        //    CheckBox checkBox = new()
-        //    {
-        //        Name = name,
-        //        Content = text,
-        //        FontSize = 12,
-        //        Margin = new(10, 102, 0, 0),
-        //        HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-        //        VerticalAlignment = System.Windows.VerticalAlignment.Top,
-        //    };
-
-        //    this.AddChild(checkBox);
-        //}
-
 
         private void OnKey(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -84,11 +65,6 @@ namespace SkEditorPlus.Windows
 
         private void FixDotVariables()
         {
-            AddNodesToTreeView();
-
-
-            return;
-
             string code = textEditor.Text;
 
             Regex regex = new("{([^.}]*)\\.([^}]*)}");

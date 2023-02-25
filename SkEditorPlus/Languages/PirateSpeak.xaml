@@ -1,0 +1,185 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Pirate Speak</system:String>
+
+    <!-- Menu -->
+
+    <system:String x:Key="MenuFile">Scrip</system:String>
+    <system:String x:Key="MenuEdit">Editin'</system:String>
+    <system:String x:Key="MenuOther">Otharrr</system:String>
+
+    <system:String x:Key="MenuFileNew">New</system:String>
+    <system:String x:Key="MenuFileOpen">Openin'</system:String>
+    <system:String x:Key="MenuFileOpenFolder">Open folder</system:String>
+    <system:String x:Key="MenuFileSave">Save</system:String>
+    <system:String x:Key="MenuFileSaveAs">Save as</system:String>
+    <system:String x:Key="MenuFilePublish">Publish...</system:String>
+    <system:String x:Key="MenuFileExport">Exportin'</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">Export's configuration</system:String>
+    <system:String x:Key="MenuFileClose">Abandon ship</system:String>
+
+    <system:String x:Key="MenuEditGenerate">Generate...</system:String>
+    <system:String x:Key="MenuEditFormat">Quick editin'...</system:String>
+    <system:String x:Key="MenuEditBackpack">Backpack</system:String>
+
+    <system:String x:Key="MenuOtherSettings">Settin's</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Scuttle the syntax!</system:String>
+    <system:String x:Key="MenuOtherParser">Parser</system:String>
+    <system:String x:Key="MenuOtherDocs">Treasure Map</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">Check for update</system:String>
+
+    <!-- Options menu -->
+    <system:String x:Key="OptionsMenuGeneral">The Basics</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">Fancy Dressin'</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+    <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Booty Hoard</system:String>
+
+    <!-- Other -->
+
+    <system:String x:Key="NewFileName">New scoll {0}</system:String>
+    <system:String x:Key="TypeAllFiles">All scolls</system:String>
+    <system:String x:Key="TypeScript">Script</system:String>
+    <system:String x:Key="Error">Errorrr</system:String>
+
+    <!-- Window names -->
+
+    <system:String x:Key="PublishWindowTitle">Share yer code</system:String>
+    <system:String x:Key="GenerateWindowTitle">Arrr! Create sumtin'</system:String>
+    <system:String x:Key="GenerateCommandWindowTitle">Create a command, me heartie!</system:String>
+    <system:String x:Key="GenerateGUIWindowTitle">Craft a fancy GUI, ye scallywag!</system:String>
+    <system:String x:Key="FormatWindowTitle">Quick edits, me heartie!</system:String>
+    <system:String x:Key="BackpackWindowTitle">Backpack o' treasures</system:String>
+    <system:String x:Key="SettingsWindowTitle">Settin's, arrr!</system:String>
+    <system:String x:Key="FontSelectorTitle">Pick yer font, ye swashbuckler!</system:String>
+    <!-- Labels -->
+
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Paste yer API key here, ye scallywag</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">Ye'll find yer key {0} after signin' up, arrr!</system:String>
+    <system:String x:Key="AnonymousCheckbox">I be wantin' to be anonymous</system:String>
+    <system:String x:Key="PublishButton">Share me code, matey!</system:String>
+    <system:String x:Key="GenerateButton">Create me code, ya scurvy dog!</system:String>
+    <system:String x:Key="ApplyButton">Apply the changes, ye landlubber</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Here be a link to yer code, savvy?</system:String>
+
+    <system:String x:Key="WhatDoYouWantToGenerate">What be ye wantin' to create?</system:String>
+    <system:String x:Key="CommandButton">Command, arrr!</system:String>
+    <system:String x:Key="GUIButton">GUI, aye aye!</system:String>
+
+    <system:String x:Key="CmdGenName">Arrr, what be yer name?</system:String>
+    <system:String x:Key="CmdGenPermission">Permission to come aboard</system:String>
+    <system:String x:Key="CmdGenPermissionMsg">Ye don't have the proper papers, walk the plank!</system:String>
+    <system:String x:Key="CmdGenAliases">AKA</system:String>
+    <system:String x:Key="CmdGenUsageMsg">Arrr, ye be doin' it wrong, here be how ye use it:</system:String>
+    <system:String x:Key="CmdGenExecutors">Who be allowed to set sail with this command?</system:String>
+    <system:String x:Key="CmdGenCooldown">Ye need to wait, matey.</system:String>
+    <system:String x:Key="CmdGenQuantity">How many?</system:String>
+    <system:String x:Key="CmdGenUnit">Units o' measurement</system:String>
+
+    <system:String x:Key="Player">Scurvy dog</system:String>
+    <system:String x:Key="Console">Captain's log</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Name o' function</system:String>
+    <system:String x:Key="GUIGenTitle">Title</system:String>
+    <system:String x:Key="GUIGenRows">Rows's quantity</system:String>
+    <system:String x:Key="GUIGenExampleItem">Add example item</system:String>
+    <system:String x:Key="GUIGenBackground">Add background</system:String>
+    <system:String x:Key="GUIGenHint">To show yer GUI, use {0}</system:String>
+    <system:String x:Key="GUIGenExampleItemName">Example item</system:String>
+    <system:String x:Key="GUIGenExampleItemLore">Example lore</system:String>
+    <system:String x:Key="GUIGenExampleItemClicked">Ye clicked the example item!</system:String>
+
+    <system:String x:Key="QuickEditsVariablesCheckbox">Swap dots fer colons in yer variables</system:String>
+    <system:String x:Key="QuickEditsSpacesCheckbox">Swap spaces fer tabs, arrrr!</system:String>
+    <system:String x:Key="QuickEditsCommentsCheckbox">Scrub yer deck of comments, matey!</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">Shorten "else if" like a true pirate!</system:String>
+
+    <system:String x:Key="BackpackAddButton">Add</system:String>
+    <system:String x:Key="BackpackRemoveButton">Remove</system:String>
+    <system:String x:Key="BackpackPasteButton">Paste treasure</system:String>
+
+    <system:String x:Key="DocumentationTitle">Treasure Map</system:String>
+
+    <system:String x:Key="NewVersion">Shiver me timbers! A new version be available!</system:String>
+    <system:String x:Key="NoNewVersion">Yer SkEditor+ be shipshape and bristol fashion, arrrr!</system:String>
+    <system:String x:Key="UpdateAvailable">Hoist the colors! There be a new version available! {n}{n}Current: v{0}{n}Latest: v{1}{n}{n}After ye download it, the app will be shuttin' down. Make sure ye save all yer files before ye do that, or ye'll be walkin' the plank!</system:String>
+    <system:String x:Key="UpdateNotAvailable">Aye aye, Captain! Ye be havin' the latest version :){n}{n}Version: v{0}</system:String>
+    <system:String x:Key="Download">Download, ye scallywag!</system:String>
+    <system:String x:Key="Ignore">Ignore it fer now, but beware the kraken!</system:String>
+
+    <system:String x:Key="OptionsAutoSave">Avast ye! Autosave:</system:String>
+    <system:String x:Key="OptionsWrapping">Wrap yer words:</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Insert yer second character automagically:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">Insert a new line without liftin' a finger:</system:String>
+    <system:String x:Key="OptionsDocsLink">Link to the treasure map:</system:String>
+    <system:String x:Key="OptionsFont">Font ye prefer:</system:String>
+    <system:String x:Key="OptionsSelectFont">Pick yer font</system:String>
+    <system:String x:Key="OptionsMica">Add some mica magic:</system:String>
+    <system:String x:Key="OptionsTransparency">Transparency of yer editor:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord RPC for the savvy ones:</system:String>
+    <system:String x:Key="OptionsWindows11Required">Ye need t' sail with Windows 11 and give yer apps a quick heave ho!</system:String>
+    <system:String x:Key="OptionsBeta">beta - fer the brave hearted only</system:String>
+    <system:String x:Key="OptionsLanguage">Lingo:</system:String>
+    <system:String x:Key="Version">Ye be sailin' with version:</system:String>
+    <system:String x:Key="SyntaxHighlighting">Syntax Highlightin' fer yer code:</system:String>
+    <system:String x:Key="Update">Update yer syntax, matey!</system:String>
+    <system:String x:Key="UpdateConfirmation">If ye dare to continue, the syntax highlightin' files will be downloaded and replaced. If ye've made any changes to them and don't want to lose 'em, make a copy.</system:String>
+    <system:String x:Key="UpdateSuccess">Aye, ye did it! Syntax highlightin' files updated successfully!</system:String>
+    <system:String x:Key="UpdateFailed">Arrr! Failed to download syntax highlightin' files!{n}Be ye connected to the internet?{n}{n}{0}</system:String>
+
+    <system:String x:Key="OptionsAddonName">Arrr, what's yer name:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Who be yer author:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Version:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Description:</system:String>
+
+    <system:String x:Key="OptionsAddonsList">Arrr, here be yer list o' fancy add-ons:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Open the treasure chest o' addons:</system:String>
+    <system:String x:Key="OptionsOpen">Open</system:String>
+    <!-- Things I forgot before. So they're here :P -->
+
+    <system:String x:Key="NoResults">Not found, ye scallywag</system:String>
+    <system:String x:Key="OneMatchFound">One treasure found</system:String>
+    <system:String x:Key="EmptySearchText">Arrr, ye search text be empty!</system:String>
+
+    <system:String x:Key="CloseConfirmation">Yer file be not saved. Be ye sure ye want to close it?</system:String>
+    <system:String x:Key="Attention">Attention, me hearties!</system:String>
+    <system:String x:Key="Yeah">Aye</system:String>
+    <system:String x:Key="Cancel">Avast ye, cancel</system:String>
+    <system:String x:Key="Continue">Carry on, ye lubbers</system:String>
+
+    <system:String x:Key="SyntaxError">Avast ye! We couldn't load the map to the buried treasure.{n}{0}! Ye be walkin' the plank, ye bilge rat!</system:String>
+
+    <system:String x:Key="DiscordRPCFile">Treasure: {0}</system:String>
+    <system:String x:Key="DiscordRPCNone">none, ye be empty-handed</system:String>
+    <system:String x:Key="DiscordRPCDownload">Download SkEditor+</system:String>
+
+    <system:String x:Key="UnsavedFiles">Unsaved treasure</system:String>
+    <system:String x:Key="UnsavedFilesMessage">Ye have some unsaved treasure. Be ye sure ye want to abandon ship?</system:String>
+
+    <system:String x:Key="GUIGenNameError">Ye needs to name yer GUI, matey!</system:String>
+    <system:String x:Key="GUIGenTitleError">Ye needs to give yer GUI a title, me hearties!</system:String>
+    <system:String x:Key="GUIGenRowsError">Ye can only have between 1 and 6 rows on yer GUI, ye scurvy dog!</system:String>
+    <system:String x:Key="GUIGenRowsError2">Yer number of rows needs to be a number, ye landlubber!</system:String>
+
+    <system:String x:Key="CmdGenNameError">Ye needs to name yer command, me bucko!</system:String>
+    <system:String x:Key="CmdGenCooldownError">Yer cooldown needs to be a number, ye bilge rat!</system:String>
+    <system:String x:Key="CmdGenCooldownUnitError">Ye needs to pick a unit fer yer cooldown, ye swashbuckler!</system:String>
+
+    <system:String x:Key="BackpackSelectionError">Ye needs to select a code to add to yer backpack, ye scallywag!</system:String>
+
+    <system:String x:Key="EmptyCodeError">Yer code be empty, ye hornswoggler!</system:String>
+    <system:String x:Key="EmptyAPIKeyError">Ye needs to enter yer API key, ye scurvy seadog!</system:String>
+    <system:String x:Key="PublishingError">Shiver me timbers! Somethin' be not right. Are ye connected to the internet? Did ye enter the correct API key?{n}{n}{0}</system:String>
+    <!-- Units -->
+
+    <system:String x:Key="Ticks">heartbeats</system:String>
+    <system:String x:Key="Seconds">seconds, by Blackbeard's watch</system:String>
+    <system:String x:Key="Minutes">minutes, by Davy Jones' locker</system:String>
+    <system:String x:Key="Hours">hours, as long as a ship's voyage</system:String>
+    <system:String x:Key="Days">days, on the high seas</system:String>
+    <system:String x:Key="Weeks">weeks, as many as a mermaid's scales</system:String>
+    <system:String x:Key="Months">months, by Neptune's beard</system:String>
+    <system:String x:Key="Years">years, as old as an ancient mariner</system:String>
+
+</ResourceDictionary>

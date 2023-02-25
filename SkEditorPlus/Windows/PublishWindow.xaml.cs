@@ -82,13 +82,15 @@ namespace SkEditorPlus.Windows
 
         private async void Post()
         {
+            string code = skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text;
+
             try
             {
                 string json = JsonSerializer.Serialize(new
                 {
                     key = apiTextBox.Text,
                     language = langComboBox.Text.ToLower(),
-                    content = skEditor.GetMainWindow().GetFileManager().GetTextEditor().Text,
+                    content = code,
                     anonymous = anonymousCheckBox.IsChecked
                 });
 

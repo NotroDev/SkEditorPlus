@@ -115,11 +115,19 @@ namespace SkEditorPlus.Windows.Generators
 
             code += "\n\ttrigger:\n\t\t";
 
-            editor.Text += code;
+            editor.Document.Insert(offset, code);
 
             commandGeneratorWindow.Close();
 
             editor.CaretOffset = editor.Document.TextLength;
+        }
+
+        private void OnComboBoxKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                executableByComboBox.IsDropDownOpen = true;
+            }
         }
     }
 }

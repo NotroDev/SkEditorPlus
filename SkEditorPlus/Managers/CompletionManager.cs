@@ -71,24 +71,15 @@ namespace SkEditorPlus.Managers
                 }
             }
 
-            else if (e.Key == Key.Down && completionWindow != null)
+            else if ((e.Key == Key.Down || e.Key == Key.Up) && completionWindow != null)
             {
-                int selectedIndex = completionWindow.completionList.SelectedIndex;
-                if (selectedIndex < completionWindow.completionList.Items.Count - 1)
+                HandleArrowKey(e.Key, completionWindow.completionList);
+                if (popup.IsOpen)
                 {
-                    completionWindow.completionList.SelectedIndex++;
-                    completionWindow.completionList.ScrollIntoView(completionWindow.completionList.SelectedItem);
+                    e.Handled = true;
                 }
             }
-            else if (e.Key == Key.Up && completionWindow != null)
-            {
-                int selectedIndex = completionWindow.completionList.SelectedIndex;
-                if (selectedIndex > 0)
-                {
-                    completionWindow.completionList.SelectedIndex--;
-                    completionWindow.completionList.ScrollIntoView(completionWindow.completionList.SelectedItem);
-                }
-            }
+
             else if (e.Key == Key.Enter || e.Key == Key.Tab)
             {
                 if (completionWindow == null) return;
@@ -171,6 +162,20 @@ namespace SkEditorPlus.Managers
                 popup = null;
                 e.Handled = true;
             }
+        }
+
+        private void HandleArrowKey(Key key, ListBox listBox)
+        {
+            int selectedIndex = listBox.SelectedIndex;
+            if (key == Key.Down && selectedIndex < listBox.Items.Count - 1)
+            {
+                listBox.SelectedIndex++;
+            }
+            else if (key == Key.Up && selectedIndex > 0)
+            {
+                listBox.SelectedIndex--;
+            }
+            listBox.ScrollIntoView(listBox.SelectedItem);
         }
 
         private static int GetTabCount(string line)

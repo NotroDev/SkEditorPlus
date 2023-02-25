@@ -15,7 +15,9 @@
         <hc:TextBox x:Name="usageTextbox" HorizontalAlignment="Center" Margin="0,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" hc:InfoElement.Title="{DynamicResource CmdGenUsageMsg}" hc:InfoElement.ContentHeight="16"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="19,286,0,0" TextWrapping="Wrap" Text="{DynamicResource CmdGenExecutors}" VerticalAlignment="Top"/>
-        <hc:CheckComboBox x:Name="executableByComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Width="285" Margin="0,307,0,0">
+        <hc:CheckComboBox KeyboardNavigation.IsTabStop="True"
+                          x:Name="executableByComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Width="285" Margin="0,307,0,0"
+                          KeyUp="OnComboBoxKeyUp">
             <hc:CheckComboBoxItem Content="{DynamicResource Player}" Tag="player"/>
             <hc:CheckComboBoxItem Content="{DynamicResource Console}" Tag="console"/>
         </hc:CheckComboBox>
@@ -35,7 +37,7 @@
 
 
 
-        <Button Content="{DynamicResource GenerateButton}" HorizontalAlignment="Left" Margin="216,415,0,0" Click="Generate" VerticalAlignment="Top"/>
+        <Button Content="{DynamicResource GenerateButton}" Width="auto" MinWidth="50" HorizontalAlignment="Right" Click="Generate" VerticalAlignment="Bottom" Margin="0,0,10,6"/>
 
     </Grid>
 </hc:Window>

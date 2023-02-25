@@ -9,5 +9,14 @@ namespace SkEditorPlus.Data
         {
             get { return (string)Application.Current.FindResource("NoResults"); }
         }
+        public override string OneMatchFoundText
+        {
+            get { return (string)Application.Current.FindResource("OneMatchFound"); }
+        }
+
+        public override string SearchTextEmptyText
+        {
+            get { return (string)Application.Current.FindResource("EmptySearchText"); }
+        }
     }
 }

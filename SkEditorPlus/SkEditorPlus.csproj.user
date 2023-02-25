@@ -20,6 +20,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Languages\PirateSpeak.xaml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Update="Languages\Polski.xaml">
       <SubType>Designer</SubType>
     </Content>

@@ -34,6 +34,7 @@
     <system:String x:Key="OptionsMenuPersonalization">Personalizacja</system:String>
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Dodatki</system:String>
 
     <!-- Other -->
 
@@ -51,7 +52,7 @@
     <system:String x:Key="FormatWindowTitle">Szybkie edycje</system:String>
     <system:String x:Key="BackpackWindowTitle">Plecak</system:String>
     <system:String x:Key="SettingsWindowTitle">Ustawienia</system:String>
-    <system:String x:Key="FontSelectorTitle">Select font</system:String>
+    <system:String x:Key="FontSelectorTitle">Wybierz czcionkę</system:String>
 
     <!-- Labels -->
     
@@ -126,13 +127,23 @@
     <system:String x:Key="Update">Zaktualizuj</system:String>
     <system:String x:Key="UpdateConfirmation">Jeśli kontynuujesz, pliki podświetlania składni zostaną pobrane i zastąpią stare. Jeśli robiłeś w nich zmiany i nie chcesz ich utracić, zrób kopię.</system:String>
     <system:String x:Key="UpdateSuccess">Pomyślnie zaktualizowano plik składni!</system:String>
-    <system:String x:Key="UpdateFailed">Nie udało się pobrać plików podświetlania składni!\nCzy masz połączenie z internetem?{n}{n}{0}</system:String>
+    <system:String x:Key="UpdateFailed">Nie udało się pobrać plików podświetlania składni!{n}Czy masz połączenie z internetem?{n}{n}{0}</system:String>
 
+    <system:String x:Key="OptionsAddonName">Nazwa:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Autor:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Wersja:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Opis:</system:String>
+
+    <system:String x:Key="OptionsAddonsList">Lista dodatków:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Otwórz folder dodatków:</system:String>
+    <system:String x:Key="OptionsOpen">Otwórz</system:String>
 
 
     <!-- Things I forgot before. So they're here :P -->
 
     <system:String x:Key="NoResults">Nie znaleziono</system:String>
+    <system:String x:Key="OneMatchFound">Znaleziono 1 wynik</system:String>
+    <system:String x:Key="EmptySearchText">Wyszukiwany tekst jest pusty!</system:String>
 
     <system:String x:Key="CloseConfirmation">Plik nie został zapisany. Na pewno chcesz go zamknąć?</system:String>
     <system:String x:Key="Attention">Uwaga!</system:String>

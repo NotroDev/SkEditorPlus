@@ -34,6 +34,7 @@
     <system:String x:Key="OptionsMenuPersonalization">个性化</system:String>
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
 	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">附加组件</system:String>
 
     <!-- Other -->
 
@@ -126,17 +127,25 @@
     <system:String x:Key="Update">Update</system:String>
     <system:String x:Key="UpdateConfirmation">如果继续，将下载并替换语法高亮显示文件。如果您对它们进行了任何更改，并且不想丢失它们，请创建一个复制它们来创建一个副本。</system:String>
     <system:String x:Key="UpdateSuccess">语法突出显示文件更新成功！</system:String>
-    <system:String x:Key="UpdateFailed">无法下载语法高亮显示文件！\n您是否已连接到互联网？{n}{n}{0}</system:String>
+    <system:String x:Key="UpdateFailed">无法下载语法高亮显示文件！{n}您是否已连接到互联网？{n}{n}{0}</system:String>
+    
 
-    <system:String x:Key="NoFilesTitle">缺少文件</system:String>
-    <system:String x:Key="NoFilesDescription">检测到缺少语法突出显示文件！点击下载。</system:String>
-    <system:String x:Key="NoFilesDownloaded">下载成功！</system:String>
+    <system:String x:Key="OptionsAddonName">名称：</system:String>
+    <system:String x:Key="OptionsAddonAuthor">作者：</system:String>
+    <system:String x:Key="OptionsAddonVersion">版本：</system:String>
+    <system:String x:Key="OptionsAddonDescription">描述：</system:String>
+
+    <system:String x:Key="OptionsAddonsList">插件列表：</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">打开插件文件夹：</system:String>
+    <system:String x:Key="OptionsOpen">打开</system:String>
 
     <!-- Things I forgot before. So they're here :P -->
-    
-    <system:String x:Key="NoResults">未找到</system:String>
 
-	<system:String x:Key="CloseConfirmation">文件未保存。确定要关闭吗？</system:String>
+    <system:String x:Key="NoResults">未找到</system:String>
+    <system:String x:Key="OneMatchFound">找到1个结果</system:String>
+    <system:String x:Key="EmptySearchText">搜索文本为空！</system:String>
+
+    <system:String x:Key="CloseConfirmation">文件未保存。确定要关闭吗？</system:String>
 	<system:String x:Key="Attention">注意！</system:String>
 	<system:String x:Key="Yeah">是</system:String>
 	<system:String x:Key="Cancel">取消</system:String>

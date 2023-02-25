@@ -35,6 +35,7 @@
 	<system:String x:Key="OptionsMenuPersonalization">Personnalisation</system:String>
 	<system:String x:Key="OptionsMenuDiscord">Discord</system:String>
 	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Compléments</system:String>
 	<!-- Autres -->
 
 	<system:String x:Key="NewFileName">Nouveau fichier {0}</system:String>
@@ -126,17 +127,24 @@
 	<system:String x:Key="Update">Mise à jour</system:String>
 	<system:String x:Key="UpdateConfirmation">Si vous continuez, les fichiers de coloration syntaxique seront téléchargés et remplacés. Si vous avez effectué des modifications et ne voulez pas les perdre, faites une copie.</system:String>
 	<system:String x:Key="UpdateSuccess">Les fichiers de coloration syntaxique ont été mis à jour avec succès !</system:String>
-	<system:String x:Key="UpdateFailed">Échec du téléchargement des fichiers de coloration syntaxique!\nÊtes-vous connecté à Internet?{n}{n}{0}</system:String>
+	<system:String x:Key="UpdateFailed">Échec du téléchargement des fichiers de coloration syntaxique!{n}Êtes-vous connecté à Internet?{n}{n}{0}</system:String>
 
-    <system:String x:Key="NoFilesTitle">Aucun fichier</system:String>
-	<system:String x:Key="NoFilesDescription">Fichiers de mise en évidence de la syntaxe manquants détectés! Cliquez pour télécharger.</system:String>
-	<system:String x:Key="NoFilesDownloaded">Téléchargé avec succès !</system:String>
+    <system:String x:Key="OptionsAddonName">Nom:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Auteur:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Version:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Description:</system:String>
 
-	<!-- Choses que j'ai oubliées auparavant. Alors ils sont ici: P -->
+    <system:String x:Key="OptionsAddonsList">Liste des addons:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Ouvrir le dossier des addons:</system:String>
+    <system:String x:Key="OptionsOpen">Ouvrir</system:String>
 
-	<system:String x:Key="NoResults">Pas trouvé</system:String>
+    <!-- Choses que j'ai oubliées auparavant. Alors ils sont ici: P -->
 
-	<system:String x:Key="CloseConfirmation">Le fichier n'a pas été enregistré. Êtes-vous sûr de vouloir le fermer ?</system:String>
+    <system:String x:Key="NoResults">Aucun résultat trouvé</system:String>
+    <system:String x:Key="OneMatchFound">Un seul résultat trouvé</system:String>
+    <system:String x:Key="EmptySearchText">Le texte de la recherche est vide !</system:String>
+
+    <system:String x:Key="CloseConfirmation">Le fichier n'a pas été enregistré. Êtes-vous sûr de vouloir le fermer ?</system:String>
 	<system:String x:Key="Attention">Attention !</system:String>
 	<system:String x:Key="Yeah">Oui</system:String>
 	<system:String x:Key="Cancel">Annuler</system:String>

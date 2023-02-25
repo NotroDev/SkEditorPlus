@@ -6,13 +6,11 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
-        Title="{DynamicResource BackpackWindowTitle}" Height="300" Width="305" ResizeMode="CanResize"  WindowStartupLocation="CenterScreen" KeyUp="OnKey">
-
+        Title="{DynamicResource BackpackWindowTitle}" SizeToContent="Width" Height="300" MinWidth="305" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
         <ListBox x:Name="backpackListbox" Margin="10,10,10,51"/>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="{DynamicResource BackpackAddButton}" Click="AddCode" Margin="10,0,0,10"/>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="{DynamicResource BackpackRemoveButton}" Click="DeleteCode" Margin="75,0,0,10"/>
-
-        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="{DynamicResource BackpackPasteButton}" Click="PasteCode" Margin="0,0,10,10"/>
+        <Button Content="{DynamicResource BackpackAddButton}" VerticalAlignment="Bottom" MinWidth="50" HorizontalAlignment="Left" Click="AddCode" Margin="5,0,0,5"/>
+        <Button Content="{DynamicResource BackpackRemoveButton}" VerticalAlignment="Bottom" MinWidth="50" HorizontalAlignment="Left" Click="DeleteCode" Margin="65,0,0,5"/>
+        <Button Content="{DynamicResource BackpackPasteButton}" VerticalAlignment="Bottom" MinWidth="50" HorizontalAlignment="Right" Click="PasteCode" Margin="0,0,5,5"/>
     </Grid>
 </hc:Window>

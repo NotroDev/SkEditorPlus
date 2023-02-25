@@ -13,6 +13,6 @@
         <CheckBox x:Name="commentsCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
         <CheckBox x:Name="elseIfCheckBox" Background="#FF1C1C1C" Content="{DynamicResource QuickEditsElseIfCheckbox}" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="12"/>
 
-        <Button x:Name="formatButton" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,230,0,0" Click="FormatClick" VerticalAlignment="Top"/>
+        <Button x:Name="formatButton" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Right" Width="auto" Click="FormatClick" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
     </Grid>
 </hc:Window>

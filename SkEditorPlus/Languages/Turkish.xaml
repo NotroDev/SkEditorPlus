@@ -34,6 +34,7 @@
     <system:String x:Key="OptionsMenuPersonalization">Kişiselleştirme</system:String>
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Eklentiler</system:String>
 
     <!-- Other -->
 
@@ -133,9 +134,11 @@
     <system:String x:Key="NoFilesDownloaded">Başarıyla indirildi!</system:String>
 
     <!-- Things I forgot before. So they're here :P -->
-    
+
     <system:String x:Key="NoResults">Bulunamadı</system:String>
-    
+    <system:String x:Key="OneMatchFound">1 sonuç bulundu</system:String>
+    <system:String x:Key="EmptySearchText">Arama metni boş!</system:String>
+
     <system:String x:Key="CloseConfirmation">Dosya kaydedilmedi. Kapatmak istediğine emin misin?</system:String>
     <system:String x:Key="Attention">Dikkat!</system:String>
     <system:String x:Key="Yeah">Evet</system:String>

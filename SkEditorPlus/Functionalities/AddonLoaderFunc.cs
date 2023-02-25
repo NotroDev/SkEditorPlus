@@ -1,4 +1,5 @@
 ﻿using SkEditorPlus.Functionalities;
+using SkEditorPlus.Managers;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -13,6 +14,7 @@ namespace SkEditorPlus.Functionalities
     {
         public void OnEnable(SkEditorAPI skEditorAPI)
         {
+
             var appdataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var directory = Directory.CreateDirectory(Path.Combine(appdataFolder, "SkEditor Plus", "Addons"));
             directory.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
@@ -33,6 +35,7 @@ namespace SkEditorPlus.Functionalities
                 {
                     var addonInstance = (ISkEditorPlusAddon)Activator.CreateInstance(addonType);
                     addonInstance.OnEnable(skEditorAPI);
+                    AddonManager.addons.Add(addonInstance);
                 }
             }
             catch (Exception ex)

@@ -18,18 +18,15 @@ using HandyControl.Data;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MessageBox = HandyControl.Controls.MessageBox;
-using System.Windows.Markup;
+using System.Diagnostics;
 
 namespace SkEditorPlus.Windows
 {
     public partial class NewOptionsWindow : HandyControl.Controls.Window
     {
         private readonly SkEditorAPI skEditor;
-        private SettingsBindings settingsBindings;
+        private readonly SettingsBindings settingsBindings;
 
-        // This is polish easter egg :)
-        private static readonly string pozdrowieniaSwirek = "pozdrowieniaswiateczne";
-        private static readonly bool[] pozdrowieniaSwirekBools = new bool[pozdrowieniaSwirek.Length];
 
         public NewOptionsWindow(SkEditorAPI skEditor)
         {
@@ -63,8 +60,10 @@ namespace SkEditorPlus.Windows
 
                     if (languageComboBox.Items.Cast<ComboBoxItem>().All(item => item.Tag.ToString() != fileName))
                     {
-                        var resourceDictionary = new ResourceDictionary();
-                        resourceDictionary.Source = new Uri(file);
+                        var resourceDictionary = new ResourceDictionary
+                        {
+                            Source = new Uri(file)
+                        };
                         var langName = resourceDictionary["LangName"] as string;
 
                         ComboBoxItem comboBoxItem = new()
@@ -97,6 +96,8 @@ namespace SkEditorPlus.Windows
             {
                 micaCheckbox.IsEnabled = false;
             }
+
+            LoadAddons();
         }
 
         private void OnFontButtonClick(object sender, RoutedEventArgs e)
@@ -147,28 +148,6 @@ namespace SkEditorPlus.Windows
             {
                 newOptionsWindow.Close();
             }
-
-            // This is polish easter egg :)
-            
-            if (e.Key.ToString().ToLower() == pozdrowieniaSwirek[Array.IndexOf(pozdrowieniaSwirekBools, false)].ToString())
-            {
-                pozdrowieniaSwirekBools[Array.IndexOf(pozdrowieniaSwirekBools, false)] = true;
-            }
-            else
-            {
-                Array.Clear(pozdrowieniaSwirekBools, 0, pozdrowieniaSwirekBools.Length);
-            }
-            if (pozdrowieniaSwirekBools.All(x => x))
-            {
-                DateTime christmas = new(DateTime.Now.Year, 12, 25);
-                if (DateTime.Now > christmas)
-                {
-                    christmas = christmas.AddYears(1);
-                }
-                int daysLeft = (christmas - DateTime.Now).Days;
-                MessageBox.Show($"pozdrowienia świąteczne byniu, {daysLeft} dni do świąt", "Siema świrek", MessageBoxButton.OK, MessageBoxImage.Information);
-                Array.Clear(pozdrowieniaSwirekBools, 0, pozdrowieniaSwirekBools.Length);
-            }
         }
 
         private void CheckboxClicked(object sender, RoutedEventArgs e)
@@ -188,18 +167,29 @@ namespace SkEditorPlus.Windows
             ComboBoxItem typeItem = (ComboBoxItem)languageComboBox.SelectedItem;
             string tag = typeItem.Tag.ToString();
 
+            string appDirectory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
+
+            string oldLang = Properties.Settings.Default.Language;
+            if (!oldLang.Equals("English"))
+            {
+                Uri oldLanguage = new(appDirectory + @"\Languages\" + oldLang + ".xaml", UriKind.Absolute);
+                Application.Current.Resources.MergedDictionaries.Remove(Application.Current.Resources.MergedDictionaries.First(d => d.Source == oldLanguage));
+            }
+
             Properties.Settings.Default.Language = tag;
             Properties.Settings.Default.Save();
-
-            string appDirectory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
 
             ResourceDictionary dict = new()
             {
                 Source = new Uri(appDirectory + @"\Languages\" + tag + ".xaml", UriKind.Absolute)
             };
+
             Application.Current.Resources.MergedDictionaries.Add(dict);
             string versionLabel = (string)Application.Current.FindResource("Version");
             versionText.Text = $"{versionLabel} {MainWindow.Version}";
+
+            FileManager.newFileName = (string)Application.Current.Resources["NewFileName"];
+            FileManager.regex = new(FileManager.newFileName.Replace("{0}", @"[0-9]+"));
         }
 
         private void UpdateSyntaxClick(object sender, RoutedEventArgs e)
@@ -264,6 +254,44 @@ namespace SkEditorPlus.Windows
             string link = docsLinkTextBox.Text;
             Properties.Settings.Default.DocsLink = link;
             Properties.Settings.Default.Save();
+        }
+
+
+        private void OpenAddonsFolderClick(object sender, RoutedEventArgs e)
+        {
+            string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
+            string addonsPath = appPath + @"\Addons";
+            if (!Directory.Exists(addonsPath))
+            {
+                Directory.CreateDirectory(addonsPath);
+            }
+            Process.Start("explorer.exe", addonsPath);
+        }
+
+        private void LoadAddons()
+        {
+            foreach (var addon in AddonManager.addons)
+            {
+                ListBoxItem item = new()
+                {
+                    Content = addon.Name
+                };
+
+                item.Selected += (sender, e) =>
+                {
+                    string name = (string)Application.Current.FindResource("OptionsAddonName");
+                    string author = (string)Application.Current.FindResource("OptionsAddonAuthor");
+                    string version = (string)Application.Current.FindResource("OptionsAddonVersion");
+                    string description = (string)Application.Current.FindResource("OptionsAddonDescription");
+
+                    addonNameText.Text = $"{name} {addon.Name}";
+                    addonDescriptionText.Text = $"{description} {addon.Description}";
+                    addonAuthorText.Text = $"{author} {addon.Author}";
+                    addonVersionText.Text = $"{version} {addon.Version}";
+                };
+
+                addonListBox.Items.Add(item);
+            }
         }
     }
 }

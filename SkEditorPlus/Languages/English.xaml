@@ -34,6 +34,7 @@
     <system:String x:Key="OptionsMenuPersonalization">Personalization</system:String>
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Addons</system:String>
 
     <!-- Other -->
 
@@ -109,7 +110,7 @@
     <system:String x:Key="Ignore">Ignore</system:String>
     
     <system:String x:Key="OptionsAutoSave">Autosave:</system:String>
-    <system:String x:Key="OptionsWrapping">Wrapping</system:String>
+    <system:String x:Key="OptionsWrapping">Wrapping:</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Automatic newline insertion:</system:String>
     <system:String x:Key="OptionsDocsLink">Link to documentation:</system:String>
@@ -126,16 +127,32 @@
     <system:String x:Key="Update">Update</system:String>
     <system:String x:Key="UpdateConfirmation">If you continue, the syntax highlighting files will be downloaded and replaced. If you've made any changes to them and don't want to lose them, make a copy.</system:String>
     <system:String x:Key="UpdateSuccess">Syntax highlighting files updated successfully!</system:String>
-    <system:String x:Key="UpdateFailed">Failed to download syntax highlighting files!\nAre you connected to the internet?{n}{n}{0}</system:String>
+    <system:String x:Key="UpdateFailed">Failed to download syntax highlighting files!{n}Are you connected to the internet?{n}{n}{0}</system:String>
 
+    <!-- Hey, don't bother translating this. App ignores this 3 keys in other languages. You can remove it. -->
     <system:String x:Key="NoFilesTitle">No files</system:String>
     <system:String x:Key="NoFilesDescription">Missing syntax highlighting files detected! Click to download.</system:String>
     <system:String x:Key="NoFilesDownloaded">Successfully downloaded!</system:String>
+    <!--  -->
+    
+    
+
+    <system:String x:Key="OptionsAddonName">Name:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Author:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Version:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Description:</system:String>
+
+    <system:String x:Key="OptionsAddonsList">Addons list:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Open the addons folder:</system:String>
+    <system:String x:Key="OptionsOpen">Open</system:String>
+    
 
     <!-- Things I forgot before. So they're here :P -->
-    
+
     <system:String x:Key="NoResults">Not found</system:String>
-    
+    <system:String x:Key="OneMatchFound">One match found</system:String>
+    <system:String x:Key="EmptySearchText">Wyszukiwany tekst jest pusty!</system:String>
+
     <system:String x:Key="CloseConfirmation">The file has not been saved. Are you sure you want to close it?</system:String>
     <system:String x:Key="Attention">Attention!</system:String>
     <system:String x:Key="Yeah">Yeah</system:String>

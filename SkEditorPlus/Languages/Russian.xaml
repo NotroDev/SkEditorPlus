@@ -7,7 +7,7 @@
     
     <system:String x:Key="MenuFile">Файл</system:String>
     <system:String x:Key="MenuEdit">Изменить</system:String>
-    <system:String x:Key="MenuOther">Other</system:String>
+    <system:String x:Key="MenuOther">Другое</system:String>
 
     <system:String x:Key="MenuFileNew">Создать</system:String>
     <system:String x:Key="MenuFileOpen">Открыть</system:String>
@@ -34,6 +34,7 @@
     <system:String x:Key="OptionsMenuPersonalization">Персонализация</system:String>
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Дополнения</system:String>
 
     <!-- Other -->
 
@@ -109,8 +110,8 @@
     <system:String x:Key="Ignore">Игнорировать</system:String>
     
     <system:String x:Key="OptionsAutoSave">Автосохранение:</system:String>
-    <system:String x:Key="OptionsWrapping">Wrapping</system:String>
-    <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
+    <system:String x:Key="OptionsWrapping">Перенос</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Автоматическая вставка второго символа:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Автоматический перенос строки:</system:String>
     <system:String x:Key="OptionsDocsLink">Ссылка на документацию:</system:String>
     <system:String x:Key="OptionsFont">Шрифт:</system:String>
@@ -128,14 +129,20 @@
     <system:String x:Key="UpdateSuccess">Файлы подсветки синтаксиса были успешно обновлены!</system:String>
     <system:String x:Key="UpdateFailed">Мы не смогли скачать файлы подсветки синтаксиса...\nВы подключены к интернету?{n}{n}{0}</system:String>
 
-    <system:String x:Key="NoFilesTitle">Файлы отсутствуют</system:String>
-    <system:String x:Key="NoFilesDescription">Мы заметили, что файлы подсветки синтаксиса отсутствуют. Нажмите, чтобы скачать.</system:String>
-    <system:String x:Key="NoFilesDownloaded">Скачивание успешно!</system:String>
+    <system:String x:Key="OptionsAddonName">Название:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Автор:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Версия:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Описание:</system:String>
+    <system:String x:Key="OptionsAddonsList">Список дополнений:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Открыть папку с дополнениями:</system:String>
+    <system:String x:Key="OptionsOpen">Открыть</system:String>
 
     <!-- Things I forgot before. So they're here :P -->
     
     <system:String x:Key="NoResults">Не найдено</system:String>
-    
+    <system:String x:Key="OneMatchFound">Найдено одно совпадение</system:String>
+    <system:String x:Key="EmptySearchText">Пустой текст поиска!</system:String>
+
     <system:String x:Key="CloseConfirmation">Файл не был сохранён. Вы уверены, что хотите закрыть его?</system:String>
     <system:String x:Key="Attention">Внимание!</system:String>
     <system:String x:Key="Yeah">Ага</system:String>
