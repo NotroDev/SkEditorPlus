@@ -1,3 +1,13 @@
+# 🛑 Small outage!
+Sorry! I need to do something with my VPS server so I need to shut it down. Since the syntax highlighting files are hosted on this server, SkEditor+ will not be able to download them. Probably in the next update I will add that in this case it downloads them from a different source. Here are these files, so you can download them manually:
+
+https://github.com/NotroDev/SkEditorPlus/blob/main/SkriptHighlighting.xshd
+
+https://github.com/NotroDev/SkEditorPlus/blob/main/YAMLHighlighting.xshd
+
+
+<hr/>
+
 <p align='center'>
   <img src="SkEditor.png?raw=true" width=40% height=40%>
 </p>
@@ -46,6 +56,8 @@
 
 ---
 <br />
+
+
 
 # 🐧 Linux?
 I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language I know less. You can try using something like [Wine](https://www.winehq.org), but I can't officially support it.
