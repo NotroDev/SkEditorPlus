@@ -431,7 +431,7 @@ namespace SkEditorPlus.Managers
             if (Keyboard.Modifiers != ModifierKeys.Control) return;
             var textEditor = GetTextEditor();
 
-            double fontSize = textEditor.FontSize + e.Delta / 25.0;
+            double fontSize = textEditor.FontSize += e.Delta / 25.0;
 
             textEditor.FontSize = fontSize < 6 ? 6 : fontSize > 200 ? 200 : fontSize;
 
