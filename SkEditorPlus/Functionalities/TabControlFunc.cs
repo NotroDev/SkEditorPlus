@@ -11,10 +11,10 @@ namespace SkEditorPlus.Functionalities
         public void OnEnable(SkEditorAPI skEditor)
         {
             fileManager = skEditor.GetMainWindow().GetFileManager();
-            skEditor.GetMainWindow().tabControl.SelectionChanged += TabControl_SelectionChanged;
+            skEditor.GetMainWindow().tabControl.SelectionChanged += OnTabChanged;
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnTabChanged(object sender, SelectionChangedEventArgs e)
         {
             GC.Collect();
             fileManager.OnTabChanged();

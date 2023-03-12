@@ -6,7 +6,6 @@
 	xmlns:hc="https://handyorg.github.io/handycontrol"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-	xmlns:controls="clr-namespace:SkEditorPlus.Controls"
     Title="SkEditor+"
     Width="800"
     Height="450"
@@ -17,6 +16,22 @@
     WindowState="Maximized"
     mc:Ignorable="d"
     MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing" SizeChanged="OnSizeChanged" StateChanged="Window_StateChanged">
+    <hc:Window.Resources>
+        <Style x:Key="Left90" TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <ContentPresenter Content="{TemplateBinding Content}" TextOptions.TextFormattingMode="Display" TextElement.FontSize="12" TextElement.FontWeight="SemiBold">
+                            <ContentPresenter.LayoutTransform>
+                                <RotateTransform Angle="-90" />
+                            </ContentPresenter.LayoutTransform>
+                        </ContentPresenter>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </hc:Window.Resources>
     <hc:Window.NonClientAreaContent>
         <Grid x:Name="TitleBar">
             <Grid.ColumnDefinitions>
@@ -131,32 +146,41 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <!--<TabControl
-            x:Name="LeftTabControl"
-            Grid.Column="0"
-            Padding="0"
-            HorizontalAlignment="Left"
-            SelectedIndex="0"
-            TabStripPlacement="Left"
-            Style="{StaticResource TabControl}">
-                <TabItem
-            x:Name="HiddenTabItem"
-            Style="{StaticResource TabItem}"
-            Visibility="Collapsed" />
-            <controls:SlimTabItem
-                x:Name="ProjectTabItem"
-                Header="Projekt" BorderThickness="0"
-                Style="{StaticResource TabItem}">
-                <controls:FilesView
-                    x:Name="FilesView"
-                    Width="230"
-                    MaxWidth="230"
-                    x:FieldModifier="public"
-                    Style="{StaticResource FilesView}" />
-            </controls:SlimTabItem>
-        </TabControl>-->
-        
-        
+
+        <TabControl x:Name="leftTabControl"
+            Background="Transparent"
+            SelectedIndex="-1"
+            TabStripPlacement="Left" Visibility="Collapsed">
+
+            <TabItem x:Name="EmptyTabItem" Visibility="Collapsed" Background="Transparent" Style="{DynamicResource EmptyTabItemStyle}"/>
+
+            <TabItem x:Name="ProjectTabItem"
+                Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
+
+                <TabItem.Header>
+                    <Label Content="Projekt"
+                       Foreground="White"
+                       FontSize="11"
+                       FontFamily="Open Sans Medium"
+                       MouseLeftButtonDown="OnProjectClick"
+                       Background="Transparent"
+                       BorderThickness="0"/>
+                </TabItem.Header>
+
+                <Grid Width="200" Height="1080"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                    <TreeView x:Name="fileTreeView" Width="auto" Height="auto" Background="#701c1c1c" hc:BorderElement.CornerRadius="15" BorderThickness="0">
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
+                                <Setter Property="hc:BorderElement.CornerRadius" Value="5"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                    </TreeView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
         <hc:TabControl
             x:Name="tabControl"
             hc:TabItem.Closed="TabClosed"

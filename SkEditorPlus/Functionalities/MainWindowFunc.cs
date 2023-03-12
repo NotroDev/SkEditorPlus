@@ -18,17 +18,14 @@ namespace SkEditorPlus.Functionalities
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if (files.Length > 0)
+                foreach (string file in (string[])e.Data.GetData(DataFormats.FileDrop))
                 {
-                    foreach (string file in files)
-                    {
-                        mainWindow.GetFileManager().NewFile();
-                        mainWindow.GetFileManager().GetTextEditor().Load(file);
-                        TabItem currentTabItem = mainWindow.tabControl.SelectedItem as TabItem;
-                        currentTabItem.ToolTip = file;
-                        currentTabItem.Header = Path.GetFileName(file);
-                    }
+                    var fm = mainWindow.GetFileManager();
+                    fm.NewFile();
+                    fm.GetTextEditor().Load(file);
+                    var currentTabItem = mainWindow.tabControl.SelectedItem as TabItem;
+                    currentTabItem.ToolTip = file;
+                    currentTabItem.Header = Path.GetFileName(file);
                 }
             }
         }

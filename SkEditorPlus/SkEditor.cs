@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using TabControl = System.Windows.Controls.TabControl;
+using TabItem = HandyControl.Controls.TabItem;
 
 namespace SkEditorPlus
 {
@@ -60,11 +62,18 @@ namespace SkEditorPlus
             return GetMainWindow().GetMenu();
         }
 
-        /// <returns>True if any file is opened</returns>
+        /// <returns>True if file is currently opened</returns>
         public bool IsFileOpen()
         {
             return GetMainWindow().GetFileManager().GetTextEditor() != null;
         }
+
+        /// <returns>True if provided TabItem is file</returns>
+        public bool IsFile(TabItem tabItem)
+        {
+            return tabItem.Content is TextEditor;
+        }
+
 
         /// <returns>Current opened text editor if exists, otherwise null</returns>
         public TextEditor GetTextEditor()
@@ -123,6 +132,12 @@ namespace SkEditorPlus
                 url = url.Replace("&", "^&");
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             }
+        }
+
+
+        public TabControl GetSideTabControl()
+        {
+            return GetMainWindow().leftTabControl;
         }
     }
 }

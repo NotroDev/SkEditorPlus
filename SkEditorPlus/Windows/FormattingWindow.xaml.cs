@@ -62,9 +62,12 @@ namespace SkEditorPlus.Windows
         }
 
 
-
         private void FixDotVariables()
         {
+
+
+            return;
+
             string code = textEditor.Text;
 
             Regex regex = new("{([^.}]*)\\.([^}]*)}");

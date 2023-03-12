@@ -18,6 +18,8 @@ namespace SkEditorPlus
 
         bool IsFileOpen();
 
+        bool IsFile(HandyControl.Controls.TabItem tabItem);
+
         TextEditor GetTextEditor();
 
         HandyControl.Controls.TabControl GetTabControl();
@@ -30,5 +32,7 @@ namespace SkEditorPlus
         void ShowError(string title, string text = "");
 
         void OpenUrl(string url);
+
+        TabControl GetSideTabControl();
     }
 }

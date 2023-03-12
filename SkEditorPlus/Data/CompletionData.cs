@@ -30,17 +30,10 @@ namespace SkEditorPlus.Data
 
         public static ListBoxItem[] GetCompletionData(string word, string code)
         {
-            List<ListBoxItem> completions = new();
-            foreach (var item in completionList)
-            {
-                if (item.Name.StartsWith(word))
-                {
-                    //if (item.Name.Equals(word)) continue;
-                    completions.Add(new ListBoxItem { Content = item.Name });
-                }
-            }
-            return completions.ToArray();
+            return completionList
+            .Where(item => item.Name.StartsWith(word))
+            .Select(item => new ListBoxItem { Content = item.Name })
+            .ToArray();
         }
-
     }
 }

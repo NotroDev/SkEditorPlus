@@ -3,7 +3,6 @@ using Functionalities;
 using HandyControl.Data;
 using HandyControl.Themes;
 using HandyControl.Tools;
-using SharpVectors.Dom;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
@@ -12,7 +11,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security.AccessControl;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -51,10 +49,7 @@ namespace SkEditorPlus
 
         public event LoadFinishedEvent LoadFinished;
 
-
-        private static readonly string version = "1.4.4";
-
-        public static string Version { get => version; }
+        public static string Version { get; } = "1.4.5";
 
         public MainWindow(SkEditorAPI skEditor)
         {
@@ -78,20 +73,16 @@ namespace SkEditorPlus
         async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
-            if (!Directory.Exists(appPath))
-            {
-                Directory.CreateDirectory(appPath);
-            }
+            Directory.CreateDirectory(appPath);
             if (!File.Exists(appPath + @"\SkriptHighlighting.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
             {
                 string noFilesTitle = (string)FindResource("NoFilesTitle");
                 string noFilesDescription = (string)FindResource("NoFilesDescription");
                 string noFilesDownloaded = (string)FindResource("NoFilesDownloaded");
 
-                OptionsWindow optionsWindow = new(skEditor);
                 HandyControl.Controls.MessageBox.Show(noFilesDescription, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
                 IsEnabled = false;
-                await optionsWindow.UpdateSyntaxFile().ContinueWith((t) =>
+                await UpdateManager.UpdateSyntaxFile().ContinueWith((t) =>
                 {
                     Dispatcher.Invoke(() =>
                     {
@@ -134,6 +125,7 @@ namespace SkEditorPlus
             BackgroundFixManager.FixBackground(this);
 
             fileManager = new FileManager(skEditor);
+            UpdateManager.skEditor = skEditor;
             new FunctionalitiesManager().LoadAll(skEditor);
 
             RPCManager.Initialize();
@@ -152,7 +144,7 @@ namespace SkEditorPlus
                 {
                     fileManager.NewFile();
                     fileManager.GetTextEditor().Load(file);
-                    TabItem currentTabItem = tabControl.SelectedItem as TabItem;
+                    TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                     currentTabItem.Header = Path.GetFileName(file);
 
                     File.Delete(file);
@@ -163,7 +155,7 @@ namespace SkEditorPlus
             {
                 fileManager.NewFile();
                 fileManager.GetTextEditor().Load(startupFile);
-                TabItem currentTabItem = tabControl.SelectedItem as TabItem;
+                TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                 currentTabItem.ToolTip = startupFile;
                 currentTabItem.Header = Path.GetFileName(startupFile);
                 fileManager.OnTabChanged();
@@ -185,12 +177,11 @@ namespace SkEditorPlus
 
         public void SetUpMica(bool firstTime = true)
         {
-            bool mica = false;
-            if (MicaHelper.IsSupported(BackdropType.Mica) && Properties.Settings.Default.Mica) mica = true;
+            bool mica = MicaHelper.IsSupported(BackdropType.Mica) && Properties.Settings.Default.Mica;
 
             var oldStyle = (Style)Application.Current.FindResource("TextEditorStyle");
-            Style newStyle = new(typeof(TextEditor));
-            foreach (Setter setter in oldStyle.Setters.Cast<Setter>())
+            var newStyle = new Style(typeof(TextEditor));
+            foreach (var setter in oldStyle.Setters.Cast<Setter>())
             {
                 newStyle.Setters.Add(setter);
             }
@@ -264,7 +255,7 @@ namespace SkEditorPlus
                             }
                             fileManager.NewFile();
                             fileManager.GetTextEditor().Load(file);
-                            TabItem currentTabItem = tabControl.SelectedItem as TabItem;
+                            TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                             currentTabItem.ToolTip = file;
                             currentTabItem.Header = Path.GetFileName(file);
                             lastTab = currentTabItem;
@@ -317,7 +308,16 @@ namespace SkEditorPlus
 
         private void OnProjectClick(object sender, MouseButtonEventArgs e)
         {
-            //LeftTabControl.SelectedIndex ^= 1;
+
+            if (leftTabControl.SelectedIndex == 1)
+            {
+                Dispatcher.InvokeAsync(() => leftTabControl.SelectedIndex = -1);
+
+            }
+            else
+            {
+                leftTabControl.SelectedIndex = 1;
+            }
         }
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
@@ -326,7 +326,7 @@ namespace SkEditorPlus
 
             string crashTitle = "Crash";
             string crashDescription = "Sorry, but the program has crashed.{n}Don't worry, though, all your files will be saved!";
-            string crashDescription2 = "If you can, please report the error in the issues section on GitHub.{n}{n}Error:{n}{0}";
+            string crashDescription2 = "If you can, please report the error in the issues section on GitHub (be sure that you're on the latest version before!).{n}{n}Error:{n}{0}";
             string copyAndOpenWebsite = "Copy and open website";
             string ok = "OK";
 

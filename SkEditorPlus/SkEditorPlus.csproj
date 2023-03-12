@@ -147,9 +147,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\FilesView.xaml">
-      <CopyToOutputDirectory></CopyToOutputDirectory>
-    </Page>
     <Page Update="Styles\ScrollViewerStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
@@ -212,5 +209,8 @@
   </ItemGroup>
   <ItemGroup>
 	<FrameworkReference Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms" TargetingPackVersion="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>

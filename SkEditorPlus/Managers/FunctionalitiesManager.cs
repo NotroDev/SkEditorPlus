@@ -25,7 +25,7 @@ namespace SkEditorPlus.Managers
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error has been occurred while enabling one of functionalities.\n\nError message:\n" + ex.Message,
+                    MessageBox.Show("Error has been occurred while enabling one of functionalities.\n\nError message:\n" + ex.InnerException,
                         "SkEditor+", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

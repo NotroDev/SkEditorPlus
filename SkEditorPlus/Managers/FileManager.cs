@@ -19,8 +19,10 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Xml;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using FontFamily = System.Windows.Media.FontFamily;
 using MessageBox = HandyControl.Controls.MessageBox;
 using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
@@ -97,23 +99,17 @@ namespace SkEditorPlus.Managers
             try
             {
                 if (GetTextEditor() == null) return;
-
                 if (tabControl.SelectedItem is not TabItem ti) return;
 
-                if (ti.ToolTip != null)
+                var toolTip = ti.ToolTip ?? "";
+                if (!string.IsNullOrEmpty(toolTip.ToString()))
                 {
-                    if (ti.ToolTip.ToString() != null && ti.ToolTip.ToString() != "")
-                    {
-                        GetTextEditor().Save(ti.ToolTip.ToString());
-                        if (ti.Header.ToString().EndsWith("*"))
-                        {
-                            ti.Header = ti.Header.ToString()[..^1];
-                        }
-                        OnTabChanged();
-                        return;
-                    }
-                    SaveDialog();
+                    GetTextEditor().Save(toolTip.ToString());
+                    ti.Header = ti.Header.ToString().TrimEnd('*');
+                    OnTabChanged();
+                    return;
                 }
+                SaveDialog();
             }
             catch { }
         }
@@ -141,22 +137,17 @@ namespace SkEditorPlus.Managers
 
         public void OpenFile()
         {
-            OpenFileDialog openFileDialog = new()
-            {
-                Filter = filter,
-                Multiselect = true
-            };
+            OpenFileDialog openFileDialog = new() { Filter = filter, Multiselect = true };
 
             if (openFileDialog.ShowDialog() == true)
             {
-                for (int i = 0; i < openFileDialog.FileNames.Length; i++)
+                foreach (var (fileName, index) in openFileDialog.FileNames.Select((v, i) => (v, i)))
                 {
                     try
                     {
-                        CreateFile(openFileDialog.SafeFileNames[i], openFileDialog.FileNames[i]);
-                        GetTextEditor().Load(openFileDialog.FileNames[i]);
-                        TabItem ti = tabControl.SelectedItem as TabItem;
-                        if (ti.Header.ToString().EndsWith("*"))
+                        CreateFile(openFileDialog.SafeFileNames[index], fileName);
+                        GetTextEditor().Load(fileName);
+                        if (tabControl.SelectedItem is TabItem ti && ti.Header.ToString().EndsWith("*", StringComparison.Ordinal))
                         {
                             ti.Header = ti.Header.ToString()[..^1];
                         }
@@ -170,27 +161,36 @@ namespace SkEditorPlus.Managers
         {
             foreach (DirectoryInfo subDirectory in directory.GetDirectories())
             {
-                System.Windows.Controls.TreeViewItem subTreeViewItem = new();
-                subTreeViewItem.Header = subDirectory.Name;
-                subTreeViewItem.Tag = subDirectory.FullName;
+                var subTreeViewItem = new System.Windows.Controls.TreeViewItem
+                {
+                    Header = CreateIcon("\ue8b7", subDirectory.Name),
+                    Tag = subDirectory.FullName
+                };
                 treeViewItem.Items.Add(subTreeViewItem);
-
                 AddDirectoriesAndFiles(subDirectory, subTreeViewItem);
             }
 
             foreach (FileInfo file in directory.GetFiles())
             {
-                System.Windows.Controls.TreeViewItem fileTreeViewItem = new();
-                fileTreeViewItem.Header = file.Name;
-                fileTreeViewItem.Tag = file.FullName;
+                var fileTreeViewItem = new System.Windows.Controls.TreeViewItem
+                {
+                    Header = CreateIcon("\ue8a5", file.Name),
+                    Tag = file.FullName
+                };
 
                 fileTreeViewItem.MouseDoubleClick += (sender, e) =>
                 {
                     if (e.ChangedButton == MouseButton.Right) return;
+                    var tabItem = tabControl.Items.Cast<TabItem>().FirstOrDefault(ti => ti.ToolTip.ToString() == fileTreeViewItem.Tag.ToString());
+                    if (tabItem != null)
+                    {
+                        tabControl.SelectedItem = tabItem;
+                        return;
+                    }
+
                     CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
                     GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
-                    TabItem ti = tabControl.SelectedItem as TabItem;
-                    if (ti.Header.ToString().EndsWith("*"))
+                    if (tabControl.SelectedItem is TabItem ti && ti.Header.ToString().EndsWith("*"))
                     {
                         ti.Header = ti.Header.ToString()[..^1];
                     }
@@ -198,8 +198,8 @@ namespace SkEditorPlus.Managers
 
                 fileTreeViewItem.MouseRightButtonUp += (sender, e) =>
                 {
-                    System.Windows.Controls.ContextMenu contextMenu = new();
-                    System.Windows.Controls.MenuItem openFile = new()
+                    var contextMenu = new System.Windows.Controls.ContextMenu();
+                    var openFile = new System.Windows.Controls.MenuItem
                     {
                         Header = "Open File"
                     };
@@ -207,7 +207,7 @@ namespace SkEditorPlus.Managers
                     {
                         CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
                         GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
-                        TabItem ti = tabControl.SelectedItem as TabItem;
+                        var ti = tabControl.SelectedItem as TabItem;
                         if (ti.Header.ToString().EndsWith("*"))
                         {
                             ti.Header = ti.Header.ToString()[..^1];
@@ -221,60 +221,54 @@ namespace SkEditorPlus.Managers
             }
         }
 
+        private static System.Windows.Controls.TextBlock CreateIcon(string iconString, string text)
+        {
+            System.Windows.Controls.TextBlock tempTextBlock = new();
+            var icon = new System.Windows.Controls.TextBlock()
+            {
+                Text = iconString,
+                FontFamily = new FontFamily("Segoe Fluent Icons"),
+                Margin = new Thickness(0, 2, 0, 0)
+            };
+            icon.SetValue(RenderOptions.BitmapScalingModeProperty, BitmapScalingMode.HighQuality);
+            tempTextBlock.Inlines.Add(icon);
+            tempTextBlock.Inlines.Add(" " + text);
+
+            tempTextBlock.VerticalAlignment = VerticalAlignment.Center;
+            return tempTextBlock;
+        }
+
         public void OpenFolder()
         {
-            string dirPath;
-            using var folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                return;
-
-            dirPath = folderBrowserDialog.SelectedPath;
-            //skEditor.GetMainWindow().LeftTabControl.SelectedItem = skEditor.GetMainWindow().FilesView.Parent;
-            //Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => skEditor.GetMainWindow().FilesView.Path = dirPath));
-            //skEditor.GetMainWindow().FilesView.LoadFiles();
-
-
-
-            return;
             using var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 System.Windows.Controls.TreeViewItem treeViewItem = new()
                 {
-                    Header = Path.GetFileName(dialog.SelectedPath),
-                    Tag = dialog.SelectedPath
+                    Header = CreateIcon("\ue8b7", Path.GetFileName(dialog.SelectedPath)),
+                    Tag = dialog.SelectedPath,
+                    IsExpanded = true
                 };
-                //skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
+                skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
                 AddDirectoriesAndFiles(new DirectoryInfo(dialog.SelectedPath), treeViewItem);
+
+                skEditor.GetMainWindow().leftTabControl.SelectedIndex = 1;
             }
         }
 
         private void OnTextChanged(object sender, EventArgs e)
         {
-            CheckForHex();
-
             TabItem tabItem = (TabItem)tabControl.SelectedItem;
+            string path = tabItem.ToolTip.ToString();
 
-            if (Properties.Settings.Default.AutoSave)
+            if (Properties.Settings.Default.AutoSave && !string.IsNullOrEmpty(path))
             {
-                string path = tabItem.ToolTip.ToString();
-
-                if (string.IsNullOrWhiteSpace(Path.GetFileName(path)))
+                try
                 {
-                    AddAsterisk(tabItem);
+                    GetTextEditor().Save(path);
                 }
-
-                if (!string.IsNullOrEmpty(path))
-                {
-                    try
-                    {
-                        GetTextEditor().Save(path);
-                    }
-                    catch { }
-                    return;
-                }
-                AddAsterisk(tabItem);
+                catch { }
             }
             else
             {
@@ -349,7 +343,7 @@ namespace SkEditorPlus.Managers
                         }
                     }
 
-                    if (Clsw(currentLineText, new string[] { "command", "trigger", "if" }))
+                    if (StartsWithAny(currentLineText, new string[] { "command", "trigger", "if" }))
                     {
                         e.Handled = true;
                         GetTextEditor().Document.Insert(GetTextEditor().CaretOffset, ":\n");
@@ -363,50 +357,9 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        private void CheckForHex()
+        private static bool StartsWithAny(string text, params string[] startsWith)
         {
-            for (int i = 0; i < GetTextEditor().Document.LineCount; i++)
-            {
-                DocumentLine line = GetTextEditor().Document.GetLineByNumber(i + 1);
-                string lineText = GetTextEditor().Document.GetText(line.Offset, line.Length);
-
-                foreach (Match match in Regex.Matches(lineText, "<#(#)?(?:[0-9a-fA-F]{3}){1,2}>").Cast<Match>())
-                {
-                    string hex = match.Value;
-                    hex = hex.Replace("<##", "#");
-                    hex = hex.Replace("<", "");
-                    hex = hex.Replace(">", "");
-
-                    Color color = (Color)ColorConverter.ConvertFromString(hex);
-
-                    HighlightingSpan span = new()
-                    {
-                        StartExpression = new Regex(match.Value),
-                        EndExpression = new Regex(""),
-                        SpanColor = new HighlightingColor()
-                        {
-                            Foreground = new SimpleHighlightingBrush(color)
-                        },
-                        SpanColorIncludesStart = true,
-                        SpanColorIncludesEnd = true,
-                    };
-
-                    GetTextEditor().SyntaxHighlighting.GetNamedRuleSet("BracedExpressionAndColorsRuleSet").Spans.Add(span);
-                    GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
-                }
-            }
-        }
-
-        private static bool Clsw(string text, string[] startsWith)
-        {
-            foreach (string s in startsWith)
-            {
-                if (text.Replace("\t", "").StartsWith(s))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return startsWith.Any(s => text.TrimStart().StartsWith(s));
         }
 
         public void OnTabChanged()
@@ -415,33 +368,19 @@ namespace SkEditorPlus.Managers
 
             ChangeGeometry();
 
-            if (ti.ToolTip != null)
-            {
-                string extension = Path.GetExtension(ti.ToolTip.ToString());
+            var toolTip = ti.ToolTip?.ToString();
+            var extension = Path.GetExtension(toolTip);
 
-                if (extension.Equals(".yml") || extension.Equals(".yaml"))
-                {
-                    ChangeSyntax("YAML");
-                }
-                else
-                {
-                    ChangeSyntax("Skript");
-                }
-            }
-            if (ti.Header != null)
-            {
-                RPCManager.SetFile(ti.Header.ToString());
-            }
-            else
-            {
-                RPCManager.SetFile("none");
-            }
+            ChangeSyntax(extension.Equals(".yml") || extension.Equals(".yaml") ? "YAML" : "Skript");
+
+            RPCManager.SetFile(ti.Header?.ToString() ?? "none");
 
             if (skEditor.IsFileOpen())
             {
                 //completionManager ??= new(skEditor);
                 //completionManager.LoadCompletionManager(GetTextEditor());
             }
+
             OnTabChangedEvent();
         }
 
@@ -453,65 +392,50 @@ namespace SkEditorPlus.Managers
         public void CloseFile()
         {
             if (!skEditor.IsFileOpen()) return;
-            TabItem tabItem = tabControl.SelectedItem as TabItem;
+            var tabItem = tabControl.SelectedItem as TabItem;
 
             if (tabItem.Header.ToString().EndsWith("*"))
             {
-                string attention = (string)Application.Current.FindResource("Attention");
-                string closeConfirmation = (string)Application.Current.FindResource("CloseConfirmation");
-                string yeah = (string)Application.Current.FindResource("Yeah");
-                string cancel = (string)Application.Current.FindResource("Cancel");
-
-                MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
-                {
-                    Message = closeConfirmation,
-                    Caption = attention,
-                    ConfirmContent = yeah,
-                    CancelContent = cancel,
-                    IconBrushKey = ResourceToken.DarkWarningBrush,
-                    IconKey = ResourceToken.WarningGeometry,
-                    Button = MessageBoxButton.OKCancel
-
-                });
-
-                if (result != MessageBoxResult.OK)
-                {
-                    return;
-                }
+                if (!ConfirmCloseFile()) return;
             }
 
-            if (tabControl.Items.IndexOf(tabItem) - 1 >= 0)
-            {
-                tabControl.SelectedIndex = tabControl.Items.IndexOf(tabItem) - 1;
-            }
-            else
-            {
-                tabControl.SelectedIndex = tabControl.Items.IndexOf(tabItem) + 1;
-            }
+            tabControl.SelectedIndex = tabControl.Items.IndexOf(tabItem) - 1 >= 0
+                ? tabControl.Items.IndexOf(tabItem) - 1
+                : tabControl.Items.IndexOf(tabItem) + 1;
             tabControl.Items.Remove(tabItem);
+        }
+
+        private bool ConfirmCloseFile()
+        {
+            var attention = (string)Application.Current.FindResource("Attention");
+            var closeConfirmation = (string)Application.Current.FindResource("CloseConfirmation");
+            var yeah = (string)Application.Current.FindResource("Yeah");
+            var cancel = (string)Application.Current.FindResource("Cancel");
+
+            var result = MessageBox.Show(new MessageBoxInfo
+            {
+                Message = closeConfirmation,
+                Caption = attention,
+                ConfirmContent = yeah,
+                CancelContent = cancel,
+                IconBrushKey = ResourceToken.DarkWarningBrush,
+                IconKey = ResourceToken.WarningGeometry,
+                Button = MessageBoxButton.OKCancel
+            });
+
+            return result == MessageBoxResult.OK;
         }
 
         private void EditorMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (Keyboard.Modifiers == ModifierKeys.Control)
-            {
-                double fontSize = GetTextEditor().FontSize + e.Delta / 25.0;
+            if (Keyboard.Modifiers != ModifierKeys.Control) return;
+            var textEditor = GetTextEditor();
 
-                if (fontSize < 6)
-                    GetTextEditor().FontSize = 6;
-                else
-                {
-                    if (fontSize > 200)
-                        GetTextEditor().FontSize = 200;
-                    else
-                        GetTextEditor().FontSize = fontSize;
-                }
+            double fontSize = textEditor.FontSize + e.Delta / 25.0;
 
-                // TODO: We need to make some space at bottom, so user can scroll past the end of the file
+            textEditor.FontSize = fontSize < 6 ? 6 : fontSize > 200 ? 200 : fontSize;
 
-
-                e.Handled = true;
-            }
+            e.Handled = true;
         }
 
         private void ChangeGeometry()
@@ -521,8 +445,8 @@ namespace SkEditorPlus.Managers
             string extension = Path.GetExtension(tabItem.ToolTip.ToString());
             string header = tabItem.Header.ToString();
 
-            string geometry;
-            int size;
+            string geometry = OtherGeometry;
+            int size = 14;
 
             string documentation = (string)Application.Current.Resources["DocumentationTitle"];
             if (header.Equals(documentation) || header.Equals("Parser"))
@@ -544,11 +468,7 @@ namespace SkEditorPlus.Managers
                 geometry = YmlGeometry;
                 size = 24;
             }
-            else
-            {
-                geometry = OtherGeometry;
-                size = 14;
-            }
+
             IconElement.SetGeometry(tabItem,
                 Geometry.Parse(geometry));
             IconElement.SetHeight(tabItem, size);
@@ -680,7 +600,6 @@ namespace SkEditorPlus.Managers
                 using XmlTextReader reader = new(s);
                 GetTextEditor().SyntaxHighlighting =
                     AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                CheckForHex();
 
                 Color color = (Color)ColorConverter.ConvertFromString("#f1ff63");
 
@@ -845,52 +764,35 @@ namespace SkEditorPlus.Managers
 
         public void CreateFile(string header, string tooltip = null)
         {
-            TabItem tabItem = new()
+            var tabItem = new TabItem()
             {
                 Header = header,
-                ToolTip = "",
+                ToolTip = tooltip ?? "",
                 IsSelected = true,
             };
-            if (tooltip != null)
-            {
-                tabItem.ToolTip = tooltip;
-            }
-
-            IconElement.SetGeometry(tabItem,
-                Geometry.Parse(OtherGeometry));
+            IconElement.SetGeometry(tabItem, Geometry.Parse(OtherGeometry));
             IconElement.SetHeight(tabItem, 16);
             IconElement.SetWidth(tabItem, 16);
-
             System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
 
-            TextEditor codeEditor = new()
+            var codeEditor = new TextEditor()
             {
                 Style = Application.Current.FindResource("TextEditorStyle") as Style,
+                FontFamily = new FontFamily(Properties.Settings.Default.Font),
+                WordWrap = Properties.Settings.Default.Wrapping,
             };
-
-            SearchPanel searchPanel = SearchPanel.Install(codeEditor.TextArea);
-            searchPanel.ShowReplace = true;
-            searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
-
-            searchPanel.Localization = new Data.Localization();
-
             codeEditor.PreviewMouseWheel += EditorMouseWheel;
             codeEditor.MouseHover += TextEditorMouseHover;
-
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Font))
-            {
-                codeEditor.FontFamily = new FontFamily(Properties.Settings.Default.Font);
-            }
-
             codeEditor.TextChanged += OnTextChanged;
             codeEditor.TextArea.TextEntering += OnTextEntering;
-
             codeEditor.TextArea.TextView.LinkTextForegroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a94c4");
             codeEditor.TextArea.TextView.LinkTextUnderline = true;
-
-            codeEditor.WordWrap = Properties.Settings.Default.Wrapping;
-
             tabItem.Content = codeEditor;
+
+            var searchPanel = SearchPanel.Install(codeEditor.TextArea);
+            searchPanel.ShowReplace = true;
+            searchPanel.Style = (Style)Application.Current.FindResource("SearchPanelStyle");
+            searchPanel.Localization = new Data.Localization();
 
             tabControl.Items.Add(tabItem);
             ChangeGeometry();

@@ -12,9 +12,6 @@
     <Compile Update="Windows\ExportOptionsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\OptionsWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\TooltipWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,9 +29,6 @@
     <Page Update="Styles\CompletionListStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\FilesView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\ScrollViewerStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -45,9 +39,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\MenuStyle.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\TabControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TabControlStyle.xaml">
@@ -81,9 +72,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\FontSelector.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Windows\OptionsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Properties\DesignTimeResources.xaml">

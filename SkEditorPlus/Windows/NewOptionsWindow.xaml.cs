@@ -97,6 +97,8 @@ namespace SkEditorPlus.Windows
                 micaCheckbox.IsEnabled = false;
             }
 
+            docsLinkTextBox.Text = Properties.Settings.Default.DocsLink;
+
             LoadAddons();
         }
 
@@ -112,7 +114,7 @@ namespace SkEditorPlus.Windows
 
                 foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
                 {
-                    if (!skEditor.IsFileOpen()) continue;
+                    if (!skEditor.IsFile(ti)) continue;
                     TextEditor textEditor = (TextEditor)ti.Content;
                     textEditor.FontFamily = new FontFamily(fontSelector.ResultFontFamily.Source);
                 }
@@ -134,7 +136,7 @@ namespace SkEditorPlus.Windows
 
             foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
             {
-                if (!skEditor.IsFileOpen()) continue;
+                if (!skEditor.IsFile(ti)) continue;
                 TextEditor textEditor = (TextEditor)ti.Content;
                 textEditor.Background = new SolidColorBrush(Color.FromArgb((byte)Properties.Settings.Default.EditorTransparency, 30, 30, 30));
             }

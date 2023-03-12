@@ -65,4 +65,32 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="EmptyTabItemStyle" TargetType="TabItem" BasedOn="{StaticResource TabItemInLine}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Grid x:Name="templateRoot">
+                        <Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}" Margin="0"/>
+                        <ContentPresenter x:Name="contentPresenter" TextElement.Foreground="{DynamicResource PrimaryTextBrush}" ContentSource="Header" Focusable="False" HorizontalAlignment="Center" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                        <Border x:Name="selectedBorder" BorderBrush="{DynamicResource AccentBrush}" BorderThickness="0,0,0,3" Margin="0,-3,0,0" Opacity="0">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="False">
+                                            <Setter Property="Opacity" Value="0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

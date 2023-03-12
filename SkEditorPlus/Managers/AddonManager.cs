@@ -33,7 +33,6 @@ namespace SkEditorPlus.Managers
 
         public static List<ISkEditorPlusAddon> addons = new();
 
-
         public AddonManager(SkEditorAPI skEditor)
         {
             this.skEditor = skEditor;
