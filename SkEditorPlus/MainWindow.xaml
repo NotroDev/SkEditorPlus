@@ -15,7 +15,8 @@
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d"
-    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing" SizeChanged="OnSizeChanged" StateChanged="Window_StateChanged">
+    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing" SizeChanged="OnSizeChanged" StateChanged="Window_StateChanged"
+>
     <hc:Window.Resources>
         <Style x:Key="Left90" TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}">
             <Setter Property="HeaderTemplate">
@@ -146,6 +147,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
+        
 
         <TabControl x:Name="leftTabControl"
             Background="Transparent"
@@ -158,7 +161,7 @@
                 Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
 
                 <TabItem.Header>
-                    <Label Content="Projekt"
+                    <Label Content="{DynamicResource MenuProject}"
                        Foreground="White"
                        FontSize="11"
                        FontFamily="Open Sans Medium"
@@ -167,16 +170,38 @@
                        BorderThickness="0"/>
                 </TabItem.Header>
 
-                <Grid Width="200" Height="1080"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top">
-                    <TreeView x:Name="fileTreeView" Width="auto" Height="auto" Background="#701c1c1c" hc:BorderElement.CornerRadius="15" BorderThickness="0">
-                        <TreeView.ItemContainerStyle>
-                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
-                                <Setter Property="hc:BorderElement.CornerRadius" Value="5"/>
-                            </Style>
-                        </TreeView.ItemContainerStyle>
-                    </TreeView>
+                <Grid Width="200" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Stretch" >
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <TreeView x:Name="fileTreeView" Background="#701c1c1c" hc:BorderElement.CornerRadius="15" BorderThickness="0" VerticalAlignment="Stretch">
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
+                                    <Setter Property="hc:BorderElement.CornerRadius" Value="5"/>
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+
+                            <TreeView.Template>
+                                <ControlTemplate TargetType="{x:Type TreeView}">
+                                    <Grid>
+                                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" hc:BorderElement.CornerRadius="{TemplateBinding hc:BorderElement.CornerRadius}">
+                                            <ItemsPresenter/>
+                                        </Border>
+                                        <Image x:Name="emptyTreeViewImage" Source="Images/NoFiles.png" Width="100" Height="100" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding HasItems, RelativeSource={RelativeSource TemplatedParent}}" MouseDown="OnProjectIconClick"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="HasItems" Value="false">
+                                            <Setter TargetName="emptyTreeViewImage" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                        <Trigger Property="HasItems" Value="true">
+                                            <Setter TargetName="emptyTreeViewImage" Property="Visibility" Value="Collapsed"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+
+                                </ControlTemplate>
+                            </TreeView.Template>
+
+                        </TreeView>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
         </TabControl>

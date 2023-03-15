@@ -8,6 +8,7 @@
 	<system:String x:Key="MenuFile">Archivo</system:String>
 	<system:String x:Key="MenuEdit">Editar</system:String>
 	<system:String x:Key="MenuOther">Otro</system:String>
+    <system:String x:Key="MenuProject">Proyecto</system:String>
 
 	<system:String x:Key="MenuFileNew">Nuevo</system:String>
 	<system:String x:Key="MenuFileOpen">Abrir</system:String>
@@ -110,6 +111,7 @@
 	<system:String x:Key="Ignore">Ignorar</system:String>
 
 	<system:String x:Key="OptionsAutoSave">Autoguardado:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Buscar actualizaciones:</system:String>
 	<system:String x:Key="OptionsWrapping">Ajuste de línea</system:String>
 	<system:String x:Key="OptionsAutoSecondChar">Inserción automática del segundo carácter:</system:String>
 	<system:String x:Key="OptionsAutoNewLine">Inserción automática de nueva línea:</system:String>
@@ -158,8 +160,14 @@
 	<system:String x:Key="DiscordRPCDownload">Descargar SkEditor+</system:String>
 
 	<system:String x:Key="UnsavedFiles">Archivos sin guardar</system:String>
-	<system:String x:Key="UnsavedFilesMessage">Tiene archivos sin guardar. ¿Está seguro de que desea cerrar el programa?</system:String>
-	<system:String x:Key="GUIGenNameError">¡El nombre de la GUI es obligatorio!</system:String>
+    <system:String x:Key="UnsavedFilesMessage">Tiene archivos sin guardar. ¿Está seguro de que desea cerrar el programa?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Crear archivo</system:String>
+    <system:String x:Key="ProjectOpenFile">Abrir archivo</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Mostrar en el explorador de archivos</system:String>
+
+    <!-- Errors -->
+    <system:String x:Key="GUIGenNameError">¡El nombre de la GUI es obligatorio!</system:String>
 	<system:String x:Key="GUIGenTitleError">¡El título de la GUI es obligatorio!</system:String>
 	<system:String x:Key="GUIGenRowsError">¡La cantidad de filas debe estar entre 1 y 6!</system:String>
 	<system:String x:Key="GUIGenRowsError2">¡La cantidad de filas debe ser un número!</system:String>

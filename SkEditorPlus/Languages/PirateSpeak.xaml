@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">Scrip</system:String>
     <system:String x:Key="MenuEdit">Editin'</system:String>
     <system:String x:Key="MenuOther">Otharrr</system:String>
+    <system:String x:Key="MenuProject">Project</system:String>
 
     <system:String x:Key="MenuFileNew">New</system:String>
     <system:String x:Key="MenuFileOpen">Openin'</system:String>
@@ -109,6 +110,7 @@
     <system:String x:Key="Ignore">Ignore it fer now, but beware the kraken!</system:String>
 
     <system:String x:Key="OptionsAutoSave">Avast ye! Autosave:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Arr, check fer updates:</system:String>
     <system:String x:Key="OptionsWrapping">Wrap yer words:</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Insert yer second character automagically:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Insert a new line without liftin' a finger:</system:String>
@@ -156,6 +158,10 @@
 
     <system:String x:Key="UnsavedFiles">Unsaved treasure</system:String>
     <system:String x:Key="UnsavedFilesMessage">Ye have some unsaved treasure. Be ye sure ye want to abandon ship?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Create a parchment</system:String>
+    <system:String x:Key="ProjectOpenFile">Open me parch-aye</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Show in ye olde file explorer</system:String>
 
     <system:String x:Key="GUIGenNameError">Ye needs to name yer GUI, matey!</system:String>
     <system:String x:Key="GUIGenTitleError">Ye needs to give yer GUI a title, me hearties!</system:String>

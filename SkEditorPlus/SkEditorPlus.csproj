@@ -6,11 +6,11 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>SkEditorPlus</AssemblyName>
     <RootNamespace>SkEditorPlus</RootNamespace>
-    <Version>1.4.4</Version>
+    <Version>1.5.1</Version>
     <Configurations>Debug;Release</Configurations>
     <Copyright>Copyright © Notro 2022</Copyright>
-    <FileVersion>1.4.4</FileVersion>
-    <AssemblyVersion>1.4.4</AssemblyVersion>
+    <FileVersion>1.5.1</FileVersion>
+    <AssemblyVersion>1.5.1</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
@@ -26,6 +26,7 @@
     <None Remove="Fonts\CascadiaMono.ttf" />
     <None Remove="Fonts\OpenSans-Medium.ttf" />
     <None Remove="Fonts\Segoe Fluent Icons.ttf" />
+    <None Remove="Images\NoFiles.png" />
     <None Remove="Images\SkEditor.svg" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +42,9 @@
   <ItemGroup>
     <Resource Include="Fonts\Segoe Fluent Icons.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\NoFiles.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\SkEditor.ico" />
   </ItemGroup>

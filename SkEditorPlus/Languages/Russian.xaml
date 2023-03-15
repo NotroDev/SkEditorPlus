@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">Файл</system:String>
     <system:String x:Key="MenuEdit">Изменить</system:String>
     <system:String x:Key="MenuOther">Другое</system:String>
+    <system:String x:Key="MenuProject">Проект</system:String>
 
     <system:String x:Key="MenuFileNew">Создать</system:String>
     <system:String x:Key="MenuFileOpen">Открыть</system:String>
@@ -110,6 +111,7 @@
     <system:String x:Key="Ignore">Игнорировать</system:String>
     
     <system:String x:Key="OptionsAutoSave">Автосохранение:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Проверить наличие обновлений:</system:String>
     <system:String x:Key="OptionsWrapping">Перенос</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Автоматическая вставка второго символа:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Автоматический перенос строки:</system:String>
@@ -143,6 +145,7 @@
     <system:String x:Key="OneMatchFound">Найдено одно совпадение</system:String>
     <system:String x:Key="EmptySearchText">Пустой текст поиска!</system:String>
 
+
     <system:String x:Key="CloseConfirmation">Файл не был сохранён. Вы уверены, что хотите закрыть его?</system:String>
     <system:String x:Key="Attention">Внимание!</system:String>
     <system:String x:Key="Yeah">Ага</system:String>
@@ -158,6 +161,10 @@
 
     <system:String x:Key="UnsavedFiles">Несохранённые файлы</system:String>
     <system:String x:Key="UnsavedFilesMessage">У Вас есть несохранённые файлы. Вы уверены, что хотите закрыть программу?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Создать файл</system:String>
+    <system:String x:Key="ProjectOpenFile">Открыть файл</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Показать в файловом менеджере</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Введите название GUI!</system:String>

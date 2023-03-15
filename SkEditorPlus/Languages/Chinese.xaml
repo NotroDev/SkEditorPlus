@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">文件</system:String>
     <system:String x:Key="MenuEdit">编辑</system:String>
     <system:String x:Key="MenuOther">其他</system:String>
+    <system:String x:Key="MenuProject">项目</system:String>
 
     <system:String x:Key="MenuFileNew">新建</system:String>
     <system:String x:Key="MenuFileOpen">打开</system:String>
@@ -110,6 +111,7 @@
     <system:String x:Key="Ignore">忽略</system:String>
     
     <system:String x:Key="OptionsAutoSave">启用自动保存:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">检查更新：</system:String>
     <system:String x:Key="OptionsWrapping">自动换行</system:String>
 	<system:String x:Key="OptionsAutoSecondChar">自动插入第二个字符</system:String>
     <system:String x:Key="OptionsAutoNewLine">自动插入换行符:</system:String>
@@ -158,8 +160,13 @@
 	<system:String x:Key="DiscordRPCDownload">下载 SkEditor+</system:String>
 
 	<system:String x:Key="UnsavedFiles">未保存的文件</system:String>
-	<system:String x:Key="UnsavedFilesMessage">您有未保存的文件。确定要关闭程序吗？</system:String>
-	<!-- * 错误 * -->
+    <system:String x:Key="UnsavedFilesMessage">您有未保存的文件。确定要关闭程序吗？</system:String>
+
+    <system:String x:Key="ProjectCreateFile">创建文件</system:String>
+    <system:String x:Key="ProjectOpenFile">打开文件</system:String>
+    <system:String x:Key="ProjectOpenExplorer">在文件浏览器中显示</system:String>
+
+    <!-- * 错误 * -->
 
 	<system:String x:Key="GUIGenNameError">GUI 名称不能为空！</system:String>
 	<system:String x:Key="GUIGenTitleError">GUI 标题不能为空！</system:String>

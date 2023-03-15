@@ -13,6 +13,9 @@ namespace SkEditorPlus.Data
         private bool isAutoSaveEnabled;
 
         [ObservableProperty]
+        private bool isCheckForUpdatesEnabled;
+
+        [ObservableProperty]
         private bool isWrappingEnabled;
 
         [ObservableProperty]

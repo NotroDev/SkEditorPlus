@@ -38,6 +38,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <DockPanel x:Name="Language"
                                    Grid.Row="0"
@@ -72,8 +73,22 @@
                                       Click="CheckboxClicked"
                                       IsChecked="{Binding IsAutoSaveEnabled}" />
                         </DockPanel>
+                        <DockPanel x:Name="CheckForUpdates"
+                           Grid.Row="2"
+                           Margin="0,0,0,5">
+                                            <TextBlock Margin="0,0,15,0"
+                               VerticalAlignment="Center"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               Text="{DynamicResource OptionsCheckForUpdates}" />
+                                            <CheckBox x:Name="checkForUpdatesCheckbox"
+                              Height="30"
+                              Background="#FF1C1C1C"
+                              Click="CheckboxClicked"
+                              IsChecked="{Binding IsCheckForUpdatesEnabled}" />
+                        </DockPanel>
                         <DockPanel x:Name="Wrapping"
-                                   Grid.Row="2"
+                                   Grid.Row="3"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -87,7 +102,7 @@
                                       IsChecked="{Binding IsWrappingEnabled}" />
                         </DockPanel>
                         <DockPanel x:Name="AutoSecondChar"
-                                   Grid.Row="3"
+                                   Grid.Row="4"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -101,7 +116,7 @@
                                       IsChecked="{Binding IsAutoSecondCharacterEnabled}" />
                         </DockPanel>
                         <DockPanel x:Name="AutoNewLine"
-                                   Grid.Row="4"
+                                   Grid.Row="5"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -121,7 +136,7 @@
                             </hc:Badge>
                         </DockPanel>
                         <DockPanel x:Name="DocsLink"
-                                   Grid.Row="5"
+                                   Grid.Row="6"
                                    Margin="0,0,0,15">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -137,7 +152,7 @@
                                         TextChanged="OnDocsLinkChanged" />
                         </DockPanel>
                         <DockPanel x:Name="UpdateSyntax"
-                                   Grid.Row="6"
+                                   Grid.Row="7"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -151,7 +166,7 @@
                                     Content="{DynamicResource Update}" />
                         </DockPanel>
                         <DockPanel x:Name="Version"
-                                   Grid.Row="7"
+                                   Grid.Row="8"
                                    Margin="0,0,0,5">
                             <TextBlock x:Name="versionText"
                                        Margin="0,0,15,0"

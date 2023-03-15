@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">File</system:String>
     <system:String x:Key="MenuEdit">Edit</system:String>
     <system:String x:Key="MenuOther">Other</system:String>
+    <system:String x:Key="MenuProject">Project</system:String>
 
     <system:String x:Key="MenuFileNew">New</system:String>
     <system:String x:Key="MenuFileOpen">Open</system:String>
@@ -110,6 +111,7 @@
     <system:String x:Key="Ignore">Ignore</system:String>
     
     <system:String x:Key="OptionsAutoSave">Autosave:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Check for updates:</system:String>
     <system:String x:Key="OptionsWrapping">Wrapping:</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Automatic second character insertion:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Automatic newline insertion:</system:String>
@@ -168,6 +170,10 @@
 
     <system:String x:Key="UnsavedFiles">Unsaved files</system:String>
     <system:String x:Key="UnsavedFilesMessage">You have unsaved files. Are you sure you want to close the program?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Create file</system:String>
+    <system:String x:Key="ProjectOpenFile">Open file</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Show in file explorer</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Name of GUI is required!</system:String>

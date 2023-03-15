@@ -17,7 +17,7 @@ namespace SkEditorPlus.Managers
     {
         public static SkEditorAPI skEditor;
 
-        public static async void CheckUpdate()
+        public static async void CheckUpdate(bool infoIfNot = true)
         {
             var github = new GitHubClient(new ProductHeaderValue("SkEditorPlus"));
             var releases = await github.Repository.Release.GetAll("NotroDev", "SkEditorPlus");
@@ -63,6 +63,7 @@ namespace SkEditorPlus.Managers
             }
             else
             {
+                if (!infoIfNot) return;
                 string noNewVersionTitle = (string)Application.Current.FindResource("NoNewVersion");
                 string noNewVersion = (string)Application.Current.FindResource("UpdateNotAvailable");
                 MessageBox.Show(new MessageBoxInfo

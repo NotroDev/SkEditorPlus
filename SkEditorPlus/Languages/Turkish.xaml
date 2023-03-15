@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">Dosya</system:String>
     <system:String x:Key="MenuEdit">Düzenle</system:String>
     <system:String x:Key="MenuOther">Diğer</system:String>
+    <system:String x:Key="MenuProject">Proje</system:String>
 
     <system:String x:Key="MenuFileNew">Yeni</system:String>
     <system:String x:Key="MenuFileOpen">Aç</system:String>
@@ -110,6 +111,7 @@
     <system:String x:Key="Ignore">Görmezden Gel</system:String>
     
     <system:String x:Key="OptionsAutoSave">Otomatik Kaydet:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Güncellemeleri kontrol et:</system:String>
     <system:String x:Key="OptionsWrapping">Toparlama</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Otomatik ikinci karakter ekleme:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Otomatik yeni satır ekleme:</system:String>
@@ -154,6 +156,10 @@
 
     <system:String x:Key="UnsavedFiles">Kaydedilmeyen dosyalar</system:String>
     <system:String x:Key="UnsavedFilesMessage">Kaydedilmeyen dosyaların var. Programı kapatmak istediğine emin misin?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Dosya oluştur</system:String>
+    <system:String x:Key="ProjectOpenFile">Dosya aç</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Dosya gezgininde göster</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">GUI adı zorunlu!</system:String>

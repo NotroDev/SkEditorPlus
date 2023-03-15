@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">Plik</system:String>
     <system:String x:Key="MenuEdit">Edycja</system:String>
     <system:String x:Key="MenuOther">Inne</system:String>
+    <system:String x:Key="MenuProject">Projekt</system:String>
 
     <system:String x:Key="MenuFileNew">Nowy</system:String>
     <system:String x:Key="MenuFileOpen">Otwórz</system:String>
@@ -110,6 +111,7 @@
     <system:String x:Key="Ignore">Zignoruj</system:String>
     
     <system:String x:Key="OptionsAutoSave">Autozapis:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Sprawdzaj aktualizacje:</system:String>
     <system:String x:Key="OptionsWrapping">Zawijanie tekstu:</system:String>
     <system:String x:Key="OptionsAutoSecondChar">Automatyczne wstawianie drugiego znaku:</system:String>
     <system:String x:Key="OptionsAutoNewLine">Automatyczne wstawianie nowej linii</system:String>
@@ -159,6 +161,10 @@
 
     <system:String x:Key="UnsavedFiles">Niezapisane pliki</system:String>
     <system:String x:Key="UnsavedFilesMessage">Masz niezapisane pliki. Jesteś pewny, że chcesz zamknąć program?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Stwórz plik</system:String>
+    <system:String x:Key="ProjectOpenFile">Otwórz plik</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Pokaż w eksploratorze plików</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Nazwa GUI jest wymagana!</system:String>

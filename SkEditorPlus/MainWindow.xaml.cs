@@ -49,7 +49,7 @@ namespace SkEditorPlus
 
         public event LoadFinishedEvent LoadFinished;
 
-        public static string Version { get; } = "1.4.5";
+        public static string Version { get; } = "1.5.1";
 
         public MainWindow(SkEditorAPI skEditor)
         {
@@ -125,6 +125,7 @@ namespace SkEditorPlus
             BackgroundFixManager.FixBackground(this);
 
             fileManager = new FileManager(skEditor);
+            ProjectManager projectManager = new(skEditor);
             UpdateManager.skEditor = skEditor;
             new FunctionalitiesManager().LoadAll(skEditor);
 
@@ -168,6 +169,11 @@ namespace SkEditorPlus
             FormattingWindow formattingWindow = new(skEditor);
 
             OnFinishedLoad();
+
+            if (Properties.Settings.Default.CheckForUpdates)
+            {
+                UpdateManager.CheckUpdate(false);
+            }
         }
 
         protected virtual void OnFinishedLoad()
@@ -318,6 +324,11 @@ namespace SkEditorPlus
             {
                 leftTabControl.SelectedIndex = 1;
             }
+        }
+
+        private void OnProjectIconClick(object sender, MouseButtonEventArgs e)
+        {
+            fileManager.OpenFolder();
         }
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)

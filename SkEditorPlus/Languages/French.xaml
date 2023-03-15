@@ -8,6 +8,7 @@
     <system:String x:Key="MenuFile">Fichier</system:String>
 	<system:String x:Key="MenuEdit">Modifier</system:String>
 	<system:String x:Key="MenuOther">Autre</system:String>
+    <system:String x:Key="MenuProject">Projet</system:String>
 
 	<system:String x:Key="MenuFileNew">Nouveau</system:String>
 	<system:String x:Key="MenuFileOpen">Ouvrir</system:String>
@@ -110,6 +111,7 @@
 	<system:String x:Key="Ignore">Ignorer</system:String>
     
     <system:String x:Key="OptionsAutoSave">Sauvegarde automatique:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Vérifier les mises à jour :</system:String>
 	<system:String x:Key="OptionsWrapping">Retour à la ligne automatique</system:String>
 	<system:String x:Key="OptionsAutoSecondChar">Insertion automatique du deuxième caractère:</system:String>
 	<system:String x:Key="OptionsAutoNewLine">Insertion automatique d'une nouvelle ligne:</system:String>
@@ -138,7 +140,7 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Ouvrir le dossier des addons:</system:String>
     <system:String x:Key="OptionsOpen">Ouvrir</system:String>
 
-    <!-- Choses que j'ai oubliées auparavant. Alors ils sont ici: P -->
+    <!-- Choses que j'ai oubliées auparavant. Alors ils sont ici :P -->
 
     <system:String x:Key="NoResults">Aucun résultat trouvé</system:String>
     <system:String x:Key="OneMatchFound">Un seul résultat trouvé</system:String>
@@ -161,7 +163,11 @@
     <system:String x:Key="UnsavedFiles">Fichiers non enregistrés</system:String>
 	<system:String x:Key="UnsavedFilesMessage">Vous avez des fichiers non enregistrés. Êtes-vous sûr de vouloir fermer le programme ?</system:String>
 
-	<!-- * Erreurs * -->
+    <system:String x:Key="ProjectCreateFile">Créer un fichier</system:String>
+    <system:String x:Key="ProjectOpenFile">Ouvrir un fichier</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Afficher dans l'explorateur de fichiers</system:String>
+
+    <!-- * Erreurs * -->
 	<system:String x:Key="GUIGenNameError">Le nom de l'interface graphique est requis !</system:String>
 	<system:String x:Key="GUIGenTitleError">Le titre de l'interface graphique est requis !</system:String>
 	<system:String x:Key="GUIGenRowsError">La quantité de lignes doit être comprise entre 1 et 6 !</system:String>

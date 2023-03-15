@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
@@ -37,7 +38,7 @@ namespace SkEditorPlus.Managers
         public static string newFileName = (string)Application.Current.Resources["NewFileName"];
         private static readonly string filter = "{0} (*.*)|*.*|{1} (*.sk)|*.sk".Replace("{0}", (string)Application.Current.Resources["TypeAllFiles"]).Replace("{1}", (string)Application.Current.Resources["TypeScript"]);
 
-        readonly TabControl tabControl;
+        public readonly TabControl tabControl;
         public static Regex regex = new(newFileName.Replace("{0}", @"[0-9]+"));
 
         public Popup popup = new();
@@ -55,6 +56,8 @@ namespace SkEditorPlus.Managers
         public event TabChangedEvent TabChanged;
 
         public static FileManager instance;
+
+        public string projectPath = string.Empty;
 
         public FileManager(SkEditorAPI skEditor)
         {
@@ -76,7 +79,7 @@ namespace SkEditorPlus.Managers
             return tabControl;
         }
 
-        int UntitledCount()
+        public int UntitledCount()
         {
             int tabIndex = 1;
             foreach (TabItem ti in tabControl.Items)
@@ -157,71 +160,9 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        private void AddDirectoriesAndFiles(DirectoryInfo directory, System.Windows.Controls.TreeViewItem treeViewItem)
-        {
-            foreach (DirectoryInfo subDirectory in directory.GetDirectories())
-            {
-                var subTreeViewItem = new System.Windows.Controls.TreeViewItem
-                {
-                    Header = CreateIcon("\ue8b7", subDirectory.Name),
-                    Tag = subDirectory.FullName
-                };
-                treeViewItem.Items.Add(subTreeViewItem);
-                AddDirectoriesAndFiles(subDirectory, subTreeViewItem);
-            }
+        
 
-            foreach (FileInfo file in directory.GetFiles())
-            {
-                var fileTreeViewItem = new System.Windows.Controls.TreeViewItem
-                {
-                    Header = CreateIcon("\ue8a5", file.Name),
-                    Tag = file.FullName
-                };
-
-                fileTreeViewItem.MouseDoubleClick += (sender, e) =>
-                {
-                    if (e.ChangedButton == MouseButton.Right) return;
-                    var tabItem = tabControl.Items.Cast<TabItem>().FirstOrDefault(ti => ti.ToolTip.ToString() == fileTreeViewItem.Tag.ToString());
-                    if (tabItem != null)
-                    {
-                        tabControl.SelectedItem = tabItem;
-                        return;
-                    }
-
-                    CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
-                    GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
-                    if (tabControl.SelectedItem is TabItem ti && ti.Header.ToString().EndsWith("*"))
-                    {
-                        ti.Header = ti.Header.ToString()[..^1];
-                    }
-                };
-
-                fileTreeViewItem.MouseRightButtonUp += (sender, e) =>
-                {
-                    var contextMenu = new System.Windows.Controls.ContextMenu();
-                    var openFile = new System.Windows.Controls.MenuItem
-                    {
-                        Header = "Open File"
-                    };
-                    openFile.Click += (sender, e) =>
-                    {
-                        CreateFile(Path.GetFileName(fileTreeViewItem.Tag.ToString()), fileTreeViewItem.Tag.ToString());
-                        GetTextEditor().Load(fileTreeViewItem.Tag.ToString());
-                        var ti = tabControl.SelectedItem as TabItem;
-                        if (ti.Header.ToString().EndsWith("*"))
-                        {
-                            ti.Header = ti.Header.ToString()[..^1];
-                        }
-                    };
-                    contextMenu.Items.Add(openFile);
-                    fileTreeViewItem.ContextMenu = contextMenu;
-                };
-
-                treeViewItem.Items.Add(fileTreeViewItem);
-            }
-        }
-
-        private static System.Windows.Controls.TextBlock CreateIcon(string iconString, string text)
+        public static System.Windows.Controls.TextBlock CreateIcon(string iconString, string text)
         {
             System.Windows.Controls.TextBlock tempTextBlock = new();
             var icon = new System.Windows.Controls.TextBlock()
@@ -238,12 +179,14 @@ namespace SkEditorPlus.Managers
             return tempTextBlock;
         }
 
-        public void OpenFolder()
+        public async void OpenFolder()
         {
             using var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
+                skEditor.GetMainWindow().fileTreeView.Items.Clear();
+                projectPath = dialog.SelectedPath;
                 System.Windows.Controls.TreeViewItem treeViewItem = new()
                 {
                     Header = CreateIcon("\ue8b7", Path.GetFileName(dialog.SelectedPath)),
@@ -251,7 +194,7 @@ namespace SkEditorPlus.Managers
                     IsExpanded = true
                 };
                 skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
-                AddDirectoriesAndFiles(new DirectoryInfo(dialog.SelectedPath), treeViewItem);
+                await Task.Run(() => ProjectManager.instance.AddDirectoriesAndFilesAsync(new DirectoryInfo(dialog.SelectedPath), treeViewItem));
 
                 skEditor.GetMainWindow().leftTabControl.SelectedIndex = 1;
             }
