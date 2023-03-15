@@ -29,12 +29,12 @@
 
 <a href='https://discord.gg/meFfPGYvr5'>
   
-<img src='https://img.shields.io/badge/Discord-PL-%23bf1327?style=for-the-badge'>
+<img src='https://img.shields.io/badge/Discord-Polish-%23bf1327?style=for-the-badge'>
   
 </a>
 <a href='https://discord.gg/rK4AQnvMc5'>
   
-<img src='https://img.shields.io/badge/Discord-EN-%231369bf?style=for-the-badge'>
+<img src='https://img.shields.io/badge/Discord-English-%231369bf?style=for-the-badge'>
   
 </a>
 
