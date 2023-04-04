@@ -16,7 +16,7 @@
         </ComboBox>
         <hc:TextBox x:Name="apiTextBox" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="{DynamicResource PasteAPIKeyTextboxPlaceholder}" Margin="0,65,0,0" AutomationProperties.IsRequiredForForm="True" Height="30"/>
         <hc:TextBox x:Name="urlTextBox" HorizontalAlignment="Center" Margin="0,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="{DynamicResource PublishResultUrlPlaceholder}" IsReadOnlyCaretVisible="True"/>
-        <CheckBox x:Name="anonymousCheckBox" Background="#FF1C1C1C" Content="{DynamicResource AnonymousCheckbox}" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="anonymousCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource AnonymousCheckbox}" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="helpText" HorizontalAlignment="Center" Margin="0,100,0,0" TextWrapping="Wrap" Text="{DynamicResource PasteAPIKeyTextboxHint}" VerticalAlignment="Top" Width="285" MouseLeftButtonUp="HelpClicked"/>
         <Button Content="📋" HorizontalAlignment="Left" Margin="262,264,0,0" VerticalAlignment="Top" Width="33" Click="CopyClick" RenderTransformOrigin="0.455,0.235"/>
         <ComboBox x:Name="websiteComboBox" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="138" SelectedIndex="0" SelectionChanged="OnWebsiteChange">

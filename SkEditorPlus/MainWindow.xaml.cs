@@ -1,9 +1,9 @@
 ﻿using AvalonEditB;
 using Functionalities;
-using HandyControl.Data;
 using HandyControl.Themes;
 using HandyControl.Tools;
 using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows;
 using System;
 using System.Diagnostics;
@@ -46,15 +46,13 @@ namespace SkEditorPlus
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool IsWindowVisible(IntPtr hWnd);
 
-
-        public event LoadFinishedEvent LoadFinished;
-
-        public static string Version { get; } = "1.5.1";
+        public static string Version { get; } = "1.5.2";
 
         public MainWindow(SkEditorAPI skEditor)
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
+            ExceptionHandler.skEditor = skEditor;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionHandler.OnUnhandledException);
 
             try
             {
@@ -126,6 +124,11 @@ namespace SkEditorPlus
 
             fileManager = new FileManager(skEditor);
             ProjectManager projectManager = new(skEditor);
+
+            projectTabItemLabel.MouseLeftButtonDown += new(projectManager.OnProjectClick);
+            structureTabItemLabel.MouseLeftButtonDown += new(fileManager.OnStructureClick);
+
+
             UpdateManager.skEditor = skEditor;
             new FunctionalitiesManager().LoadAll(skEditor);
 
@@ -168,17 +171,15 @@ namespace SkEditorPlus
 
             FormattingWindow formattingWindow = new(skEditor);
 
-            OnFinishedLoad();
+            AddonManager.addons.ForEach(addon =>
+            {
+                addon.OnLoadFinished();
+            });
 
             if (Properties.Settings.Default.CheckForUpdates)
             {
                 UpdateManager.CheckUpdate(false);
             }
-        }
-
-        protected virtual void OnFinishedLoad()
-        {
-            LoadFinished?.Invoke();
         }
 
         public void SetUpMica(bool firstTime = true)
@@ -285,119 +286,14 @@ namespace SkEditorPlus
             catch { }
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            FixCut();
-        }
-
-        private void FixCut()
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                IntPtr hWnd = new WindowInteropHelper(Application.Current.MainWindow).Handle;
-
-                IntPtr hNext = hWnd;
-                do
-                    hNext = GetWindow(hNext, GW_HWNDNEXT);
-                while (!IsWindowVisible(hNext));
-
-                SetForegroundWindow(hNext);
-
-                Activate();
-            }
-        }
-
-        private void Window_StateChanged(object sender, EventArgs e)
-        {
-            FixCut();
-        }
-
-        private void OnProjectClick(object sender, MouseButtonEventArgs e)
-        {
-
-            if (leftTabControl.SelectedIndex == 1)
-            {
-                Dispatcher.InvokeAsync(() => leftTabControl.SelectedIndex = -1);
-
-            }
-            else
-            {
-                leftTabControl.SelectedIndex = 1;
-            }
-        }
-
         private void OnProjectIconClick(object sender, MouseButtonEventArgs e)
         {
             fileManager.OpenFolder();
         }
 
-        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        private void OnStructureRefresh(object sender, RoutedEventArgs e)
         {
-            Exception e = (Exception)args.ExceptionObject;
-
-            string crashTitle = "Crash";
-            string crashDescription = "Sorry, but the program has crashed.{n}Don't worry, though, all your files will be saved!";
-            string crashDescription2 = "If you can, please report the error in the issues section on GitHub (be sure that you're on the latest version before!).{n}{n}Error:{n}{0}";
-            string copyAndOpenWebsite = "Copy and open website";
-            string ok = "OK";
-
-            HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
-            {
-                Message = crashDescription.Replace("{n}", Environment.NewLine),
-                Caption = crashTitle,
-                Button = MessageBoxButton.OK,
-                ConfirmContent = ok,
-                IconBrushKey = ResourceToken.DangerBrush,
-                IconKey = ResourceToken.ErrorGeometry
-            });
-
-            MessageBoxResult result = HandyControl.Controls.MessageBox.Show(new MessageBoxInfo
-            {
-                Message = crashDescription2.Replace("{n}", Environment.NewLine).Replace("{0}", e.StackTrace),
-                Caption = crashTitle,
-                Button = MessageBoxButton.OKCancel,
-                ConfirmContent = copyAndOpenWebsite,
-                CancelContent = ok,
-                IconBrushKey = ResourceToken.DangerBrush,
-                IconKey = ResourceToken.ErrorGeometry
-            });
-            if (result == MessageBoxResult.OK)
-            {
-                Clipboard.SetText(e.StackTrace);
-                skEditor.OpenUrl("https://github.com/NotroDev/SkEditorPlus/issues");
-            }
-
-            foreach (TabItem tabItem in tabControl.Items)
-            {
-                if (tabItem.Content is not TextEditor textEditor)
-                {
-                    continue;
-                }
-
-                string tempPath = Path.GetTempPath();
-
-                string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
-                if (!Directory.Exists(skEditorFolder))
-                {
-                    Directory.CreateDirectory(skEditorFolder);
-                }
-
-                string fileName = tabItem.Header.ToString();
-                if (fileName.EndsWith("*"))
-                {
-                    fileName = fileName[..^1];
-                }
-
-                string tempFile = Path.Combine(skEditorFolder, fileName);
-
-                tabItem.ToolTip = tempFile;
-
-                if (!string.IsNullOrEmpty(tabItem.ToolTip.ToString()))
-                {
-                    textEditor.Save(tabItem.ToolTip.ToString());
-                    continue;
-                }
-            }
+            fileManager.CreateStructure();
         }
     }
 }

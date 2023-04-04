@@ -1,4 +1,5 @@
-﻿using SkEditorPlus.Functionalities;
+﻿using HandyControl.Controls;
+using SkEditorPlus.Functionalities;
 using SkEditorPlus.Managers;
 using System;
 using System.Diagnostics;
@@ -34,15 +35,33 @@ namespace SkEditorPlus.Functionalities
                 foreach (var addonType in addonTypes)
                 {
                     var addonInstance = (ISkEditorPlusAddon)Activator.CreateInstance(addonType);
+
                     addonInstance.OnEnable(skEditorAPI);
                     AddonManager.addons.Add(addonInstance);
                 }
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnAllAddonsLoaded();
+                });
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error has been occurred while enabling one of addons.\n\nError message:\n" + ex.Message, "SkEditor+", MessageBoxButton.OK, MessageBoxImage.Error);
-                Environment.Exit(0);
+                var addonInstance = ex.TargetSite.DeclaringType;
+                if (addonInstance != null && typeof(ISkEditorPlusAddon).IsAssignableFrom(addonInstance))
+                {
+                    var addon = (ISkEditorPlusAddon)Activator.CreateInstance(addonInstance);
+                    if (!addon.ApiVersion.Equals(skEditorAPI.GetApiVersion()))
+                    {
+                        Growl.Warning($"Addon \"{addon.Name}\" was not loaded, probably because it was created for a different API version.\n\nCreated for: {addon.ApiVersion}\nYour version: {skEditorAPI.GetApiVersion()}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error has been occurred while enabling one of addons.\n\nError message:\n" + ex.Message, "SkEditor+", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Environment.Exit(0);
+                }
             }
+
         }
     }
 }

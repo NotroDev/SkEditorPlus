@@ -15,7 +15,7 @@
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d"
-    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing" SizeChanged="OnSizeChanged" StateChanged="Window_StateChanged"
+    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing"
 >
     <hc:Window.Resources>
         <Style x:Key="Left90" TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}">
@@ -161,11 +161,10 @@
                 Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
 
                 <TabItem.Header>
-                    <Label Content="{DynamicResource MenuProject}"
-                       Foreground="White"
+                    <Label x:Name="projectTabItemLabel" Content="{DynamicResource MenuProject}"
+                       Foreground="{StaticResource PrimaryTextBrush}"
                        FontSize="11"
                        FontFamily="Open Sans Medium"
-                       MouseLeftButtonDown="OnProjectClick"
                        Background="Transparent"
                        BorderThickness="0"/>
                 </TabItem.Header>
@@ -200,6 +199,30 @@
                                 </ControlTemplate>
                             </TreeView.Template>
 
+                        </TreeView>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="StructureTabItem" Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
+                <TabItem.Header>
+                    <Label x:Name="structureTabItemLabel" Content="{DynamicResource MenuStructure}" Foreground="{StaticResource PrimaryTextBrush}" FontSize="11" FontFamily="Open Sans Medium" Background="Transparent" BorderThickness="0" />
+                </TabItem.Header>
+                <Grid Width="200" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Stretch" Background="#701c1c1c">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Click="OnStructureRefresh" Margin="5">
+                        <Image Source="{svgc:SvgImage Source=/Images/Refresh.svg, AppName=SkEditorPlus}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <TreeView x:Name="structureTreeView" Background="Transparent" hc:BorderElement.CornerRadius="15" BorderThickness="0" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
+                                    <Setter Property="hc:BorderElement.CornerRadius" Value="5" />
+                                </Style>
+                            </TreeView.ItemContainerStyle>
                         </TreeView>
                     </ScrollViewer>
                 </Grid>

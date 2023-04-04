@@ -9,6 +9,7 @@
 	<system:String x:Key="MenuEdit">Editar</system:String>
 	<system:String x:Key="MenuOther">Otro</system:String>
     <system:String x:Key="MenuProject">Proyecto</system:String>
+    <system:String x:Key="MenuStructure">Estructura</system:String>
 
 	<system:String x:Key="MenuFileNew">Nuevo</system:String>
 	<system:String x:Key="MenuFileOpen">Abrir</system:String>
@@ -165,6 +166,17 @@
     <system:String x:Key="ProjectCreateFile">Crear archivo</system:String>
     <system:String x:Key="ProjectOpenFile">Abrir archivo</system:String>
     <system:String x:Key="ProjectOpenExplorer">Mostrar en el explorador de archivos</system:String>
+
+    <system:String x:Key="StructureHeaderCommand">Comando</system:String>
+    <system:String x:Key="StructureHeaderEvent">Evento</system:String>
+    <system:String x:Key="StructureHeaderFunction">Función</system:String>
+    <system:String x:Key="StructureHeaderOptions">Opciones</system:String>
+    <system:String x:Key="StructureHeaderVars">Variables</system:String>
+    <system:String x:Key="StructureHeaderStop">Detener ejecución del código</system:String>
+    <system:String x:Key="StructureHeaderCancelEvent">Cancelar evento</system:String>
+    <system:String x:Key="StructureHeaderLoop">Bucle</system:String>
+    <system:String x:Key="StructureHeaderIf">Condición</system:String>
+    <system:String x:Key="StructureHeaderComment">Comentario</system:String>
 
     <!-- Errors -->
     <system:String x:Key="GUIGenNameError">¡El nombre de la GUI es obligatorio!</system:String>

@@ -8,11 +8,13 @@ using Microsoft.Web.WebView2.Core;
 using Microsoft.Win32;
 using Renci.SshNet;
 using Renci.SshNet.Async;
+using SkEditorPlus.Data;
 using SkEditorPlus.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,18 +22,14 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Xml;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using FontFamily = System.Windows.Media.FontFamily;
 using MessageBox = HandyControl.Controls.MessageBox;
 using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
 
 namespace SkEditorPlus.Managers
 {
-
-    public delegate void TabChangedEvent();
 
     public class FileManager
     {
@@ -52,8 +50,6 @@ namespace SkEditorPlus.Managers
         private readonly SkEditorAPI skEditor;
 
         public CompletionManager completionManager;
-
-        public event TabChangedEvent TabChanged;
 
         public static FileManager instance;
 
@@ -144,6 +140,15 @@ namespace SkEditorPlus.Managers
 
             if (openFileDialog.ShowDialog() == true)
             {
+                if (tabControl.Items[0] is TabItem tabItem &&
+                    regex.IsMatch(tabItem.Header?.ToString()) &&
+                    skEditor.IsFile(tabItem) &&
+                    tabItem.Content is TextEditor textEditor &&
+                    textEditor.Document.Text.Length == 0)
+                {
+                    tabControl.Items.Remove(tabItem);
+                }
+
                 foreach (var (fileName, index) in openFileDialog.FileNames.Select((v, i) => (v, i)))
                 {
                     try
@@ -160,7 +165,7 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        
+
 
         public static System.Windows.Controls.TextBlock CreateIcon(string iconString, string text)
         {
@@ -169,7 +174,7 @@ namespace SkEditorPlus.Managers
             {
                 Text = iconString,
                 FontFamily = new FontFamily("Segoe Fluent Icons"),
-                Margin = new Thickness(0, 2, 0, 0)
+                Margin = new Thickness(0, 2, 0, 0),
             };
             icon.SetValue(RenderOptions.BitmapScalingModeProperty, BitmapScalingMode.HighQuality);
             tempTextBlock.Inlines.Add(icon);
@@ -181,6 +186,12 @@ namespace SkEditorPlus.Managers
 
         public async void OpenFolder()
         {
+            if (!skEditor.IsAddonInstalled("Projects & Structure Unlocker"))
+            {
+                MessageBox.Show("You need to install the Projects & Structure Unlocker addon to use this feature.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             using var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
@@ -296,7 +307,6 @@ namespace SkEditorPlus.Managers
                         }
                     }
                     break;
-
             }
         }
 
@@ -324,12 +334,7 @@ namespace SkEditorPlus.Managers
                 //completionManager.LoadCompletionManager(GetTextEditor());
             }
 
-            OnTabChangedEvent();
-        }
-
-        protected virtual void OnTabChangedEvent()
-        {
-            TabChanged?.Invoke();
+            AddonManager.addons.ForEach(a => a.OnTabChanged());
         }
 
         public void CloseFile()
@@ -739,6 +744,141 @@ namespace SkEditorPlus.Managers
 
             tabControl.Items.Add(tabItem);
             ChangeGeometry();
+
+        }
+
+        public void OnStructureClick(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Controls.TabControl leftTabControl = skEditor.GetSideTabControl();
+            if (leftTabControl.SelectedIndex == 2)
+            {
+                skEditor.GetDispatcher().InvokeAsync(() => leftTabControl.SelectedIndex = -1);
+            }
+            else
+            {
+                leftTabControl.SelectedIndex = 2;
+            }
+        }
+
+        public void CreateStructure()
+        {
+            skEditor.GetMainWindow().structureTreeView.Items.Clear();
+
+            System.Windows.Controls.TreeViewItem item = new()
+            {
+                Header = CreateIcon("\ue8a5", Application.Current.FindResource("TypeScript") as string),
+                IsExpanded = true,
+            };
+
+            List<CodeNode> parentNodes = new() { new CodeNode(item) };
+
+            string[] lines = GetTextEditor().Text.Split('\n');
+
+
+            Dictionary<Regex, string> regexes = new()
+            {
+                { new Regex(@"^command \/.*:$"), "command" },
+                { new Regex(@"^on .*:$"), "event" },
+                { new Regex(@"^function .*:$"), "function" },
+                { new Regex(@"^loop .*:$"), "loop" },
+                { new Regex(@"^if .*:$"), "if" },
+                { new Regex(@"options:"), "options" },
+                { new Regex(@"variables:"), "vars" },
+                { new Regex(@"stop"), "stop" },
+                { new Regex(@"cancel event"), "cancel event" },
+            };
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                int lineNumber = i + 1;
+
+                int tabsBefore = line.TakeWhile(c => c == '\t' || c == ' ').Count();
+                if (line.Trim().Length == 0)
+                {
+                    continue;
+                }
+
+                CodeNode parentNode = parentNodes.LastOrDefault(n => n.tabsBefore < tabsBefore, parentNodes.First());
+
+                string header = line.Trim();
+
+                if (parentNode != null)
+                {
+                    System.Windows.Controls.TreeViewItem nodeItem = new()
+                    {
+                        Header = header
+                    };
+
+                    foreach (KeyValuePair<Regex, string> regex in regexes)
+                    {
+                        if (header.StartsWith('#'))
+                        {
+                            string translatedString = Application.Current.FindResource("StructureHeaderComment") as string;
+                            nodeItem.Header = translatedString;
+                            break;
+                        }
+                        if (regex.Key.IsMatch(header))
+                        {
+                            var translations = new Dictionary<string, string>
+                            {
+                                { "command", "StructureHeaderCommand" },
+                                { "event", "StructureHeaderEvent" },
+                                { "function", "StructureHeaderFunction" },
+                                { "options", "StructureHeaderOptions" },
+                                { "vars", "StructureHeaderVars" },
+                                { "stop", "StructureHeaderStop" },
+                                { "cancel event", "StructureHeaderCancelEvent" },
+                                { "loop", "StructureHeaderLoop" },
+                                { "if", "StructureHeaderIf" }
+                            };
+
+                            if (translations.TryGetValue(regex.Value, out string resourceKey))
+                            {
+                                string translatedString = Application.Current.FindResource(resourceKey) as string;
+                                string headerText = regex.Value switch
+                                {
+                                    "command" => $"/{new Regex(@"(?<=\/)[^\/\s:]+(?=[\s:])").Match(header).Value}",
+                                    "event" => $"\"{header.TrimEnd(':')}\"",
+                                    "function" => new Regex(@"(?<=function )[^\/\s:]+(?=[\s(])").Match(header).Value,
+                                    _ => ""
+                                };
+
+                                nodeItem.Header = $"{translatedString} {headerText}".Trim();
+                            }
+                        }
+                    }
+
+                    nodeItem.MouseDoubleClick += (s, e) =>
+                    {
+                        e.Handled = true;
+
+                        System.Windows.Controls.TreeViewItem tviSender = s as System.Windows.Controls.TreeViewItem;
+
+                        if (!tviSender.IsSelected) return;
+
+                        GetTextEditor().ScrollToLine(lineNumber);
+
+                        int lineOffset = GetTextEditor().Document.GetLineByNumber(lineNumber).Offset;
+
+                        int lineEndOffset = GetTextEditor().Document.GetLineByNumber(lineNumber).EndOffset;
+
+                        GetTextEditor().Select(lineOffset, lineEndOffset - lineOffset);
+
+                        GetTextEditor().TextArea.Caret.Offset = GetTextEditor().Document.GetLineByOffset(lineOffset).Offset;
+                    };
+
+                    CodeNode node = new(line, line.TrimStart(), nodeItem, parentNode, tabsBefore, i);
+
+                    parentNode.item.Items.Add(nodeItem);
+                    parentNodes.Add(node);
+                }
+            }
+
+            if (item.Items.Count > 0)
+            {
+                skEditor.GetMainWindow().structureTreeView.Items.Add(item);
+            }
         }
     }
 }

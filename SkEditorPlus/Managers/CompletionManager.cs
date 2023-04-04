@@ -1,12 +1,16 @@
 ﻿using AvalonEditB;
+using HandyControl.Controls;
 using SkEditorPlus.Data;
 using SkEditorPlus.Windows;
 using SkEditorPlus.Windows.Generators;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace SkEditorPlus.Managers
 {
@@ -59,16 +63,11 @@ namespace SkEditorPlus.Managers
                 {
                     try
                     {
-                        if (caretOffset - line.Offset + 1 > textEditor.Document.TextLength) return;
                         var caretText = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset + 1);
-
                         HidePopup();
                         ShowCompletionWindow(caretText);
                     }
-                    catch
-                    {
-                        
-                    }
+                    catch { }
                 }
             }
 
@@ -168,12 +167,14 @@ namespace SkEditorPlus.Managers
         private void HandleArrowKey(Key key, ListBox listBox)
         {
             int selectedIndex = listBox.SelectedIndex;
-            listBox.SelectedIndex = key switch
+            if (key == Key.Down && selectedIndex < listBox.Items.Count - 1)
             {
-                Key.Down when selectedIndex < listBox.Items.Count - 1 => selectedIndex + 1,
-                Key.Up when selectedIndex > 0 => selectedIndex - 1,
-                _ => selectedIndex
-            };
+                listBox.SelectedIndex++;
+            }
+            else if (key == Key.Up && selectedIndex > 0)
+            {
+                listBox.SelectedIndex--;
+            }
             listBox.ScrollIntoView(listBox.SelectedItem);
         }
 
@@ -206,7 +207,13 @@ namespace SkEditorPlus.Managers
 
         private string GetLastWord(string text)
         {
-            return text.Split(' ').LastOrDefault() ?? text;
+            if (text.Contains(' '))
+            {
+                var split = text.Split(' ');
+                return split[^1];
+            }
+
+            return text;
         }
 
         private bool IsInQuote(string text, string lastWord)
@@ -223,19 +230,6 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        private CompletionWindow CreateCompletionWindow(ListBoxItem[] completionList)
-        {
-            var completionWindow = new CompletionWindow
-            {
-                completionList =
-                {
-                    ItemsSource = completionList
-                }
-            };
-            completionWindow.completionList.SelectedIndex = 0;
-            return completionWindow;
-        }
-
         private void ShowCompletionWindow(string lastWord)
         {
             lastWord = lastWord.TrimStart();
@@ -247,23 +241,34 @@ namespace SkEditorPlus.Managers
                 return;
             }
 
-            var completionWindow = CreateCompletionWindow(completionList);
-
-            var caret = textEditor.TextArea.Caret.CalculateCaretRectangle();
-            var pointOnScreen = textEditor.TextArea.TextView.PointToScreen(caret.Location - textEditor.TextArea.TextView.ScrollOffset);
+            completionWindow = new CompletionWindow
+            {
+                completionList =
+                {
+                    ItemsSource = completionList
+                }
+            };
 
             popup = new Popup
             {
                 PlacementTarget = textEditor,
                 Placement = PlacementMode.Absolute,
-                HorizontalOffset = pointOnScreen.X + 5,
-                VerticalOffset = pointOnScreen.Y + 5,
+                HorizontalOffset = -5,
+                VerticalOffset = -5,
                 AllowsTransparency = true,
                 StaysOpen = false,
                 Child = completionWindow,
                 IsOpen = true
             };
 
+            var caret = textEditor.TextArea.Caret.CalculateCaretRectangle();
+            var pointOnScreen = textEditor.TextArea.TextView.PointToScreen(caret.Location - textEditor.TextArea.TextView.ScrollOffset);
+
+            popup.HorizontalOffset = pointOnScreen.X + 10;
+            popup.VerticalOffset = pointOnScreen.Y + 10;
+
+            completionWindow.completionList.SelectedIndex = 0;
         }
+
     }
 }

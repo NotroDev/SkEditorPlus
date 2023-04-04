@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using TabItem = HandyControl.Controls.TabItem;
 
 namespace SkEditorPlus.Managers
@@ -30,6 +31,19 @@ namespace SkEditorPlus.Managers
             this.skEditor = skEditor;
             instance = this;
             fm = FileManager.instance;
+        }
+
+        public void OnProjectClick(object sender, MouseButtonEventArgs e)
+        {
+            TabControl leftTabControl = skEditor.GetSideTabControl();
+            if (leftTabControl.SelectedIndex == 1)
+            {
+                skEditor.GetDispatcher().InvokeAsync(() => leftTabControl.SelectedIndex = -1);
+            }
+            else
+            {
+                leftTabControl.SelectedIndex = 1;
+            }
         }
 
         private static MenuItem CreateMenuItem(string header, string iconText)

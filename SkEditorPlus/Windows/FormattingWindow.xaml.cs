@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Text;
+using SkEditorPlus.Data;
+using System.Windows.Input;
 
 namespace SkEditorPlus.Windows
 {
@@ -79,24 +84,42 @@ namespace SkEditorPlus.Windows
 
         private void SpacesToTabs()
         {
-            var lines = textEditor.Text.Split("\n");
-            var firstIndentedLine = lines.FirstOrDefault(line => line.StartsWith(" "));
-            if (firstIndentedLine == null) return;
+            // In future there will be a setting for spaces per tab
+            ConvertSpacesToTabs(4);
+        }
 
-            int howMuchSpacesInTab = firstIndentedLine.TakeWhile(c => c == ' ').Count();
-
-            var linesToReplace = lines.Where(line => line.StartsWith(" "))
-                .Select(line => new { Offset = GetOffsetByLine(line), Spaces = line.TakeWhile(c => c == ' ').Count() })
-                .Where(x => x.Spaces > 0);
-
-            foreach (var lineToReplace in linesToReplace)
+        private void ConvertSpacesToTabs(int spacePerTab)
+        {
+            try
             {
-                int tabs = lineToReplace.Spaces / howMuchSpacesInTab;
-                int remainder = lineToReplace.Spaces % howMuchSpacesInTab;
+                var lines = textEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
-                textEditor.Document.Remove(lineToReplace.Offset, lineToReplace.Spaces);
-                textEditor.Document.Insert(lineToReplace.Offset, new string('\t', tabs) + new string(' ', remainder));
+                var newLines = new List<string>();
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string lineToReplace = lines[i];
+
+                    int spaces = lineToReplace.TakeWhile(c => c == ' ').Count();
+
+                    if (spaces == 0)
+                    {
+                        newLines.Add(lineToReplace);
+                        continue;
+                    }
+
+                    int tabs = spaces / spacePerTab;
+                    int spacesToReplace = tabs * spacePerTab;
+
+                    string newLine = lineToReplace.Replace(new string(' ', spacesToReplace), new string('\t', tabs));
+
+                    newLines.Add(newLine);
+                }
+
+                string newCode = string.Join(Environment.NewLine, newLines);
+                textEditor.Document.Text = newCode;
             }
+            catch { }
         }
 
         private int GetOffsetByLine(string line)

@@ -3,6 +3,7 @@ using SkEditorPlus.Managers;
 using SkEditorPlus.Windows;
 using System;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace SkEditorPlus
 {
@@ -34,5 +35,13 @@ namespace SkEditorPlus
         void OpenUrl(string url);
 
         TabControl GetSideTabControl();
+
+        string GetVersion();
+
+        int GetApiVersion();
+
+        Dispatcher GetDispatcher();
+
+        bool IsAddonInstalled(string name);
     }
 }

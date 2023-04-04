@@ -14,8 +14,8 @@
 
         <Button Content="{DynamicResource GenerateButton}" HorizontalAlignment="Right" Click="Generate" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
         <TextBlock x:Name="howToOpenText" HorizontalAlignment="Left" Margin="10,249.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="32"/>
-        <CheckBox x:Name="exampleItemCheckbox" Content="{DynamicResource GUIGenExampleItem}" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="backgroundCheckbox" Content="{DynamicResource GUIGenBackground}" Background="#FF1C1C1C" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="exampleItemCheckbox" Content="{DynamicResource GUIGenExampleItem}" Background="{StaticResource RegionBrush}" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="backgroundCheckbox" Content="{DynamicResource GUIGenBackground}" Background="{StaticResource RegionBrush}" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </hc:Window>

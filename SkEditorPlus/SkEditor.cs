@@ -8,8 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using TabControl = System.Windows.Controls.TabControl;
 using TabItem = HandyControl.Controls.TabItem;
 
@@ -139,5 +141,20 @@ namespace SkEditorPlus
         {
             return GetMainWindow().leftTabControl;
         }
+
+        public string GetVersion()
+        {
+            return MainWindow.Version;
+        }
+
+        public Dispatcher GetDispatcher()
+        {
+            return GetMainWindow().Dispatcher;
+        }
+
+
+        public bool IsAddonInstalled(string name) => AddonManager.addons.Any(addon => addon.Name.Equals(name));
+
+        public int GetApiVersion() => 0;
     }
 }

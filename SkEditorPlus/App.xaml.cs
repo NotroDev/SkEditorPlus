@@ -20,8 +20,7 @@ namespace SkEditorPlus
 
         public void SingleInstanceCheck()
         {
-            bool isOnlyInstance = false;
-            Mutex = new Mutex(true, @"SkEditor+", out isOnlyInstance);
+            Mutex = new Mutex(true, @"SkEditor+", out bool isOnlyInstance);
             if (!isOnlyInstance)
             {
                 string filesToOpen = " ";

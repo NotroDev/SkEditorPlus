@@ -9,6 +9,7 @@
     <system:String x:Key="MenuEdit">Düzenle</system:String>
     <system:String x:Key="MenuOther">Diğer</system:String>
     <system:String x:Key="MenuProject">Proje</system:String>
+    <system:String x:Key="MenuStructure">Yapı</system:String>
 
     <system:String x:Key="MenuFileNew">Yeni</system:String>
     <system:String x:Key="MenuFileOpen">Aç</system:String>
@@ -160,6 +161,17 @@
     <system:String x:Key="ProjectCreateFile">Dosya oluştur</system:String>
     <system:String x:Key="ProjectOpenFile">Dosya aç</system:String>
     <system:String x:Key="ProjectOpenExplorer">Dosya gezgininde göster</system:String>
+
+    <system:String x:Key="StructureHeaderCommand">Komut</system:String>
+    <system:String x:Key="StructureHeaderEvent">Olay</system:String>
+    <system:String x:Key="StructureHeaderFunction">Fonksiyon</system:String>
+    <system:String x:Key="StructureHeaderOptions">Seçenekler</system:String>
+    <system:String x:Key="StructureHeaderVars">Değişkenler</system:String>
+    <system:String x:Key="StructureHeaderStop">Kod yürütmesini durdur</system:String>
+    <system:String x:Key="StructureHeaderCancelEvent">Olayı iptal et</system:String>
+    <system:String x:Key="StructureHeaderLoop">Döngü</system:String>
+    <system:String x:Key="StructureHeaderIf">Koşul</system:String>
+    <system:String x:Key="StructureHeaderComment">Yorum</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">GUI adı zorunlu!</system:String>

@@ -11,13 +11,13 @@
            Width="800"
            Height="450"
            d:DataContext="{d:DesignInstance Type=data:SettingsBindings}"
-           Background="#1c1c1c"
+           Background="{StaticResource RegionBrush}"
            KeyUp="OnKey"
            ResizeMode="NoResize"
            WindowStartupLocation="CenterScreen"
            mc:Ignorable="d">
     <Grid>
-        <TabControl x:Name="tabControl"
+        <TabControl x:Name="tabControl" BorderThickness="1,0,0,0"
                     Background="Transparent"
                     SelectedIndex="0"
                     TabStripPlacement="Left">
@@ -51,7 +51,7 @@
                             <hc:ComboBox x:Name="languageComboBox"
                                          Width="124"
                                          HorizontalAlignment="Left"
-                                         Background="#FF1C1C1C"
+                                         Background="{StaticResource RegionBrush}"
                                          SelectionChanged="OnLanguageChange">
                                 <ComboBoxItem Content="English"
                                               Tag="English" />
@@ -69,7 +69,7 @@
                                        Text="{DynamicResource OptionsAutoSave}" />
                             <CheckBox x:Name="autosaveCheckbox"
                                       Height="30"
-                                      Background="#FF1C1C1C"
+                                      Background="{StaticResource RegionBrush}"
                                       Click="CheckboxClicked"
                                       IsChecked="{Binding IsAutoSaveEnabled}" />
                         </DockPanel>
@@ -83,7 +83,7 @@
                                Text="{DynamicResource OptionsCheckForUpdates}" />
                                             <CheckBox x:Name="checkForUpdatesCheckbox"
                               Height="30"
-                              Background="#FF1C1C1C"
+                              Background="{StaticResource RegionBrush}"
                               Click="CheckboxClicked"
                               IsChecked="{Binding IsCheckForUpdatesEnabled}" />
                         </DockPanel>
@@ -97,7 +97,7 @@
                                        Text="{DynamicResource OptionsWrapping}" />
                             <CheckBox x:Name="wrappingCheckbox"
                                       Height="30"
-                                      Background="#FF1C1C1C"
+                                      Background="{StaticResource RegionBrush}"
                                       Click="CheckboxClicked"
                                       IsChecked="{Binding IsWrappingEnabled}" />
                         </DockPanel>
@@ -111,7 +111,7 @@
                                        Text="{DynamicResource OptionsAutoSecondChar}" />
                             <CheckBox x:Name="autoSecondCharacterCheckbox"
                                       Height="30"
-                                      Background="#FF1C1C1C"
+                                      Background="{StaticResource RegionBrush}"
                                       Click="CheckboxClicked"
                                       IsChecked="{Binding IsAutoSecondCharacterEnabled}" />
                         </DockPanel>
@@ -130,7 +130,7 @@
                                       Text="{DynamicResource OptionsBeta}">
                                 <CheckBox x:Name="autoNewLineAndTabCheckbox"
                                           Height="30"
-                                          Background="#FF1C1C1C"
+                                          Background="{StaticResource RegionBrush}"
                                           Click="CheckboxClicked"
                                           IsChecked="{Binding IsAutoNewLineAndTabEnabled}" />
                             </hc:Badge>
@@ -220,7 +220,7 @@
                                       Text="{DynamicResource OptionsWindows11Required}">
                                 <CheckBox x:Name="micaCheckbox"
                                           Height="30"
-                                          Background="#FF1C1C1C"
+                                          Background="{StaticResource RegionBrush}"
                                           Click="CheckboxClicked"
                                           IsChecked="{Binding IsMicaEnabled}" />
                             </hc:Badge>
@@ -265,7 +265,7 @@
                                        Text="{DynamicResource OptionsDiscordRPC}" />
                             <CheckBox x:Name="discordRPCCheckbox"
                                       Height="30"
-                                      Background="#FF1C1C1C"
+                                      Background="{StaticResource RegionBrush}"
                                       Click="CheckboxClicked"
                                       IsChecked="{Binding IsDiscordRPCEnabled}" />
                         </DockPanel>
