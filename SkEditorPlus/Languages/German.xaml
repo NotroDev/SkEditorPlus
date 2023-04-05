@@ -1,0 +1,215 @@
+<!-- Translated by Malcolm (DC: Malcolm#0256 | https://github.com/m1lc0lm)  -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LangName">Deutsch</system:String>
+
+    <!-- Menu -->
+    
+    <system:String x:Key="MenuFile">Datei</system:String>
+    <system:String x:Key="MenuEdit">Bearbeiten</system:String>
+    <system:String x:Key="MenuOther">Sonstige</system:String>
+    <system:String x:Key="MenuProject">Projekt</system:String>
+    <system:String x:Key="MenuStructure">Struktur</system:String>
+
+    <system:String x:Key="MenuFileNew">Neu</system:String>
+    <system:String x:Key="MenuFileOpen">Öffnen</system:String>
+    <system:String x:Key="MenuFileOpenFolder">Ordner öffnen</system:String>
+    <system:String x:Key="MenuFileSave">Speichern</system:String>
+    <system:String x:Key="MenuFileSaveAs">Speichern unter...</system:String>
+    <system:String x:Key="MenuFilePublish">Veröffentlichen...</system:String>
+    <system:String x:Key="MenuFileExport">Exportieren</system:String>
+    <system:String x:Key="MenuFileExportConfiguration">Export Konfiguration</system:String>
+    <system:String x:Key="MenuFileClose">Schließen</system:String>
+    
+    <system:String x:Key="MenuEditGenerate">Generieren...</system:String>
+    <system:String x:Key="MenuEditFormat">Schnell bearbeiten...</system:String>
+    <system:String x:Key="MenuEditBackpack">Rucksack</system:String>
+
+    <system:String x:Key="MenuOtherSettings">Einstellungen</system:String>
+    <system:String x:Key="MenuOtherChangeSyntax">Syntax-Hervorhebung deaktivieren</system:String>
+    <system:String x:Key="MenuOtherParser">Parser</system:String>
+    <system:String x:Key="MenuOtherDocs">Dokumente</system:String>
+    <system:String x:Key="MenuOtherCheckForUpdate">Nach Updates suchen</system:String>
+
+    <!-- Optionsmenü -->
+    <system:String x:Key="OptionsMenuGeneral">Allgemein</system:String>
+    <system:String x:Key="OptionsMenuPersonalization">Personalisierung</system:String>
+    <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
+    <system:String x:Key="OptionsMenuFTP">FTP</system:String>
+    <system:String x:Key="OptionsMenuAddons">Addons</system:String>
+
+    <!-- Anderes -->
+
+    <system:String x:Key="NewFileName">Neue Datei {0}</system:String>
+    <system:String x:Key="TypeAllFiles">Alle Dateien</system:String>
+    <system:String x:Key="TypeScript">Skript</system:String>
+    <system:String x:Key="Error">Fehler</system:String>
+
+    <!-- Fensternamen -->
+
+    <system:String x:Key="PublishWindowTitle">Code veröffentlichen</system:String>
+    <system:String x:Key="GenerateWindowTitle">Generieren</system:String>
+    <system:String x:Key="GenerateCommandWindowTitle">Befehl generieren</system:String>
+    <system:String x:Key="GenerateGUIWindowTitle">GUI generieren</system:String>
+    <system:String x:Key="FormatWindowTitle">Schnell bearbeiten</system:String>
+    <system:String x:Key="BackpackWindowTitle">Rucksack</system:String>
+    <system:String x:Key="SettingsWindowTitle">Einstellungen</system:String>
+    <system:String x:Key="FontSelectorTitle">Schriftart auswählen</system:String>
+
+    <!-- Beschriftungen -->
+
+    <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Fügen Sie hier Ihren API-Schlüssel ein</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">Sie finden Ihren Schlüssel {0} nach dem Einloggen</system:String>
+    <system:String x:Key="AnonymousCheckbox">Anonym</system:String>
+    <system:String x:Key="PublishButton">Veröffentlichen</system:String>
+    <system:String x:Key="GenerateButton">Generieren</system:String>
+    <system:String x:Key="ApplyButton">Anwenden</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Hier wird der Link zu Ihrem Code sein :)</system:String>
+
+    <system:String x:Key="WhatDoYouWantToGenerate">Was möchten Sie generieren?</system:String>
+    <system:String x:Key="CommandButton">Befehl</system:String>
+    <system:String x:Key="GUIButton">GUI</system:String>
+
+    <system:String x:Key="CmdGenName">Name</system:String>
+    <system:String x:Key="CmdGenPermission">Berechtigung</system:String>
+    <system:String x:Key="CmdGenPermissionMsg">Keine Berechtigungsnachricht</system:String>
+    <system:String x:Key="CmdGenAliases">Aliasse</system:String>
+    <system:String x:Key="CmdGenUsageMsg">Ungültige Nutzungsmitteilung</system:String>
+    <system:String x:Key="CmdGenExecutors">Wer den Befehl verwenden kann</system:String>
+    <system:String x:Key="CmdGenCooldown">Cooldown</system:String>
+    <system:String x:Key="CmdGenQuantity">Menge</system:String>
+    <system:String x:Key="CmdGenUnit">Einheit</system:String>
+
+    <system:String x:Key="Player">Spieler</system:String>
+    <system:String x:Key="Console">Konsole</system:String>
+
+    <system:String x:Key="GUIGenFunctionName">Name der Funktion</system:String>
+    <system:String x:Key="GUIGenTitle">Titel</system:String>
+    <system:String x:Key="GUIGenRows">Anzahl der Zeilen</system:String>
+    <system:String x:Key="GUIGenExampleItem">Beispielartikel hinzufügen</system:String>
+    <system:String x:Key="GUIGenBackground">Hintergrund hinzufügen</system:String>
+    <system:String x:Key="GUIGenHint">Um Ihre GUI anzuzeigen, verwenden Sie {0}</system:String>
+    <system:String x:Key="GUIGenExampleItemName">Beispielartikel</system:String>
+    <system:String x:Key="GUIGenExampleItemLore">Beispiel-Lore</system:String>
+    <system:String x:Key="GUIGenExampleItemClicked">Sie haben auf den Beispielartikel geklickt!</system:String>
+
+    <system:String x:Key="QuickEditsVariablesCheckbox">Ändern Sie Punkte in Variablen zu Doppelpunkten</system:String>
+    <system:String x:Key="QuickEditsSpacesCheckbox">Ändern Sie Leerzeichen in Tabs</system:String>
+    <system:String x:Key="QuickEditsCommentsCheckbox">Kommentare entfernen</system:String>
+    <system:String x:Key="QuickEditsElseIfCheckbox">"else if" verkürzen</system:String>
+
+    <system:String x:Key="BackpackAddButton">Hinzufügen</system:String>
+    <system:String x:Key="BackpackRemoveButton">Entfernen</system:String>
+    <system:String x:Key="BackpackPasteButton">Einfügen</system:String>
+
+    <system:String x:Key="DocumentationTitle">Dokumentation</system:String>
+
+    <system:String x:Key="NewVersion">Neue Version!</system:String>
+    <system:String x:Key="NoNewVersion">SkEditor+ auf dem neuesten Stand!</system:String>
+    <system:String x:Key="UpdateAvailable">Neue Version verfügbar! {n}{n}Aktuell: v{0}{n}Neueste: v{1}{n}{n}Nach dem Herunterladen wird die App geschlossen. Stellen Sie sicher, dass Sie alle Dateien vorher speichern.</system:String>
+    <system:String x:Key="UpdateNotAvailable">Es scheint, dass Sie die neueste Version haben :){n}{n}Version: v{0}</system:String>
+    <system:String x:Key="Download">Herunterladen</system:String>
+    <system:String x:Key="Ignore">Ignorieren</system:String>
+
+    <system:String x:Key="OptionsAutoSave">Automatisches Speichern:</system:String>
+    <system:String x:Key="OptionsCheckForUpdates">Nach Updates suchen:</system:String>
+    <system:String x:Key="OptionsWrapping">Zeilenumbruch:</system:String>
+    <system:String x:Key="OptionsAutoSecondChar">Automatisches Einfügen des zweiten Zeichens:</system:String>
+    <system:String x:Key="OptionsAutoNewLine">Automatisches Einfügen von Zeilenumbrüchen:</system:String>
+    <system:String x:Key="OptionsDocsLink">Link zur Dokumentation:</system:String>
+    <system:String x:Key="OptionsFont">Schriftart:</system:String>
+    <system:String x:Key="OptionsSelectFont">Schriftart auswählen</system:String>
+    <system:String x:Key="OptionsMica">Mica-Effekt:</system:String>
+    <system:String x:Key="OptionsTransparency">Editor-Transparenz:</system:String>
+    <system:String x:Key="OptionsDiscordRPC">Discord RPC:</system:String>
+    <system:String x:Key="OptionsWindows11Required">Windows 11 und App-Neustart erforderlich</system:String>
+    <system:String x:Key="OptionsBeta">Beta</system:String>
+    <system:String x:Key="OptionsLanguage">Sprache:</system:String>
+    <system:String x:Key="Version">Version:</system:String>
+    <system:String x:Key="SyntaxHighlighting">Syntax-Hervorhebung:</system:String>
+    <system:String x:Key="Update">Aktualisierung</system:String>
+    <system:String x:Key="UpdateConfirmation">Wenn Sie fortfahren, werden die Syntaxhervorhebungsdateien heruntergeladen und ersetzt. Wenn Sie Änderungen daran vorgenommen haben und diese nicht verlieren möchten, erstellen Sie eine Kopie.</system:String>
+    <system:String x:Key="UpdateSuccess">Syntaxhervorhebungsdateien erfolgreich aktualisiert!</system:String>
+    <system:String x:Key="UpdateFailed">Fehler beim Herunterladen der Syntaxhervorhebungsdateien!{n}Sind Sie mit dem Internet verbunden?{n}{n}{0}</system:String>
+
+    <!-- Hey, don't bother translating this. App ignores this 3 keys in other languages. You can remove it. -->
+    <system:String x:Key="NoFilesTitle">Keine Dateien</system:String>
+    <system:String x:Key="NoFilesDescription">Fehlende Syntaxhervorhebungsdateien erkannt! Klicken Sie zum Herunterladen.</system:String>
+    <system:String x:Key="NoFilesDownloaded">Erfolgreich heruntergeladen!</system:String>
+    <!-- -->
+
+    <system:String x:Key="OptionsAddonName">Name:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Autor:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Version:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Beschreibung:</system:String>
+
+    <system:String x:Key="OptionsAddonsList">Addons-Liste:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Addons-Ordner öffnen:</system:String>
+    <system:String x:Key="OptionsOpen">Öffnen</system:String>
+
+
+    <!-- Dinge, die ich zuvor vergessen habe. Sie sind also hier :P -->
+
+    <system:String x:Key="NoResults">Nicht gefunden</system:String>
+    <system:String x:Key="OneMatchFound">Ein Treffer gefunden</system:String>
+    <system:String x:Key="EmptySearchText">Der gesuchte Text ist leer!</system:String>
+
+    <system:String x:Key="CloseConfirmation">Die Datei wurde nicht gespeichert. Möchten Sie sie wirklich schließen?</system:String>
+    <system:String x:Key="Attention">Achtung!</system:String>
+    <system:String x:Key="Yeah">Ja</system:String>
+    <system:String x:Key="Cancel">Abbrechen</system:String>
+    <system:String x:Key="Continue">Fortfahren</system:String>
+
+    <system:String x:Key="SyntaxError">Fehler beim Laden der Syntaxhervorhebungsdatei.{n}{0}</system:String>
+
+    <system:String x:Key="DiscordRPCFile">Datei: {0}</system:String>
+    <system:String x:Key="DiscordRPCNone">keine</system:String>
+    <system:String x:Key="DiscordRPCDownload">SkEditor+ herunterladen</system:String>
+
+
+    <system:String x:Key="UnsavedFiles">Nicht gespeicherte Dateien</system:String>
+    <system:String x:Key="UnsavedFilesMessage">Sie haben nicht gespeicherte Dateien. Möchten Sie das Programm wirklich schließen?</system:String>
+
+    <system:String x:Key="ProjectCreateFile">Datei erstellen</system:String>
+    <system:String x:Key="ProjectOpenFile">Datei öffnen</system:String>
+    <system:String x:Key="ProjectOpenExplorer">Im Datei-Explorer anzeigen</system:String>
+
+    <system:String x:Key="StructureHeaderCommand">Befehl</system:String>
+    <system:String x:Key="StructureHeaderEvent">Ereignis</system:String>
+    <system:String x:Key="StructureHeaderFunction">Funktion</system:String>
+    <system:String x:Key="StructureHeaderOptions">Optionen</system:String>
+    <system:String x:Key="StructureHeaderVars">Variablen</system:String>
+    <system:String x:Key="StructureHeaderStop">Code-Ausführung stoppen</system:String>
+    <system:String x:Key="StructureHeaderCancelEvent">Ereignis abbrechen</system:String>
+    <system:String x:Key="StructureHeaderLoop">Schleife</system:String>
+    <system:String x:Key="StructureHeaderIf">Bedingung</system:String>
+    <system:String x:Key="StructureHeaderComment">Kommentar</system:String>
+
+    <!-- * Errors * -->
+    <system:String x:Key="GUIGenNameError">Name der GUI ist erforderlich!</system:String>
+    <system:String x:Key="GUIGenTitleError">Titel der GUI ist erforderlich!</system:String>
+    <system:String x:Key="GUIGenRowsError">Anzahl der Zeilen muss zwischen 1 und 6 liegen!</system:String>
+    <system:String x:Key="GUIGenRowsError2">Anzahl der Zeilen muss eine Zahl sein!</system:String>
+
+    <system:String x:Key="CmdGenNameError">Name des Befehls ist erforderlich!</system:String>
+    <system:String x:Key="CmdGenCooldownError">Abklingzeit muss eine Zahl sein!</system:String>
+    <system:String x:Key="CmdGenCooldownUnitError">Abklingzeit-Einheit auswählen!</system:String>
+
+    <system:String x:Key="BackpackSelectionError">Um einen Code zu Ihrem Rucksack hinzuzufügen, wählen Sie ihn zuerst aus.</system:String>
+
+    <system:String x:Key="EmptyCodeError">Ihr Code ist leer!</system:String>
+    <system:String x:Key="EmptyAPIKeyError">API-Schlüssel nicht eingegeben.</system:String>
+    <system:String x:Key="PublishingError">Etwas hat nicht funktioniert.{n}Sind Sie mit dem Internet verbunden? Haben Sie den richtigen API-Schlüssel eingefügt?{n}{n}{0}</system:String>
+
+    <!-- Units -->
+    <system:String x:Key="Ticks">Ticks</system:String>
+    <system:String x:Key="Seconds">Sekunden</system:String>
+    <system:String x:Key="Minutes">Minuten</system:String>
+    <system:String x:Key="Hours">Stunden</system:String>
+    <system:String x:Key="Days">Tage</system:String>
+    <system:String x:Key="Weeks">Wochen</system:String>
+    <system:String x:Key="Months">Monate</system:String>
+    <system:String x:Key="Years">Jahre</system:String>
+
+</ResourceDictionary>
