@@ -1,0 +1,3 @@
+files:
+  - source: SkEditorPlus/Languages/English.xaml
+    translation: SkEditorPlus/Languages/%original_file_name%
