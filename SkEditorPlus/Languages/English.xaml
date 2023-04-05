@@ -154,7 +154,7 @@
 
     <system:String x:Key="NoResults">Not found</system:String>
     <system:String x:Key="OneMatchFound">One match found</system:String>
-    <system:String x:Key="EmptySearchText">Wyszukiwany tekst jest pusty!</system:String>
+    <system:String x:Key="EmptySearchText">The search text is empty!</system:String>
 
     <system:String x:Key="CloseConfirmation">The file has not been saved. Are you sure you want to close it?</system:String>
     <system:String x:Key="Attention">Attention!</system:String>
