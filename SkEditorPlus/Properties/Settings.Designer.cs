@@ -189,5 +189,39 @@ namespace SkEditorPlus.Properties {
                 this["CheckForUpdates"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        public string SyntaxHighlighting {
+            get {
+                return ((string)(this["SyntaxHighlighting"]));
+            }
+            set {
+                this["SyntaxHighlighting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection InstalledSyntaxes {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["InstalledSyntaxes"]));
+            }
+            set {
+                this["InstalledSyntaxes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection AddonsToRemove {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["AddonsToRemove"]));
+            }
+            set {
+                this["AddonsToRemove"] = value;
+            }
+        }
     }
 }

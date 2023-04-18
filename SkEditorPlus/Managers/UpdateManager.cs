@@ -89,19 +89,19 @@ namespace SkEditorPlus.Managers
         {
             var appPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\SkEditor Plus";
             using var client = new HttpClient();
-            var skriptUri = new Uri("https://notro.tech/resources/SkriptHighlighting.xshd");
+            var skriptUri = new Uri("https://marketplace.notro.tech/Default.xshd");
             var yamlUri = new Uri("https://notro.tech/resources/YAMLHighlighting.xshd");
             try
             {
-                File.Delete($"{appPath}\\SkriptHighlighting.xshd");
+                File.Delete($"{appPath}\\Syntax Highlighting\\Default.xshd");
                 File.Delete($"{appPath}\\YAMLHighlighting.xshd");
-                await DownloadFileTaskAsync(client, skriptUri, $"{appPath}\\SkriptHighlighting.xshd");
+                await DownloadFileTaskAsync(client, skriptUri, $"{appPath}\\Syntax Highlighting\\Default.xshd");
                 await DownloadFileTaskAsync(client, yamlUri, $"{appPath}\\YAMLHighlighting.xshd");
                 skEditor.GetMainWindow().GetFileManager().OnTabChanged();
             }
             catch
             {
-                // do nothing
+                // do nothing ;p
             }
         }
 

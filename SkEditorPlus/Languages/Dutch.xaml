@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Rugzak</system:String>
     <system:String x:Key="SettingsWindowTitle">Instellingen</system:String>
     <system:String x:Key="FontSelectorTitle">Selecteer lettertype</system:String>
+    <system:String x:Key="MarketplaceTitle">Marktplaats</system:String>
 
     <!-- Labels -->
     
@@ -202,6 +203,21 @@
     <system:String x:Key="EmptyCodeError">Je code is leeg!</system:String>
     <system:String x:Key="EmptyAPIKeyError">API sleutel niet ingevuld!</system:String>
     <system:String x:Key="PublishingError">Er ging iets fout.{n}Ben je wel verbonden met het internet? Heb je wel een geldige API sleutel ingevuld?{n}{n}{0}</system:String>
+
+
+    <system:String x:Key="MarketplaceBrowseTab">Bladeren</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Geïnstalleerd</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Updates</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">Alles</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Add-ons</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Syntaxiskleuringen</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Installeren</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Deïnstalleren</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Updaten</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Zoeken...</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">ticks</system:String>

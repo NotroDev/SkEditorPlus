@@ -9,6 +9,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Data\MarketExplorer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\ExportOptionsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -26,6 +29,9 @@
     <Content Update="Languages\English.xaml">
       <SubType>Designer</SubType>
     </Content>
+    <Page Update="Data\MarketExplorer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\CompletionListStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -42,6 +48,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TabControlStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ListBoxStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\BackpackWindow.xaml">
@@ -63,6 +72,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\FormattingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\MarketplaceWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\NewOptionsWindow.xaml">

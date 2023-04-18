@@ -45,6 +45,7 @@ namespace SkEditorPlus.Functionalities
         static readonly RoutedCommand[] otherApplicationCommands = new RoutedCommand[]
         {
             CreateCommand("Settings", Key.O, ModifierKeys.Control | ModifierKeys.Shift),
+            CreateCommand("Marketplace", Key.M, ModifierKeys.Control | ModifierKeys.Shift),
         };
 
 
@@ -177,6 +178,13 @@ namespace SkEditorPlus.Functionalities
                     break;
                 case "Menu_CheckUpdate":
                     UpdateManager.CheckUpdate();
+                    break;
+                case "Menu_Marketplace":
+                case "Marketplace":
+
+                    MarketplaceWindow marketPlaceWindow = new(skEditor);
+
+                    marketPlaceWindow.Show();
                     break;
             }
 

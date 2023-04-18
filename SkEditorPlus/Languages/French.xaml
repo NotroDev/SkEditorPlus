@@ -55,6 +55,7 @@
 	<system:String x:Key="BackpackWindowTitle">Sac à dos</system:String>
 	<system:String x:Key="SettingsWindowTitle">Paramètres</system:String>
 	<system:String x:Key="FontSelectorTitle">Sélectionner la police</system:String>
+    <system:String x:Key="MarketplaceTitle">Place de marché</system:String>
 
 	<!-- Étiquettes -->
 
@@ -195,6 +196,20 @@
 	<system:String x:Key="EmptyAPIKeyError">La clé API n'a pas été saisie.</system:String>
 	<system:String x:Key="PublishingError">Quelque chose n'a pas fonctionné.{n}Êtes-vous connecté à Internet ? Avez-vous collé la clé API correcte ?{n}{n}{0}</system:String>
 
+
+    <system:String x:Key="MarketplaceBrowseTab">Parcourir</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Installés</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Mises à jour</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">Tout</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Add-ons</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Mises en évidence de la syntaxe</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Installer</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Désinstaller</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Mettre à jour</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Rechercher...</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">tics</system:String>

@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Çanta</system:String>
     <system:String x:Key="SettingsWindowTitle">Ayarlar</system:String>
     <system:String x:Key="FontSelectorTitle">Yazı Tipi Seç</system:String>
+    <system:String x:Key="MarketplaceTitle">Mağaza</system:String>
 
     <!-- Labels -->
     
@@ -188,6 +189,21 @@
     <system:String x:Key="EmptyCodeError">Kodun yok!</system:String>
     <system:String x:Key="EmptyAPIKeyError">API anahtarı koyulmadı.</system:String>
     <system:String x:Key="PublishingError">Bir şey çalışmadı.{n}İnternete bağlı mısın? Doğru API anahtarını yapıştırdın mı?{n}{n}{0}</system:String>
+
+
+    <system:String x:Key="MarketplaceBrowseTab">Göz at</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Yüklü</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Güncellemeler</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">Tümü</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Eklentiler</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Sözdizimi vurguları</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Yükle</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Kaldır</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Güncelle</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Ara...</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">tik</system:String>

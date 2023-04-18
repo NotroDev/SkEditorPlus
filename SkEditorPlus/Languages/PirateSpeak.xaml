@@ -54,6 +54,7 @@
     <system:String x:Key="BackpackWindowTitle">Backpack o' treasures</system:String>
     <system:String x:Key="SettingsWindowTitle">Settin's, arrr!</system:String>
     <system:String x:Key="FontSelectorTitle">Pick yer font, ye swashbuckler!</system:String>
+    <system:String x:Key="MarketplaceTitle">Marketyplace</system:String>
     <!-- Labels -->
 
     <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Paste yer API key here, ye scallywag</system:String>
@@ -177,6 +178,23 @@
     <system:String x:Key="EmptyCodeError">Yer code be empty, ye hornswoggler!</system:String>
     <system:String x:Key="EmptyAPIKeyError">Ye needs to enter yer API key, ye scurvy seadog!</system:String>
     <system:String x:Key="PublishingError">Shiver me timbers! Somethin' be not right. Are ye connected to the internet? Did ye enter the correct API key?{n}{n}{0}</system:String>
+
+
+    <system:String x:Key="MarketplaceBrowseTab">Browse</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Installed</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Updates</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">All</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Addons</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Syntax highlightings</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Install</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Uninstall</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Update</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Searchin'...</system:String>
+
+
     <!-- Units -->
 
     <system:String x:Key="Ticks">heartbeats</system:String>

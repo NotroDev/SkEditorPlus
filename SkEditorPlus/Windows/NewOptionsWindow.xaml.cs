@@ -19,6 +19,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using MessageBox = HandyControl.Controls.MessageBox;
 using System.Diagnostics;
+using System.Xml;
 
 namespace SkEditorPlus.Windows
 {
@@ -35,52 +36,45 @@ namespace SkEditorPlus.Windows
             BackgroundFixManager.FixBackground(this);
             settingsBindings = new();
             DataContext = settingsBindings;
-            
-            foreach (var property in settingsBindings.GetType().GetProperties())
-            {
-                if (property.PropertyType == typeof(bool))
-                {
-                    var name = property.Name.Replace("Is", string.Empty).Replace("Enabled", string.Empty);
 
-                    if (Properties.Settings.Default[name] != null)
-                    {
-                        property.SetValue(settingsBindings, Properties.Settings.Default[name]);
-                    }
-                }
+            foreach (var property in settingsBindings.GetType().GetProperties().Where(p => p.PropertyType == typeof(bool)))
+            {
+                var name = property.Name.Replace("Is", "").Replace("Enabled", "");
+                var value = Properties.Settings.Default[name];
+                property.SetValue(settingsBindings, value);
             }
 
-            string appDirectory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
-            string[] files = Directory.GetFiles(appDirectory + @"\Languages");
+            string directory = Path.Combine(Path.GetDirectoryName(Application.ResourceAssembly.Location), "Languages");
 
-            foreach (string file in files)
+            foreach (string file in Directory.GetFiles(directory))
             {
                 string fileName = Path.GetFileNameWithoutExtension(file);
-                if (fileName != null)
+                if (fileName != null && languageComboBox.Items.Cast<ComboBoxItem>().All(item => item.Tag.ToString() != fileName))
                 {
-
-                    if (languageComboBox.Items.Cast<ComboBoxItem>().All(item => item.Tag.ToString() != fileName))
-                    {
-                        var resourceDictionary = new ResourceDictionary
-                        {
-                            Source = new Uri(file)
-                        };
-                        var langName = resourceDictionary["LangName"] as string;
-
-                        ComboBoxItem comboBoxItem = new()
-                        {
-                            Content = langName,
-                            Tag = fileName
-                        };
-                        languageComboBox.Items.Add(comboBoxItem);
-                    }
+                    var langName = new ResourceDictionary { Source = new Uri(file) }["LangName"] as string;
+                    languageComboBox.Items.Add(new ComboBoxItem { Content = langName, Tag = fileName });
                 }
             }
 
             ComboBoxItem item = languageComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Tag.ToString() == Properties.Settings.Default.Language);
-            if (item != null)
+            languageComboBox.SelectedItem = item;
+
+
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SkEditor Plus", "Syntax Highlighting");
+            Directory.CreateDirectory(path);
+
+            foreach (string file in Directory.GetFiles(path, "*.xshd"))
             {
-                languageComboBox.SelectedItem = item;
+                string fileName = Path.GetFileNameWithoutExtension(file);
+                if (fileName != null && syntaxComboBox.Items.Cast<ComboBoxItem>().All(item => item.Tag.ToString() != fileName))
+                {
+                    ComboBoxItem comboBoxItem = new() { Content = fileName, Tag = fileName };
+                    syntaxComboBox.Items.Add(comboBoxItem);
+                }
             }
+
+            syntaxComboBox.SelectedItem = syntaxComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Tag.ToString() == Properties.Settings.Default.SyntaxHighlighting);
+
 
             string versionLabel = (string)Application.Current.FindResource("Version");
             versionText.Text = $"{versionLabel} {MainWindow.Version}";
@@ -125,7 +119,7 @@ namespace SkEditorPlus.Windows
         {
             var slider = (Slider)sender;
             var value = slider.Value;
-            
+
             Properties.Settings.Default.EditorTransparency = (int)value;
             Properties.Settings.Default.Save();
 
@@ -221,17 +215,17 @@ namespace SkEditorPlus.Windows
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             using var client = new HttpClient();
-            Uri skriptUri = new("https://notro.tech/resources/SkriptHighlighting.xshd");
+            Uri skriptUri = new("https://marketplace.notro.tech/Default.xshd");
             Uri yamlUri = new("https://notro.tech/resources/YAMLHighlighting.xshd");
 
             string updateSuccess = (string)Application.Current.FindResource("UpdateSuccess");
 
             try
             {
-                File.Delete(appPath + @"\SkriptHighlighting.xshd");
+                File.Delete(appPath + @"\Syntax Highlighting\Default.xshd");
                 File.Delete(appPath + @"\YAMLHighlighting.xshd");
-                await DownloadFileTaskAsync(client, skriptUri, appPath + @"\SkriptHighlighting.xshd");
-                await DownloadFileTaskAsync(client, yamlUri, appPath + @"\YAMLHighlighting.xshd");
+                await UpdateManager.DownloadFileTaskAsync(client, skriptUri, appPath + @"\Syntax Highlighting\Default.xshd");
+                await UpdateManager.DownloadFileTaskAsync(client, yamlUri, appPath + @"\YAMLHighlighting.xshd");
                 Growl.Success(updateSuccess, "SuccessMsg");
                 skEditor.GetMainWindow().GetFileManager().OnTabChanged();
             }
@@ -242,13 +236,6 @@ namespace SkEditorPlus.Windows
                 string error = (string)Application.Current.FindResource("Error");
                 MessageBox.Error(updateFailed, error);
             }
-        }
-
-        public static async Task DownloadFileTaskAsync(HttpClient client, Uri uri, string FileName)
-        {
-            using var s = await client.GetStreamAsync(uri);
-            using var fs = new FileStream(FileName, FileMode.CreateNew);
-            await s.CopyToAsync(fs);
         }
 
         private void OnDocsLinkChanged(object sender, TextChangedEventArgs e)
@@ -294,6 +281,17 @@ namespace SkEditorPlus.Windows
 
                 addonListBox.Items.Add(item);
             }
+        }
+
+        private void OnSyntaxChange(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem typeItem = (ComboBoxItem)syntaxComboBox.SelectedItem;
+            string tag = typeItem.Tag.ToString();
+
+            Properties.Settings.Default.SyntaxHighlighting = tag;
+            Properties.Settings.Default.Save();
+
+            skEditor.GetMainWindow().GetFileManager().OnTabChanged();
         }
     }
 }

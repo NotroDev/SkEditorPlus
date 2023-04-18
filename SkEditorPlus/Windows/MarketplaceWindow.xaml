@@ -1,0 +1,39 @@
+﻿<hc:Window x:Class="SkEditorPlus.Windows.MarketplaceWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:data="clr-namespace:SkEditorPlus.Data"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           xmlns:local="clr-namespace:SkEditorPlus"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           x:Name="marketplaceWindow"
+           Title="{DynamicResource MarketplaceTitle}"
+           Width="800"
+           Height="450"
+           Background="{StaticResource RegionBrush}"
+           KeyUp="OnKey"
+           ResizeMode="NoResize"
+           WindowStartupLocation="CenterScreen"
+           mc:Ignorable="d">
+    <Grid>
+        <TabControl x:Name="tabControl" BorderThickness="1,0,0,0"
+                    Background="Transparent"
+                    SelectedIndex="0"
+                    TabStripPlacement="Left">
+            <TabItem x:Name="BrowseTabItem" Background="Transparent" Header="{DynamicResource MarketplaceBrowseTab}">
+                <ContentControl x:Name="Tab1Content"/>
+            </TabItem>
+            <TabItem x:Name="InstalledTabItem"
+                     Background="Transparent"
+                     Header="{DynamicResource MarketplaceInstalledTab}">
+                <ContentControl x:Name="Tab2Content"/>
+            </TabItem>
+
+            <TabItem x:Name="UpdatesTabItem"
+                 Background="Transparent"
+                 Header="{DynamicResource MarketplaceUpdatesTab}">
+                <ContentControl x:Name="Tab3Content"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</hc:Window>

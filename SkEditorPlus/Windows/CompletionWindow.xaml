@@ -17,7 +17,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <ListBox x:Name="completionList" HorizontalAlignment="Left" Height="100" Width="200" VerticalAlignment="Center" Grid.Row="1" PreviewKeyDown="OnCompletionListKeyDown"/>
+            <ListBox x:Name="completionList" ItemsSource="{Binding CompletionItems}" HorizontalAlignment="Left" Height="100" Width="200" VerticalAlignment="Center" Grid.Row="1" PreviewKeyDown="OnCompletionListKeyDown"/>
         </Grid>
     </Border>
 </UserControl>

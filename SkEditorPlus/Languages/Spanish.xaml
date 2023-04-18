@@ -56,6 +56,7 @@
 	<system:String x:Key="BackpackWindowTitle">Mochila</system:String>
 	<system:String x:Key="SettingsWindowTitle">Configuración</system:String>
 	<system:String x:Key="FontSelectorTitle">Seleccionar fuente</system:String>
+    <system:String x:Key="MarketplaceTitle">Tienda</system:String>
 
 	<!-- Etiquetas -->
 	<system:String x:Key="PasteAPIKeyTextboxPlaceholder">Pegue su clave API aquí</system:String>
@@ -193,8 +194,22 @@
 	<system:String x:Key="EmptyCodeError">¡Tu código está vacío!</system:String>
 	<system:String x:Key="EmptyAPIKeyError">No se ha ingresado una clave de API.</system:String>
 	<system:String x:Key="PublishingError">Algo no funcionó.{n}¿Estás conectado a internet? ¿Pegaste la clave de API correcta?{n}{n}{0}</system:String>
-	
-	<!-- Units -->
+
+    <system:String x:Key="MarketplaceBrowseTab">Explorar</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Instalados</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Actualizaciones</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">Todos</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Complementos</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Resaltados de sintaxis</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Instalar</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Desinstalar</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Actualizar</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Buscar...</system:String>
+
+    <!-- Units -->
 
 	<system:String x:Key="Ticks">tics</system:String>
 	<system:String x:Key="Seconds">segundos</system:String>

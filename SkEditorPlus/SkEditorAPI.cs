@@ -31,6 +31,7 @@ namespace SkEditorPlus
 
         void ShowMessage(string title, string text = "");
         void ShowError(string title, string text = "");
+        void ShowSuccess(string title, string text = "");
 
         void OpenUrl(string url);
 

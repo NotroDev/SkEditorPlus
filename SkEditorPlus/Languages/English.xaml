@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Backpack</system:String>
     <system:String x:Key="SettingsWindowTitle">Settings</system:String>
     <system:String x:Key="FontSelectorTitle">Select font</system:String>
+    <system:String x:Key="MarketplaceTitle">Marketplace</system:String>
 
     <!-- Labels -->
     
@@ -150,7 +151,7 @@
     <system:String x:Key="OptionsOpen">Open</system:String>
     
 
-    <!-- Things I forgot before. So they're here :P -->
+    <!-- Other things -->
 
     <system:String x:Key="NoResults">Not found</system:String>
     <system:String x:Key="OneMatchFound">One match found</system:String>
@@ -202,6 +203,24 @@
     <system:String x:Key="EmptyCodeError">Your code is empty!</system:String>
     <system:String x:Key="EmptyAPIKeyError">API key not entered.</system:String>
     <system:String x:Key="PublishingError">Something didn't work.{n}Are you connected to the internet? Did you paste the correct API key?{n}{n}{0}</system:String>
+
+    <system:String x:Key="MarketplaceDownloadError">Something didn't work.{n}Are you connected to the internet?{n}{n}{0}</system:String>
+
+
+    <system:String x:Key="MarketplaceBrowseTab">Browse</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Installed</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Updates</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">All</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Addons</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Syntax highlightings</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Install</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Uninstall</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Update</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Search...</system:String>
+
 
     <!-- Units -->
     <system:String x:Key="Ticks">ticks</system:String>

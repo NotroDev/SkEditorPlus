@@ -103,21 +103,31 @@ namespace SkEditorPlus
         /// <summary>
         /// Shows MessageBox
         /// </summary>
+        /// /// <param name="text">Text of messagebox</param>
         /// <param name="title">Title of messagebox</param>
-        /// <param name="text">Text of messagebox</param>
         public void ShowMessage(string text, string title)
         {
             HandyControl.Controls.MessageBox.Show(text, title);
         }
 
         /// <summary>
-        /// Shows MessageBox
+        /// Shows MessageBox with error icon
         /// </summary>
+        /// /// <param name="text">Text of messagebox</param>
         /// <param name="title">Title of messagebox</param>
-        /// <param name="text">Text of messagebox</param>
         public void ShowError(string text, string title)
         {
             HandyControl.Controls.MessageBox.Error(text, title);
+        }
+
+        /// <summary>
+        /// Shows MessageBox with success icon
+        /// </summary>
+        /// <param name="text">Text of messagebox</param>
+        /// <param name="title">Title of messagebox</param>
+        public void ShowSuccess(string text, string title)
+        {
+            HandyControl.Controls.MessageBox.Success(text, title);
         }
 
         /// <summary>

@@ -136,22 +136,26 @@ namespace SkEditorPlus.Managers
 
         public void OpenFile()
         {
-            OpenFileDialog openFileDialog = new() { Filter = filter, Multiselect = true };
-
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                if (tabControl.Items[0] is TabItem tabItem &&
-                    regex.IsMatch(tabItem.Header?.ToString()) &&
-                    skEditor.IsFile(tabItem) &&
-                    tabItem.Content is TextEditor textEditor &&
-                    textEditor.Document.Text.Length == 0)
-                {
-                    tabControl.Items.Remove(tabItem);
-                }
+                OpenFileDialog openFileDialog = new() { Filter = filter, Multiselect = true };
 
-                foreach (var (fileName, index) in openFileDialog.FileNames.Select((v, i) => (v, i)))
+                if (openFileDialog.ShowDialog() == true)
                 {
-                    try
+                    if (tabControl.Items.Count > 0 && tabControl.Items[0] is TabItem tabItem &&
+                        regex.IsMatch(tabItem.Header?.ToString()) &&
+                        skEditor.IsFile(tabItem) &&
+                        tabItem.Content is TextEditor textEditor &&
+                        textEditor.Document.Text.Length == 0)
+                    {
+                        skEditor.GetDispatcher().InvokeAsync(() =>
+                        {
+                            tabControl.Items.Remove(tabItem);
+                            tabControl.SelectedIndex = 0;
+                        });
+                    }
+
+                    foreach (var (fileName, index) in openFileDialog.FileNames.Select((v, i) => (v, i)))
                     {
                         CreateFile(openFileDialog.SafeFileNames[index], fileName);
                         GetTextEditor().Load(fileName);
@@ -160,8 +164,11 @@ namespace SkEditorPlus.Managers
                             ti.Header = ti.Header.ToString()[..^1];
                         }
                     }
-                    catch { }
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -205,6 +212,9 @@ namespace SkEditorPlus.Managers
                     IsExpanded = true
                 };
                 skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
+
+                ProjectManager.instance.isFtp = false;
+
                 await Task.Run(() => ProjectManager.instance.AddDirectoriesAndFilesAsync(new DirectoryInfo(dialog.SelectedPath), treeViewItem));
 
                 skEditor.GetMainWindow().leftTabControl.SelectedIndex = 1;
@@ -220,7 +230,9 @@ namespace SkEditorPlus.Managers
             {
                 try
                 {
-                    GetTextEditor().Save(path);
+                    using var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read);
+                    GetTextEditor().Save(stream);
+                    RemoveAsterisk(tabItem);
                 }
                 catch { }
             }
@@ -235,6 +247,14 @@ namespace SkEditorPlus.Managers
             if (!tabItem.Header.ToString().EndsWith("*"))
             {
                 tabItem.Header += "*";
+            }
+        }
+
+        private static void RemoveAsterisk(TabItem tabItem)
+        {
+            if (tabItem.Header.ToString().EndsWith("*"))
+            {
+                tabItem.Header = tabItem.Header.ToString().TrimEnd('*');
             }
         }
 
@@ -376,14 +396,18 @@ namespace SkEditorPlus.Managers
 
         private void EditorMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (Keyboard.Modifiers != ModifierKeys.Control) return;
-            var textEditor = GetTextEditor();
+            try
+            {
+                if (Keyboard.Modifiers != ModifierKeys.Control) return;
+                var textEditor = GetTextEditor();
 
-            double fontSize = textEditor.FontSize += e.Delta / 25.0;
+                double fontSize = textEditor.FontSize += e.Delta / 25.0;
 
-            textEditor.FontSize = fontSize < 6 ? 6 : fontSize > 200 ? 200 : fontSize;
+                textEditor.FontSize = fontSize < 6 ? 6 : fontSize > 200 ? 200 : fontSize;
 
-            e.Handled = true;
+                e.Handled = true;
+            }
+            catch { }
         }
 
         private void ChangeGeometry()
@@ -535,38 +559,56 @@ namespace SkEditorPlus.Managers
         {
             if (GetTextEditor() == null) return;
 
+            if (syntax.Equals("none"))
+            {
+                GetTextEditor().SyntaxHighlighting = null;
+                return;
+            }
+
             try
             {
-                if (syntax.Equals("none"))
-                {
-                    GetTextEditor().SyntaxHighlighting = null;
-                    return;
-                }
                 var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                var highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", $"{syntax}Highlighting.xshd");
-                using StreamReader s = new(highlightingFile);
-                using XmlTextReader reader = new(s);
-                GetTextEditor().SyntaxHighlighting =
-                    AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
 
-                Color color = (Color)ColorConverter.ConvertFromString("#f1ff63");
-
-                HighlightingSpan span = new()
+                string syntaxHighlightingFile = $"{Properties.Settings.Default.SyntaxHighlighting}.xshd";
+                string highlightingFile;
+                if (File.Exists(Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", syntaxHighlightingFile)))
                 {
-                    StartExpression = new Regex("\""),
-                    EndExpression = new Regex("\""),
-                    StartColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
-                    EndColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
-                    RuleSet = GetTextEditor().SyntaxHighlighting.GetNamedRuleSet("ColorsPreview")
-                };
-                GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
+                    highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", syntaxHighlightingFile);
+                }
+                else
+                {
+                    Properties.Settings.Default.SyntaxHighlighting = "Default";
+                    highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", $"{syntax}Highlighting.xshd");
+                }
+
+
+
+                using var reader = new XmlTextReader(new StreamReader(highlightingFile));
+                GetTextEditor().SyntaxHighlighting = AvalonEditB.Highlighting.Xshd.HighlightingLoader.Load(reader, HighlightingManager.Instance);
+
+                if (GetTextEditor().SyntaxHighlighting.GetNamedColor("DefaultColor") is not null)
+                    GetTextEditor().Foreground = GetTextEditor().SyntaxHighlighting.GetNamedColor("DefaultColor").Foreground.GetBrush(null);
+
+                if (Properties.Settings.Default.SyntaxHighlighting.Equals("Default"))
+                {
+                    var span = new HighlightingSpan()
+                    {
+                        StartExpression = new Regex("\""),
+                        EndExpression = new Regex("\""),
+                        StartColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
+                        EndColor = GetTextEditor().SyntaxHighlighting.GetNamedColor("String"),
+                        RuleSet = GetTextEditor().SyntaxHighlighting.GetNamedRuleSet("ColorsPreview")
+                    };
+                    GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
+                }
             }
             catch (Exception e)
             {
-                string message = (string)Application.Current.FindResource("SyntaxError");
-                string error = (string)Application.Current.FindResource("Error");
-                MessageBox.Show(message.Replace("{n}", Environment.NewLine).Replace("{0}", e.Message), error);
+                var message = ((string)Application.Current.FindResource("SyntaxError")).Replace("{n}", Environment.NewLine).Replace("{0}", e.Message);
+                var error = (string)Application.Current.FindResource("Error");
+                MessageBox.Show(message, error);
             }
+
         }
 
         public void OpenParser()
@@ -762,6 +804,8 @@ namespace SkEditorPlus.Managers
 
         public void CreateStructure()
         {
+            if (!skEditor.IsFileOpen()) return;
+
             skEditor.GetMainWindow().structureTreeView.Items.Clear();
 
             System.Windows.Controls.TreeViewItem item = new()

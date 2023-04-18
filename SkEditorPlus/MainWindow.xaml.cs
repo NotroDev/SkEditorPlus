@@ -46,7 +46,7 @@ namespace SkEditorPlus
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool IsWindowVisible(IntPtr hWnd);
 
-        public static string Version { get; } = "1.5.2";
+        public static string Version { get; } = "1.6.0";
 
         public MainWindow(SkEditorAPI skEditor)
         {
@@ -62,6 +62,8 @@ namespace SkEditorPlus
             }
             catch { }
 
+            SettingsManager.LoadSettings();
+
             startupFile = skEditor.GetStartupFile();
             this.skEditor = skEditor;
             Process process = Process.GetCurrentProcess();
@@ -72,7 +74,7 @@ namespace SkEditorPlus
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             Directory.CreateDirectory(appPath);
-            if (!File.Exists(appPath + @"\SkriptHighlighting.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
+            if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
             {
                 string noFilesTitle = (string)FindResource("NoFilesTitle");
                 string noFilesDescription = (string)FindResource("NoFilesDescription");
@@ -211,8 +213,15 @@ namespace SkEditorPlus
             }
         }
 
+        private SolidColorBrush GetSolidColorBrush(string hex)
+        {
+            Color color = (Color)ColorConverter.ConvertFromString(hex);
+            return new SolidColorBrush(color);
+        }
+
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            SettingsManager.SaveSettings();
             if (tabControl.Items.Count > 0)
             {
                 if (tabControl.Items.Cast<TabItem>().Any(tab => tab.Header.ToString().EndsWith("*")))

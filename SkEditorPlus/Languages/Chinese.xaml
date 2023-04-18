@@ -55,6 +55,7 @@
 	<system:String x:Key="BackpackWindowTitle">背包</system:String>
     <system:String x:Key="SettingsWindowTitle">设置</system:String>
     <system:String x:Key="FontSelectorTitle">选择字体</system:String>
+    <system:String x:Key="MarketplaceTitle">市场</system:String>
 
     <!-- Labels -->
     
@@ -194,7 +195,24 @@
 	<system:String x:Key="EmptyCodeError">您的代码为空！</system:String>
 	<system:String x:Key="EmptyAPIKeyError">API 密钥未输入。</system:String>
 	<system:String x:Key="PublishingError">出了些问题。{n}您是否连接到互联网？是否粘贴了正确的 API 密钥？{n}{n}{0}</system:String>
-	<!-- 时间单位 -->
+
+
+    <system:String x:Key="MarketplaceBrowseTab">浏览</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">已安装</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">更新</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">全部</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">插件</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">语法高亮</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">安装</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">卸载</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">更新</system:String>
+
+    <system:String x:Key="MarketplaceSearch">搜索...</system:String>
+
+
+    <!-- 时间单位 -->
 
 	<system:String x:Key="Ticks">游戏刻</system:String>
 	<system:String x:Key="Seconds">秒</system:String>

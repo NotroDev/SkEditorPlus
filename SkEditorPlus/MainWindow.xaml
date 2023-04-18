@@ -135,6 +135,10 @@
                         Icon="&#xe8f1;"
                         Header="{DynamicResource MenuOtherDocs}"/>
                     <MenuItem
+                        x:Name="Menu_Marketplace"
+                        Icon="&#xe719;"
+                        Header="{DynamicResource MarketplaceTitle}"/>
+                    <MenuItem
                         x:Name="Menu_CheckUpdate"
                         Icon="&#xe777;"
                         Header="{DynamicResource MenuOtherCheckForUpdate}"/>

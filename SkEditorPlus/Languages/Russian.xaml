@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Рюкзак</system:String>
     <system:String x:Key="SettingsWindowTitle">Настройки</system:String>
     <system:String x:Key="FontSelectorTitle">Выбрать шрифт</system:String>
+    <system:String x:Key="MarketplaceTitle">Магазин</system:String>
 
     <!-- Labels -->
     
@@ -193,6 +194,20 @@
     <system:String x:Key="EmptyCodeError">Ваш код пустой!</system:String>
     <system:String x:Key="EmptyAPIKeyError">API ключ не введён.</system:String>
     <system:String x:Key="PublishingError">Что-то не работает...{n}Вы подключены к интернету? Вы ввели верный ключ API?{n}{n}{0}</system:String>
+
+    <system:String x:Key="MarketplaceBrowseTab">Просмотр</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Установленные</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Обновления</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">Все</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Дополнения</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Подсветки синтаксиса</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Установить</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Удалить</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Обновить</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Поиск...</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">тики</system:String>

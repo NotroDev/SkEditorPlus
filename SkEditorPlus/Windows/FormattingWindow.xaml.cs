@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System.Text;
 using SkEditorPlus.Data;
 using System.Windows.Input;
+using Renci.SshNet;
+using Renci.SshNet.Async;
+using System.Threading.Tasks;
+using Octokit;
 
 namespace SkEditorPlus.Windows
 {
@@ -52,6 +56,27 @@ namespace SkEditorPlus.Windows
 
         private void FixDotVariables()
         {
+            SettingsManager.SaveSettings();
+
+            // Don't ask lol
+
+
+            //using var client = new SftpClient(credentials);
+
+            //client.Connect();
+
+            //TreeViewItem treeViewItem = new()
+            //{
+            //    Header = FileManager.CreateIcon("\ue8b7", "FTP"),
+            //    Tag = ".",
+            //    IsExpanded = true
+            //};
+
+            //skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
+
+            //ProjectManager.instance.isFtp = true;
+            //ProjectManager.client = client;
+            //await ProjectManager.instance.AddDirectoriesAndFilesFTPAsync(client, treeViewItem);
 
             string code = textEditor.Text;
 

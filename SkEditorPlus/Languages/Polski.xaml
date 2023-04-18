@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Plecak</system:String>
     <system:String x:Key="SettingsWindowTitle">Ustawienia</system:String>
     <system:String x:Key="FontSelectorTitle">Wybierz czcionkę</system:String>
+    <system:String x:Key="MarketplaceTitle">Rynek</system:String>
 
     <!-- Labels -->
     
@@ -193,6 +194,20 @@
     <system:String x:Key="EmptyCodeError">Twój kod jest pusty!</system:String>
     <system:String x:Key="EmptyAPIKeyError">Klucz API nie został wprowadzony.</system:String>
     <system:String x:Key="PublishingError">Coś nie zadziałało.{n}Czy masz połączenie z internetem? Czy wkleiłeś prawidłowy klucz API?{n}{n}{0}</system:String>
+
+    <system:String x:Key="MarketplaceBrowseTab">Przeglądaj</system:String>
+    <system:String x:Key="MarketplaceInstalledTab">Zainstalowane</system:String>
+    <system:String x:Key="MarketplaceUpdatesTab">Aktualizacje</system:String>
+
+    <system:String x:Key="MarketplaceFilterAll">Wszystko</system:String>
+    <system:String x:Key="MarketplaceFilterAddons">Dodatki</system:String>
+    <system:String x:Key="MarketplaceFilterSyntaxes">Podświetlania składni</system:String>
+
+    <system:String x:Key="MarketplaceButtonInstall">Zainstaluj</system:String>
+    <system:String x:Key="MarketplaceButtonUninstall">Odinstaluj</system:String>
+    <system:String x:Key="MarketplaceButtonUpdate">Aktualizuj</system:String>
+
+    <system:String x:Key="MarketplaceSearch">Wyszukaj...</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">ticki</system:String>

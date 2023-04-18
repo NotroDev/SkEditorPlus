@@ -28,5 +28,10 @@ namespace SkEditorPlus
         {
             return;
         }
+
+        void OnUnhandledException()
+        {
+            return;
+        }
     }
 }

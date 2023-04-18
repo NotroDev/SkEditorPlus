@@ -28,12 +28,16 @@ namespace SkEditorPlus.Data
             new CompletionDataElement("function", "function {c}:\n\t"),
         };
 
-        public static ListBoxItem[] GetCompletionData(string word, string code)
+        public static IEnumerable<CompletionDataElement> GetCompletionData(string word, string code)
         {
-            return completionList
-            .Where(item => item.Name.StartsWith(word))
-            .Select(item => new ListBoxItem { Content = item.Name })
-            .ToArray();
+            var filteredList = completionList.AsParallel()
+                .Where(item => item.Name.StartsWith(word))
+                .ToList();
+
+            foreach (var item in filteredList)
+            {
+                yield return item;
+            }
         }
     }
 }

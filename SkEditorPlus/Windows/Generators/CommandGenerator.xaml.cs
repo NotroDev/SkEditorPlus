@@ -4,6 +4,7 @@ using HandyControl.Controls;
 using SkEditorPlus.Managers;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using ComboBox = HandyControl.Controls.ComboBox;
 
 namespace SkEditorPlus.Windows.Generators
 {
@@ -54,71 +55,39 @@ namespace SkEditorPlus.Windows.Generators
                 }
             }
 
-            TextEditor editor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
-
-            int offset = editor.CaretOffset;
-            DocumentLine line = editor.Document.GetLineByOffset(offset);
-
-            string code = "";
+            var editor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
+            var offset = editor.CaretOffset;
+            var line = editor.Document.GetLineByOffset(offset);
+            var code = string.Empty;
 
             if (!string.IsNullOrEmpty(editor.Document.GetText(line.Offset, line.Length)))
-            {
                 code += "\n";
-            }
 
             code += $"command /{nameTextbox.Text}:";
 
-            if (!string.IsNullOrEmpty(permTextbox.Text))
-            {
-                code += $"\n\tpermission: {permTextbox.Text}";
-            }
-            if (!string.IsNullOrEmpty(permMessTextbox.Text))
-            {
-                code += $"\n\tpermission message: {permMessTextbox.Text}";
-            }
-            if (!string.IsNullOrEmpty(aliasesTextbox.Text))
-            {
-                code += $"\n\taliases: {aliasesTextbox.Text}";
-            }
-            if (!string.IsNullOrEmpty(usageTextbox.Text))
-            {
-                code += $"\n\tusage: {usageTextbox.Text}";
-            }
+            if (!string.IsNullOrEmpty(permTextbox.Text)) code += $"\n\tpermission: {permTextbox.Text}";
 
-            CheckComboBox checkComboBox = executableByComboBox;
-            List<string> selectedItems = new();
-            foreach (CheckComboBoxItem item in checkComboBox.SelectedItems)
-            {
-                selectedItems.Add(item.Tag.ToString());
-            }
+            if (!string.IsNullOrEmpty(permMessTextbox.Text)) code += $"\n\tpermission message: {permMessTextbox.Text}";
 
-            string executableBy = "";
-            if (selectedItems.Count == 2)
-            {
-                executableBy = "player, console";
-            }
-            else if (selectedItems.Count == 1)
-            {
-                executableBy = selectedItems[0];
-            }
+            if (!string.IsNullOrEmpty(aliasesTextbox.Text)) code += $"\n\taliases: {aliasesTextbox.Text}";
 
-            if (!string.IsNullOrEmpty(executableBy))
-            {
-                code += $"\n\texecutable by: {executableBy}";
-            }
+            if (!string.IsNullOrEmpty(usageTextbox.Text)) code += $"\n\tusage: {usageTextbox.Text}";
+
+            var checkComboBox = executableByComboBox;
+            var executableBy = (checkComboBox.SelectedItem as ComboBoxItem)?.Tag?.ToString();
+
+            if (!string.IsNullOrEmpty(executableBy)) code += $"\n\texecutable by: {executableBy}";
 
             if (!string.IsNullOrEmpty(cooldownTextbox.Text))
             {
-                ComboBoxItem item = (ComboBoxItem)cooldownComboBox.SelectedItem;
+                var item = (ComboBoxItem)cooldownComboBox.SelectedItem;
                 code += $"\n\tcooldown: {cooldownTextbox.Text} {item.Tag}";
             }
 
             code += "\n\ttrigger:\n\t\t";
-
             editor.Document.Insert(offset, code);
 
             commandGeneratorWindow.Close();
-
             editor.CaretOffset = editor.Document.TextLength;
         }
 

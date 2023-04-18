@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Renci.SshNet;
+using Renci.SshNet.Async;
+using Renci.SshNet.Sftp;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,6 +13,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 using TabItem = HandyControl.Controls.TabItem;
 
 namespace SkEditorPlus.Managers
@@ -25,6 +31,10 @@ namespace SkEditorPlus.Managers
         private readonly SkEditorAPI skEditor;
 
         private FileSystemWatcher fileWatcher;
+
+        public bool isFtp = false;
+
+        public static SftpClient client;
 
         public ProjectManager(SkEditorAPI skEditor)
         {
@@ -59,8 +69,53 @@ namespace SkEditorPlus.Managers
             };
         }
 
-        private static void OpenFileInTreeView(string tabToolTip)
+        private static SftpClient GetClient()
         {
+            try
+            {
+                if (client.IsConnected)
+                    return client;
+            }
+            catch { }
+
+            var newClient = new SftpClient("mc.notro.tech", 2053, "notro.0a278dab", "Minecraft100");
+            newClient.Connect();
+            client = newClient;
+            return newClient;
+        }
+
+        private static async Task OpenFileInTreeView(string tabToolTip)
+        {
+            //if (instance.isFtp)
+            //{
+            //    try
+            //    {
+            //        using var client = GetClient();
+
+            //        var temp = Path.GetTempPath();
+            //        var tempFile = Path.Combine(temp, Path.GetFileName(tabToolTip));
+
+            //        using (Stream fileStream = File.Create(tempFile))
+            //        {
+            //            await client.DownloadAsync(tabToolTip, fileStream);
+            //        }
+            //        client.Disconnect();
+
+            //        fm.CreateFile(Path.GetFileName(tabToolTip), tabToolTip);
+            //        fm.GetTextEditor().Load(tempFile);
+
+            //        if (fm.tabControl.SelectedItem is TabItem selectedItem && selectedItem.Header.ToString().EndsWith("*"))
+            //        {
+            //            selectedItem.Header = selectedItem.Header.ToString()[..^1];
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    return;
+            //}
+
             var tabItem = fm.tabControl.Items.Cast<TabItem>().FirstOrDefault(ti => ti.ToolTip.ToString() == tabToolTip);
             if (tabItem != null)
             {
@@ -267,19 +322,19 @@ namespace SkEditorPlus.Managers
                     Tag = location
                 };
 
-                fileTreeViewItem.MouseDoubleClick += (sender, e) =>
+                fileTreeViewItem.MouseDoubleClick += async (sender, e) =>
                 {
                     if (e.ChangedButton == MouseButton.Right) return;
-                    OpenFileInTreeView(fileTreeViewItem.Tag.ToString());
+                    await OpenFileInTreeView(fileTreeViewItem.Tag.ToString());
                 };
 
                 fileTreeViewItem.MouseRightButtonUp += (sender, e) =>
                 {
                     var contextMenu = new ContextMenu();
                     var openFile = CreateMenuItem(Application.Current.FindResource("ProjectOpenFile") as string, "\xE8E5");
-                    openFile.Click += (sender, e) =>
+                    openFile.Click += async (sender, e) =>
                     {
-                        OpenFileInTreeView(fileTreeViewItem.Tag.ToString());
+                        await OpenFileInTreeView(fileTreeViewItem.Tag.ToString());
                     };
 
                     var openFileExplorer = CreateMenuItem(Application.Current.FindResource("ProjectOpenExplorer") as string, "\xec50");
@@ -372,6 +427,30 @@ namespace SkEditorPlus.Managers
             foreach (TreeViewItem subItem in item.Items)
             {
                 RestoreIsExpanded(subItem);
+            }
+        }
+
+
+        public async Task AddDirectoriesAndFilesFTPAsync(SftpClient client, TreeViewItem item, TreeViewItem parentItem = null)
+        {
+            var listing = await client.ListDirectoryAsync(item.Tag.ToString());
+
+            foreach (var file in listing)
+            {
+                if (file.IsDirectory)
+                {
+                    string[] excludedNames = { "cache", "libraries", "?", "logs", "versions", "world", "world_nether", "world_the_end" };
+
+                    if (excludedNames.Contains(file.Name)) continue;
+
+                    var treeViewItem = CreateItem(parentItem ?? skEditor.GetMainWindow().fileTreeView.Items[0] as TreeViewItem, file.Name, file.FullName, "folder");
+                    await AddDirectoriesAndFilesFTPAsync(client, treeViewItem, treeViewItem);
+                }
+                else
+                {
+                    if (file.Name.EndsWith(".jar")) continue;
+                    CreateItem(parentItem ?? skEditor.GetMainWindow().fileTreeView.Items[0] as TreeViewItem, file.Name, file.FullName, "file");
+                }
             }
         }
     }

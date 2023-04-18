@@ -190,9 +190,25 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+                        <DockPanel x:Name="SyntaxHighlighting"
+                           Grid.Row="0"
+                           Margin="0,0,0,5">
+                                            <TextBlock Margin="0,0,15,0"
+                               VerticalAlignment="Center"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               Text="{DynamicResource SyntaxHighlighting}" />
+                            <hc:ComboBox x:Name="syntaxComboBox"
+                                 Width="124"
+                                 HorizontalAlignment="Left"
+                                 Background="{StaticResource RegionBrush}"
+                                 SelectionChanged="OnSyntaxChange">
+                            </hc:ComboBox>
+                        </DockPanel>
                         <DockPanel x:Name="Font"
-                                   Grid.Row="0"
+                                   Grid.Row="1"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -206,7 +222,7 @@
                                     Content="{DynamicResource OptionsSelectFont}" />
                         </DockPanel>
                         <DockPanel x:Name="Mica"
-                                   Grid.Row="1"
+                                   Grid.Row="2"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -226,7 +242,7 @@
                             </hc:Badge>
                         </DockPanel>
                         <DockPanel x:Name="Transparency"
-                                   Grid.Row="2"
+                                   Grid.Row="3"
                                    Margin="0,0,0,5">
                             <TextBlock Margin="0,0,15,0"
                                        VerticalAlignment="Center"
@@ -274,7 +290,7 @@
             </TabItem>
             <TabItem x:Name="AddonsTabItem"
                      Background="Transparent"
-                     Header="{DynamicResource OptionsMenuAddons}">
+                     Header="{DynamicResource OptionsMenuAddons}" Height="28" VerticalAlignment="Top">
                 <Grid Margin="10,5,5,5"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top">
@@ -359,6 +375,22 @@
                                         FontSize="16"
                                         Text=""
                                         TextWrapping="Wrap" />
+                            </DockPanel>
+
+                            <DockPanel DockPanel.Dock="Top"
+                                Margin="0,0,0,5">
+                                <TextBlock Margin="0,5,15,0"
+                                    x:Name="addonToggleText"
+                                    VerticalAlignment="Top"
+                                    FontFamily="Cascadia Mono"
+                                    FontSize="16"
+                                    Text=""
+                                    TextWrapping="Wrap" />
+                                <CheckBox Margin="0,5,15,0"
+                                    x:Name="addonToggleCheckbox"
+                                    Background="{StaticResource RegionBrush}"
+                                    VerticalAlignment="Top"
+                                    FontSize="16" Visibility="Collapsed"/>
                             </DockPanel>
 
                         </DockPanel>

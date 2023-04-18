@@ -5,7 +5,10 @@ using SkEditorPlus.Windows;
 using SkEditorPlus.Windows.Generators;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -22,7 +25,11 @@ namespace SkEditorPlus.Managers
 
         private static ListBoxItem[] completionList = System.Array.Empty<ListBoxItem>();
 
+        private CancellationTokenSource cancellationTokenSource;
+
         private CompletionWindow completionWindow;
+
+        private static CompletionBindings completionBindings;
 
         private Popup popup;
 
@@ -88,14 +95,14 @@ namespace SkEditorPlus.Managers
                 int selectedIndex = completionWindow.completionList.SelectedIndex;
                 if (selectedIndex < 0) return;
 
-                ListBoxItem item = (ListBoxItem)completionWindow.completionList.SelectedItem;
+                string item = completionWindow.completionList.SelectedItem as string;
 
                 var split = text.Split(' ');
                 var lastWord = split[^1].TrimStart();
                 var index = text.LastIndexOf(lastWord);
                 var newText = text.Remove(index, lastWord.Length);
 
-                switch (item.Content)
+                switch (item)
                 {
                     case "commandgen":
                         textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, "");
@@ -113,7 +120,7 @@ namespace SkEditorPlus.Managers
                         CompletionDataElement element = null;
                         foreach (CompletionDataElement dataElement in CompletionData.completionList)
                         {
-                            if (dataElement.Name.Equals(item.Content))
+                            if (dataElement.Name.Equals(item))
                             {
                                 element = dataElement;
                                 break;
@@ -162,6 +169,11 @@ namespace SkEditorPlus.Managers
                 popup = null;
                 e.Handled = true;
             }
+
+            else if (e.Key == Key.Escape)
+            {
+                HidePopup();
+            }
         }
 
         private void HandleArrowKey(Key key, ListBox listBox)
@@ -184,8 +196,29 @@ namespace SkEditorPlus.Managers
         }
 
 
-        private void OnTextEntered(object sender, TextCompositionEventArgs e)
+        private async void OnTextEntered(object sender, TextCompositionEventArgs e)
         {
+            cancellationTokenSource?.Cancel();
+
+            cancellationTokenSource = new();
+
+            try
+            {
+                if (popup != null)
+                {
+                    var caret = textEditor.TextArea.Caret.CalculateCaretRectangle();
+                    var pointOnScreen = textEditor.TextArea.TextView.PointToScreen(caret.Location - textEditor.TextArea.TextView.ScrollOffset);
+
+                    popup.HorizontalOffset = pointOnScreen.X + 10;
+                    popup.VerticalOffset = pointOnScreen.Y + 10;
+                }
+                await Task.Delay(TimeSpan.FromSeconds(0), cancellationTokenSource.Token);
+            }
+            catch (TaskCanceledException)
+            {
+                return;
+            }
+
             string text = GetText();
             string lastWord = GetLastWord(text);
 
@@ -196,6 +229,7 @@ namespace SkEditorPlus.Managers
 
             HidePopup();
             ShowCompletionWindow(lastWord);
+
         }
 
         private string GetText()
@@ -236,18 +270,21 @@ namespace SkEditorPlus.Managers
 
             var completionList = CompletionData.GetCompletionData(lastWord, skEditor.GetTextEditor().Text);
 
-            if (lastWord.Length <= 0 || completionList.Length <= 0)
+            if (lastWord.Length <= 0 || !completionList.Any())
             {
                 return;
             }
 
-            completionWindow = new CompletionWindow
+            completionWindow = new CompletionWindow();
+
+            completionBindings ??= new CompletionBindings();
+            completionBindings.CompletionItems = new ObservableCollection<string>();
+            completionWindow.DataContext = completionBindings;
+
+            foreach (var item in completionList)
             {
-                completionList =
-                {
-                    ItemsSource = completionList
-                }
-            };
+                completionBindings.CompletionItems.Add(item.Name);
+            }
 
             popup = new Popup
             {
@@ -268,6 +305,7 @@ namespace SkEditorPlus.Managers
             popup.VerticalOffset = pointOnScreen.Y + 10;
 
             completionWindow.completionList.SelectedIndex = 0;
+
         }
 
     }
