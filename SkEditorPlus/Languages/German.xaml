@@ -218,6 +218,17 @@
 
     <system:String x:Key="MarketplaceSearch">Suchen...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Installiert!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Deinstalliert!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Aktualisiert!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Syntaxhervorhebung installiert! Aktiviere sie in den Einstellungen.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Jetzt aktivieren</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Add-On installiert! Starte die App neu, um es zu laden.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">Syntaxhervorhebung wurde erfolgreich deinstalliert.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Add-On deinstalliert. Starte die App neu, um die Änderungen anzuwenden.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Syntaxhervorhebung aktualisiert!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Add-On aktualisiert! Starte die App neu, um die Änderungen anzuwenden.</system:String>
+
     <!-- Units -->
     <system:String x:Key="Ticks">Ticks</system:String>
     <system:String x:Key="Seconds">Sekunden</system:String>

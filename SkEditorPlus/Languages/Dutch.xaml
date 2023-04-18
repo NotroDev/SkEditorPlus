@@ -219,6 +219,17 @@
 
     <system:String x:Key="MarketplaceSearch">Zoeken...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Geïnstalleerd!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Gedeïnstalleerd!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Bijgewerkt!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Syntax-highlighting geïnstalleerd! Schakel het in de instellingen in.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Nu inschakelen</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Add-on geïnstalleerd! Herstart de app om deze te laden.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">Syntax-highlighting is succesvol gedeïnstalleerd.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Add-on gedeïnstalleerd. Herstart de app om de wijzigingen toe te passen.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Syntax-highlighting bijgewerkt!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Add-on bijgewerkt! Herstart de app om de wijzigingen toe te passen.</system:String>
+
     <!-- Units -->
     <system:String x:Key="Ticks">ticks</system:String>
     <system:String x:Key="Seconds">seconden</system:String>

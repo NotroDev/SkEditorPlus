@@ -211,6 +211,17 @@
 
     <system:String x:Key="MarketplaceSearch">搜索...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">已安装！</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">已卸载！</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">已更新！</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">语法高亮已安装！在设置中启用。</system:String>
+    <system:String x:Key="MarketplaceEnableNow">立即启用</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">插件已安装！重新启动应用程序以加载。</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">语法高亮已成功卸载。</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">插件已卸载。重新启动应用程序以应用更改。</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">语法高亮已更新！</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">插件已更新！重新启动应用程序以应用更改。</system:String>
+
 
     <!-- 时间单位 -->
 

@@ -221,6 +221,18 @@
 
     <system:String x:Key="MarketplaceSearch">Search...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Installed!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Uninstalled!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Updated!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Syntax highlighting installed! Enable it in the settings.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Enable now</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Addon installed! Restart app to load it.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">Syntax highlighting was successfully uninstalled.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Addon uninstalled. Restart app to apply.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Syntax highlighting updated!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Addon updated! Restart app to apply.</system:String>
+
+
 
     <!-- Units -->
     <system:String x:Key="Ticks">ticks</system:String>

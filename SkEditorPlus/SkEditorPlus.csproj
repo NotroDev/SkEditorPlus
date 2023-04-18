@@ -6,11 +6,11 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>SkEditorPlus</AssemblyName>
     <RootNamespace>SkEditorPlus</RootNamespace>
-    <Version>1.6.0</Version>
+    <Version>1.6.1</Version>
     <Configurations>Debug;Release</Configurations>
     <Copyright>Copyright © Notro 2023</Copyright>
-    <FileVersion>1.6.0</FileVersion>
-    <AssemblyVersion>1.6.0</AssemblyVersion>
+    <FileVersion>1.6.1</FileVersion>
+    <AssemblyVersion>1.6.1</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>

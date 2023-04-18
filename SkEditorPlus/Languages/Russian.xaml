@@ -209,6 +209,17 @@
 
     <system:String x:Key="MarketplaceSearch">Поиск...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Установлено!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Удалено!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Обновлено!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Подсветка синтаксиса установлена! Включите ее в настройках.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Включить сейчас</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Дополнение установлено! Перезапустите приложение для загрузки.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">Подсветка синтаксиса успешно удалена.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Дополнение удалено. Перезапустите приложение для применения изменений.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Подсветка синтаксиса обновлена!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Дополнение обновлено! Перезапустите приложение для применения изменений.</system:String>
+
     <!-- Units -->
     <system:String x:Key="Ticks">тики</system:String>
     <system:String x:Key="Seconds">секунды</system:String>

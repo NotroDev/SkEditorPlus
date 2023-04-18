@@ -211,6 +211,17 @@
 
     <system:String x:Key="MarketplaceSearch">Rechercher...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Installé !</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Désinstallé !</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Mis à jour !</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">La coloration syntaxique a été installée ! Activez-la dans les paramètres.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Activer maintenant</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Addon installé ! Redémarrez l'application pour le charger.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">La coloration syntaxique a été désinstallée avec succès.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Addon désinstallé. Redémarrez l'application pour appliquer les modifications.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">La coloration syntaxique a été mise à jour !</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Addon mis à jour ! Redémarrez l'application pour appliquer les modifications.</system:String>
+
     <!-- Units -->
     <system:String x:Key="Ticks">tics</system:String>
 	<system:String x:Key="Seconds">secondes</system:String>

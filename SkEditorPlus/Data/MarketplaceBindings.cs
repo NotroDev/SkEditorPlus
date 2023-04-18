@@ -26,7 +26,7 @@ namespace SkEditorPlus.Data
         private MarketplaceItem selectedItem;
 
         [ObservableProperty]
-        private string installButtonHeader = "Install";
+        private string installButtonHeader = Application.Current.FindResource("MarketplaceButtonInstall") as string;
 
         public ICommand InstallCommand { get; }
 
@@ -42,19 +42,23 @@ namespace SkEditorPlus.Data
 
         private void InstallCommandExecute()
         {
-            string action = InstallButtonHeader.ToLower();
+            string action = InstallButtonHeader;
 
-            switch (action)
+            string install = Application.Current.FindResource("MarketplaceButtonInstall") as string;
+            string uninstall = Application.Current.FindResource("MarketplaceButtonUninstall") as string;
+            string update = Application.Current.FindResource("MarketplaceButtonUpdate") as string;
+
+            if (action.Equals(install))
             {
-                case "install":
-                    MarketplaceWindow.GetInstance().InstallAddon();
-                    break;
-                case "uninstall":
-                    MarketplaceWindow.GetInstance().UninstallAddon();
-                    break;
-                case "update":
-                    MarketplaceWindow.GetInstance().UpdateAddon();
-                    break;
+                MarketplaceWindow.GetInstance().InstallAddon();
+            }
+            else if (action.Equals(uninstall))
+            {
+                MarketplaceWindow.GetInstance().UninstallAddon();
+            }
+            else if (action.Equals(update))
+            {
+                MarketplaceWindow.GetInstance().UpdateAddon();
             }
         }
     }

@@ -209,6 +209,17 @@
 
     <system:String x:Key="MarketplaceSearch">Buscar...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">¡Instalado!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">¡Desinstalado!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">¡Actualizado!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">¡La sintaxis de resaltado se ha instalado! Actívela en la configuración.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Activar ahora</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">¡Addon instalado! Reinicie la aplicación para cargarlo.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">El resaltado de sintaxis se ha desinstalado correctamente.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Addon desinstalado. Reinicie la aplicación para aplicar los cambios.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">¡La sintaxis de resaltado se ha actualizado!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">¡Addon actualizado! Reinicie la aplicación para aplicar los cambios.</system:String>
+
     <!-- Units -->
 
 	<system:String x:Key="Ticks">tics</system:String>

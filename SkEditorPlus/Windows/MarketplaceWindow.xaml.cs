@@ -315,10 +315,10 @@ namespace SkEditorPlus.Windows
                 {
                     MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
                     {
-                        Message = "Syntax highlighting installed! Enable it in the settings.",
-                        Caption = "Installed!",
+                        Message = Application.Current.FindResource("MarketplaceSyntaxInstalled") as string,
+                        Caption = Application.Current.FindResource("MarketplaceInstalledTitle") as string,
                         Button = MessageBoxButton.OKCancel,
-                        ConfirmContent = "Włącz teraz",
+                        ConfirmContent = Application.Current.FindResource("MarketplaceEnableNow") as string,
                         CancelContent = "OK",
                         IconBrushKey = ResourceToken.DarkInfoBrush,
                         IconKey = ResourceToken.InfoGeometry
@@ -336,8 +336,8 @@ namespace SkEditorPlus.Windows
                 {
                     MessageBox.Show(new MessageBoxInfo
                     {
-                        Message = "Addon installed! Restart app to load it.",
-                        Caption = "Installed!",
+                        Message = Application.Current.FindResource("MarketplaceAddonInstalled") as string,
+                        Caption = Application.Current.FindResource("MarketplaceInstalledTitle") as string,
                         Button = MessageBoxButton.OK,
                         ConfirmContent = "OK",
                         IconBrushKey = ResourceToken.DarkInfoBrush,
@@ -387,7 +387,7 @@ namespace SkEditorPlus.Windows
                 File.Delete(filePath);
                 marketBindings.FilteredItems.Remove(item);
 
-                skEditor.ShowSuccess("Syntax highlighting was successfully uninstalled.");
+                skEditor.ShowSuccess(Application.Current.FindResource("MarketplaceSyntaxUninstalled") as string);
                 Properties.Settings.Default.SyntaxHighlighting = "Default";
                 Properties.Settings.Default.Save();
 
@@ -405,8 +405,8 @@ namespace SkEditorPlus.Windows
 
                 MessageBox.Show(new MessageBoxInfo
                 {
-                    Message = "Addon uninstalled. Restart app to apply.",
-                    Caption = "Uninstalled!",
+                    Message = Application.Current.FindResource("MarketplaceAddonUninstalled") as string,
+                    Caption = Application.Current.FindResource("MarketplaceUninstalledTitle") as string,
                     Button = MessageBoxButton.OK,
                     ConfirmContent = "OK",
                     IconBrushKey = ResourceToken.DarkInfoBrush,
@@ -459,8 +459,8 @@ namespace SkEditorPlus.Windows
 
                     MessageBox.Show(new MessageBoxInfo
                     {
-                        Message = "Syntax highlighting updated!",
-                        Caption = "Updated!",
+                        Message = Application.Current.FindResource("MarketplaceSyntaxUpdated") as string,
+                        Caption = Application.Current.FindResource("MarketplaceUpdatedTitle") as string,
                         Button = MessageBoxButton.OK,
                         ConfirmContent = "OK",
                         IconBrushKey = ResourceToken.DarkInfoBrush,
@@ -488,8 +488,8 @@ namespace SkEditorPlus.Windows
 
                     MessageBox.Show(new MessageBoxInfo
                     {
-                        Message = "Addon updated! Restart app to apply.",
-                        Caption = "updated!",
+                        Message = Application.Current.FindResource("Addon updated! Restart app to apply.") as string,
+                        Caption = Application.Current.FindResource("MarketplaceUpdatedTitle") as string,
                         Button = MessageBoxButton.OK,
                         ConfirmContent = "OK",
                         IconBrushKey = ResourceToken.DarkInfoBrush,

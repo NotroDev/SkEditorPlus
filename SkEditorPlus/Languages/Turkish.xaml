@@ -205,6 +205,17 @@
 
     <system:String x:Key="MarketplaceSearch">Ara...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Yüklendi!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Kaldırıldı!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Güncellendi!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Sözdizimi vurgulama yüklendi! Ayarlarda etkinleştirin.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Şimdi etkinleştir</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Eklenti yüklendi! Yüklemek için uygulamayı yeniden başlatın.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">Sözdizimi vurgulama başarıyla kaldırıldı.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Eklenti kaldırıldı. Değişiklikleri uygulamak için uygulamayı yeniden başlatın.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Sözdizimi vurgulama güncellendi!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Eklenti güncellendi! Değişiklikleri uygulamak için uygulamayı yeniden başlatın.</system:String>
+
     <!-- Units -->
     <system:String x:Key="Ticks">tik</system:String>
     <system:String x:Key="Seconds">saniye</system:String>

@@ -194,6 +194,17 @@
 
     <system:String x:Key="MarketplaceSearch">Searchin'...</system:String>
 
+    <system:String x:Key="MarketplaceInstalledTitle">Aye, yer installed it!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Avast! It be gone!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Shiver me timbers! It be updated!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Arrr, the syntax highlighting be installed! Turn it on in the settings.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Hoist the colors</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Ahoy! The addon be installed! Restart yer app to load it.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">The syntax highlighting was successfully sent to Davy Jones's Locker.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">The addon be gone. Restart yer app to apply the changes.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Blow me down! The syntax highlighting be updated!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Avast! The addon be updated! Restart yer app to apply the changes.</system:String>
+
 
     <!-- Units -->
 
