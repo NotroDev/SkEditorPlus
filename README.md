@@ -60,3 +60,10 @@ If you would like to support us and promote SkEditor+, you can:
 - Recommend to friends!
 - Use built-in Discord RPC!
 - Maybe you'll come up with something else?
+
+# 💵 Donations
+If you want to donate, you can do so via [PayPal](https://www.paypal.com/donate/?hosted_button_id=XDWDE45Z4SERA).
+
+By doing so, you might get a special role on Discord and even possibly get featured in some window within the app.
+
+Honestly, I've never received any donations, so if you want we can talk about rewards in a private message :)
