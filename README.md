@@ -45,7 +45,7 @@
 
 
 # 🐧 Linux?
-I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language (it's my future plan, tho!). You can try this, though: [Linux workaround](https://github.com/NotroDev/SkEditorPlus/wiki/Linux-workaround)
+I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language (but it's my future plan!). You can try this, though: [Linux workaround](https://github.com/NotroDev/SkEditorPlus/wiki/Linux-workaround)
 
 # 🥺 Maybe at least Windows 7?
 I'm sorry again, but it isn't possible. SkEditor+ runs on .NET 6, which isn't supported by Windows 7. I won't change the version to the older one.
