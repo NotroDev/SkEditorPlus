@@ -50,7 +50,7 @@ namespace SkEditorPlus.Managers
         }
 
 
-        public void OnKeyDown(object sender, KeyEventArgs e)
+        public async void OnKeyDown(object sender, KeyEventArgs e)
         {
             var caretOffset = textEditor.CaretOffset;
             var line = textEditor.Document.GetLineByOffset(caretOffset);
@@ -60,21 +60,36 @@ namespace SkEditorPlus.Managers
 
             if (e.Key == Key.Back || e.Key == Key.Left)
             {
-                HidePopup();
-                ShowCompletionWindow(text);
+                cancellationTokenSource?.Cancel();
+                cancellationTokenSource = new();
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(0.25), cancellationTokenSource.Token);
+                    ShowCompletionWindow(text);
+                }
+                catch (TaskCanceledException)
+                {
+                    return;
+                }
             }
-
             else if (e.Key == Key.Right)
             {
-                if (text.Length > 0)
+                if (caretOffset + 1 <= textEditor.Document.TextLength)
                 {
-                    try
+                    cancellationTokenSource?.Cancel();
+
+                    if (text.Length > 0)
                     {
-                        var caretText = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset + 1);
-                        HidePopup();
-                        ShowCompletionWindow(caretText);
+                        cancellationTokenSource = new();
+
+                        try
+                        {
+                            var caretText = textEditor.Document.GetText(line.Offset, caretOffset - line.Offset + 1);
+                            await Task.Delay(TimeSpan.FromSeconds(0.25), cancellationTokenSource.Token);
+                            ShowCompletionWindow(caretText);
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
             }
 
@@ -187,6 +202,7 @@ namespace SkEditorPlus.Managers
             {
                 listBox.SelectedIndex--;
             }
+
             listBox.ScrollIntoView(listBox.SelectedItem);
         }
 
@@ -212,7 +228,7 @@ namespace SkEditorPlus.Managers
                     popup.HorizontalOffset = pointOnScreen.X + 10;
                     popup.VerticalOffset = pointOnScreen.Y + 10;
                 }
-                await Task.Delay(TimeSpan.FromSeconds(0), cancellationTokenSource.Token);
+                await Task.Delay(TimeSpan.FromSeconds(0.25), cancellationTokenSource.Token);
             }
             catch (TaskCanceledException)
             {
@@ -227,7 +243,7 @@ namespace SkEditorPlus.Managers
                 return;
             }
 
-            HidePopup();
+            //HidePopup();
             ShowCompletionWindow(lastWord);
 
         }
@@ -272,39 +288,43 @@ namespace SkEditorPlus.Managers
 
             if (lastWord.Length <= 0 || !completionList.Any())
             {
+                HidePopup();
                 return;
             }
 
-            completionWindow = new CompletionWindow();
-
-            completionBindings ??= new CompletionBindings();
-            completionBindings.CompletionItems = new ObservableCollection<string>();
-            completionWindow.DataContext = completionBindings;
-
-            foreach (var item in completionList)
+            if (popup != null && popup.IsOpen)
             {
-                completionBindings.CompletionItems.Add(item.Name);
+                completionBindings.CompletionDataElements = completionList;
+                completionWindow.completionList.SelectedIndex = 0;
             }
-
-            popup = new Popup
+            else
             {
-                PlacementTarget = textEditor,
-                Placement = PlacementMode.Absolute,
-                HorizontalOffset = -5,
-                VerticalOffset = -5,
-                AllowsTransparency = true,
-                StaysOpen = false,
-                Child = completionWindow,
-                IsOpen = true
-            };
+                completionWindow = new CompletionWindow();
 
-            var caret = textEditor.TextArea.Caret.CalculateCaretRectangle();
-            var pointOnScreen = textEditor.TextArea.TextView.PointToScreen(caret.Location - textEditor.TextArea.TextView.ScrollOffset);
+                completionBindings ??= new CompletionBindings();
+                completionBindings.CompletionDataElements = completionList;
+                completionWindow.DataContext = completionBindings;
 
-            popup.HorizontalOffset = pointOnScreen.X + 10;
-            popup.VerticalOffset = pointOnScreen.Y + 10;
+                popup = new Popup
+                {
+                    PlacementTarget = textEditor,
+                    Placement = PlacementMode.Absolute,
+                    HorizontalOffset = -5,
+                    VerticalOffset = -5,
+                    AllowsTransparency = true,
+                    StaysOpen = false,
+                    Child = completionWindow,
+                    IsOpen = true
+                };
 
-            completionWindow.completionList.SelectedIndex = 0;
+                var caret = textEditor.TextArea.Caret.CalculateCaretRectangle();
+                var pointOnScreen = textEditor.TextArea.TextView.PointToScreen(caret.Location - textEditor.TextArea.TextView.ScrollOffset);
+
+                popup.HorizontalOffset = pointOnScreen.X + 10;
+                popup.VerticalOffset = pointOnScreen.Y + 10;
+
+                completionWindow.completionList.SelectedIndex = 0;
+            }
 
         }
 

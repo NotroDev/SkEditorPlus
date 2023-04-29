@@ -148,6 +148,13 @@
     <system:String x:Key="NoResults">Nie znaleziono</system:String>
     <system:String x:Key="OneMatchFound">Znaleziono 1 wynik</system:String>
     <system:String x:Key="EmptySearchText">Wyszukiwany tekst jest pusty!</system:String>
+    <system:String x:Key="SearchPrevious">Poprzednie</system:String>
+    <system:String x:Key="SearchNext">Następne</system:String>
+    <system:String x:Key="SearchCaseSensitive">Wrażliwość na wielkość liter</system:String>
+    <system:String x:Key="SearchOnlyWords">Tylko słowa</system:String>
+    <system:String x:Key="SearchUseRegex">Użyj regexa</system:String>
+    <system:String x:Key="SearchReplaceNext">Zamień następne</system:String>
+    <system:String x:Key="SearchReplaceAll">Zamień wszystko</system:String>
 
     <system:String x:Key="CloseConfirmation">Plik nie został zapisany. Na pewno chcesz go zamknąć?</system:String>
     <system:String x:Key="Attention">Uwaga!</system:String>

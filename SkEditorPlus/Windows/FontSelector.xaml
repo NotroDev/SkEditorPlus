@@ -7,9 +7,20 @@
         xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
         Title="{DynamicResource FontSelectorTitle}" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+            <Setter Property="FontFamily" Value="{Binding}" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <TextBox x:Name="textFont" TextWrapping="Wrap" Text="" Margin="10,33,0,0" Height="23" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170" TextChanged="textFont_TextChanged"/>
-        <ListBox x:Name="lboxFont" HorizontalAlignment="Left" Height="165" VerticalAlignment="Top" Width="170" Margin="10,75,0,0" SelectionChanged="lboxFont_SelectionChanged"/>
+
+
+        <ListBox x:Name="lboxFont" HorizontalAlignment="Left" Height="165" VerticalAlignment="Top" Width="170" Margin="10,75,0,0" SelectionChanged="lboxFont_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}" />
+            </ListBox.ItemContainerStyle>
+        </ListBox>
 
         <Button x:Name="btnOK" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,33,0,0"
                 Click="btnOK_Click"/>

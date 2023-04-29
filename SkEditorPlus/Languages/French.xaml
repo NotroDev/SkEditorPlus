@@ -55,7 +55,7 @@
 	<system:String x:Key="BackpackWindowTitle">Sac à dos</system:String>
 	<system:String x:Key="SettingsWindowTitle">Paramètres</system:String>
 	<system:String x:Key="FontSelectorTitle">Sélectionner la police</system:String>
-    <system:String x:Key="MarketplaceTitle">Place de marché</system:String>
+    <system:String x:Key="MarketplaceTitle">Marketplace</system:String>
 
 	<!-- Étiquettes -->
 
@@ -77,7 +77,7 @@
 	<system:String x:Key="CmdGenAliases">Alias</system:String>
 	<system:String x:Key="CmdGenUsageMsg">Message d'utilisation invalide</system:String>
 	<system:String x:Key="CmdGenExecutors">Qui peut utiliser la commande</system:String>
-	<system:String x:Key="CmdGenCooldown">Temps de récupération</system:String>
+	<system:String x:Key="CmdGenCooldown">Délai de réutilisation</system:String>
 	<system:String x:Key="CmdGenQuantity">Quantité</system:String>
 	<system:String x:Key="CmdGenUnit">Unité</system:String>
 
@@ -147,6 +147,13 @@
     <system:String x:Key="NoResults">Aucun résultat trouvé</system:String>
     <system:String x:Key="OneMatchFound">Un seul résultat trouvé</system:String>
     <system:String x:Key="EmptySearchText">Le texte de la recherche est vide !</system:String>
+    <system:String x:Key="SearchPrevious">Précédent</system:String>
+    <system:String x:Key="SearchNext">Suivant</system:String>
+    <system:String x:Key="SearchCaseSensitive">Sensible à la casse</system:String>
+    <system:String x:Key="SearchOnlyWords">Uniquement les mots</system:String>
+    <system:String x:Key="SearchUseRegex">Utiliser les expressions régulières</system:String>
+    <system:String x:Key="SearchReplaceNext">Remplacer suivant</system:String>
+    <system:String x:Key="SearchReplaceAll">Remplacer tout</system:String>
 
     <system:String x:Key="CloseConfirmation">Le fichier n'a pas été enregistré. Êtes-vous sûr de vouloir le fermer ?</system:String>
 	<system:String x:Key="Attention">Attention !</system:String>

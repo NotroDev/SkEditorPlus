@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,7 +47,7 @@ namespace SkEditorPlus
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool IsWindowVisible(IntPtr hWnd);
 
-        public static string Version { get; } = "1.6.0";
+        public static string Version { get; } = $"{Assembly.GetExecutingAssembly().GetName().Version.Major}.{Assembly.GetExecutingAssembly().GetName().Version.Minor}.{Assembly.GetExecutingAssembly().GetName().Version.Build}";
 
         public MainWindow(SkEditorAPI skEditor)
         {
@@ -60,7 +61,10 @@ namespace SkEditorPlus
                 pipeManager.StartServer();
                 pipeManager.ReceiveString += HandleNamedPipe_OpenRequest;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace);
+            }
 
             SettingsManager.LoadSettings();
 
@@ -155,7 +159,7 @@ namespace SkEditorPlus
 
                     File.Delete(file);
                 }
-            }   
+            }
 
             else if (startupFile != null)
             {
@@ -235,6 +239,17 @@ namespace SkEditorPlus
                     }
                 }
             }
+        }
+
+        private void OnItemClosing(object sender, EventArgs e)
+        {
+            // For now I don't think there is way to cancel this event. I'll add it in the future.
+
+            //MessageBoxResult result = HandyControl.Controls.MessageBox.Show("", "", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            //if (result != MessageBoxResult.Yes)
+            //{
+            //    
+            //}
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

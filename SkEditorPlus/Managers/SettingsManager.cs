@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace SkEditorPlus.Managers
     public class SettingsManager
     {
 
-        private static readonly string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SkEditor Plus", "settings.json");
-
         public static void SaveSettings()
         {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SkEditor Plus", "settings.json");
+
             var settings = new JObject();
             var sortedProperties = Properties.Settings.Default.Properties.Cast<SettingsProperty>()
                 .OrderBy(p => p.Name);
@@ -35,6 +36,12 @@ namespace SkEditorPlus.Managers
 
         public static void LoadSettings()
         {
+            string settingsFolder = "SkEditor Plus";
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string settingsFile = "settings.json";
+
+            string path = Path.Combine(appDataFolder, settingsFolder, settingsFile);
+
             if (!File.Exists(path)) return;
 
             var settings = JObject.Parse(File.ReadAllText(path));
@@ -49,19 +56,21 @@ namespace SkEditorPlus.Managers
 
             Properties.Settings.Default.Save();
 
-            var itemsToRemove = Properties.Settings.Default.InstalledSyntaxes
-                .Cast<string>()
-                .Where(installedSyntax =>
-                    !File.Exists(Path.Combine(
-                        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                        "SkEditor Plus", "Syntax Highlighting",
-                        installedSyntax.Split('|')[1])))
-                .ToList();
+            if (Properties.Settings.Default.InstalledSyntaxes is not null)
+            {
+                var itemsToRemove = Properties.Settings.Default.InstalledSyntaxes
+                    .Cast<string>()
+                    .Where(installedSyntax =>
+                        !File.Exists(Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                            "SkEditor Plus", "Syntax Highlighting",
+                            installedSyntax.Split('|')[1])))
+                    .ToList();
 
-            itemsToRemove.ForEach(item => Properties.Settings.Default.InstalledSyntaxes.Remove(item));
+                itemsToRemove.ForEach(item => Properties.Settings.Default.InstalledSyntaxes.Remove(item));
 
-            Properties.Settings.Default.Save();
-
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }

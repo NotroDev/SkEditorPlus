@@ -244,8 +244,7 @@
             ShowCloseButton="True"
             ShowContextMenu="False"
             ShowOverflowButton="True"
-            TabItemWidth="150"/>
-        <!--<TreeView x:Name="structureTreeView" Grid.Column="1" Width="300" HorizontalAlignment="Right"></TreeView>-->
+            TabItemWidth="150" hc:TabItem.Closing="OnItemClosing"/>
     </Grid>
     <Window.InputBindings>
         <KeyBinding

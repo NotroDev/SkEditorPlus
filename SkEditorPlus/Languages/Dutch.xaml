@@ -156,6 +156,13 @@
     <system:String x:Key="NoResults">Niet gevonden</system:String>
     <system:String x:Key="OneMatchFound">Een overeenkomst gevonden</system:String>
     <system:String x:Key="EmptySearchText">Geen zoekterm!</system:String>
+    <system:String x:Key="SearchPrevious">Vorige</system:String>
+    <system:String x:Key="SearchNext">Volgende</system:String>
+    <system:String x:Key="SearchCaseSensitive">Hoofdlettergevoelig</system:String>
+    <system:String x:Key="SearchOnlyWords">Alleen woorden</system:String>
+    <system:String x:Key="SearchUseRegex">Gebruik reguliere expressies</system:String>
+    <system:String x:Key="SearchReplaceNext">Vervang volgende</system:String>
+    <system:String x:Key="SearchReplaceAll">Alles vervangen</system:String>
 
     <system:String x:Key="CloseConfirmation">Het bestand is niet opgeslagen. Weet je zeker dat je het wil sluiten?</system:String>
     <system:String x:Key="Attention">Attentie!</system:String>

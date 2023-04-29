@@ -488,7 +488,7 @@ namespace SkEditorPlus.Windows
 
                     MessageBox.Show(new MessageBoxInfo
                     {
-                        Message = Application.Current.FindResource("Addon updated! Restart app to apply.") as string,
+                        Message = Application.Current.FindResource("MarketplaceAddonUpdated") as string,
                         Caption = Application.Current.FindResource("MarketplaceUpdatedTitle") as string,
                         Button = MessageBoxButton.OK,
                         ConfirmContent = "OK",

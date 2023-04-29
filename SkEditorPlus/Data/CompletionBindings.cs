@@ -18,5 +18,17 @@ namespace SkEditorPlus.Data
     {
         [ObservableProperty]
         private ObservableCollection<string> completionItems;
+
+        private IEnumerable<CompletionDataElement> _completionDataElements;
+
+        public IEnumerable<CompletionDataElement> CompletionDataElements
+        {
+            get => _completionDataElements;
+            set
+            {
+                _completionDataElements = value;
+                CompletionItems = new ObservableCollection<string>(value.Select(item => item.Name));
+            }
+        }
     }
 }

@@ -148,6 +148,14 @@
     <system:String x:Key="NoResults">No encontrado</system:String>
     <system:String x:Key="OneMatchFound">Se ha encontrado una coincidencia</system:String>
     <system:String x:Key="EmptySearchText">¡El texto de búsqueda está vacío!</system:String>
+    <system:String x:Key="SearchPrevious">Anterior</system:String>
+    <system:String x:Key="SearchNext">Siguiente</system:String>
+    <system:String x:Key="SearchCaseSensitive">Sensible a mayúsculas/minúsculas</system:String>
+    <system:String x:Key="SearchOnlyWords">Solo palabras</system:String>
+    <system:String x:Key="SearchUseRegex">Usar expresiones regulares</system:String>
+    <system:String x:Key="SearchReplaceNext">Reemplazar siguiente</system:String>
+    <system:String x:Key="SearchReplaceAll">Reemplazar todo</system:String>
+
 
     <system:String x:Key="CloseConfirmation">El archivo no ha sido guardado. ¿Estás seguro de que quieres cerrarlo?</system:String>
 	<system:String x:Key="Attention">¡Atención!</system:String>

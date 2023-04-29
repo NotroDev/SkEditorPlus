@@ -2,6 +2,7 @@
 using SkEditorPlus.Functionalities;
 using SkEditorPlus.Managers;
 using System;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,27 +16,32 @@ namespace SkEditorPlus.Functionalities
     {
         public void OnEnable(SkEditorAPI skEditorAPI)
         {
-            var preInstalledAddonsPath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "PreInstalledAddons");
             var addonFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SkEditor Plus", "Addons");
-            Directory.CreateDirectory(addonFolder).Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+
+            Directory.CreateDirectory(addonFolder);
 
             foreach (var dllFile in Directory.EnumerateFiles(addonFolder, "*.dll", SearchOption.AllDirectories))
             {
-                if (Properties.Settings.Default.AddonsToRemove.Contains(Path.GetFileName(dllFile)))
+                StringCollection addonsToRemove = Properties.Settings.Default.AddonsToRemove;
+                addonsToRemove ??= new StringCollection();
+
+
+                if (addonsToRemove.Contains(Path.GetFileName(dllFile)))
                 {
                     var updateFile = Path.Combine(Path.GetDirectoryName(dllFile), "update-" + Path.GetFileName(dllFile));
                     if (File.Exists(updateFile))
                     {
                         File.Delete(dllFile);
                         File.Move(updateFile, dllFile);
-                        Properties.Settings.Default.AddonsToRemove.Remove(Path.GetFileName(dllFile));
+                        addonsToRemove.Remove(Path.GetFileName(dllFile));
                         Properties.Settings.Default.Save();
                         Assembly.LoadFrom(dllFile);
                         continue;
                     }
 
                     File.Delete(dllFile);
-                    Properties.Settings.Default.AddonsToRemove.Remove(Path.GetFileName(dllFile));
+                    addonsToRemove.Remove(Path.GetFileName(dllFile));
+                    Properties.Settings.Default.AddonsToRemove = addonsToRemove;
                     Properties.Settings.Default.Save(); 
                     continue;
                 }

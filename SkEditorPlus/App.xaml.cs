@@ -1,6 +1,7 @@
 ﻿using Functionalities;
 using HandyControl.Properties.Langs;
 using System;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -18,7 +19,7 @@ namespace SkEditorPlus
             SingleInstanceCheck();
         }
 
-        public void SingleInstanceCheck()
+        public async void SingleInstanceCheck()
         {
             Mutex = new Mutex(true, @"SkEditor+", out bool isOnlyInstance);
             if (!isOnlyInstance)
@@ -36,7 +37,7 @@ namespace SkEditorPlus
                 }
 
                 var manager = new NamedPipeManager("SkEditor+");
-                manager.Write(filesToOpen);
+                await manager.Write(filesToOpen);
 
                 Environment.Exit(0);
             }
@@ -50,7 +51,7 @@ namespace SkEditorPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong.\n\nError message:\n" + ex.Message,
+                MessageBox.Show("Something went wrong.\n\nError message:\n" + ex.Message + "\n\n" + ex.StackTrace,
                         "SkEditor+", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

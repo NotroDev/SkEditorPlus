@@ -11,8 +11,7 @@ namespace SkEditorPlus.Windows
 {
     public partial class FontSelector : HandyControl.Controls.Window
     {
-
-        List<string> listFont = new List<string>();
+        readonly List<string> listFont = new();
 
         public FontFamily ResultFontFamily { get; private set; }
 
@@ -43,8 +42,6 @@ namespace SkEditorPlus.Windows
             lboxFont.SelectedItem = Properties.Settings.Default.Font;
             lboxFont.ScrollIntoView(lboxFont.SelectedItem);
             textFont.Text = Properties.Settings.Default.Font;
-
-            double[] listSize = { 8, 9, 10, 10.5, 11, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 54, 60, 66, 72, 80, 88, 96 };
         }
 
         public FontSelector(Control control)

@@ -146,6 +146,13 @@
     <system:String x:Key="NoResults">Не найдено</system:String>
     <system:String x:Key="OneMatchFound">Найдено одно совпадение</system:String>
     <system:String x:Key="EmptySearchText">Пустой текст поиска!</system:String>
+    <system:String x:Key="SearchPrevious">Предыдущий</system:String>
+    <system:String x:Key="SearchNext">Следующий</system:String>
+    <system:String x:Key="SearchCaseSensitive">Учитывать регистр</system:String>
+    <system:String x:Key="SearchOnlyWords">Только слова</system:String>
+    <system:String x:Key="SearchUseRegex">Использовать регулярные выражения</system:String>
+    <system:String x:Key="SearchReplaceNext">Заменить следующий</system:String>
+    <system:String x:Key="SearchReplaceAll">Заменить все</system:String>
 
 
     <system:String x:Key="CloseConfirmation">Файл не был сохранён. Вы уверены, что хотите закрыть его?</system:String>

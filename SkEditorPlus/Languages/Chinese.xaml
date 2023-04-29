@@ -148,6 +148,13 @@
     <system:String x:Key="NoResults">未找到</system:String>
     <system:String x:Key="OneMatchFound">找到1个结果</system:String>
     <system:String x:Key="EmptySearchText">搜索文本为空！</system:String>
+    <system:String x:Key="SearchPrevious">上一个</system:String>
+    <system:String x:Key="SearchNext">下一个</system:String>
+    <system:String x:Key="SearchCaseSensitive">区分大小写</system:String>
+    <system:String x:Key="SearchOnlyWords">仅限单词</system:String>
+    <system:String x:Key="SearchUseRegex">使用正则表达式</system:String>
+    <system:String x:Key="SearchReplaceNext">替换下一个</system:String>
+    <system:String x:Key="SearchReplaceAll">替换所有</system:String>
 
     <system:String x:Key="CloseConfirmation">文件未保存。确定要关闭吗？</system:String>
 	<system:String x:Key="Attention">注意！</system:String>
