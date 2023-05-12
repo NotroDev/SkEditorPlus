@@ -109,8 +109,28 @@ namespace SkEditorPlus.Windows
 
         private void SpacesToTabs()
         {
-            // In future there will be a setting for spaces per tab
-            ConvertSpacesToTabs(4);
+            // Automatically detect the amount of spaces
+            int spacingAmount = DetectSpacingAmount();
+            ConvertSpacesToTabs(spacingAmount);
+        }
+
+        private int DetectSpacingAmount() {
+            var lines = textEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+            var newLines = new List<string>();
+
+            for (int i = 0; i < lines.Count(); i++) 
+            {
+                string line = lines[i];
+                int spaces = line.TakeWhile(c => c == ' ').Count();
+                if (spaces == 0 && line.Length > 0 && line[0] != '#' && !Char.IsWhiteSpace(line[0]) && lines.Length > i + 1)
+                {
+                    int spacing = lines[i+1].TakeWhile(c => c == ' ').Count();
+                    return spacing;
+                }
+            }
+            //Default Return
+            return 4;
         }
 
         private void ConvertSpacesToTabs(int spacePerTab)
@@ -124,6 +144,13 @@ namespace SkEditorPlus.Windows
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string lineToReplace = lines[i];
+
+                    //Don't affect comments
+                    if (lineToReplace.Trim().Length > 0 && lineToReplace.Trim()[0] == '#')
+                    {
+                        newLines.Add(lineToReplace);
+                        continue;
+                    }
 
                     int spaces = lineToReplace.TakeWhile(c => c == ' ').Count();
 
