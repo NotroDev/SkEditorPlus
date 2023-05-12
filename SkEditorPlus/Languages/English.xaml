@@ -96,6 +96,7 @@
     
     <system:String x:Key="QuickEditsVariablesCheckbox">Change dots in variables to colons</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Change spaces to tabs</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Change tabs to 4 spaces</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Remove comments</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">Shorten "else if"</system:String>
     

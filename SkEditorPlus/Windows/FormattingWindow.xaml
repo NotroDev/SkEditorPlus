@@ -10,11 +10,19 @@
     <Grid>
         <CheckBox x:Name="variablesCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsVariablesCheckbox}" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
         
-        <CheckBox x:Name="spacesCheckBox" Background="{StaticResource RegionBrush}" ToolTip="Switches from spaces to tabs for indenting" ToolTipService.IsEnabled="True" ToolTipService.InitialShowDelay="10" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="spacesCheckBox" Checked="Radio_Checked" Click="Radio_Clicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" ToolTip="Switches from spaces to tabs for indenting" ToolTipService.IsEnabled="True" ToolTipService.InitialShowDelay="10" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+
+        <RadioButton x:Name="tabsCheckBox" Checked="Radio_Checked" Click="Radio_Clicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsTabsCheckbox}" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <Button x:Name="cmdUp" x:FieldModifier="private" FontSize="10" Content="▲" Width="12"  Background="Transparent" Height="10" Click="spaceUp_Click" Padding="0,-4,0,0" Margin="162,78,1,13" HorizontalAlignment="Left" VerticalAlignment="Top"  BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" />
+        <Button x:Name="cmdDown" x:FieldModifier="private" FontSize="10" Content="▼" Width="12" Height="10"  Background="Transparent" Click="spaceDown_Click" Padding="0,-4,0,0" Margin="162,88,1,3" HorizontalAlignment="Left" VerticalAlignment="Top"  BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" />
         
-        <CheckBox x:Name="commentsCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
-        <CheckBox x:Name="elseIfCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsElseIfCheckbox}" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="12"/>
+        
+        <CheckBox x:Name="commentsCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <CheckBox x:Name="elseIfCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsElseIfCheckbox}" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" FontSize="12"/>
 
         <Button x:Name="formatButton" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Right" Width="auto" Click="FormatClick" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
     </Grid>
 </hc:Window>
+
