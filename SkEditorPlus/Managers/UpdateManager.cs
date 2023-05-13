@@ -27,6 +27,11 @@ namespace SkEditorPlus.Managers
 
                 var current = MainWindow.Version;
 
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnCheckForUpdates(current, latest);
+                });
+
                 if (latest != current)
                 {
                     string newVersionTitle = (string)Application.Current.FindResource("NewVersion");

@@ -89,6 +89,11 @@ namespace SkEditorPlus.Windows.Generators
 
             commandGeneratorWindow.Close();
             editor.CaretOffset = editor.Document.TextLength;
+
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnGenerate(ISkEditorPlusAddon.GenerateType.COMMAND);
+            });
         }
 
         private void OnComboBoxKeyUp(object sender, System.Windows.Input.KeyEventArgs e)

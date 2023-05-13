@@ -90,6 +90,10 @@ namespace SkEditorPlus.Windows
                 code = code.Replace(variableMatch.Value, variable);
             }
             textEditor.Document.Text = code;
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_DOTS_TO_COLONS);
+            });
         }
 
         private void RemoveComments()
@@ -104,6 +108,10 @@ namespace SkEditorPlus.Windows
             {
                 textEditor.Document.Remove(lineToRemove.Offset, lineToRemove.Length);
             }
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.REMOVE_COMMENTS);
+            });
         }
 
 
@@ -114,11 +122,19 @@ namespace SkEditorPlus.Windows
             // Automatically detect the amount of spaces
             int spacingAmount = DetectSpacingAmount();
             ConvertSpacesToTabs(spacingAmount);
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_SPACES_TO_TABS);
+            });
         }
 
         private void TabsToSpaces()
         {
             ConvertTabsToSpaces(_spaceValue);
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_TABS_TO_SPACES);
+            });
         }
 
         private int DetectSpacingAmount() {
@@ -241,6 +257,10 @@ namespace SkEditorPlus.Windows
 
             code = string.Join(Environment.NewLine, modifiedLines);
             textEditor.Document.Text = code;
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.SHORTEN_ELSE_IF);
+            });
         }
 
 private int _spaceValue = 4;

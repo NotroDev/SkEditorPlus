@@ -128,6 +128,10 @@ namespace SkEditorPlus.Managers
                     GetTextEditor().Save(saveFile.FileName);
                     ti.ToolTip = saveFile.FileName.ToString();
                     ti.Header = saveFile.SafeFileName;
+                    AddonManager.addons.ForEach(addon =>
+                        {
+                            addon.OnFileCreate(saveFile.FileName);
+                         });
                     OnTabChanged();
                 }
             }
@@ -159,6 +163,10 @@ namespace SkEditorPlus.Managers
                     {
                         CreateFile(openFileDialog.SafeFileNames[index], fileName);
                         GetTextEditor().Load(fileName);
+                        AddonManager.addons.ForEach(addon =>
+                        {
+                            addon.OnFileOpened(fileName);
+                         });
                         if (tabControl.SelectedItem is TabItem ti && ti.Header.ToString().EndsWith("*", StringComparison.Ordinal))
                         {
                             ti.Header = ti.Header.ToString()[..^1];
@@ -562,6 +570,10 @@ namespace SkEditorPlus.Managers
             if (syntax.Equals("none"))
             {
                 GetTextEditor().SyntaxHighlighting = null;
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnSyntaxDisable();
+                });
                 return;
             }
 
@@ -601,6 +613,10 @@ namespace SkEditorPlus.Managers
                     };
                     GetTextEditor().SyntaxHighlighting.MainRuleSet.Spans.Add(span);
                 }
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnSyntaxChange(syntax);
+                });
             }
             catch (Exception e)
             {
@@ -654,6 +670,10 @@ namespace SkEditorPlus.Managers
             var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
             await webBrowser.EnsureCoreWebView2Async(env);
             webBrowser.Source = new Uri(url);
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnSiteOpen(header, url);
+            });
         }
 
         public void Export()
@@ -786,6 +806,11 @@ namespace SkEditorPlus.Managers
 
             tabControl.Items.Add(tabItem);
             ChangeGeometry();
+
+            AddonManager.addons.ForEach(addon =>
+            {
+                addon.OnTabCreate();
+            });
 
         }
 

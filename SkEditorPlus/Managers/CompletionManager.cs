@@ -183,6 +183,11 @@ namespace SkEditorPlus.Managers
                 popup.IsOpen = false;
                 popup = null;
                 e.Handled = true;
+
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnCompletionAccept(newText);
+                });
             }
 
             else if (e.Key == Key.Escape)

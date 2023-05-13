@@ -74,6 +74,11 @@ namespace SkEditorPlus.Windows
 
             Properties.Settings.Default.BackpackCodes = codes;
             Properties.Settings.Default.Save();
+
+            AddonManager.addons.ForEach(addon =>
+            {
+                addon.OnBackPackAdd(selectedCode);
+            });
         }
 
         private void DeleteCode(object sender, RoutedEventArgs e)
@@ -95,6 +100,10 @@ namespace SkEditorPlus.Windows
                 {
                     backpackListbox.SelectedIndex = backpackListbox.Items.Count - 1;
                 }
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnBackPackRemove(item.Content.ToString());
+                });
             }
         }
 
@@ -106,6 +115,10 @@ namespace SkEditorPlus.Windows
             string codeToPaste = item.Content.ToString();
 
             textEditor.Document.Insert(textEditor.CaretOffset, codeToPaste);
+            AddonManager.addons.ForEach(addon =>
+            {
+                addon.OnBackPackPaste(codeToPaste);
+            });
         }
     }
 }
