@@ -96,6 +96,7 @@
     
     <system:String x:Key="QuickEditsVariablesCheckbox">Değişken isimlerindeki noktaları iki nokta yap</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Boşlukları TABla değiştir</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Sekmeleri 4 boşluk olarak değiştir</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Yorumları kaldır</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">"else if"leri Kısalt</system:String>
     

@@ -96,6 +96,7 @@
     
     <system:String x:Key="QuickEditsVariablesCheckbox">Zamień kropki w zmiennych w dwukropki</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Zamień spacje na taby</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Zamień taby na 4 spacje</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Usuń komentarze</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">Skróć "else if"</system:String>
     
@@ -215,6 +216,17 @@
     <system:String x:Key="MarketplaceButtonUpdate">Aktualizuj</system:String>
 
     <system:String x:Key="MarketplaceSearch">Wyszukaj...</system:String>
+
+    <system:String x:Key="MarketplaceInstalledTitle">Zainstalowano!</system:String>
+    <system:String x:Key="MarketplaceUninstalledTitle">Odinstalowano!</system:String>
+    <system:String x:Key="MarketplaceUpdatedTitle">Zaktualizowano!</system:String>
+    <system:String x:Key="MarketplaceSyntaxInstalled">Podświetlanie składni zostało zainstalowane! Możesz je włączyć w ustawieniach.</system:String>
+    <system:String x:Key="MarketplaceEnableNow">Włącz teraz</system:String>
+    <system:String x:Key="MarketplaceAddonInstalled">Dodatek został zainstalowany! Zrestartuj aplikację, aby go załadować.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUninstalled">Pomyślnie odinstalowałeś podświetlanie składni.</system:String>
+    <system:String x:Key="MarketplaceAddonUninstalled">Pomyślnie odinstalowałeś dodatek. Zrestartuj aplikację, aby zastosować.</system:String>
+    <system:String x:Key="MarketplaceSyntaxUpdated">Podświetlanie składni zostało zaktualizowane!</system:String>
+    <system:String x:Key="MarketplaceAddonUpdated">Dodatek został zaktualizowany! Zrestartuj aplikację, aby zastosować.</system:String>
 
     <!-- Units -->
     <system:String x:Key="Ticks">ticki</system:String>

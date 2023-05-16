@@ -96,6 +96,7 @@
 
 	<system:String x:Key="QuickEditsVariablesCheckbox">将变量中的点改为冒号</system:String>
 	<system:String x:Key="QuickEditsSpacesCheckbox">将空格改为制表符</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">将选项卡改为4个空格</system:String>
 	<system:String x:Key="QuickEditsCommentsCheckbox">删除注释</system:String>
 	<system:String x:Key="QuickEditsElseIfCheckbox">缩短"else if"</system:String>
 

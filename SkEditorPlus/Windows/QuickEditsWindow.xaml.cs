@@ -1,19 +1,12 @@
 ﻿using AvalonEditB;
 using SkEditorPlus.Managers;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.Generic;
-using System.Text;
-using SkEditorPlus.Data;
-using System.Windows.Input;
-using Renci.SshNet;
-using Renci.SshNet.Async;
-using System.Threading.Tasks;
-using Octokit;
-using HandyControl.Controls;
 
 namespace SkEditorPlus.Windows
 {
@@ -61,26 +54,6 @@ namespace SkEditorPlus.Windows
         {
             SettingsManager.SaveSettings();
 
-            // Don't ask lol
-
-
-            //using var client = new SftpClient(credentials);
-
-            //client.Connect();
-
-            //TreeViewItem treeViewItem = new()
-            //{
-            //    Header = FileManager.CreateIcon("\ue8b7", "FTP"),
-            //    Tag = ".",
-            //    IsExpanded = true
-            //};
-
-            //skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
-
-            //ProjectManager.instance.isFtp = true;
-            //ProjectManager.client = client;
-            //await ProjectManager.instance.AddDirectoriesAndFilesFTPAsync(client, treeViewItem);
-
             string code = textEditor.Text;
 
             Regex regex = new("{([^.}]*)\\.([^}]*)}");
@@ -93,7 +66,7 @@ namespace SkEditorPlus.Windows
             textEditor.Document.Text = code;
             AddonManager.addons.ForEach(addon =>
             {
-                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_DOTS_TO_COLONS);
+                addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_DOTS_TO_COLONS);
             });
         }
 
@@ -111,7 +84,7 @@ namespace SkEditorPlus.Windows
             }
             AddonManager.addons.ForEach(addon =>
             {
-                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.REMOVE_COMMENTS);
+                addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.REMOVE_COMMENTS);
             });
         }
 
@@ -124,7 +97,7 @@ namespace SkEditorPlus.Windows
             ConvertSpacesToTabs(spacingAmount);
             AddonManager.addons.ForEach(addon =>
             {
-                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_SPACES_TO_TABS);
+                addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_SPACES_TO_TABS);
             });
         }
 
@@ -133,7 +106,7 @@ namespace SkEditorPlus.Windows
             ConvertTabsToSpaces(_spaceValue);
             AddonManager.addons.ForEach(addon =>
             {
-                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_TABS_TO_SPACES);
+                addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_TABS_TO_SPACES);
             });
         }
 
@@ -143,7 +116,7 @@ namespace SkEditorPlus.Windows
 
             var newLines = new List<string>();
 
-            for (int i = 0; i < lines.Length; i++) 
+            for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
                 int spaces = line.TakeWhile(c => c == ' ').Count();
@@ -207,7 +180,6 @@ namespace SkEditorPlus.Windows
                 {
                     string lineToReplace = lines[i];
 
-                    //Don't affect comments
                     if (lineToReplace.Trim().Length > 0 && lineToReplace.Trim()[0] == '#')
                     {
                         newLines.Add(lineToReplace);
@@ -257,67 +229,65 @@ namespace SkEditorPlus.Windows
             textEditor.Document.Text = code;
             AddonManager.addons.ForEach(addon =>
             {
-                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.SHORTEN_ELSE_IF);
+                addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.SHORTEN_ELSE_IF);
             });
         }
 
-private int _spaceValue = 4;
+        private int _spaceValue = 4;
 
-public int SpaceNumber
-{
-    get {  return _spaceValue; }
-    set
-    {
-        if (value < 1 || value > 9) {
-            return;
+        public int SpaceNumber
+        {
+            get => _spaceValue;
+            set
+            {
+                if (value < 1 || value > 9)
+                    return;
+
+                var textBlock = ((Grid)tabsCheckBox.Content).Children.OfType<TextBlock>().FirstOrDefault();
+                if (textBlock != null)
+                {
+                    var number = GetAllIntsInString(textBlock.Text);
+                    textBlock.Text = textBlock.Text.Replace(number, value.ToString());
+                }
+
+                _spaceValue = value;
+            }
         }
-        //Somewhat hacky solution, but it removes the need for another label, and also will support all locales
-        string number = getAllIntsInString((string) tabsCheckBox.Content);
-        tabsCheckBox.Content = ((string) tabsCheckBox.Content).Replace(number.ToString(), value.ToString());
-        _spaceValue = value;
-    }
-}
 
-private string getAllIntsInString(string inputString) {
-    StringBuilder result = new StringBuilder();
-    for (int i = 0; i < inputString.Length; i++)
-    {
-        if (Char.IsDigit(inputString[i]))
-            result.Append(inputString[i]);
-    }
-    return result.ToString();
-}
+        private static string GetAllIntsInString(string inputString)
+        {
+            return new string(inputString.Where(char.IsDigit).ToArray());
+        }
 
 
-private void spaceUp_Click(object sender, RoutedEventArgs e)
-{
-    SpaceNumber++;
-}
+        private void OnSpaceUp(object sender, RoutedEventArgs e)
+        {
+            SpaceNumber++;
+        }
 
-private void spaceDown_Click(object sender, RoutedEventArgs e)
-{
-    SpaceNumber--;
-}
+        private void OnSpaceDown(object sender, RoutedEventArgs e)
+        {
+            SpaceNumber--;
+        }
 
-//Make radio button un-checkable
-private bool JustChecked;
-private void Radio_Checked(object sender, RoutedEventArgs e)
-{
-    JustChecked = true;
-}
+        private bool JustChecked;
+        private void RadioButtonChecked(object sender, RoutedEventArgs e)
+        {
+            JustChecked = true;
+        }
 
 
-private void Radio_Clicked(object sender, RoutedEventArgs e)
-{
-    if (JustChecked) {
-        JustChecked = false;
-        e.Handled = true;
-        return;
-    }
-    RadioButton s = (RadioButton) sender;
-    if (s.IsChecked == true)
-        s.IsChecked = false;
-}
+        private void RadioButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (JustChecked)
+            {
+                JustChecked = false;
+                e.Handled = true;
+                return;
+            }
 
+            if (sender is RadioButton radioButton && radioButton.IsChecked == true)
+                radioButton.IsChecked = false;
+        }
     }
 }

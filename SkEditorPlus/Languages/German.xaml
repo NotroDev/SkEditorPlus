@@ -97,6 +97,7 @@
 
     <system:String x:Key="QuickEditsVariablesCheckbox">Ändern Sie Punkte in Variablen zu Doppelpunkten</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Ändern Sie Leerzeichen in Tabs</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Tabs auf 4 Leerzeichen ändern</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Kommentare entfernen</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">"else if" verkürzen</system:String>
 

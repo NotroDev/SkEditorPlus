@@ -96,6 +96,7 @@
 
 	<system:String x:Key="QuickEditsVariablesCheckbox">Remplacer les points dans les variables par des deux-points</system:String>
 	<system:String x:Key="QuickEditsSpacesCheckbox">Remplacer les espaces par des tabulations</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Changer les onglets en 4 espaces</system:String>
 	<system:String x:Key="QuickEditsCommentsCheckbox">Supprimer les commentaires</system:String>
 	<system:String x:Key="QuickEditsElseIfCheckbox">Raccourcir "else if"</system:String>
 

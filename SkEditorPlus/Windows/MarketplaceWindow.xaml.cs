@@ -16,6 +16,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 using HandyControl.Data;
+using HandyControl.Controls;
 
 namespace SkEditorPlus.Windows
 {
@@ -110,13 +111,13 @@ namespace SkEditorPlus.Windows
                     addon.NamePlusVersion = $"{addon.Name} {addon.Version}";
 
                     marketBindings.MarketItems.Add(addon);
+
                     if (IsAddonUninstalled(addon))
                     {
                         marketBindings.FilteredItems.Add(addon);
                     }
+                    marketBindings.FilteredItems = FilterItems();
                 }
-
-                marketBindings.FilteredItems = FilterItems();
             }
             catch (Exception ex)
             {
@@ -216,7 +217,8 @@ namespace SkEditorPlus.Windows
                 {
                     return AddonManager.addons.Any(skEditorPlusAddon => item.Name.Equals(skEditorPlusAddon.Name) && !item.Version.Equals(skEditorPlusAddon.Version));
                 }
-                string syntax = Properties.Settings.Default.InstalledSyntaxes.Cast<string>().FirstOrDefault();
+                string syntax = Properties.Settings.Default.InstalledSyntaxes.Cast<string>().FirstOrDefault(s => s.Contains(item.Name));
+
                 string version = syntax.Split('|')[2];
                 return !item.Version.Equals(version);
             }
@@ -278,9 +280,7 @@ namespace SkEditorPlus.Windows
 
         private static IEnumerable<MarketplaceItem> FilterOutdatedAddons(IEnumerable<MarketplaceItem> items)
         {
-            return items.Where(item =>
-                AddonManager.addons.Any(skEditorPlusAddon =>
-                    !IsAddonUninstalled(item) && IsOutdated(item)));
+            return items.Where(item => IsOutdated(item));
         }
 
         public async Task InstallAddon()

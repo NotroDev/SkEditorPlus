@@ -96,6 +96,7 @@
     
     <system:String x:Key="QuickEditsVariablesCheckbox">Заменить точки в переменных на двоеточия</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Заменить пробелы на табы</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Изменить вкладки на 4 пробела</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Удалить комментарии</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">Упростить конструкцию "else if"</system:String>
     

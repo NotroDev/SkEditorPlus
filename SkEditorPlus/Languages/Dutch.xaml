@@ -96,6 +96,7 @@
     
     <system:String x:Key="QuickEditsVariablesCheckbox">Verander punten in variabelen naaar dubbele punten</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Verandere spaties naar tabs</system:String>
+    <system:String x:Key="QuickEditsTabsCheckbox">Tabbladen veranderen naar 4 spaties</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Opmerkingen verwijderen</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">Verkort "else if"</system:String>
     

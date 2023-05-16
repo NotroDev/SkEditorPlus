@@ -9,16 +9,34 @@
         Title="{DynamicResource FormatWindowTitle}" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
         <CheckBox x:Name="variablesCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsVariablesCheckbox}" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
-        
-        <RadioButton x:Name="spacesCheckBox" Checked="Radio_Checked" Click="Radio_Clicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" ToolTip="Switches from spaces to tabs for indenting" ToolTipService.IsEnabled="True" ToolTipService.InitialShowDelay="10" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
 
-        <RadioButton x:Name="tabsCheckBox" Checked="Radio_Checked" Click="Radio_Clicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsTabsCheckbox}" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" FontSize="12"/>
-        <Button x:Name="cmdUp" x:FieldModifier="private" FontSize="10" Content="▲" Width="12"  Background="Transparent" Height="10" Click="spaceUp_Click" Padding="0,-4,0,0" Margin="162,78,1,13" HorizontalAlignment="Left" VerticalAlignment="Top"  BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" />
-        <Button x:Name="cmdDown" x:FieldModifier="private" FontSize="10" Content="▼" Width="12" Height="10"  Background="Transparent" Click="spaceDown_Click" Padding="0,-4,0,0" Margin="162,88,1,3" HorizontalAlignment="Left" VerticalAlignment="Top"  BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" />
-        
-        
+        <RadioButton x:Name="spacesCheckBox" Checked="RadioButtonChecked" Click="RadioButtonClicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+
+        <RadioButton x:Name="tabsCheckBox" Checked="RadioButtonChecked" Click="RadioButtonClicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" FontSize="12" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top">
+            <RadioButton.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{DynamicResource QuickEditsTabsCheckbox}" Grid.Column="0" Grid.RowSpan="2"/>
+                    <Button x:Name="cmdUp" x:FieldModifier="private" FontSize="10" Content="▲" Width="Auto" Background="Transparent" Height="10" Click="OnSpaceUp" Padding="0,-10,0,0" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" Margin="4,0,0,0" />
+                    <Button x:Name="cmdDown" x:FieldModifier="private" FontSize="10" Content="▼" Width="Auto" Height="10" Background="Transparent" Click="OnSpaceDown" Padding="0,-10,0,0" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" Margin="4,0,0,0" />
+                </Grid>
+            </RadioButton.Content>
+        </RadioButton>
+
+
+
+
+
+
+
         <CheckBox x:Name="commentsCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="12"/>
         <CheckBox x:Name="elseIfCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsElseIfCheckbox}" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" FontSize="12"/>
 

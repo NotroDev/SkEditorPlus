@@ -28,11 +28,13 @@ namespace SkEditorPlus
             return;
         }
 
-        void OnTabCreate() {
+        void OnTabCreate()
+        {
             return;
         }
 
-        void OnTabClose() {
+        void OnTabClose()
+        {
             return;
         }
 
@@ -40,83 +42,103 @@ namespace SkEditorPlus
         {
             return;
         }
-        
-        void OnFileOpened(string fileName) {
+
+        void OnFileOpened(string fileName)
+        {
             return;
         }
 
-        void OnFileSave(string fileName) {
+        void OnFileSave(string fileName)
+        {
             return;
         }
 
-        void OnFileCreate(string fileName) {
+        void OnFileCreate(string fileName)
+        {
             return;
         }
 
-        void OnPublish(string url) {
+        void OnPublish(string url)
+        {
             return;
         }
 
-        void OnQuickEdit(QuickEditType type) {
+        void OnQuickEdit(QuickEditType type)
+        {
             return;
         }
-        enum QuickEditType {
+        enum QuickEditType
+        {
             CHANGE_DOTS_TO_COLONS, CHANGE_SPACES_TO_TABS, CHANGE_TABS_TO_SPACES, REMOVE_COMMENTS, SHORTEN_ELSE_IF
         }
-        
-         void OnGenerate(GenerateType type) {
-            return;
-         }
 
-        enum GenerateType {
+        void OnGenerate(GenerateType type)
+        {
+            return;
+        }
+
+        enum GenerateType
+        {
             GUI, COMMAND
         }
 
-        void OnBackPackAdd(string addedString) {
+        void OnBackPackAdd(string addedString)
+        {
             return;
         }
 
-        void OnBackPackRemove(string removedString) {
+        void OnBackPackRemove(string removedString)
+        {
             return;
         }
 
-        void OnBackPackPaste(string pastedString) {
+        void OnBackPackPaste(string pastedString)
+        {
             return;
         }
 
-        void OnCompletionAccept(string completion) {
+        void OnCompletionAccept(string completion)
+        {
             return;
         }
 
-        void OnAddonInstall(string addonName, string author, string version) {
+        void OnAddonInstall(string addonName, string author, string version)
+        {
             return;
         }
 
-        void OnAddonUninstall(string addonName, string author, string version) {
+        void OnAddonUninstall(string addonName, string author, string version)
+        {
             return;
         }
 
-        void OnAddonUpdate(string addonName, string author, string version) {
+        void OnAddonUpdate(string addonName, string author, string version)
+        {
             return;
         }
 
-        void OnSyntaxDisable() {
+        void OnSyntaxDisable()
+        {
             return;
         }
 
-        void OnSyntaxChange(string newSyntax) {
+        void OnSyntaxChange(string newSyntax)
+        {
             return;
         }
 
-        void OnSiteOpen(string name, string url) {
+        void OnSiteOpen(string name, string url)
+        {
             return;
         }
 
-        void OnCheckForUpdates(string currentVersion, string newVersion) {
+        void OnCheckForUpdates(string currentVersion, string newVersion)
+        {
             return;
         }
 
-        void OnExiting() {
+        void OnExiting()
+        {
             return;
         }
 
