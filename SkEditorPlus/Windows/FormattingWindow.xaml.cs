@@ -29,6 +29,7 @@ namespace SkEditorPlus.Windows
             InitializeComponent();
             instance = this;
             this.skEditor = skEditor;
+            _spaceValue = 4;
             textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
             BackgroundFixManager.FixBackground(this);
 
@@ -47,6 +48,7 @@ namespace SkEditorPlus.Windows
         {
             if (variablesCheckBox.IsChecked == true) FixDotVariables();
             if (spacesCheckBox.IsChecked == true) SpacesToTabs();
+            if (tabsCheckBox.IsChecked == true) TabsToSpaces();
             if (commentsCheckBox.IsChecked == true) RemoveComments();
             if (elseIfCheckBox.IsChecked == true) FixElseIf();
 
@@ -88,6 +90,10 @@ namespace SkEditorPlus.Windows
                 code = code.Replace(variableMatch.Value, variable);
             }
             textEditor.Document.Text = code;
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_DOTS_TO_COLONS);
+            });
         }
 
         private void RemoveComments()
@@ -102,6 +108,10 @@ namespace SkEditorPlus.Windows
             {
                 textEditor.Document.Remove(lineToRemove.Offset, lineToRemove.Length);
             }
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.REMOVE_COMMENTS);
+            });
         }
 
 
@@ -112,6 +122,19 @@ namespace SkEditorPlus.Windows
             // Automatically detect the amount of spaces
             int spacingAmount = DetectSpacingAmount();
             ConvertSpacesToTabs(spacingAmount);
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_SPACES_TO_TABS);
+            });
+        }
+
+        private void TabsToSpaces()
+        {
+            ConvertTabsToSpaces(_spaceValue);
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_TABS_TO_SPACES);
+            });
         }
 
         private int DetectSpacingAmount() {
@@ -174,6 +197,36 @@ namespace SkEditorPlus.Windows
             catch { }
         }
 
+        private void ConvertTabsToSpaces(int spacePerTab)
+        {
+            try
+            {
+                var lines = textEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+                var newLines = new List<string>();
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string lineToReplace = lines[i];
+
+                    //Don't affect comments
+                    if (lineToReplace.Trim().Length > 0 && lineToReplace.Trim()[0] == '#')
+                    {
+                        newLines.Add(lineToReplace);
+                        continue;
+                    }
+
+                    string newLine = lineToReplace.Replace("\t", new string(' ', spacePerTab));
+
+                    newLines.Add(newLine);
+                }
+
+                string newCode = string.Join(Environment.NewLine, newLines);
+                textEditor.Document.Text = newCode;
+            }
+            catch { }
+        }
+
         private int GetOffsetByLine(string line)
         {
             int index = textEditor.Text.IndexOf(line);
@@ -204,6 +257,69 @@ namespace SkEditorPlus.Windows
 
             code = string.Join(Environment.NewLine, modifiedLines);
             textEditor.Document.Text = code;
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.SHORTEN_ELSE_IF);
+            });
         }
+
+private int _spaceValue = 4;
+
+public int SpaceNumber
+{
+    get {  return _spaceValue; }
+    set
+    {
+        if (value < 1 || value > 9) {
+            return;
+        }
+        //Somewhat hacky solution, but it removes the need for another label, and also will support all locales
+        string number = getAllIntsInString((string) tabsCheckBox.Content);
+        tabsCheckBox.Content = ((string) tabsCheckBox.Content).Replace(number.ToString(), value.ToString());
+        _spaceValue = value;
+    }
+}
+
+private string getAllIntsInString(string inputString) {
+    StringBuilder result = new StringBuilder();
+    for (int i = 0; i < inputString.Length; i++)
+    {
+        if (Char.IsDigit(inputString[i]))
+            result.Append(inputString[i]);
+    }
+    return result.ToString();
+}
+
+
+private void spaceUp_Click(object sender, RoutedEventArgs e)
+{
+    SpaceNumber++;
+}
+
+private void spaceDown_Click(object sender, RoutedEventArgs e)
+{
+    SpaceNumber--;
+}
+
+//Make radio button un-checkable
+private bool JustChecked;
+private void Radio_Checked(object sender, RoutedEventArgs e)
+{
+    JustChecked = true;
+}
+
+
+private void Radio_Clicked(object sender, RoutedEventArgs e)
+{
+    if (JustChecked) {
+        JustChecked = false;
+        e.Handled = true;
+        return;
+    }
+    RadioButton s = (RadioButton) sender;
+    if (s.IsChecked == true)
+        s.IsChecked = false;
+}
+
     }
 }

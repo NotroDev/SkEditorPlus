@@ -77,6 +77,10 @@ namespace SkEditorPlus.Windows
             if (response.IsSuccessStatusCode)
             {
                 urlTextBox.Text = responseString;
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnPublish(responseString);
+                });
             }
         }
 
@@ -101,6 +105,10 @@ namespace SkEditorPlus.Windows
                 JObject jsonResult = JObject.Parse(responseString);
                 string url = jsonResult["url"].ToString();
                 urlTextBox.Text = url;
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnPublish(url);
+                });
             }
             catch (Exception e)
             {

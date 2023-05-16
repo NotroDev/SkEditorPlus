@@ -98,6 +98,11 @@ namespace SkEditorPlus.Windows.Generators
             guiGeneratorWindow.Close();
 
             editor.CaretOffset = editor.Document.TextLength;
+
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnGenerate(ISkEditorPlusAddon.GenerateType.GUI);
+            });
         }
 
         private void FunctionNameChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

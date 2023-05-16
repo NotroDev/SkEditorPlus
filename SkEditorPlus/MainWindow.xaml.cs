@@ -226,6 +226,12 @@ namespace SkEditorPlus
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             SettingsManager.SaveSettings();
+
+            AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnExiting();
+                });
+
             if (tabControl.Items.Count > 0)
             {
                 if (tabControl.Items.Cast<TabItem>().Any(tab => tab.Header.ToString().EndsWith("*")))
@@ -262,6 +268,10 @@ namespace SkEditorPlus
         private void TabClosed(object sender, EventArgs e)
         {
             GC.Collect();
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnTabClose();
+            });
         }
 
         public FileManager GetFileManager()
