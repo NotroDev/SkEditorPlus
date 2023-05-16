@@ -15,9 +15,7 @@ using System.IO;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
-using HandyControl.Controls;
 using HandyControl.Data;
-using Renci.SshNet;
 
 namespace SkEditorPlus.Windows
 {
@@ -354,6 +352,10 @@ namespace SkEditorPlus.Windows
                     Properties.Settings.Default.InstalledSyntaxes = syntaxes;
                     Properties.Settings.Default.Save();
                 }
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnAddonInstall(item.Name, item.Author, item.Version);
+                });
             }
             catch (Exception ex)
             {
@@ -413,6 +415,10 @@ namespace SkEditorPlus.Windows
                     IconKey = ResourceToken.InfoGeometry
                 });
             }
+            AddonManager.addons.ForEach(addon =>
+            {
+                    addon.OnAddonUninstall(item.Name, item.Author, item.Version);
+            });
         }
 
         public async void UpdateAddon()
@@ -496,6 +502,10 @@ namespace SkEditorPlus.Windows
                         IconKey = ResourceToken.InfoGeometry
                     });
                 }
+                AddonManager.addons.ForEach(addon =>
+                {
+                    addon.OnAddonUpdate(item.Name, item.Author, item.Version);
+                });
             }
             catch (Exception ex)
             {
