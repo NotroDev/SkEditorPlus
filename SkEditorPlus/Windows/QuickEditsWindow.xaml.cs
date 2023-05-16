@@ -13,18 +13,19 @@ using Renci.SshNet;
 using Renci.SshNet.Async;
 using System.Threading.Tasks;
 using Octokit;
+using HandyControl.Controls;
 
 namespace SkEditorPlus.Windows
 {
-    public partial class FormattingWindow : HandyControl.Controls.Window
+    public partial class QuickEditsWindow : HandyControl.Controls.Window
     {
         private SkEditorAPI skEditor;
 
         private TextEditor textEditor;
 
-        public static FormattingWindow instance;
+        public static QuickEditsWindow instance;
 
-        public FormattingWindow(SkEditorAPI skEditor)
+        public QuickEditsWindow(SkEditorAPI skEditor)
         {
             InitializeComponent();
             instance = this;
@@ -39,7 +40,7 @@ namespace SkEditorPlus.Windows
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
-                formattingWindow.Close();
+                quickEditsWindow.Close();
             }
         }
 
@@ -50,7 +51,7 @@ namespace SkEditorPlus.Windows
             if (commentsCheckBox.IsChecked == true) RemoveComments();
             if (elseIfCheckBox.IsChecked == true) FixElseIf();
 
-            formattingWindow.Close();
+            quickEditsWindow.Close();
         }
 
 
@@ -109,27 +110,26 @@ namespace SkEditorPlus.Windows
 
         private void SpacesToTabs()
         {
-            // Automatically detect the amount of spaces
             int spacingAmount = DetectSpacingAmount();
             ConvertSpacesToTabs(spacingAmount);
         }
 
-        private int DetectSpacingAmount() {
+        private int DetectSpacingAmount()
+        {
             var lines = textEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
             var newLines = new List<string>();
 
-            for (int i = 0; i < lines.Count(); i++) 
+            for (int i = 0; i < lines.Length; i++) 
             {
                 string line = lines[i];
                 int spaces = line.TakeWhile(c => c == ' ').Count();
-                if (spaces == 0 && line.Length > 0 && line[0] != '#' && !Char.IsWhiteSpace(line[0]) && lines.Length > i + 1)
+                if (spaces == 0 && line.Length > 0 && line[0] != '#' && !char.IsWhiteSpace(line[0]) && lines.Length > i + 1)
                 {
-                    int spacing = lines[i+1].TakeWhile(c => c == ' ').Count();
+                    int spacing = lines[i + 1].TakeWhile(c => c == ' ').Count();
                     return spacing;
                 }
             }
-            //Default Return
             return 4;
         }
 
@@ -141,37 +141,35 @@ namespace SkEditorPlus.Windows
 
                 var newLines = new List<string>();
 
-                for (int i = 0; i < lines.Length; i++)
+                foreach (var line in lines)
                 {
-                    string lineToReplace = lines[i];
-
-                    //Don't affect comments
-                    if (lineToReplace.Trim().Length > 0 && lineToReplace.Trim()[0] == '#')
+                    if (line.Trim().StartsWith("#"))
                     {
-                        newLines.Add(lineToReplace);
+                        newLines.Add(line);
                         continue;
                     }
 
-                    int spaces = lineToReplace.TakeWhile(c => c == ' ').Count();
+                    var spacesOnlyLine = line.Replace("\t", new string(' ', spacePerTab));
 
-                    if (spaces == 0)
-                    {
-                        newLines.Add(lineToReplace);
-                        continue;
-                    }
+                    var leadingSpacesCount = spacesOnlyLine.TakeWhile(c => c == ' ').Count();
 
-                    int tabs = spaces / spacePerTab;
-                    int spacesToReplace = tabs * spacePerTab;
+                    var tabsCount = leadingSpacesCount / spacePerTab;
+                    var spacesCount = leadingSpacesCount % spacePerTab;
 
-                    string newLine = lineToReplace.Replace(new string(' ', spacesToReplace), new string('\t', tabs));
+                    var leadingTabs = new string('\t', tabsCount);
+                    var leadingSpaces = new string(' ', spacesCount);
+                    var newLine = string.Concat(leadingTabs, leadingSpaces, spacesOnlyLine.AsSpan(leadingSpacesCount));
 
                     newLines.Add(newLine);
                 }
 
-                string newCode = string.Join(Environment.NewLine, newLines);
+                var newCode = string.Join(Environment.NewLine, newLines);
                 textEditor.Document.Text = newCode;
             }
-            catch { }
+            catch
+            {
+                // ignore because why not lmao
+            }
         }
 
         private int GetOffsetByLine(string line)

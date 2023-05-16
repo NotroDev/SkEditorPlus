@@ -89,9 +89,9 @@ namespace SkEditorPlus
             return GetMainWindow().tabControl;
         }
 
-        public FormattingWindow GetQuickEditsWindow()
+        public QuickEditsWindow GetQuickEditsWindow()
         {
-            return FormattingWindow.instance;
+            return QuickEditsWindow.instance;
         }
 
         /// <returns>FileManager instance</returns>

@@ -135,7 +135,7 @@
     <Compile Update="Windows\Generators\CommandGenerator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\FormattingWindow.xaml.cs">
+    <Compile Update="Windows\QuickEditsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\MarketplaceWindow.xaml.cs">
@@ -208,7 +208,7 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\FormattingWindow.xaml">
+    <Page Update="Windows\QuickEditsWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

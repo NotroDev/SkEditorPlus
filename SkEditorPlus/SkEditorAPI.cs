@@ -25,7 +25,7 @@ namespace SkEditorPlus
 
         HandyControl.Controls.TabControl GetTabControl();
 
-        FormattingWindow GetQuickEditsWindow();
+        QuickEditsWindow GetQuickEditsWindow();
 
         FileManager GetFileManager();
 

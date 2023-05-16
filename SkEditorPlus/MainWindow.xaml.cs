@@ -175,7 +175,7 @@ namespace SkEditorPlus
                 fileManager.NewFile();
             }
 
-            FormattingWindow formattingWindow = new(skEditor);
+            QuickEditsWindow quickEditsWindow = new(skEditor);
 
             AddonManager.addons.ForEach(addon =>
             {

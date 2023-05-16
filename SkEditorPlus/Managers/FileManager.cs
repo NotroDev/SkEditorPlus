@@ -451,8 +451,8 @@ namespace SkEditorPlus.Managers
         {
             if (GetTextEditor() == null) return;
 
-            FormattingWindow formattingWindow = new(skEditor);
-            formattingWindow.ShowDialog();
+            QuickEditsWindow quickEditsWindow = new(skEditor);
+            quickEditsWindow.ShowDialog();
         }
 
         void TextEditorMouseHover(object sender, MouseEventArgs e)
