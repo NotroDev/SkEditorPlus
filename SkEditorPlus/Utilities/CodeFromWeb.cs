@@ -32,7 +32,6 @@ namespace SkEditorPlus.Utilities
 
             if (response.Content.Headers.ContentType.MediaType != "text/plain")
             {
-                Console.WriteLine("hio");
                 HandyControl.Controls.MessageBox.Error((Application.Current.FindResource("ScriptWithIDNotFoundError") as string).Replace("{0}", id));
                 return null;
             }
