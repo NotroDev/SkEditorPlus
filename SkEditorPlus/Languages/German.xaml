@@ -56,6 +56,7 @@
     <system:String x:Key="BackpackWindowTitle">Rucksack</system:String>
     <system:String x:Key="SettingsWindowTitle">Einstellungen</system:String>
     <system:String x:Key="FontSelectorTitle">Schriftart auswählen</system:String>
+    <system:String x:Key="ItemSelectorTitle">Wähle Gegenstand</system:String>
     <system:String x:Key="MarketplaceTitle">Marktplatz</system:String>
 
     <!-- Beschriftungen -->
@@ -66,6 +67,7 @@
     <system:String x:Key="PublishButton">Veröffentlichen</system:String>
     <system:String x:Key="GenerateButton">Generieren</system:String>
     <system:String x:Key="ApplyButton">Anwenden</system:String>
+    <system:String x:Key="PreviewButton">Vorschau</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Hier wird der Link zu Ihrem Code sein :)</system:String>
 
     <system:String x:Key="WhatDoYouWantToGenerate">Was möchten Sie generieren?</system:String>
@@ -87,13 +89,17 @@
 
     <system:String x:Key="GUIGenFunctionName">Name der Funktion</system:String>
     <system:String x:Key="GUIGenTitle">Titel</system:String>
-    <system:String x:Key="GUIGenRows">Anzahl der Zeilen</system:String>
-    <system:String x:Key="GUIGenExampleItem">Beispielartikel hinzufügen</system:String>
-    <system:String x:Key="GUIGenBackground">Hintergrund hinzufügen</system:String>
-    <system:String x:Key="GUIGenHint">Um Ihre GUI anzuzeigen, verwenden Sie {0}</system:String>
-    <system:String x:Key="GUIGenExampleItemName">Beispielartikel</system:String>
-    <system:String x:Key="GUIGenExampleItemLore">Beispiel-Lore</system:String>
-    <system:String x:Key="GUIGenExampleItemClicked">Sie haben auf den Beispielartikel geklickt!</system:String>
+    <system:String x:Key="GUIGenRows">Zeilenanzahl</system:String>
+    <system:String x:Key="GUIGenBackground">Hintergrund</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Auswählen</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Mit Umschalttaste klicken, um die Schnellvorschau zu verwenden</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">Der generierte Code erfordert das skript-gui-Add-On</system:String>
+    <system:String x:Key="GUIGenEdit">Bearbeiten</system:String>
+    <system:String x:Key="GUIGenRemove">Entfernen</system:String>
+
+    <system:String x:Key="ItemSelectorSearch">Suchen...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Objektname</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Aktion hinzufügen</system:String>
 
     <system:String x:Key="QuickEditsVariablesCheckbox">Ändern Sie Punkte in Variablen zu Doppelpunkten</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Ändern Sie Leerzeichen in Tabs</system:String>
@@ -134,12 +140,6 @@
     <system:String x:Key="UpdateConfirmation">Wenn Sie fortfahren, werden die Syntaxhervorhebungsdateien heruntergeladen und ersetzt. Wenn Sie Änderungen daran vorgenommen haben und diese nicht verlieren möchten, erstellen Sie eine Kopie.</system:String>
     <system:String x:Key="UpdateSuccess">Syntaxhervorhebungsdateien erfolgreich aktualisiert!</system:String>
     <system:String x:Key="UpdateFailed">Fehler beim Herunterladen der Syntaxhervorhebungsdateien!{n}Sind Sie mit dem Internet verbunden?{n}{n}{0}</system:String>
-
-    <!-- Hey, don't bother translating this. App ignores this 3 keys in other languages. You can remove it. -->
-    <system:String x:Key="NoFilesTitle">Keine Dateien</system:String>
-    <system:String x:Key="NoFilesDescription">Fehlende Syntaxhervorhebungsdateien erkannt! Klicken Sie zum Herunterladen.</system:String>
-    <system:String x:Key="NoFilesDownloaded">Erfolgreich heruntergeladen!</system:String>
-    <!-- -->
 
     <system:String x:Key="OptionsAddonName">Name:</system:String>
     <system:String x:Key="OptionsAddonAuthor">Autor:</system:String>
@@ -199,7 +199,6 @@
     <system:String x:Key="GUIGenNameError">Name der GUI ist erforderlich!</system:String>
     <system:String x:Key="GUIGenTitleError">Titel der GUI ist erforderlich!</system:String>
     <system:String x:Key="GUIGenRowsError">Anzahl der Zeilen muss zwischen 1 und 6 liegen!</system:String>
-    <system:String x:Key="GUIGenRowsError2">Anzahl der Zeilen muss eine Zahl sein!</system:String>
 
     <system:String x:Key="CmdGenNameError">Name des Befehls ist erforderlich!</system:String>
     <system:String x:Key="CmdGenCooldownError">Abklingzeit muss eine Zahl sein!</system:String>

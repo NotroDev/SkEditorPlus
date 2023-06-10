@@ -44,55 +44,14 @@ namespace SkEditorPlus.Windows
             textFont.Text = Properties.Settings.Default.Font;
         }
 
-        public FontSelector(Control control)
-        {
-            InitializeComponent();
-
-            ResultFontFamily = control.FontFamily;
-
-            var cond = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.CurrentUICulture.Name);
-            foreach (FontFamily item in Fonts.SystemFontFamilies)
-            {
-                if (item.FamilyNames.ContainsKey(cond))
-                    listFont.Add(item.FamilyNames[cond]);
-                else
-                    listFont.Add(item.ToString());
-            }
-            listFont.Sort();
-            lboxFont.ItemsSource = listFont;
-
-            lboxFont.SelectedItem = control.FontFamily.ToString();
-            lboxFont.ScrollIntoView(lboxFont.SelectedItem);
-            textFont.Text = control.FontFamily.ToString();
-
-            double[] listSize = { 8, 9, 10, 10.5, 11, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 54, 60, 66, 72, 80, 88, 96 };
-        }
-
-        private void textFontSize_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (!(((Key.D0 <= e.Key) && (e.Key <= Key.D9))
-                || ((Key.NumPad0 <= e.Key) && (e.Key <= Key.NumPad9))
-                || e.Key == Key.Back
-                || e.Key == Key.OemPeriod
-                || e.Key == Key.Delete))
-            {
-                e.Handled = true;
-            }
-            else if (e.Key == Key.OemPeriod)
-            {
-                if ((sender as TextBox).Text.IndexOf('.') > -1)
-                    e.Handled = true;
-            }
-        }
-
-        private void btnOK_Click(object sender, RoutedEventArgs e)
+        private void OnApply(object sender, RoutedEventArgs e)
         {
             ResultFontFamily = new FontFamily(listFont[lboxFont.SelectedIndex]);
 
             DialogResult = true;
         }
 
-        private void lboxFont_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnFontChange(object sender, SelectionChangedEventArgs e)
         {
             FontFamily family;
             List<string> tempListFontStyle = new List<string>();
@@ -125,12 +84,12 @@ namespace SkEditorPlus.Windows
                 }
             }
 
-            textFont.TextChanged -= textFont_TextChanged;
+            textFont.TextChanged -= OnFontTextChanged;
             textFont.Text = family.ToString();
-            textFont.TextChanged += textFont_TextChanged;
+            textFont.TextChanged += OnFontTextChanged;
         }
 
-        private void textFont_TextChanged(object sender, TextChangedEventArgs e)
+        private void OnFontTextChanged(object sender, TextChangedEventArgs e)
         {
             string lower = textFont.Text.ToLower();
 
@@ -138,19 +97,14 @@ namespace SkEditorPlus.Windows
             {
                 if (item.ToLower().StartsWith(lower))
                 {
-                    lboxFont.SelectionChanged -= lboxFont_SelectionChanged;
+                    lboxFont.SelectionChanged -= OnFontChange;
                     lboxFont.SelectedItem = item;
-                    lboxFont.SelectionChanged += lboxFont_SelectionChanged;
+                    lboxFont.SelectionChanged += OnFontChange;
 
                     lboxFont.ScrollIntoView(item);
                     return;
                 }
             }
-        }
-
-        public void ApplyToControl(Control control)
-        {
-            control.FontFamily = ResultFontFamily;
         }
     }
 }

@@ -23,8 +23,6 @@ namespace SkEditorPlus.Managers
 
         private readonly SkEditorAPI skEditor;
 
-        private static ListBoxItem[] completionList = System.Array.Empty<ListBoxItem>();
-
         private CancellationTokenSource cancellationTokenSource;
 
         private CompletionWindow completionWindow;
@@ -39,6 +37,11 @@ namespace SkEditorPlus.Managers
         {
             instance = this;
             this.skEditor = skEditor;
+
+            for (int i = 0; i < 50; i++)
+            {
+                CompletionData.completionSet.Add(new CompletionDataElement("command" + i, "command /{c}:\n\t"));
+            }
         }
 
         public void LoadCompletionManager(TextEditor textEditor)
@@ -127,13 +130,13 @@ namespace SkEditorPlus.Managers
 
                     case "guigen":
                         textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, "");
-                        GuiGenerator guiGenerator = new(skEditor);
+                        GuiPreview guiGenerator = new(skEditor);
                         guiGenerator.ShowDialog();
                         break;
 
                     default:
                         CompletionDataElement element = null;
-                        foreach (CompletionDataElement dataElement in CompletionData.completionList)
+                        foreach (CompletionDataElement dataElement in CompletionData.completionSet)
                         {
                             if (dataElement.Name.Equals(item))
                             {
@@ -248,7 +251,6 @@ namespace SkEditorPlus.Managers
                 return;
             }
 
-            //HidePopup();
             ShowCompletionWindow(lastWord);
 
         }

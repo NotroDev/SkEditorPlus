@@ -1,7 +1,10 @@
 ﻿using AvalonEditB;
 using Functionalities;
+using HandyControl.Data;
 using HandyControl.Themes;
 using HandyControl.Tools;
+using Microsoft.Win32;
+using SharpVectors.Dom;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows;
@@ -10,20 +13,24 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using MessageBox = HandyControl.Controls.MessageBox;
+using TabItem = HandyControl.Controls.TabItem;
 using Window = HandyControl.Controls.Window;
 
 namespace SkEditorPlus
 {
     public delegate void LoadFinishedEvent();
-    
+
     public partial class MainWindow : Window
     {
 
@@ -55,6 +62,79 @@ namespace SkEditorPlus
             ExceptionHandler.skEditor = skEditor;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionHandler.OnUnhandledException);
 
+            RegistryKey skEditorProtocol = Registry.ClassesRoot.OpenSubKey("skeditor");
+            if (skEditorProtocol == null)
+            {
+                var isAdmin = IsRunningAsAdministrator();
+                if (!isAdmin)
+                {
+
+                    MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
+                    {
+                        Message = "Looks like it's your first time using SkEditor+ or you've recently updated the app.\nJust for this first time, you'll need to run the application as an administrator to be able to add registry keys.",
+                        Caption = "SkEditor+",
+                        Button = MessageBoxButton.YesNo,
+                        YesContent = "Run as admin",
+                        NoContent = "Close app",
+                        IconBrushKey = ResourceToken.DarkInfoBrush,
+                        IconKey = ResourceToken.InfoGeometry
+                    });
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var processInfo = new ProcessStartInfo(Environment.ProcessPath)
+                        {
+                            UseShellExecute = true,
+                            Verb = "runas"
+                        };
+
+                        try
+                        {
+                            Process.Start(processInfo);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(new MessageBoxInfo
+                            {
+                                Message = "Oops, looks like you might have denied running the app as an administrator.\nI'm sorry, but it's necessary. The app will close now.",
+                                Caption = "SkEditor+",
+                                Button = MessageBoxButton.OK,
+                                IconBrushKey = ResourceToken.DarkDangerBrush,
+                                IconKey = ResourceToken.ErrorGeometry
+                            });
+                        }
+                        Application.Current.Shutdown();
+                        return;
+                    }
+                    else
+                    {
+                        Application.Current.Shutdown();
+                    }
+                }
+                else
+                {
+                    skEditorProtocol = Registry.ClassesRoot.CreateSubKey("skeditor");
+                    skEditorProtocol.SetValue("", "URL:skeditor Protocol");
+                    skEditorProtocol.SetValue("URL Protocol", "");
+
+                    RegistryKey shell = skEditorProtocol.CreateSubKey("shell");
+                    RegistryKey open = shell.CreateSubKey("open");
+                    RegistryKey command = open.CreateSubKey("command");
+
+                    command.SetValue("", $"\"{Environment.ProcessPath}\" \"%1\"");
+
+
+                    MessageBox.Show(new MessageBoxInfo
+                    {
+                        Message = "Thanks for cooperating! ;) The registry keys have been successfully added.",
+                        Caption = "SkEditor+",
+                        Button = MessageBoxButton.OK,
+                        IconBrushKey = ResourceToken.DarkInfoBrush,
+                        IconKey = ResourceToken.InfoGeometry
+                    });
+                }
+            }
+
             try
             {
                 NamedPipeManager pipeManager = new("SkEditor+");
@@ -71,6 +151,7 @@ namespace SkEditorPlus
             startupFile = skEditor.GetStartupFile();
             this.skEditor = skEditor;
             Process process = Process.GetCurrentProcess();
+
             InitializeComponent();
         }
 
@@ -78,23 +159,37 @@ namespace SkEditorPlus
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             Directory.CreateDirectory(appPath);
-            if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
+            if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd") || !File.Exists(appPath + @"\items.json") || !Directory.Exists(appPath + @"\Items"))
             {
-                string noFilesTitle = (string)FindResource("NoFilesTitle");
-                string noFilesDescription = (string)FindResource("NoFilesDescription");
-                string noFilesDownloaded = (string)FindResource("NoFilesDownloaded");
+                string noFilesTitle = "No files";
+                string noFilesDescription = "Looks like it's your first time using SkEditor+ or you've recently updated the app, because there are missing files. Click to download.";
+                string noFilesDownloaded = "Successfully downloaded!";
 
-                HandyControl.Controls.MessageBox.Show(noFilesDescription, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(noFilesDescription, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
                 IsEnabled = false;
-                await UpdateManager.UpdateSyntaxFile().ContinueWith((t) =>
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        IsEnabled = true;
-                        HandyControl.Controls.MessageBox.Show(noFilesDownloaded, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-                    });
-                });
 
+                if (!File.Exists(appPath + @"\items.json") || !Directory.Exists(appPath + @"\Items"))
+                {
+                    await UpdateManager.UpdateItemFiles().ContinueWith((t) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            IsEnabled = true;
+                        });
+                    });
+                }
+
+                if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
+                {
+                    await UpdateManager.UpdateSyntaxFiles().ContinueWith((t) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            IsEnabled = true;
+                        });
+                    });
+                }
+                MessageBox.Show(noFilesDownloaded, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
             string countryName = RegionInfo.CurrentRegion.Name;
@@ -125,6 +220,7 @@ namespace SkEditorPlus
                 Properties.Settings.Default.Language = "English";
                 Properties.Settings.Default.Save();
             }
+
             SetUpMica();
             BackgroundFixManager.FixBackground(this);
 
@@ -140,39 +236,43 @@ namespace SkEditorPlus
 
             RPCManager.Initialize();
 
+
             string tempPath = Path.GetTempPath();
 
             string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
-            if (!Directory.Exists(skEditorFolder))
-            {
-                Directory.CreateDirectory(skEditorFolder);
-            }
+            Directory.CreateDirectory(skEditorFolder);
 
             if (Directory.GetFiles(skEditorFolder).Length > 0)
             {
                 foreach (string file in Directory.GetFiles(skEditorFolder))
                 {
-                    fileManager.NewFile();
-                    fileManager.GetTextEditor().Load(file);
-                    TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
-                    currentTabItem.Header = Path.GetFileName(file);
+                    Dispatcher.Invoke(() =>
+                    {
+                        fileManager.NewFile();
+                        fileManager.GetTextEditor().Load(file);
+                        TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
+                        currentTabItem.Header = Path.GetFileName(file);
 
-                    File.Delete(file);
+                        File.Delete(file);
+                    });
                 }
             }
 
             else if (startupFile != null)
             {
-                fileManager.NewFile();
-                fileManager.GetTextEditor().Load(startupFile);
-                TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
-                currentTabItem.ToolTip = startupFile;
-                currentTabItem.Header = Path.GetFileName(startupFile);
-                fileManager.OnTabChanged();
+                Dispatcher.Invoke(() =>
+                {
+                    fileManager.NewFile();
+                    fileManager.GetTextEditor().Load(startupFile);
+                    TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
+                    currentTabItem.ToolTip = startupFile;
+                    currentTabItem.Header = Path.GetFileName(startupFile);
+                    fileManager.OnTabChanged();
+                });
             }
             else
             {
-                fileManager.NewFile();
+                Dispatcher.Invoke(() => fileManager.NewFile());
             }
 
             QuickEditsWindow quickEditsWindow = new(skEditor);
@@ -186,6 +286,8 @@ namespace SkEditorPlus
             {
                 UpdateManager.CheckUpdate(false);
             }
+
+            RemoveThisWeirdBorder(tabControl);
         }
 
         public void SetUpMica(bool firstTime = true)
@@ -201,8 +303,8 @@ namespace SkEditorPlus
 
             byte transparency = (byte)Properties.Settings.Default.EditorTransparency;
 
-            
-            
+
+
             newStyle.Setters.Add(new Setter(BackgroundProperty, mica ? new SolidColorBrush(Color.FromArgb(transparency, 30, 30, 30)) : new SolidColorBrush(Color.FromRgb(0x1e, 0x1e, 0x1e))));
 
             Application.Current.Resources["TextEditorStyle"] = newStyle;
@@ -217,10 +319,28 @@ namespace SkEditorPlus
             }
         }
 
-        private SolidColorBrush GetSolidColorBrush(string hex)
+        private void OnSkEditorLogoTooltip(object sender, ToolTipEventArgs e)
+        {
+            SkEditorLogo.ToolTip = IsRunningAsAdministrator() ? "SkEditor+ (Administrator)" : "SkEditor+";
+        }
+
+
+        public static bool IsRunningAsAdministrator()
+        {
+            return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+
+        public static SolidColorBrush GetSolidColorBrush(string hex)
         {
             Color color = (Color)ColorConverter.ConvertFromString(hex);
             return new SolidColorBrush(color);
+        }
+
+        public static System.Drawing.Brush GetBrush(string hex)
+        {
+            Color color = (Color)ColorConverter.ConvertFromString(hex);
+            return new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B));
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -270,7 +390,7 @@ namespace SkEditorPlus
             GC.Collect();
             AddonManager.addons.ForEach(addon =>
             {
-                    addon.OnTabClose();
+                addon.OnTabClose();
             });
         }
 
@@ -279,35 +399,52 @@ namespace SkEditorPlus
             return fileManager;
         }
 
-        public void HandleNamedPipe_OpenRequest(string filesToOpen)
+        public async void HandleNamedPipe_OpenRequest(string filesToOpen)
         {
             try
             {
-                Dispatcher.Invoke(() =>
+                await Dispatcher.InvokeAsync(async () =>
                 {
                     if (!string.IsNullOrEmpty(filesToOpen))
                     {
                         TabItem lastTab = null;
-                        foreach (string file in filesToOpen.Split(Environment.NewLine))
+
+                        if (filesToOpen.StartsWith("skeditor://"))
                         {
-                            if (string.IsNullOrEmpty(file))
+                            string id = filesToOpen[11..^1].Trim().TrimEnd('/');
+                            string path = await CodeFromWeb.GetCodeFromSkript(id);
+                            if (path != null)
                             {
-                                continue;
+                                fileManager.NewFile();
+                                fileManager.GetTextEditor().Load(path);
+                                TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
+                                currentTabItem.Header = id + ".sk";
+                                lastTab = currentTabItem;
+                                fileManager.OnTabChanged();
+                                fileManager.ChangeGeometry(currentTabItem);
                             }
-                            fileManager.NewFile();
-                            fileManager.GetTextEditor().Load(file);
-                            TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
-                            currentTabItem.ToolTip = file;
-                            currentTabItem.Header = Path.GetFileName(file);
-                            lastTab = currentTabItem;
-                            fileManager.OnTabChanged();
+                        }
+                        else
+                        {
+                            foreach (string file in filesToOpen.Split(Environment.NewLine))
+                            {
+                                if (string.IsNullOrEmpty(file))
+                                {
+                                    continue;
+                                }
+                                fileManager.NewFile();
+                                fileManager.GetTextEditor().Load(file);
+                                TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
+                                currentTabItem.ToolTip = file;
+                                currentTabItem.Header = Path.GetFileName(file);
+                                lastTab = currentTabItem;
+                                fileManager.OnTabChanged();
+                            }
                         }
 
-
                         if (lastTab != null)
-                            Dispatcher.InvokeAsync(() => tabControl.SelectedItem = lastTab);
+                            await Dispatcher.InvokeAsync(() => tabControl.SelectedItem = lastTab);
                     }
-
 
                     if (WindowState == WindowState.Minimized)
                         WindowState = WindowState.Normal;
@@ -328,6 +465,24 @@ namespace SkEditorPlus
         private void OnStructureRefresh(object sender, RoutedEventArgs e)
         {
             fileManager.CreateStructure();
+        }
+
+        // I really don't know how to fix this in other way xD
+        // So I'm using this weird method.
+        // If you have any idea how to fix this, please tell me XD
+        private void RemoveThisWeirdBorder(DependencyObject parent)
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is Border border)
+                {
+                    border.BorderThickness = new Thickness(0, border.BorderThickness.Top, border.BorderThickness.Right, border.BorderThickness.Bottom);
+                }
+
+                RemoveThisWeirdBorder(child);
+            }
         }
     }
 }

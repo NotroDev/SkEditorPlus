@@ -1,6 +1,9 @@
 ﻿using HandyControl.Controls;
 using SkEditorPlus.Managers;
 using SkEditorPlus.Windows.Generators;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SkEditorPlus.Windows
 {
@@ -33,10 +36,11 @@ namespace SkEditorPlus.Windows
 
         private void GUIClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            GuiGenerator guiGenerator = new(skEditor);
+            GuiPreview guiPreview = new(skEditor);
             generatorWindow.Close();
-            guiGenerator.ShowDialog();
+            guiPreview.ShowDialog();
         }
+
 
         private void EventClick(object sender, System.Windows.RoutedEventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using Functionalities;
+using HandyControl.Controls;
 using HandyControl.Properties.Langs;
 using System;
 using System.Diagnostics;
@@ -28,7 +29,7 @@ namespace SkEditorPlus
                 var args = Environment.GetCommandLineArgs();
                 if (args != null && args.Length > 1)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sb = new();
                     for (int i = 1; i < args.Length; i++)
                     {
                         sb.AppendLine(args[i]);

@@ -10,6 +10,7 @@ using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
 using FileMode = System.IO.FileMode;
+using System.Windows.Threading;
 
 namespace SkEditorPlus.Managers
 {
@@ -90,7 +91,7 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        public static async Task UpdateSyntaxFile()
+        public static async Task UpdateSyntaxFiles()
         {
             var appPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\SkEditor Plus";
             var syntaxPath = Path.Combine(appPath, "Syntax Highlighting");
@@ -111,6 +112,28 @@ namespace SkEditorPlus.Managers
             catch
             {
                 // do nothing ;p
+            }
+        }
+
+        public static async Task UpdateItemFiles()
+        {
+            var appPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\SkEditor Plus";
+
+            using var client = new HttpClient();
+            var jsonUri = new Uri("https://notro.tech/resources/items.json");
+            var zipUri = new Uri("https://notro.tech/resources/items.zip");
+            try
+            {
+                File.Delete($"{appPath}\\items.json");
+                if (Directory.Exists($"{appPath}\\items")) Directory.Delete($"{appPath}\\items", true);
+                await DownloadFileTaskAsync(client, jsonUri, $"{appPath}\\items.json");
+                await DownloadFileTaskAsync(client, zipUri, $"{appPath}\\items.zip");
+                System.IO.Compression.ZipFile.ExtractToDirectory($"{appPath}\\items.zip", $"{appPath}");
+                File.Delete($"{appPath}\\items.zip");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + " " + e.StackTrace);
             }
         }
 

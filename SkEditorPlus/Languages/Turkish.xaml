@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Çanta</system:String>
     <system:String x:Key="SettingsWindowTitle">Ayarlar</system:String>
     <system:String x:Key="FontSelectorTitle">Yazı Tipi Seç</system:String>
+    <system:String x:Key="ItemSelectorTitle">Öğe seçin</system:String>
     <system:String x:Key="MarketplaceTitle">Mağaza</system:String>
 
     <!-- Labels -->
@@ -65,6 +66,7 @@
     <system:String x:Key="PublishButton">Yayınla</system:String>
     <system:String x:Key="GenerateButton">Oluştur</system:String>
     <system:String x:Key="ApplyButton">Uygula</system:String>
+    <system:String x:Key="PreviewButton">Önizleme</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Kodunun linki burada olacak :)</system:String>
     
     <system:String x:Key="WhatDoYouWantToGenerate">Ne Oluşturmak İstiyorsun?</system:String>
@@ -86,14 +88,18 @@
 
     <system:String x:Key="GUIGenFunctionName">Fonksiyon Adı</system:String>
     <system:String x:Key="GUIGenTitle">Başlık</system:String>
-    <system:String x:Key="GUIGenRows">Sıra Miktarı</system:String>
-    <system:String x:Key="GUIGenExampleItem">Örnek Eşya Ekle</system:String>
-    <system:String x:Key="GUIGenBackground">Arkaplan Ekle</system:String>
-    <system:String x:Key="GUIGenHint">GUI'yı göstermek için {0} kullan.</system:String>
-    <system:String x:Key="GUIGenExampleItemName">Örnek Eşya</system:String>
-    <system:String x:Key="GUIGenExampleItemLore">Örnek Bilgi (lore)</system:String>
-    <system:String x:Key="GUIGenExampleItemClicked">Örnek Eşyaya Tıkladın!</system:String>
-    
+    <system:String x:Key="GUIGenRows">Satır sayısı</system:String>
+    <system:String x:Key="GUIGenBackground">Arka plan</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Seçin</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Hızlı önizlemeyi kullanmak için Shift tuşuna basarak tıklayın</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">Oluşturulan kod, skript-gui eklentisi gerektirir</system:String>
+    <system:String x:Key="GUIGenEdit">Düzenle</system:String>
+    <system:String x:Key="GUIGenRemove">Kaldır</system:String>
+
+    <system:String x:Key="ItemSelectorSearch">Ara...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Öğe adı</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Eylem ekle</system:String>
+
     <system:String x:Key="QuickEditsVariablesCheckbox">Değişken isimlerindeki noktaları iki nokta yap</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Boşlukları TABla değiştir</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Sekmeleri 4 boşluk olarak değiştir</system:String>
@@ -133,10 +139,6 @@
     <system:String x:Key="UpdateConfirmation">Devam edersen, kod renklendirme dosyaları şuankilerin yerine indirilecek. Eğer onlara bir değişiklik yaptıysan ve kaybetmek istemiyosan yedek oluştur.</system:String>
     <system:String x:Key="UpdateSuccess">Kod renklendirme dosyaları başarıyla güncellendi!</system:String>
     <system:String x:Key="UpdateFailed">Kod renklendirme dosyaları indirilemedi!\nİnternete bağlı mısın?{n}{n}{0}</system:String>
-
-    <system:String x:Key="NoFilesTitle">Dosya yok</system:String>
-    <system:String x:Key="NoFilesDescription">Kayıp kod renklendirme dosyaları algılandı! İndirmek için tıkla.</system:String>
-    <system:String x:Key="NoFilesDownloaded">Başarıyla indirildi!</system:String>
 
     <!-- Things I forgot before. So they're here :P -->
 
@@ -179,7 +181,6 @@
     <system:String x:Key="GUIGenNameError">GUI adı zorunlu!</system:String>
     <system:String x:Key="GUIGenTitleError">GUI başlığı zorunlu!</system:String>
     <system:String x:Key="GUIGenRowsError">Satır miktarı 1 ve 6 arasında olmalı!</system:String>
-    <system:String x:Key="GUIGenRowsError2">Satır miktarı bir sayı olmalı!</system:String>
 
     <system:String x:Key="CmdGenNameError">Komutun adı zorunlu!</system:String>
     <system:String x:Key="CmdGenCooldownError">Geri sayım bir sayı olmalı!</system:String>

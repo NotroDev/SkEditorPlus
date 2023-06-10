@@ -4,7 +4,7 @@
     <system:String x:Key="LangName">Polski</system:String>
 
     <!-- Menu -->
-    
+
     <system:String x:Key="MenuFile">Plik</system:String>
     <system:String x:Key="MenuEdit">Edycja</system:String>
     <system:String x:Key="MenuOther">Inne</system:String>
@@ -55,18 +55,20 @@
     <system:String x:Key="BackpackWindowTitle">Plecak</system:String>
     <system:String x:Key="SettingsWindowTitle">Ustawienia</system:String>
     <system:String x:Key="FontSelectorTitle">Wybierz czcionkę</system:String>
+    <system:String x:Key="ItemSelectorTitle">Wybierz przedmiot</system:String>
     <system:String x:Key="MarketplaceTitle">Rynek</system:String>
 
     <!-- Labels -->
-    
+
     <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Wklej tu swój klucz API</system:String>
     <system:String x:Key="PasteAPIKeyTextboxHint">Klucz API znajdziesz na {0} po zalogowaniu</system:String>
     <system:String x:Key="AnonymousCheckbox">Anonimowo</system:String>
     <system:String x:Key="PublishButton">Opublikuj</system:String>
     <system:String x:Key="GenerateButton">Wygeneruj</system:String>
     <system:String x:Key="ApplyButton">Zastosuj</system:String>
+    <system:String x:Key="PreviewButton">Podgląd</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Tu będzie link do Twojego kodu :)</system:String>
-    
+
     <system:String x:Key="WhatDoYouWantToGenerate">Co chcesz wygenerować?</system:String>
     <system:String x:Key="CommandButton">Komenda</system:String>
     <system:String x:Key="GUIButton">GUI</system:String>
@@ -80,26 +82,29 @@
     <system:String x:Key="CmdGenCooldown">Cooldown</system:String>
     <system:String x:Key="CmdGenQuantity">Ilość</system:String>
     <system:String x:Key="CmdGenUnit">Jednostka</system:String>
-    
+
     <system:String x:Key="Player">Gracz</system:String>
     <system:String x:Key="Console">Konsola</system:String>
 
     <system:String x:Key="GUIGenFunctionName">Nazwa funkcji</system:String>
     <system:String x:Key="GUIGenTitle">Tytuł</system:String>
     <system:String x:Key="GUIGenRows">Ilość rzędów</system:String>
-    <system:String x:Key="GUIGenExampleItem">Dodaj przykładowy przedmiot</system:String>
-    <system:String x:Key="GUIGenBackground">Dodaj tło</system:String>
-    <system:String x:Key="GUIGenHint">Aby otworzyć to GUI, użyj {0}</system:String>
-    <system:String x:Key="GUIGenExampleItemName">Przykładowy przedmiot</system:String>
-    <system:String x:Key="GUIGenExampleItemLore">Przykładowy opis</system:String>
-    <system:String x:Key="GUIGenExampleItemClicked">Kliknąłeś na przykładowy przedmiot!</system:String>
-    
+    <system:String x:Key="GUIGenBackground">Tło</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Wybierz</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Kliknij z shiftem, aby użyć szybkiego podglądu</system:String>
+    <system:String x:Key="GUIGenEdit">Edytuj</system:String>
+    <system:String x:Key="GUIGenRemove">Usuń</system:String>
+
+    <system:String x:Key="ItemSelectorSearch">Szukaj...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Nazwa przedmiotu</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Dodaj akcję</system:String>
+
     <system:String x:Key="QuickEditsVariablesCheckbox">Zamień kropki w zmiennych w dwukropki</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Zamień spacje na taby</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Zamień taby na 4 spacje</system:String>
     <system:String x:Key="QuickEditsCommentsCheckbox">Usuń komentarze</system:String>
     <system:String x:Key="QuickEditsElseIfCheckbox">Skróć "else if"</system:String>
-    
+
     <system:String x:Key="BackpackAddButton">Dodaj</system:String>
     <system:String x:Key="BackpackRemoveButton">Usuń</system:String>
     <system:String x:Key="BackpackPasteButton">Wklej</system:String>
@@ -112,7 +117,7 @@
     <system:String x:Key="UpdateNotAvailable">Wygląda na to, że masz najnowsza wersję :){n}{n}Wersja: v{0}</system:String>
     <system:String x:Key="Download">Pobierz</system:String>
     <system:String x:Key="Ignore">Zignoruj</system:String>
-    
+
     <system:String x:Key="OptionsAutoSave">Autozapis:</system:String>
     <system:String x:Key="OptionsCheckForUpdates">Sprawdzaj aktualizacje:</system:String>
     <system:String x:Key="OptionsWrapping">Zawijanie tekstu:</system:String>
@@ -191,7 +196,6 @@
     <system:String x:Key="GUIGenNameError">Nazwa GUI jest wymagana!</system:String>
     <system:String x:Key="GUIGenTitleError">Tytuł GUI jest wymagany!</system:String>
     <system:String x:Key="GUIGenRowsError">Ilość rzędów musi być w zakresie 1-6!</system:String>
-    <system:String x:Key="GUIGenRowsError2">Ilość rzędów musi być liczbą!</system:String>
 
     <system:String x:Key="CmdGenNameError">Nazwa komendy jest wymagana!</system:String>
     <system:String x:Key="CmdGenCooldownError">Cooldown musi być liczbą!</system:String>

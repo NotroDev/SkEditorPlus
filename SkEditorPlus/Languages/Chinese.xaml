@@ -55,6 +55,7 @@
 	<system:String x:Key="BackpackWindowTitle">背包</system:String>
     <system:String x:Key="SettingsWindowTitle">设置</system:String>
     <system:String x:Key="FontSelectorTitle">选择字体</system:String>
+    <system:String x:Key="ItemSelectorTitle">选择物品</system:String>
     <system:String x:Key="MarketplaceTitle">市场</system:String>
 
     <!-- Labels -->
@@ -65,6 +66,7 @@
 	<system:String x:Key="PublishButton">发布</system:String>
 	<system:String x:Key="GenerateButton">生成</system:String>
 	<system:String x:Key="ApplyButton">应用</system:String>
+    <system:String x:Key="PreviewButton">预览</system:String>
 	<system:String x:Key="PublishResultUrlPlaceholder">这里将有一个指向您代码的链接 :)</system:String>
 
 	<system:String x:Key="WhatDoYouWantToGenerate">您想要生成什么？</system:String>
@@ -84,17 +86,21 @@
 	<system:String x:Key="Player">玩家</system:String>
 	<system:String x:Key="Console">控制台</system:String>
 
-	<system:String x:Key="GUIGenFunctionName">功能名称</system:String>
-	<system:String x:Key="GUIGenTitle">标题</system:String>
-	<system:String x:Key="GUIGenRows">行数</system:String>
-	<system:String x:Key="GUIGenExampleItem">添加示例物品</system:String>
-	<system:String x:Key="GUIGenBackground">添加背景</system:String>
-	<system:String x:Key="GUIGenHint">使用{0}显示您的GUI</system:String>
-	<system:String x:Key="GUIGenExampleItemName">示例物品</system:String>
-	<system:String x:Key="GUIGenExampleItemLore">示例描述</system:String>
-	<system:String x:Key="GUIGenExampleItemClicked">您单击了示例物品！</system:String>
+    <system:String x:Key="GUIGenFunctionName">函数名称</system:String>
+    <system:String x:Key="GUIGenTitle">标题</system:String>
+    <system:String x:Key="GUIGenRows">行数量</system:String>
+    <system:String x:Key="GUIGenBackground">背景</system:String>
+    <system:String x:Key="GUIGenSelectBackground">选择背景</system:String>
+    <system:String x:Key="GUIGenQuickPreview">按住Shift键点击以使用快速预览</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">生成的代码需要 skript-gui 插件</system:String>
+    <system:String x:Key="GUIGenEdit">编辑</system:String>
+    <system:String x:Key="GUIGenRemove">移除</system:String>
 
-	<system:String x:Key="QuickEditsVariablesCheckbox">将变量中的点改为冒号</system:String>
+    <system:String x:Key="ItemSelectorSearch">搜索...</system:String>
+    <system:String x:Key="ItemSelectorItemName">物品名称</system:String>
+    <system:String x:Key="ItemSelectorAddAction">添加操作</system:String>
+
+    <system:String x:Key="QuickEditsVariablesCheckbox">将变量中的点改为冒号</system:String>
 	<system:String x:Key="QuickEditsSpacesCheckbox">将空格改为制表符</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">将选项卡改为4个空格</system:String>
 	<system:String x:Key="QuickEditsCommentsCheckbox">删除注释</system:String>
@@ -191,10 +197,9 @@
 
 	<system:String x:Key="GUIGenNameError">GUI 名称不能为空！</system:String>
 	<system:String x:Key="GUIGenTitleError">GUI 标题不能为空！</system:String>
-	<system:String x:Key="GUIGenRowsError">行数必须介于 1 和 6 之间！</system:String>
-	<system:String x:Key="GUIGenRowsError2">行数必须是数字！</system:String>
+    <system:String x:Key="GUIGenRowsError">行数必须介于 1 和 6 之间！</system:String>
 
-	<system:String x:Key="CmdGenNameError">命令名称不能为空！</system:String>
+    <system:String x:Key="CmdGenNameError">命令名称不能为空！</system:String>
 	<system:String x:Key="CmdGenCooldownError">冷却时间必须是数字！</system:String>
 	<system:String x:Key="CmdGenCooldownUnitError">请选择冷却时间单位！</system:String>
 

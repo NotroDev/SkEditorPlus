@@ -22,8 +22,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 using System.Xml;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using FontFamily = System.Windows.Media.FontFamily;
 using MessageBox = HandyControl.Controls.MessageBox;
 using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
@@ -358,8 +358,8 @@ namespace SkEditorPlus.Managers
 
             if (skEditor.IsFileOpen())
             {
-                //completionManager ??= new(skEditor);
-                //completionManager.LoadCompletionManager(GetTextEditor());
+                completionManager ??= new(skEditor);
+                completionManager.LoadCompletionManager(GetTextEditor());
             }
 
             AddonManager.addons.ForEach(a => a.OnTabChanged());
@@ -406,23 +406,30 @@ namespace SkEditorPlus.Managers
         {
             try
             {
-                if (Keyboard.Modifiers != ModifierKeys.Control) return;
                 var textEditor = GetTextEditor();
+                if (Keyboard.Modifiers == ModifierKeys.Control)
+                {
+                    double fontSize = textEditor.FontSize += e.Delta / 25.0;
 
-                double fontSize = textEditor.FontSize += e.Delta / 25.0;
+                    textEditor.FontSize = fontSize < 6 ? 6 : fontSize > 200 ? 200 : fontSize;
 
-                textEditor.FontSize = fontSize < 6 ? 6 : fontSize > 200 ? 200 : fontSize;
-
-                e.Handled = true;
+                    e.Handled = true;
+                }
             }
             catch { }
         }
 
-        private void ChangeGeometry()
+        public void ChangeGeometry(TabItem tabItem = null)
         {
-            TabItem tabItem = tabControl.SelectedItem as TabItem;
+            tabItem ??= tabControl.SelectedItem as TabItem;
 
             string extension = Path.GetExtension(tabItem.ToolTip.ToString());
+
+            if (string.IsNullOrEmpty(extension))
+            {
+                extension = Path.GetExtension(tabItem.Header.ToString());
+            }
+
             string header = tabItem.Header.ToString();
 
             string geometry = OtherGeometry;
@@ -581,18 +588,25 @@ namespace SkEditorPlus.Managers
             {
                 var appFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-                string syntaxHighlightingFile = $"{Properties.Settings.Default.SyntaxHighlighting}.xshd";
                 string highlightingFile;
-                if (File.Exists(Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", syntaxHighlightingFile)))
+                if (syntax.Equals("Skript"))
                 {
-                    highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", syntaxHighlightingFile);
-                }
-                else
-                {
-                    Properties.Settings.Default.SyntaxHighlighting = "Default";
-                    highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", $"{syntax}Highlighting.xshd");
+                    string syntaxHighlightingFile = $"{Properties.Settings.Default.SyntaxHighlighting}.xshd";
+                    if (File.Exists(Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", syntaxHighlightingFile)))
+                    {
+                        highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", syntaxHighlightingFile);
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.SyntaxHighlighting = "Default";
+                        highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", "Syntax Highlighting", "Default.xshd");
+                    }
                 }
 
+                else
+                {
+                    highlightingFile = Path.Combine(appFolderPath, "SkEditor Plus", $"{syntax}Highlighting.xshd");
+                }
 
 
                 using var reader = new XmlTextReader(new StreamReader(highlightingFile));
@@ -797,6 +811,8 @@ namespace SkEditorPlus.Managers
             codeEditor.TextArea.TextEntering += OnTextEntering;
             codeEditor.TextArea.TextView.LinkTextForegroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a94c4");
             codeEditor.TextArea.TextView.LinkTextUnderline = true;
+            codeEditor.Options.AllowScrollBelowDocument = true;
+
             tabItem.Content = codeEditor;
 
             var searchPanel = SearchPanel.Install(codeEditor.TextArea);
@@ -811,7 +827,6 @@ namespace SkEditorPlus.Managers
             {
                 addon.OnTabCreate();
             });
-
         }
 
         public void OnStructureClick(object sender, MouseButtonEventArgs e)

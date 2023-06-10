@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Backpack</system:String>
     <system:String x:Key="SettingsWindowTitle">Settings</system:String>
     <system:String x:Key="FontSelectorTitle">Select font</system:String>
+    <system:String x:Key="ItemSelectorTitle">Select item</system:String>
     <system:String x:Key="MarketplaceTitle">Marketplace</system:String>
 
     <!-- Labels -->
@@ -65,6 +66,7 @@
     <system:String x:Key="PublishButton">Publish</system:String>
     <system:String x:Key="GenerateButton">Generate</system:String>
     <system:String x:Key="ApplyButton">Apply</system:String>
+    <system:String x:Key="PreviewButton">Preview</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Here will be a link to your code :)</system:String>
     
     <system:String x:Key="WhatDoYouWantToGenerate">What do you want to generate?</system:String>
@@ -86,14 +88,18 @@
 
     <system:String x:Key="GUIGenFunctionName">Name of function</system:String>
     <system:String x:Key="GUIGenTitle">Title</system:String>
-    <system:String x:Key="GUIGenRows">Rows's quantity</system:String>
-    <system:String x:Key="GUIGenExampleItem">Add example item</system:String>
-    <system:String x:Key="GUIGenBackground">Add background</system:String>
-    <system:String x:Key="GUIGenHint">To show your GUI, use {0}</system:String>
-    <system:String x:Key="GUIGenExampleItemName">Example item</system:String>
-    <system:String x:Key="GUIGenExampleItemLore">Example lore</system:String>
-    <system:String x:Key="GUIGenExampleItemClicked">You clicked the example item!</system:String>
-    
+    <system:String x:Key="GUIGenRows">Row quantity</system:String>
+    <system:String x:Key="GUIGenBackground">Background</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Select</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Click with shift to use quick preview</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">Generated code requires skript-gui addon</system:String>
+    <system:String x:Key="GUIGenEdit">Edit</system:String>
+    <system:String x:Key="GUIGenRemove">Remove</system:String>
+
+    <system:String x:Key="ItemSelectorSearch">Search...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Item name</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Add action</system:String>
+
     <system:String x:Key="QuickEditsVariablesCheckbox">Change dots in variables to colons</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Change spaces to tabs</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Change tabs to 4 spaces</system:String>
@@ -133,14 +139,6 @@
     <system:String x:Key="UpdateConfirmation">If you continue, the syntax highlighting files will be downloaded and replaced. If you've made any changes to them and don't want to lose them, make a copy.</system:String>
     <system:String x:Key="UpdateSuccess">Syntax highlighting files updated successfully!</system:String>
     <system:String x:Key="UpdateFailed">Failed to download syntax highlighting files!{n}Are you connected to the internet?{n}{n}{0}</system:String>
-
-    <!-- Hey, don't bother translating this. App ignores this 3 keys in other languages. You can remove it. -->
-    <system:String x:Key="NoFilesTitle">No files</system:String>
-    <system:String x:Key="NoFilesDescription">Missing syntax highlighting files detected! Click to download.</system:String>
-    <system:String x:Key="NoFilesDownloaded">Successfully downloaded!</system:String>
-    <!--  -->
-    
-    
 
     <system:String x:Key="OptionsAddonName">Name:</system:String>
     <system:String x:Key="OptionsAddonAuthor">Author:</system:String>
@@ -201,7 +199,6 @@
     <system:String x:Key="GUIGenNameError">Name of GUI is required!</system:String>
     <system:String x:Key="GUIGenTitleError">Title of GUI is required!</system:String>
     <system:String x:Key="GUIGenRowsError">Rows's quantity must be between 1 and 6!</system:String>
-    <system:String x:Key="GUIGenRowsError2">Rows's quantity must be a number!</system:String>
 
     <system:String x:Key="CmdGenNameError">Name of command is required!</system:String>
     <system:String x:Key="CmdGenCooldownError">Cooldown must be a number!</system:String>

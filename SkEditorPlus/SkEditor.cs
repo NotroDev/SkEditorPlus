@@ -9,11 +9,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using MessageBox = HandyControl.Controls.MessageBox;
 using TabControl = System.Windows.Controls.TabControl;
 using TabItem = HandyControl.Controls.TabItem;
+using System.Security.Principal;
+using SkEditorPlus.Utilities;
 
 namespace SkEditorPlus
 {
@@ -30,13 +35,21 @@ namespace SkEditorPlus
             this.args = args;
         }
 
-        public void Run()
+        public async void Run()
         {
             if (args.Length > 0)
             {
                 if (File.Exists(args[0]))
                 {
                     startupFile = args[0];
+                }
+                else
+                {
+                    string arg = args[0];
+                    string id = arg[11..^1];
+                    string path = await CodeFromWeb.GetCodeFromSkript(id);
+                    if (path != null)
+                        startupFile = path;
                 }
             }
 

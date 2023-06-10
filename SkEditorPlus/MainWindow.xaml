@@ -31,7 +31,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </hc:Window.Resources>
     <hc:Window.NonClientAreaContent>
         <Grid x:Name="TitleBar">
@@ -40,11 +39,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <svgc:SvgViewbox
+            <svgc:SvgViewbox x:Name="SkEditorLogo"
                 Grid.Column="0"
                 Height="20"
                 Margin="4,5"
-                Source="Images/SkEditor.svg" />
+                Source="Images/SkEditor.svg" ToolTipService.IsEnabled="True" ToolTipService.ToolTipOpening="OnSkEditorLogoTooltip" ToolTip="SkEditor+" />
             <Menu
                 x:Name="MenuBar"
                 Grid.Column="1"
@@ -157,7 +156,7 @@
         <TabControl x:Name="leftTabControl"
             Background="Transparent"
             SelectedIndex="-1"
-            TabStripPlacement="Left" Visibility="Collapsed">
+            TabStripPlacement="Left" Visibility="Collapsed" BorderThickness="1,1,0,1">
 
             <TabItem x:Name="EmptyTabItem" Visibility="Collapsed" Background="Transparent" Style="{DynamicResource EmptyTabItemStyle}"/>
 

@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Рюкзак</system:String>
     <system:String x:Key="SettingsWindowTitle">Настройки</system:String>
     <system:String x:Key="FontSelectorTitle">Выбрать шрифт</system:String>
+    <system:String x:Key="ItemSelectorTitle">Выберите предмет</system:String>
     <system:String x:Key="MarketplaceTitle">Магазин</system:String>
 
     <!-- Labels -->
@@ -65,6 +66,7 @@
     <system:String x:Key="PublishButton">Опубликовать</system:String>
     <system:String x:Key="GenerateButton">Сгенерировать</system:String>
     <system:String x:Key="ApplyButton">Применить</system:String>
+    <system:String x:Key="PreviewButton">Предварительный просмотр</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Тут появится ссылка на Ваш код :)</system:String>
     
     <system:String x:Key="WhatDoYouWantToGenerate">Что вы хотите сгенерировать?</system:String>
@@ -86,14 +88,18 @@
 
     <system:String x:Key="GUIGenFunctionName">Название функции</system:String>
     <system:String x:Key="GUIGenTitle">Заголовок</system:String>
-    <system:String x:Key="GUIGenRows">Количество рядов</system:String>
-    <system:String x:Key="GUIGenExampleItem">Пример предмета</system:String>
-    <system:String x:Key="GUIGenBackground">Добавить фон</system:String>
-    <system:String x:Key="GUIGenHint">Для показа GUI используйте {0}</system:String>
-    <system:String x:Key="GUIGenExampleItemName">Пример предмета</system:String>
-    <system:String x:Key="GUIGenExampleItemLore">Пример описания</system:String>
-    <system:String x:Key="GUIGenExampleItemClicked">Вы нажали на пример предмета!</system:String>
-    
+    <system:String x:Key="GUIGenRows">Количество строк</system:String>
+    <system:String x:Key="GUIGenBackground">Фон</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Выберите</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Щелкните с нажатой клавишей Shift для быстрого предварительного просмотра</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">Сгенерированный код требует дополнения skript-gui</system:String>
+    <system:String x:Key="GUIGenEdit">Редактировать</system:String>
+    <system:String x:Key="GUIGenRemove">Удалить</system:String>
+
+    <system:String x:Key="ItemSelectorSearch">Поиск...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Название предмета</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Добавить действие</system:String>
+
     <system:String x:Key="QuickEditsVariablesCheckbox">Заменить точки в переменных на двоеточия</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Заменить пробелы на табы</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Изменить вкладки на 4 пробела</system:String>
@@ -191,7 +197,6 @@
     <system:String x:Key="GUIGenNameError">Введите название GUI!</system:String>
     <system:String x:Key="GUIGenTitleError">Введите заголовок GUI!</system:String>
     <system:String x:Key="GUIGenRowsError">Количество строк может быть от 1 до 6!</system:String>
-    <system:String x:Key="GUIGenRowsError2">Количество строк должно быть числом!</system:String>
 
     <system:String x:Key="CmdGenNameError">Введите название команды!</system:String>
     <system:String x:Key="CmdGenCooldownError">Задержка должна быть числом!</system:String>

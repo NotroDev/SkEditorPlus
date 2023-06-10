@@ -56,6 +56,7 @@
 	<system:String x:Key="BackpackWindowTitle">Mochila</system:String>
 	<system:String x:Key="SettingsWindowTitle">Configuración</system:String>
 	<system:String x:Key="FontSelectorTitle">Seleccionar fuente</system:String>
+    <system:String x:Key="ItemSelectorTitle">Seleccionar objeto</system:String>
     <system:String x:Key="MarketplaceTitle">Tienda</system:String>
 
 	<!-- Etiquetas -->
@@ -65,6 +66,7 @@
 	<system:String x:Key="PublishButton">Publicar</system:String>
 	<system:String x:Key="GenerateButton">Generar</system:String>
 	<system:String x:Key="ApplyButton">Aplicar</system:String>
+
 	<system:String x:Key="PublishResultUrlPlaceholder">Aquí habrá un enlace a su código :)</system:String>
 
 	<system:String x:Key="WhatDoYouWantToGenerate">¿Qué desea generar?</system:String>
@@ -84,17 +86,21 @@
 	<system:String x:Key="Player">Jugador</system:String>
 	<system:String x:Key="Console">Consola</system:String>
 
-	<system:String x:Key="GUIGenFunctionName">Nombre de la función</system:String>
-	<system:String x:Key="GUIGenTitle">Título</system:String>
-	<system:String x:Key="GUIGenRows">Cantidad de filas</system:String>
-	<system:String x:Key="GUIGenExampleItem">Agregar item de ejemplo</system:String>
-	<system:String x:Key="GUIGenBackground">Agregar fondo</system:String>
-	<system:String x:Key="GUIGenHint">Para mostrar su GUI, use {0}</system:String>
-	<system:String x:Key="GUIGenExampleItemName">Item de ejemplo</system:String>
-	<system:String x:Key="GUIGenExampleItemLore">Descripción de ejemplo</system:String>
-	<system:String x:Key="GUIGenExampleItemClicked">¡Ha hecho clic en el item de ejemplo!</system:String>
+    <system:String x:Key="GUIGenFunctionName">Nombre de la función</system:String>
+    <system:String x:Key="GUIGenTitle">Título</system:String>
+    <system:String x:Key="GUIGenRows">Cantidad de filas</system:String>
+    <system:String x:Key="GUIGenBackground">Fondo</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Seleccionar</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Haz clic con Shift para usar la vista previa rápida</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">El código generado requiere el complemento skript-gui</system:String>
+    <system:String x:Key="GUIGenEdit">Editar</system:String>
+    <system:String x:Key="GUIGenRemove">Eliminar</system:String>
 
-	<system:String x:Key="QuickEditsVariablesCheckbox">Cambiar puntos en variables por dos puntos</system:String>
+    <system:String x:Key="ItemSelectorSearch">Buscar...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Nombre del objeto</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Agregar acción</system:String>
+
+    <system:String x:Key="QuickEditsVariablesCheckbox">Cambiar puntos en variables por dos puntos</system:String>
 	<system:String x:Key="QuickEditsSpacesCheckbox">Cambiar espacios por tabulaciones</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Cambiar las pestañas por 4 espacios</system:String>
 	<system:String x:Key="QuickEditsCommentsCheckbox">Eliminar comentarios</system:String>
@@ -191,10 +197,9 @@
     <!-- Errors -->
     <system:String x:Key="GUIGenNameError">¡El nombre de la GUI es obligatorio!</system:String>
 	<system:String x:Key="GUIGenTitleError">¡El título de la GUI es obligatorio!</system:String>
-	<system:String x:Key="GUIGenRowsError">¡La cantidad de filas debe estar entre 1 y 6!</system:String>
-	<system:String x:Key="GUIGenRowsError2">¡La cantidad de filas debe ser un número!</system:String>
+    <system:String x:Key="GUIGenRowsError">¡La cantidad de filas debe estar entre 1 y 6!</system:String>
 
-	<system:String x:Key="CmdGenNameError">¡El nombre del comando es obligatorio!</system:String>
+    <system:String x:Key="CmdGenNameError">¡El nombre del comando es obligatorio!</system:String>
 	<system:String x:Key="CmdGenCooldownError">¡El tiempo de enfriamiento debe ser un número!</system:String>
 	<system:String x:Key="CmdGenCooldownUnitError">¡Seleccione la unidad de enfriamiento!</system:String>
 

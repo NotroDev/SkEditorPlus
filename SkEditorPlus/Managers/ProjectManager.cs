@@ -56,7 +56,7 @@ namespace SkEditorPlus.Managers
             }
         }
 
-        private static MenuItem CreateMenuItem(string header, string iconText)
+        public static MenuItem CreateMenuItem(string header, string iconText)
         {
             return new MenuItem
             {

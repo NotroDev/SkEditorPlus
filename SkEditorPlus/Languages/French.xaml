@@ -19,9 +19,8 @@
 	<system:String x:Key="MenuFilePublish">Publier...</system:String>
 	<system:String x:Key="MenuFileExport">Exporter</system:String>
 	<system:String x:Key="MenuFileExportConfiguration">Configuration d'exportation</system:String>
-	<system:String x:Key="MenuFileClose">Fermer</system:String>
+    <system:String x:Key="MenuFileClose">Fermer</system:String>
 
-    
     <system:String x:Key="MenuEditGenerate">Générer...</system:String>
 	<system:String x:Key="MenuEditFormat">Modifications rapides...</system:String>
 	<system:String x:Key="MenuEditBackpack">Sac à dos</system:String>
@@ -50,11 +49,12 @@
     <system:String x:Key="PublishWindowTitle">Publier le code</system:String>
 	<system:String x:Key="GenerateWindowTitle">Générer</system:String>
 	<system:String x:Key="GenerateCommandWindowTitle">Générer une commande</system:String>
-	<system:String x:Key="GenerateGUIWindowTitle">Générer une interface graphique</system:String>
+	<system:String x:Key="GenerateGUIWindowTitle">Générer GUI</system:String>
 	<system:String x:Key="FormatWindowTitle">Modifications rapides</system:String>
 	<system:String x:Key="BackpackWindowTitle">Sac à dos</system:String>
 	<system:String x:Key="SettingsWindowTitle">Paramètres</system:String>
 	<system:String x:Key="FontSelectorTitle">Sélectionner la police</system:String>
+    <system:String x:Key="ItemSelectorTitle">Sélectionnez un objet</system:String>
     <system:String x:Key="MarketplaceTitle">Marketplace</system:String>
 
 	<!-- Étiquettes -->
@@ -65,11 +65,12 @@
 	<system:String x:Key="PublishButton">Publier</system:String>
 	<system:String x:Key="GenerateButton">Générer</system:String>
 	<system:String x:Key="ApplyButton">Appliquer</system:String>
+    <system:String x:Key="PreviewButton">Aperçu</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Voici le lien vers votre code :)</system:String>
 
     <system:String x:Key="WhatDoYouWantToGenerate">Que voulez-vous générer?</system:String>
 	<system:String x:Key="CommandButton">Commande</system:String>
-	<system:String x:Key="GUIButton">Interface utilisateur</system:String>
+	<system:String x:Key="GUIButton">GUI</system:String>
 
 	<system:String x:Key="CmdGenName">Nom</system:String>
 	<system:String x:Key="CmdGenPermission">Permission</system:String>
@@ -85,16 +86,20 @@
 	<system:String x:Key="Console">Console</system:String>
 
     <system:String x:Key="GUIGenFunctionName">Nom de la fonction</system:String>
-	<system:String x:Key="GUIGenTitle">Titre</system:String>
-	<system:String x:Key="GUIGenRows">Nombre de lignes</system:String>
-	<system:String x:Key="GUIGenExampleItem">Ajouter un exemple d'objet</system:String>
-	<system:String x:Key="GUIGenBackground">Ajouter un arrière-plan</system:String>
-	<system:String x:Key="GUIGenHint">Pour afficher votre GUI, utilisez {0}</system:String>
-	<system:String x:Key="GUIGenExampleItemName">Nom de l'exemple d'objet</system:String>
-	<system:String x:Key="GUIGenExampleItemLore">Description de l'exemple d'objet</system:String>
-	<system:String x:Key="GUIGenExampleItemClicked">Vous avez cliqué sur l'exemple d'objet !</system:String>
+    <system:String x:Key="GUIGenTitle">Titre</system:String>
+    <system:String x:Key="GUIGenRows">Quantité de lignes</system:String>
+    <system:String x:Key="GUIGenBackground">Arrière-plan</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Sélectionner</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Cliquez avec la touche Maj pour utiliser l'aperçu rapide</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">Le code généré nécessite l'extension skript-gui</system:String>
+    <system:String x:Key="GUIGenEdit">Éditer</system:String>
+    <system:String x:Key="GUIGenRemove">Supprimer</system:String>
 
-	<system:String x:Key="QuickEditsVariablesCheckbox">Remplacer les points dans les variables par des deux-points</system:String>
+    <system:String x:Key="ItemSelectorSearch">Rechercher...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Nom de l'objet</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Ajouter une action</system:String>
+
+    <system:String x:Key="QuickEditsVariablesCheckbox">Remplacer les points dans les variables par des deux-points</system:String>
 	<system:String x:Key="QuickEditsSpacesCheckbox">Remplacer les espaces par des tabulations</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Changer les onglets en 4 espaces</system:String>
 	<system:String x:Key="QuickEditsCommentsCheckbox">Supprimer les commentaires</system:String>
@@ -191,10 +196,9 @@
     <!-- * Erreurs * -->
 	<system:String x:Key="GUIGenNameError">Le nom de l'interface graphique est requis !</system:String>
 	<system:String x:Key="GUIGenTitleError">Le titre de l'interface graphique est requis !</system:String>
-	<system:String x:Key="GUIGenRowsError">La quantité de lignes doit être comprise entre 1 et 6 !</system:String>
-	<system:String x:Key="GUIGenRowsError2">La quantité de lignes doit être un nombre !</system:String>
+    <system:String x:Key="GUIGenRowsError">La quantité de lignes doit être comprise entre 1 et 6 !</system:String>
 
-	<system:String x:Key="CmdGenNameError">Le nom de la commande est requis !</system:String>
+    <system:String x:Key="CmdGenNameError">Le nom de la commande est requis !</system:String>
 	<system:String x:Key="CmdGenCooldownError">Le temps de recharge doit être un nombre !</system:String>
 	<system:String x:Key="CmdGenCooldownUnitError">Sélectionnez une unité de temps pour le temps de recharge !</system:String>
 

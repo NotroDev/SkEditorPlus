@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="/Styles/MenuStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ListBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Languages/English.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

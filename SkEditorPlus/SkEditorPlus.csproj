@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
+	<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
     <UseWPF>true</UseWPF>
 	<UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>SkEditorPlus</AssemblyName>
@@ -9,8 +10,8 @@
     <Version>1.6.4</Version>
     <Configurations>Debug;Release</Configurations>
     <Copyright>Copyright © Notro 2023</Copyright>
-    <FileVersion>1.6.4</FileVersion>
-    <AssemblyVersion>1.6.4</AssemblyVersion>
+    <FileVersion>1.7.0</FileVersion>
+    <AssemblyVersion>1.7.0</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
@@ -57,9 +58,9 @@
     <PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
     <PackageReference Include="HandyControls" Version="3.4.5" />
     <PackageReference Include="HandyControls.Lang.pl" Version="3.4.5" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1722.45" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1823.32" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Octokit" Version="5.1.0" />
+    <PackageReference Include="Octokit" Version="6.0.0" />
     <PackageReference Include="Remotion.Linq" Version="2.2.0" />
     <PackageReference Include="Renci.SshNet.Async" Version="1.4.0" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
@@ -123,13 +124,16 @@
     <Compile Update="Windows\ExportOptionsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\ItemSelector.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\GenerateWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Generators\EventGenerator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\Generators\GuiGenerator.xaml.cs">
+    <Compile Update="Windows\Generators\GuiPreview.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Generators\CommandGenerator.xaml.cs">
@@ -155,6 +159,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Update="Images\GUI\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\GUI\2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\GUI\3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\GUI\4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\GUI\5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\GUI\6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\GUI\slot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -191,6 +216,9 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\ItemSelector.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Windows\GenerateWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
@@ -200,9 +228,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Windows\Generators\GuiGenerator.xaml">
+    <Page Update="Windows\Generators\GuiPreview.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Generators\CommandGenerator.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

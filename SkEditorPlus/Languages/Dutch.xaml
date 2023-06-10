@@ -55,6 +55,7 @@
     <system:String x:Key="BackpackWindowTitle">Rugzak</system:String>
     <system:String x:Key="SettingsWindowTitle">Instellingen</system:String>
     <system:String x:Key="FontSelectorTitle">Selecteer lettertype</system:String>
+    <system:String x:Key="ItemSelectorTitle">Selecteer item</system:String>
     <system:String x:Key="MarketplaceTitle">Marktplaats</system:String>
 
     <!-- Labels -->
@@ -65,6 +66,7 @@
     <system:String x:Key="PublishButton">Publiceren</system:String>
     <system:String x:Key="GenerateButton">Genereren</system:String>
     <system:String x:Key="ApplyButton">Toepassen</system:String>
+    <system:String x:Key="PreviewButton">Voorbeeld</system:String>
     <system:String x:Key="PublishResultUrlPlaceholder">Hier komt een link naar je code :)</system:String>
     
     <system:String x:Key="WhatDoYouWantToGenerate">Wat wil je genereren?</system:String>
@@ -87,13 +89,17 @@
     <system:String x:Key="GUIGenFunctionName">Naam van functie</system:String>
     <system:String x:Key="GUIGenTitle">Titel</system:String>
     <system:String x:Key="GUIGenRows">Aantal rijen</system:String>
-    <system:String x:Key="GUIGenExampleItem">Voorbeeld item toevoegen</system:String>
-    <system:String x:Key="GUIGenBackground">Achtergrond toevoegen</system:String>
-    <system:String x:Key="GUIGenHint">Om je GUI te tonen, gebruik {0}</system:String>
-    <system:String x:Key="GUIGenExampleItemName">Voorbeeld item</system:String>
-    <system:String x:Key="GUIGenExampleItemLore">Voorbeeld lore</system:String>
-    <system:String x:Key="GUIGenExampleItemClicked">Je hebt op het voorbeeld item geklikt!</system:String>
-    
+    <system:String x:Key="GUIGenBackground">Achtergrond</system:String>
+    <system:String x:Key="GUIGenSelectBackground">Selecteer</system:String>
+    <system:String x:Key="GUIGenQuickPreview">Klik met Shift voor snelle weergave</system:String>
+    <system:String x:Key="GUIGenApplyTooltip">De gegenereerde code vereist de skript-gui add-on</system:String>
+    <system:String x:Key="GUIGenEdit">Bewerken</system:String>
+    <system:String x:Key="GUIGenRemove">Verwijderen</system:String>
+
+    <system:String x:Key="ItemSelectorSearch">Zoeken...</system:String>
+    <system:String x:Key="ItemSelectorItemName">Itemnaam</system:String>
+    <system:String x:Key="ItemSelectorAddAction">Actie toevoegen</system:String>
+
     <system:String x:Key="QuickEditsVariablesCheckbox">Verander punten in variabelen naaar dubbele punten</system:String>
     <system:String x:Key="QuickEditsSpacesCheckbox">Verandere spaties naar tabs</system:String>
     <system:String x:Key="QuickEditsTabsCheckbox">Tabbladen veranderen naar 4 spaties</system:String>
@@ -134,13 +140,7 @@
     <system:String x:Key="UpdateSuccess">Syntax markering's bestanden zijn succesvol bijgewerkt!</system:String>
     <system:String x:Key="UpdateFailed">Downloaden van syntax markering's bestanden mislukt!{n}ben je wel verbonden met het internet?{n}{n}{0}</system:String>
 
-    <!-- Hey, don't bother translating this. App ignores this 3 keys in other languages. You can remove it. -->
-    <system:String x:Key="NoFilesTitle">Geen bestanden</system:String>
-    <system:String x:Key="NoFilesDescription">Ontbrekende syntax markering's bestanden gevonden! Klik hier om deze te downloaden.</system:String>
-    <system:String x:Key="NoFilesDownloaded">Succesvol gedownload!</system:String>
-    <!--  -->
-    
-    
+
 
     <system:String x:Key="OptionsAddonName">Naam:</system:String>
     <system:String x:Key="OptionsAddonAuthor">Auteur:</system:String>
@@ -200,7 +200,6 @@
     <system:String x:Key="GUIGenNameError">Naam van GUI is vereist!</system:String>
     <system:String x:Key="GUIGenTitleError">Titel van GUI is vereist!</system:String>
     <system:String x:Key="GUIGenRowsError">Het aantal rijen moet tussen 1 en 6 zijn!</system:String>
-    <system:String x:Key="GUIGenRowsError2">Het aantal rijen moet een getal zijn!</system:String>
 
     <system:String x:Key="CmdGenNameError">Naam van commando vereist!</system:String>
     <system:String x:Key="CmdGenCooldownError">Cooldown moet een getal zijn!</system:String>

@@ -29,9 +29,9 @@ namespace SkEditorPlus
 
         FileManager GetFileManager();
 
-        void ShowMessage(string title, string text = "");
-        void ShowError(string title, string text = "");
-        void ShowSuccess(string title, string text = "");
+        void ShowMessage(string text, string title = "");
+        void ShowError(string text, string title = "");
+        void ShowSuccess(string text, string title = "");
 
         void OpenUrl(string url);
 
