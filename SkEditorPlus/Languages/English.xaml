@@ -212,6 +212,9 @@
 
     <system:String x:Key="MarketplaceDownloadError">Something didn't work.{n}Are you connected to the internet?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">Script with ID '{0}' not found!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Error while sending request!</system:String>
+
 
     <system:String x:Key="MarketplaceBrowseTab">Browse</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Installed</system:String>
