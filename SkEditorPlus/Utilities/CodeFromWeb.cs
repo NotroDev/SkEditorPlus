@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Ink;
 
 namespace SkEditorPlus.Utilities
@@ -24,14 +25,14 @@ namespace SkEditorPlus.Utilities
             }
             catch (HttpRequestException)
             {
-                MessageBox.Error("Błąd podczas wysyłania żądania.");
+                HandyControl.Controls.MessageBox.Error(Application.Current.FindResource("FailedToSendRequestError") as string);
                 return null;
             }
             string content = await response.Content.ReadAsStringAsync();
 
             if (response.Content.Headers.ContentType.MediaType != "text/plain")
             {
-                MessageBox.Error("Nie znaleziono skryptu o podanym ID.");
+                HandyControl.Controls.MessageBox.Error((Application.Current.FindResource("ScriptWithIDNotFoundError") as string).Replace("{0}", id));
                 return null;
             }
 

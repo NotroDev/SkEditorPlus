@@ -207,6 +207,9 @@
     <system:String x:Key="EmptyAPIKeyError">Klucz API nie został wprowadzony.</system:String>
     <system:String x:Key="PublishingError">Coś nie zadziałało.{n}Czy masz połączenie z internetem? Czy wkleiłeś prawidłowy klucz API?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">Nie znaleziono skryptu o identyfikatorze '{0}'!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Błąd podczas wysyłania żądania!</system:String>
+  
     <system:String x:Key="MarketplaceBrowseTab">Przeglądaj</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Zainstalowane</system:String>
     <system:String x:Key="MarketplaceUpdatesTab">Aktualizacje</system:String>
