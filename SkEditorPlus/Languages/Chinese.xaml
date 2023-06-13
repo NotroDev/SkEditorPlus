@@ -209,6 +209,8 @@
 	<system:String x:Key="EmptyAPIKeyError">API 密钥未输入。</system:String>
 	<system:String x:Key="PublishingError">出了些问题。{n}您是否连接到互联网？是否粘贴了正确的 API 密钥？{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">找不到ID为'{0}'的脚本！</system:String>
+    <system:String x:Key="FailedToSendRequestError">发送请求时出错！</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">浏览</system:String>
     <system:String x:Key="MarketplaceInstalledTab">已安装</system:String>

@@ -93,7 +93,7 @@
     <system:String x:Key="GUIGenBackground">Hintergrund</system:String>
     <system:String x:Key="GUIGenSelectBackground">Auswählen</system:String>
     <system:String x:Key="GUIGenQuickPreview">Mit Umschalttaste klicken, um die Schnellvorschau zu verwenden</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">Der generierte Code erfordert das skript-gui-Add-On</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Verwende skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Bearbeiten</system:String>
     <system:String x:Key="GUIGenRemove">Entfernen</system:String>
 
@@ -210,6 +210,8 @@
     <system:String x:Key="EmptyAPIKeyError">API-Schlüssel nicht eingegeben.</system:String>
     <system:String x:Key="PublishingError">Etwas hat nicht funktioniert.{n}Sind Sie mit dem Internet verbunden? Haben Sie den richtigen API-Schlüssel eingefügt?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">Skript mit der ID '{0}' nicht gefunden!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Fehler beim Senden der Anfrage!</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">Durchsuchen</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Installiert</system:String>

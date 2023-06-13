@@ -92,7 +92,7 @@
     <system:String x:Key="GUIGenBackground">Fondo</system:String>
     <system:String x:Key="GUIGenSelectBackground">Seleccionar</system:String>
     <system:String x:Key="GUIGenQuickPreview">Haz clic con Shift para usar la vista previa rápida</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">El código generado requiere el complemento skript-gui</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Usa skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Editar</system:String>
     <system:String x:Key="GUIGenRemove">Eliminar</system:String>
 
@@ -208,6 +208,9 @@
 	<system:String x:Key="EmptyCodeError">¡Tu código está vacío!</system:String>
 	<system:String x:Key="EmptyAPIKeyError">No se ha ingresado una clave de API.</system:String>
 	<system:String x:Key="PublishingError">Algo no funcionó.{n}¿Estás conectado a internet? ¿Pegaste la clave de API correcta?{n}{n}{0}</system:String>
+
+    <system:String x:Key="ScriptWithIDNotFoundError">¡No se encontró el script con ID '{0}'!</system:String>
+    <system:String x:Key="FailedToSendRequestError">¡Error al enviar la solicitud!</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">Explorar</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Instalados</system:String>

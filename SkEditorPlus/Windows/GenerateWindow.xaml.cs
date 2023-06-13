@@ -36,9 +36,9 @@ namespace SkEditorPlus.Windows
 
         private void GUIClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            GuiPreview guiPreview = new(skEditor);
+            GuiGenerator guiGenerator = new(skEditor);
             generatorWindow.Close();
-            guiPreview.ShowDialog();
+            guiGenerator.ShowDialog();
         }
 
 

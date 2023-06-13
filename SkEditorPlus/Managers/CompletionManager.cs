@@ -130,7 +130,7 @@ namespace SkEditorPlus.Managers
 
                     case "guigen":
                         textEditor.Document.Replace(line.Offset, caretOffset - line.Offset, "");
-                        GuiPreview guiGenerator = new(skEditor);
+                        GuiGenerator guiGenerator = new(skEditor);
                         guiGenerator.ShowDialog();
                         break;
 

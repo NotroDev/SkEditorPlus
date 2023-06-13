@@ -92,7 +92,7 @@
     <system:String x:Key="GUIGenBackground">Фон</system:String>
     <system:String x:Key="GUIGenSelectBackground">Выберите</system:String>
     <system:String x:Key="GUIGenQuickPreview">Щелкните с нажатой клавишей Shift для быстрого предварительного просмотра</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">Сгенерированный код требует дополнения skript-gui</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Используйте skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Редактировать</system:String>
     <system:String x:Key="GUIGenRemove">Удалить</system:String>
 
@@ -207,6 +207,9 @@
     <system:String x:Key="EmptyCodeError">Ваш код пустой!</system:String>
     <system:String x:Key="EmptyAPIKeyError">API ключ не введён.</system:String>
     <system:String x:Key="PublishingError">Что-то не работает...{n}Вы подключены к интернету? Вы ввели верный ключ API?{n}{n}{0}</system:String>
+
+    <system:String x:Key="ScriptWithIDNotFoundError">Не удалось найти скрипт с идентификатором '{0}'!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Ошибка при отправке запроса!</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">Просмотр</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Установленные</system:String>

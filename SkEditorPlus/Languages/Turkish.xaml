@@ -92,7 +92,7 @@
     <system:String x:Key="GUIGenBackground">Arka plan</system:String>
     <system:String x:Key="GUIGenSelectBackground">Seçin</system:String>
     <system:String x:Key="GUIGenQuickPreview">Hızlı önizlemeyi kullanmak için Shift tuşuna basarak tıklayın</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">Oluşturulan kod, skript-gui eklentisi gerektirir</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">skript-gui kullanın</system:String>
     <system:String x:Key="GUIGenEdit">Düzenle</system:String>
     <system:String x:Key="GUIGenRemove">Kaldır</system:String>
 
@@ -140,11 +140,28 @@
     <system:String x:Key="UpdateSuccess">Kod renklendirme dosyaları başarıyla güncellendi!</system:String>
     <system:String x:Key="UpdateFailed">Kod renklendirme dosyaları indirilemedi!\nİnternete bağlı mısın?{n}{n}{0}</system:String>
 
-    <!-- Things I forgot before. So they're here :P -->
+    <system:String x:Key="OptionsAddonName">İsim:</system:String>
+    <system:String x:Key="OptionsAddonAuthor">Yazar:</system:String>
+    <system:String x:Key="OptionsAddonVersion">Sürüm:</system:String>
+    <system:String x:Key="OptionsAddonDescription">Açıklama:</system:String>
+
+    <system:String x:Key="OptionsAddonsList">Eklenti listesi:</system:String>
+    <system:String x:Key="OptionsOpenAddonsFolder">Eklentiler klasörünü aç:</system:String>
+    <system:String x:Key="OptionsOpen">Aç</system:String>
+
+    
+    <!-- Other things -->
 
     <system:String x:Key="NoResults">Bulunamadı</system:String>
     <system:String x:Key="OneMatchFound">1 sonuç bulundu</system:String>
     <system:String x:Key="EmptySearchText">Arama metni boş!</system:String>
+    <system:String x:Key="SearchPrevious">Önceki</system:String>
+    <system:String x:Key="SearchNext">Sonraki</system:String>
+    <system:String x:Key="SearchCaseSensitive">Büyük/küçük harfe duyarlı</system:String>
+    <system:String x:Key="SearchOnlyWords">Sadece kelimeler</system:String>
+    <system:String x:Key="SearchUseRegex">Regex kullan</system:String>
+    <system:String x:Key="SearchReplaceNext">Sonrakini değiştir</system:String>
+    <system:String x:Key="SearchReplaceAll">Hepsini değiştir</system:String>
 
     <system:String x:Key="CloseConfirmation">Dosya kaydedilmedi. Kapatmak istediğine emin misin?</system:String>
     <system:String x:Key="Attention">Dikkat!</system:String>
@@ -192,7 +209,10 @@
     <system:String x:Key="EmptyAPIKeyError">API anahtarı koyulmadı.</system:String>
     <system:String x:Key="PublishingError">Bir şey çalışmadı.{n}İnternete bağlı mısın? Doğru API anahtarını yapıştırdın mı?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">'{0}' kimliğiyle bir betik bulunamadı!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Talep gönderilirken hata oluştu!</system:String>
 
+    <system:String x:Key="MarketplaceDownloadError">Bir şeyler yanlış gitti.{n}İnternete bağlı mısınız?{n}{n}{0}</system:String>
     <system:String x:Key="MarketplaceBrowseTab">Göz at</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Yüklü</system:String>
     <system:String x:Key="MarketplaceUpdatesTab">Güncellemeler</system:String>

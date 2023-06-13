@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AvalonEditB.Document;
+using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -13,9 +16,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using AvalonEditB.Document;
-using SkEditorPlus.Managers;
-using SkEditorPlus.Utilities;
 using Image = System.Windows.Controls.Image;
 using MessageBox = HandyControl.Controls.MessageBox;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -23,7 +23,7 @@ using PixelFormat = System.Drawing.Imaging.PixelFormat;
 namespace SkEditorPlus.Windows.Generators
 {
 
-    public partial class GuiPreview : HandyControl.Controls.Window
+    public partial class GuiGenerator : HandyControl.Controls.Window
     {
         public List<ItemSlot> usedSlots = new();
 
@@ -31,7 +31,7 @@ namespace SkEditorPlus.Windows.Generators
 
         private Item backgroundItem;
 
-        public GuiPreview(SkEditorAPI skEditor)
+        public GuiGenerator(SkEditorAPI skEditor)
         {
             InitializeComponent();
             this.skEditor = skEditor;
@@ -239,6 +239,24 @@ namespace SkEditorPlus.Windows.Generators
             }
 
             code.Append($"function {functionName}(p: player):");
+
+            if (UseSkriptGuiCheckBox.IsChecked == false)
+            {
+                code.Append(GetSkriptCode());
+            }
+            else
+            {
+                code.Append(GetSkriptAddonCode());
+            }
+
+            skEditor.GetTextEditor().Document.Insert(offset, code.ToString());
+
+            skEditor.GetTextEditor().CaretOffset = offset + code.Length;
+        }
+
+        private string GetSkriptAddonCode()
+        {
+            StringBuilder code = new();
             code.Append($"\n\tcreate a gui with virtual chest inventory with {GetRowQuantity()} rows named \"{titleTextBox.Text}\"");
             if (backgroundItem != null)
             {
@@ -292,9 +310,43 @@ namespace SkEditorPlus.Windows.Generators
             }
             code.Append("\n\topen the last gui for {_p}");
 
-            skEditor.GetTextEditor().Document.Insert(offset, code.ToString());
+            return code.ToString();
+        }
 
-            skEditor.GetTextEditor().CaretOffset = offset + code.Length;
+        private string GetSkriptCode()
+        {
+            StringBuilder code = new();
+            code.Append($"\n\tset {{_gui}} to chest inventory with {GetRowQuantity()} rows named \"{titleTextBox.Text}\"\n");
+
+            if (backgroundItem != null)
+            {
+                code.Append($"\n\tset slot (numbers between 0 and {GetRowQuantity() * 9}) of {{_gui}} to ");
+                code.Append(backgroundItem.Name.Replace("_", " "));
+            }
+
+            foreach (ItemSlot slot in usedSlots)
+            {
+                code.Append($"\n\tset slot {slot.Slot} of {{_gui}} to {slot.Item.Name}");
+                if (slot.HaveCustomName)
+                {
+                    code.Append($" named \"{slot.Item.DisplayName}\"");
+                }
+            }
+            code.Append("\n\topen {_gui} to {_p}");
+
+            code.Append("\n\non inventory click:");
+            code.Append($"\n\tname of event-inventory is \"{titleTextBox.Text}\"");
+            code.Append("\n\tcancel event");
+            code.Append("\n\tevent-inventory is not player's inventory");
+            foreach (ItemSlot slot in usedSlots)
+            {
+                if (!slot.HaveAction) continue;
+                code.Append($"\n\tif clicked slot is {slot.Slot}:");
+                code.Append($"\n\t\tsend \"You clicked on slot {slot.Slot}\"");
+            }
+
+
+            return code.ToString();
         }
 
         private void OnRowQuantityChanged(object sender, TextChangedEventArgs e)
@@ -312,7 +364,6 @@ namespace SkEditorPlus.Windows.Generators
 
                 if (grid == null) return;
                 grid.Children.Clear();
-                usedSlots.Clear();
 
                 int columns = 9;
                 for (int row = 0; row < newRowCount; row++)
@@ -324,6 +375,12 @@ namespace SkEditorPlus.Windows.Generators
                         Grid.SetColumn(button, column);
                         grid.Children.Add(button);
                     }
+                }
+
+                usedSlots.RemoveAll(slot => slot.Slot >= newRowCount * 9);
+                foreach (ItemSlot slot in usedSlots)
+                {
+                    UpdateButtonWithSelectedItem(grid.Children[slot.Slot] as Button, slot.Item);
                 }
             }
         }

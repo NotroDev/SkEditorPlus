@@ -92,7 +92,7 @@
     <system:String x:Key="GUIGenBackground">Background</system:String>
     <system:String x:Key="GUIGenSelectBackground">Select</system:String>
     <system:String x:Key="GUIGenQuickPreview">Click with shift to use quick preview</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">Generated code requires skript-gui addon</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Use skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Edit</system:String>
     <system:String x:Key="GUIGenRemove">Remove</system:String>
 
@@ -209,13 +209,11 @@
     <system:String x:Key="EmptyCodeError">Your code is empty!</system:String>
     <system:String x:Key="EmptyAPIKeyError">API key not entered.</system:String>
     <system:String x:Key="PublishingError">Something didn't work.{n}Are you connected to the internet? Did you paste the correct API key?{n}{n}{0}</system:String>
-
-    <system:String x:Key="MarketplaceDownloadError">Something didn't work.{n}Are you connected to the internet?{n}{n}{0}</system:String>
-
+    
     <system:String x:Key="ScriptWithIDNotFoundError">Script with ID '{0}' not found!</system:String>
     <system:String x:Key="FailedToSendRequestError">Error while sending request!</system:String>
 
-
+    <system:String x:Key="MarketplaceDownloadError">Something didn't work.{n}Are you connected to the internet?{n}{n}{0}</system:String>
     <system:String x:Key="MarketplaceBrowseTab">Browse</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Installed</system:String>
     <system:String x:Key="MarketplaceUpdatesTab">Updates</system:String>

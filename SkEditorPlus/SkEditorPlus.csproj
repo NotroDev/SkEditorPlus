@@ -10,8 +10,8 @@
     <Version>1.6.4</Version>
     <Configurations>Debug;Release</Configurations>
     <Copyright>Copyright © Notro 2023</Copyright>
-    <FileVersion>1.7.0</FileVersion>
-    <AssemblyVersion>1.7.0</AssemblyVersion>
+    <FileVersion>1.7.1</FileVersion>
+    <AssemblyVersion>1.7.1</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
@@ -133,7 +133,7 @@
     <Compile Update="Windows\Generators\EventGenerator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\Generators\GuiPreview.xaml.cs">
+    <Compile Update="Windows\Generators\GuiGenerator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Generators\CommandGenerator.xaml.cs">
@@ -228,7 +228,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Windows\Generators\GuiPreview.xaml">
+    <Page Update="Windows\Generators\GuiGenerator.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="Windows\Generators\CommandGenerator.xaml">

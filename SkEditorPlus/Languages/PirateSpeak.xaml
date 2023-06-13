@@ -90,7 +90,7 @@
     <system:String x:Key="GUIGenBackground">Background</system:String>
     <system:String x:Key="GUIGenSelectBackground">Select</system:String>
     <system:String x:Key="GUIGenQuickPreview">Click wit' shift t' use quick preview, me heartie!</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">Arr, ye be needin' the skript-gui addon fer this 'ere generated code, matey</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Use skript-gui, me hearties!</system:String>
     <system:String x:Key="GUIGenEdit">Avast! Edit</system:String>
     <system:String x:Key="GUIGenRemove">Walk the plank!</system:String>
 
@@ -192,6 +192,8 @@
     <system:String x:Key="EmptyAPIKeyError">Ye needs to enter yer API key, ye scurvy seadog!</system:String>
     <system:String x:Key="PublishingError">Shiver me timbers! Somethin' be not right. Are ye connected to the internet? Did ye enter the correct API key?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">Arr, couldn't find the script wit' ID '{0}'!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Blimey! There be an error while sendin' the request!</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">Browse</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Installed</system:String>

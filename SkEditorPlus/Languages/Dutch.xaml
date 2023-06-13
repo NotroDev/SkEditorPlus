@@ -92,7 +92,7 @@
     <system:String x:Key="GUIGenBackground">Achtergrond</system:String>
     <system:String x:Key="GUIGenSelectBackground">Selecteer</system:String>
     <system:String x:Key="GUIGenQuickPreview">Klik met Shift voor snelle weergave</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">De gegenereerde code vereist de skript-gui add-on</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Gebruik skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Bewerken</system:String>
     <system:String x:Key="GUIGenRemove">Verwijderen</system:String>
 
@@ -211,6 +211,8 @@
     <system:String x:Key="EmptyAPIKeyError">API sleutel niet ingevuld!</system:String>
     <system:String x:Key="PublishingError">Er ging iets fout.{n}Ben je wel verbonden met het internet? Heb je wel een geldige API sleutel ingevuld?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">Script met ID '{0}' niet gevonden!</system:String>
+    <system:String x:Key="FailedToSendRequestError">Fout bij het verzenden van het verzoek!</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">Bladeren</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Geïnstalleerd</system:String>

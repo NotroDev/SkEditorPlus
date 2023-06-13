@@ -92,6 +92,7 @@
     <system:String x:Key="GUIGenBackground">Tło</system:String>
     <system:String x:Key="GUIGenSelectBackground">Wybierz</system:String>
     <system:String x:Key="GUIGenQuickPreview">Kliknij z shiftem, aby użyć szybkiego podglądu</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Użyj skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Edytuj</system:String>
     <system:String x:Key="GUIGenRemove">Usuń</system:String>
 

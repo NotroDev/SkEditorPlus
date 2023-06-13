@@ -358,8 +358,8 @@ namespace SkEditorPlus.Managers
 
             if (skEditor.IsFileOpen())
             {
-                completionManager ??= new(skEditor);
-                completionManager.LoadCompletionManager(GetTextEditor());
+                //completionManager ??= new(skEditor);
+                //completionManager.LoadCompletionManager(GetTextEditor());
             }
 
             AddonManager.addons.ForEach(a => a.OnTabChanged());

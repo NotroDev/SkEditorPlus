@@ -91,7 +91,7 @@
     <system:String x:Key="GUIGenBackground">Arrière-plan</system:String>
     <system:String x:Key="GUIGenSelectBackground">Sélectionner</system:String>
     <system:String x:Key="GUIGenQuickPreview">Cliquez avec la touche Maj pour utiliser l'aperçu rapide</system:String>
-    <system:String x:Key="GUIGenApplyTooltip">Le code généré nécessite l'extension skript-gui</system:String>
+    <system:String x:Key="GUIGenUseSkriptGuiAddon">Utilisez skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Éditer</system:String>
     <system:String x:Key="GUIGenRemove">Supprimer</system:String>
 
@@ -208,6 +208,8 @@
 	<system:String x:Key="EmptyAPIKeyError">La clé API n'a pas été saisie.</system:String>
 	<system:String x:Key="PublishingError">Quelque chose n'a pas fonctionné.{n}Êtes-vous connecté à Internet ? Avez-vous collé la clé API correcte ?{n}{n}{0}</system:String>
 
+    <system:String x:Key="ScriptWithIDNotFoundError">Script avec l'identifiant '{0}' introuvable !</system:String>
+    <system:String x:Key="FailedToSendRequestError">Erreur lors de l'envoi de la demande !</system:String>
 
     <system:String x:Key="MarketplaceBrowseTab">Parcourir</system:String>
     <system:String x:Key="MarketplaceInstalledTab">Installés</system:String>
