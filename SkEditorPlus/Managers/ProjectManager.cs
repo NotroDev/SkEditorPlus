@@ -78,10 +78,10 @@ namespace SkEditorPlus.Managers
             }
             catch { }
 
-            var newClient = new SftpClient("mc.notro.tech", 2053, "notro.0a278dab", "Minecraft100");
-            newClient.Connect();
-            client = newClient;
-            return newClient;
+            //var newClient = new SftpClient();
+            //newClient.Connect();
+            //client = newClient;
+            //return newClient;
         }
 
         private static async Task OpenFileInTreeView(string tabToolTip)
