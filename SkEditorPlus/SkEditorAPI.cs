@@ -1,5 +1,5 @@
 ﻿using AvalonEditB;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows;
 using System;
 using System.Windows.Controls;

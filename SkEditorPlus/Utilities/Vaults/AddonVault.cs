@@ -25,17 +25,11 @@ using FontFamily = System.Windows.Media.FontFamily;
 using MessageBox = HandyControl.Controls.MessageBox;
 using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities.Vaults
 {
-    public class AddonManager
+    public class AddonVault
     {
-        private readonly SkEditorAPI skEditor;
 
         public static List<ISkEditorPlusAddon> addons = new();
-
-        public AddonManager(SkEditorAPI skEditor)
-        {
-            this.skEditor = skEditor;
-        }
     }
 }

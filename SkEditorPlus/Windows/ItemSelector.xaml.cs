@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows.Generators;
 using System;
 using System.Collections.Generic;
@@ -51,7 +51,7 @@ namespace SkEditorPlus.Windows
         public ItemSelector(bool itemNameTextBoxVisible = true)
         {
             InitializeComponent();
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
             Loaded += (s, e) =>
             {

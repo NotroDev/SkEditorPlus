@@ -3,9 +3,9 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities
 {
-    public class BackgroundFixManager
+    public class BackgroundFixer
     {
         private const int GWL_STYLE = -16;
         private const int WS_SYSMENU = 0x80000;

@@ -1,5 +1,5 @@
 ﻿using AvalonEditB;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,22 +20,27 @@ using System.Threading.Tasks;
 using MessageBox = HandyControl.Controls.MessageBox;
 using System.Diagnostics;
 using System.Xml;
+using SkEditorPlus.Utilities.Vaults;
+using SkEditorPlus.Utilities.Builders;
+using SkEditorPlus.Utilities.Services;
+using SkEditorPlus.Utilities.Controllers;
 
 namespace SkEditorPlus.Windows
 {
     public partial class NewOptionsWindow : HandyControl.Controls.Window
     {
-        private readonly SkEditorAPI skEditor;
+        private readonly SkEditorAPI skEditor = APIVault.GetAPIInstance();
         private readonly SettingsBindings settingsBindings;
 
 
-        public NewOptionsWindow(SkEditorAPI skEditor)
+        public NewOptionsWindow()
         {
             InitializeComponent();
-            this.skEditor = skEditor;
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
             settingsBindings = new();
             DataContext = settingsBindings;
+
+            docsLinkTextBox.Text = Properties.Settings.Default.DocsLink;
 
             foreach (var property in settingsBindings.GetType().GetProperties().Where(p => p.PropertyType == typeof(bool)))
             {
@@ -90,8 +95,6 @@ namespace SkEditorPlus.Windows
             {
                 micaCheckbox.IsEnabled = false;
             }
-
-            docsLinkTextBox.Text = Properties.Settings.Default.DocsLink;
 
             LoadAddons();
         }
@@ -184,8 +187,8 @@ namespace SkEditorPlus.Windows
             string versionLabel = (string)Application.Current.FindResource("Version");
             versionText.Text = $"{versionLabel} {MainWindow.Version}";
 
-            FileManager.newFileName = (string)Application.Current.Resources["NewFileName"];
-            FileManager.regex = new(FileManager.newFileName.Replace("{0}", @"[0-9]+"));
+            FileBuilder.newFileName = (string)Application.Current.Resources["NewFileName"];
+            FileBuilder.regex = new(FileBuilder.newFileName.Replace("{0}", @"[0-9]+"));
         }
 
         private void UpdateSyntaxClick(object sender, RoutedEventArgs e)
@@ -224,10 +227,10 @@ namespace SkEditorPlus.Windows
             {
                 File.Delete(appPath + @"\Syntax Highlighting\Default.xshd");
                 File.Delete(appPath + @"\YAMLHighlighting.xshd");
-                await UpdateManager.DownloadFileTaskAsync(client, skriptUri, appPath + @"\Syntax Highlighting\Default.xshd");
-                await UpdateManager.DownloadFileTaskAsync(client, yamlUri, appPath + @"\YAMLHighlighting.xshd");
+                await UpdateService.DownloadFileTaskAsync(client, skriptUri, appPath + @"\Syntax Highlighting\Default.xshd");
+                await UpdateService.DownloadFileTaskAsync(client, yamlUri, appPath + @"\YAMLHighlighting.xshd");
                 Growl.Success(updateSuccess, "SuccessMsg");
-                skEditor.GetMainWindow().GetFileManager().OnTabChanged();
+                TabController.OnTabChanged();
             }
             catch (Exception e)
             {
@@ -259,7 +262,7 @@ namespace SkEditorPlus.Windows
 
         private void LoadAddons()
         {
-            foreach (var addon in AddonManager.addons)
+            foreach (var addon in AddonVault.addons)
             {
                 ListBoxItem item = new()
                 {
@@ -291,7 +294,7 @@ namespace SkEditorPlus.Windows
             Properties.Settings.Default.SyntaxHighlighting = tag;
             Properties.Settings.Default.Save();
 
-            skEditor.GetMainWindow().GetFileManager().OnTabChanged();
+            TabController.OnTabChanged();
         }
     }
 }

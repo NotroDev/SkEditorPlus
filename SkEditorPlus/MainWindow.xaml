@@ -127,7 +127,7 @@
                         Icon="&#xE74D;"/>
                     <MenuItem
                         x:Name="Menu_Parser"
-                        Icon="&#xe721;"
+                        Icon="&#xe943;"
                         Header="{DynamicResource MenuOtherParser}"/>
                     <MenuItem
                         x:Name="Menu_Docs"

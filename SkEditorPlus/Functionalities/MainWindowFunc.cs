@@ -21,7 +21,7 @@ namespace SkEditorPlus.Functionalities
                 foreach (string file in (string[])e.Data.GetData(DataFormats.FileDrop))
                 {
                     var fm = mainWindow.GetFileManager();
-                    fm.NewFile();
+                    Utilities.FileManager.NewFile();
                     fm.GetTextEditor().Load(file);
                     var currentTabItem = mainWindow.tabControl.SelectedItem as TabItem;
                     currentTabItem.ToolTip = file;

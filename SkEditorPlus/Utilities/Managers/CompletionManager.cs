@@ -1,6 +1,7 @@
 ﻿using AvalonEditB;
 using HandyControl.Controls;
 using SkEditorPlus.Data;
+using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Windows;
 using SkEditorPlus.Windows.Generators;
 using System;
@@ -15,7 +16,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities.Managers
 {
     public class CompletionManager
     {
@@ -187,7 +188,7 @@ namespace SkEditorPlus.Managers
                 popup = null;
                 e.Handled = true;
 
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnCompletionAccept(newText);
                 });

@@ -1,6 +1,8 @@
 ﻿using Renci.SshNet;
 using Renci.SshNet.Async;
 using Renci.SshNet.Sftp;
+using SkEditorPlus.Utilities.Builders;
+using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,7 +19,7 @@ using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 using TabItem = HandyControl.Controls.TabItem;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities.Managers
 {
     public class ProjectManager
     {
@@ -28,7 +30,7 @@ namespace SkEditorPlus.Managers
 
         private Dictionary<string, bool> isExpandedMap = new();
 
-        private readonly SkEditorAPI skEditor;
+        private readonly SkEditorAPI skEditor = APIVault.GetAPIInstance();
 
         private FileSystemWatcher fileWatcher;
 
@@ -36,9 +38,8 @@ namespace SkEditorPlus.Managers
 
         public static SftpClient client;
 
-        public ProjectManager(SkEditorAPI skEditor)
+        public ProjectManager()
         {
-            this.skEditor = skEditor;
             instance = this;
             fm = FileManager.instance;
         }
@@ -82,6 +83,7 @@ namespace SkEditorPlus.Managers
             //newClient.Connect();
             //client = newClient;
             //return newClient;
+            return null;
         }
 
         private static async Task OpenFileInTreeView(string tabToolTip)
@@ -123,7 +125,7 @@ namespace SkEditorPlus.Managers
                 return;
             }
 
-            fm.CreateFile(Path.GetFileName(tabToolTip), tabToolTip);
+            FileBuilder.Build(Path.GetFileName(tabToolTip), tabToolTip);
             fm.GetTextEditor().Load(tabToolTip);
             if (fm.tabControl.SelectedItem is TabItem ti && ti.Header.ToString().EndsWith("*"))
             {
@@ -133,7 +135,7 @@ namespace SkEditorPlus.Managers
 
         private static string GetNewFileName(string folderPath)
         {
-            var regex = FileManager.regex;
+            var regex = FileBuilder.regex;
             var files = Directory.GetFiles(folderPath);
 
             var numbers = files
@@ -143,7 +145,7 @@ namespace SkEditorPlus.Managers
 
             var count = numbers.DefaultIfEmpty(0).Max() + 1;
 
-            return $"{FileManager.newFileName.Replace("{0}", count.ToString())}.sk";
+            return $"{FileBuilder.newFileName.Replace("{0}", count.ToString())}.sk";
         }
 
         public async Task AddDirectoriesAndFilesAsync(DirectoryInfo directory, TreeViewItem treeViewItem)
@@ -212,14 +214,16 @@ namespace SkEditorPlus.Managers
             var rootDirectoryInfo = new DirectoryInfo(fm.projectPath);
             var rootTreeViewItem = new TreeViewItem
             {
-                Header = FileManager.CreateIcon("\ue8b7", rootDirectoryInfo.Name),
+                Header = IconBuilder.Build("\ue8b7", rootDirectoryInfo.Name),
                 Tag = rootDirectoryInfo.FullName
             };
 
-            rootTreeViewItem.MouseRightButtonUp += (sender, e) => {
+            rootTreeViewItem.MouseRightButtonUp += (sender, e) =>
+            {
                 var contextMenu = new ContextMenu();
                 var openFile = CreateMenuItem(Application.Current.FindResource("ProjectCreateFile") as string, "\xe7c3");
-                openFile.Click += (sender, e) => {
+                openFile.Click += (sender, e) =>
+                {
                     var fileName = GetNewFileName(rootTreeViewItem.Tag.ToString());
                     var filePath = Path.Combine(rootTreeViewItem.Tag.ToString(), fileName);
                     File.Create(filePath);
@@ -318,7 +322,7 @@ namespace SkEditorPlus.Managers
             {
                 var fileTreeViewItem = new TreeViewItem
                 {
-                    Header = FileManager.CreateIcon("\ue8a5", name),
+                    Header = IconBuilder.Build("\ue8a5", name),
                     Tag = location
                 };
 
@@ -356,7 +360,7 @@ namespace SkEditorPlus.Managers
             {
                 var subTreeViewItem = new TreeViewItem
                 {
-                    Header = FileManager.CreateIcon("\ue8b7", name),
+                    Header = IconBuilder.Build("\ue8b7", name),
                     Tag = location
                 };
 

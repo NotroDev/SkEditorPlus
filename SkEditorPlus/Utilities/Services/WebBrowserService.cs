@@ -1,4 +1,7 @@
 ﻿using HandyControl.Controls;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Wpf;
+using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,9 +12,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Ink;
 
-namespace SkEditorPlus.Utilities
+namespace SkEditorPlus.Utilities.Services
 {
-    public class CodeFromWeb
+    public class WebBrowserService
     {
         public static async Task<string> GetCodeFromSkript(string id)
         {
@@ -39,6 +42,32 @@ namespace SkEditorPlus.Utilities
             string path = Path.Combine(Path.GetTempPath(), $"{id}.sk");
             File.WriteAllText(path, content);
             return path;
+        }
+
+        public static async void OpenSite(string header, string url)
+        {
+            WebView2 webBrowser = new();
+
+            TabItem tabItem = new()
+            {
+                Header = header,
+                ToolTip = "",
+                Content = webBrowser,
+                IsSelected = true,
+            };
+
+            System.Windows.Controls.ToolTipService.SetIsEnabled(tabItem, false);
+
+            APIVault.GetAPIInstance().GetTabControl().Items.Add(tabItem);
+
+            var userDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SkEditor+";
+            var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
+            await webBrowser.EnsureCoreWebView2Async(env);
+            webBrowser.Source = new Uri(url);
+            AddonVault.addons.ForEach(addon =>
+            {
+                addon.OnSiteOpen(header, url);
+            });
         }
     }
 }

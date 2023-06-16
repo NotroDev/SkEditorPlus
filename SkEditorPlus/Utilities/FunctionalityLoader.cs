@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Windows;
 using MessageBox = HandyControl.Controls.MessageBox;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities
 {
-    public class FunctionalitiesManager
+    public class FunctionalityLoader
     {
         public void LoadAll(SkEditorAPI skEditor)
         {

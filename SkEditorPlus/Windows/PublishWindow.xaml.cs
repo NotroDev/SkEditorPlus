@@ -1,6 +1,7 @@
 ﻿using HandyControl.Controls;
 using Newtonsoft.Json.Linq;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +22,7 @@ namespace SkEditorPlus.Windows
         {
             InitializeComponent();
             this.skEditor = skEditor;
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
             helpText.Text = helpText.Text.Replace("{0}", "pastebin.com/doc_api");
         }
@@ -77,7 +78,7 @@ namespace SkEditorPlus.Windows
             if (response.IsSuccessStatusCode)
             {
                 urlTextBox.Text = responseString;
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnPublish(responseString);
                 });
@@ -105,7 +106,7 @@ namespace SkEditorPlus.Windows
                 JObject jsonResult = JObject.Parse(responseString);
                 string url = jsonResult["url"].ToString();
                 urlTextBox.Text = url;
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnPublish(url);
                 });

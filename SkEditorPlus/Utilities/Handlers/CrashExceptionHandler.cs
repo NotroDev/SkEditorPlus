@@ -1,20 +1,20 @@
 ﻿using AvalonEditB;
 using HandyControl.Controls;
 using HandyControl.Data;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.IO;
 using System.Windows;
 
-namespace SkEditorPlus.Utilities
+namespace SkEditorPlus.Utilities.Handlers
 {
-    public class ExceptionHandler
+    public class CrashExceptionHandler
     {
         public static SkEditorAPI skEditor;
 
         public static void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
-            AddonManager.addons.ForEach(addon => addon.OnUnhandledException());
+            AddonVault.addons.ForEach(addon => addon.OnUnhandledException());
 
             Exception e = (Exception)args.ExceptionObject;
 

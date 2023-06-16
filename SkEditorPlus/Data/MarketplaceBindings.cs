@@ -50,7 +50,7 @@ namespace SkEditorPlus.Data
 
             if (action.Equals(install))
             {
-                MarketplaceWindow.GetInstance().InstallAddon();
+                _ = MarketplaceWindow.GetInstance().InstallAddon();
             }
             else if (action.Equals(uninstall))
             {

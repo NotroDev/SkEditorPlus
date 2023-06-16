@@ -1,6 +1,6 @@
 ﻿using HandyControl.Controls;
 using SkEditorPlus.Functionalities;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -59,10 +59,10 @@ namespace SkEditorPlus.Functionalities
                     .ForEach(addon =>
                     {
                         addon.OnEnable(skEditorAPI);
-                        AddonManager.addons.Add(addon);
+                        AddonVault.addons.Add(addon);
                     });
 
-                AddonManager.addons.ForEach(addon => addon.OnAllAddonsLoaded());
+                AddonVault.addons.ForEach(addon => addon.OnAllAddonsLoaded());
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using AvalonEditB.Document;
-using SkEditorPlus.Managers;
 using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Builders;
+using SkEditorPlus.Utilities.Managers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,7 +36,7 @@ namespace SkEditorPlus.Windows.Generators
         {
             InitializeComponent();
             this.skEditor = skEditor;
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
             CreateGrid();
         }
@@ -184,7 +185,7 @@ namespace SkEditorPlus.Windows.Generators
 
         private static void UpdateButtonWithSelectedItem(Button button, Item selectedItem, int size = 32)
         {
-            button.ToolTip = MinecraftFormatting.GetFormatted(selectedItem.DisplayName);
+            button.ToolTip = MinecraftTextBuilder.Build(selectedItem.DisplayName);
 
             if (!(button.ToolTip is TextBlock textBlock && textBlock.Inlines.Any()))
             {
@@ -326,7 +327,7 @@ namespace SkEditorPlus.Windows.Generators
 
             foreach (ItemSlot slot in usedSlots)
             {
-                code.Append($"\n\tset slot {slot.Slot} of {{_gui}} to {slot.Item.Name}");
+                code.Append($"\n\tset slot {slot.Slot} of {{_gui}} to {slot.Item.Name.Replace("_", " ")}");
                 if (slot.HaveCustomName)
                 {
                     code.Append($" named \"{slot.Item.DisplayName}\"");
@@ -482,7 +483,7 @@ namespace SkEditorPlus.Windows.Generators
 
                 string title = string.IsNullOrWhiteSpace(titleTextBox.Text) ? "GUI" : titleTextBox.Text;
 
-                TextBlock formattedText = MinecraftFormatting.GetFormatted(title, 24, true);
+                TextBlock formattedText = MinecraftTextBuilder.Build(title, 24, true);
 
                 formattedText.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
                 formattedText.Arrange(new Rect(formattedText.DesiredSize));

@@ -148,7 +148,6 @@
                                         MinWidth="150"
                                         MaxWidth="250"
                                         HorizontalAlignment="Left"
-                                        Text="https://docs.skunity.com/"
                                         TextChanged="OnDocsLinkChanged" />
                         </DockPanel>
                         <DockPanel x:Name="UpdateSyntax"

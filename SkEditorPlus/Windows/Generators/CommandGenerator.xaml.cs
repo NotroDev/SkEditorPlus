@@ -1,7 +1,8 @@
 ﻿using AvalonEditB;
 using AvalonEditB.Document;
 using HandyControl.Controls;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Vaults;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using ComboBox = HandyControl.Controls.ComboBox;
@@ -16,7 +17,7 @@ namespace SkEditorPlus.Windows.Generators
         {
             InitializeComponent();
             this.skEditor = skEditor;
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
         }
 
@@ -90,7 +91,7 @@ namespace SkEditorPlus.Windows.Generators
             commandGeneratorWindow.Close();
             editor.CaretOffset = editor.Document.TextLength;
 
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                     addon.OnGenerate(ISkEditorPlusAddon.GenerateType.COMMAND);
             });

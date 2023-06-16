@@ -1,17 +1,11 @@
-﻿using HandyControl.Data;
-using Octokit;
-using SkEditorPlus.Managers;
+﻿using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Controllers;
+using SkEditorPlus.Utilities.Managers;
+using SkEditorPlus.Utilities.Services;
 using SkEditorPlus.Windows;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Application = System.Windows.Application;
-using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Functionalities
 {
@@ -86,12 +80,12 @@ namespace SkEditorPlus.Functionalities
             {
                 case "Menu_NewFile":
                 case "New":
-                    fileManager.NewFile();
+                    FileManager.NewFile();
                     break;
         
                 case "Menu_Open":
                 case "Open":
-                    fileManager.OpenFile();
+                    FileController.OpenFile();
                     break;
 
                 case "Menu_OpenFolder":
@@ -100,12 +94,12 @@ namespace SkEditorPlus.Functionalities
 
                 case "Menu_Save":
                 case "Save":
-                    fileManager.Save();
+                    FileController.Save();
                     break;
 
                 case "Menu_SaveAs":
                 case "SaveAs":
-                    fileManager.SaveDialog();
+                    FileController.SaveDialog();
                     break;
 
                 case "Menu_Publish":
@@ -115,11 +109,6 @@ namespace SkEditorPlus.Functionalities
                     publishWindow.ShowDialog();
                     break;
 
-                case "Menu_Export":
-                case "Export":
-                    fileManager.Export();
-                    break;
-
                 case "Menu_ExportOptions":
                     ExportOptionsWindow exportOptionsWindow = new(skEditor);
                     exportOptionsWindow.ShowDialog();
@@ -127,7 +116,7 @@ namespace SkEditorPlus.Functionalities
 
                 case "Menu_CloseFile":
                 case "Close":
-                    fileManager.CloseFile();
+                    FileController.CloseFile();
                     break;
             }
 
@@ -156,28 +145,28 @@ namespace SkEditorPlus.Functionalities
             }
         }
 
-        private void Other_MenuItem_Click(object sender, RoutedEventArgs e)
+        private async void Other_MenuItem_Click(object sender, RoutedEventArgs e)
         {
             switch (GetName(sender, e))
             {
                 case "Menu_Settings":
                 case "Settings":
-                    NewOptionsWindow optionsWindow = new(skEditor);
+                    NewOptionsWindow optionsWindow = new();
                     optionsWindow.ShowDialog();
                     break;
         
                 case "Menu_ChangeSyntax":
-                    fileManager.ChangeSyntax("none");
+                    SyntaxManager.ChangeSyntax("none");
                     break;
 
                 case "Menu_Parser":
-                    fileManager.OpenParser();
+                    FileManager.OpenParser();
                     break;
                 case "Menu_Docs":
-                    fileManager.OpenDocs();
+                    FileManager.OpenDocs();
                     break;
                 case "Menu_CheckUpdate":
-                    UpdateManager.CheckUpdate();
+                    UpdateService.CheckUpdate();
                     break;
                 case "Menu_Marketplace":
                 case "Marketplace":

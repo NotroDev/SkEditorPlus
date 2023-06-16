@@ -1,4 +1,4 @@
-﻿using SkEditorPlus.Managers;
+﻿using SkEditorPlus.Utilities;
 using System;
 using System.Diagnostics;
 using System.Linq;

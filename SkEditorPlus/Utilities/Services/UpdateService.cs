@@ -11,13 +11,13 @@ using System.IO;
 using System.Threading.Tasks;
 using FileMode = System.IO.FileMode;
 using System.Windows.Threading;
+using SkEditorPlus.Utilities.Vaults;
+using SkEditorPlus.Utilities.Controllers;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities.Services
 {
-    public class UpdateManager
+    public class UpdateService
     {
-        public static SkEditorAPI skEditor;
-
         public static async void CheckUpdate(bool infoIfNot = true)
         {
             try
@@ -28,7 +28,7 @@ namespace SkEditorPlus.Managers
 
                 var current = MainWindow.Version;
 
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnCheckForUpdates(current, latest);
                 });
@@ -107,7 +107,7 @@ namespace SkEditorPlus.Managers
                 File.Delete($"{appPath}\\YAMLHighlighting.xshd");
                 await DownloadFileTaskAsync(client, skriptUri, $"{syntaxPath}\\Default.xshd");
                 await DownloadFileTaskAsync(client, yamlUri, $"{appPath}\\YAMLHighlighting.xshd");
-                skEditor.GetMainWindow().GetFileManager().OnTabChanged();
+                TabController.OnTabChanged();
             }
             catch
             {

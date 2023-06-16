@@ -1,5 +1,8 @@
 ﻿using AvalonEditB;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Controllers;
+using SkEditorPlus.Utilities.Managers;
+using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +28,7 @@ namespace SkEditorPlus.Windows
             this.skEditor = skEditor;
             _spaceValue = 4;
             textEditor = skEditor.GetMainWindow().GetFileManager().GetTextEditor();
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
         }
 
@@ -64,7 +67,7 @@ namespace SkEditorPlus.Windows
                 code = code.Replace(variableMatch.Value, variable);
             }
             textEditor.Document.Text = code;
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_DOTS_TO_COLONS);
             });
@@ -82,7 +85,7 @@ namespace SkEditorPlus.Windows
             {
                 textEditor.Document.Remove(lineToRemove.Offset, lineToRemove.Length);
             }
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.REMOVE_COMMENTS);
             });
@@ -95,7 +98,7 @@ namespace SkEditorPlus.Windows
         {
             int spacingAmount = DetectSpacingAmount();
             ConvertSpacesToTabs(spacingAmount);
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_SPACES_TO_TABS);
             });
@@ -104,7 +107,7 @@ namespace SkEditorPlus.Windows
         private void TabsToSpaces()
         {
             ConvertTabsToSpaces(_spaceValue);
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_TABS_TO_SPACES);
             });
@@ -227,7 +230,7 @@ namespace SkEditorPlus.Windows
 
             code = string.Join(Environment.NewLine, modifiedLines);
             textEditor.Document.Text = code;
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.SHORTEN_ELSE_IF);
             });

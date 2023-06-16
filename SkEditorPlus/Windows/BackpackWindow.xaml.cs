@@ -1,5 +1,6 @@
 ﻿using AvalonEditB;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Vaults;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,7 +30,7 @@ namespace SkEditorPlus.Windows
 
                 backpackListbox.Items.Add(item);
             }
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
         }
 
@@ -75,7 +76,7 @@ namespace SkEditorPlus.Windows
             Properties.Settings.Default.BackpackCodes = codes;
             Properties.Settings.Default.Save();
 
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnBackPackAdd(selectedCode);
             });
@@ -100,7 +101,7 @@ namespace SkEditorPlus.Windows
                 {
                     backpackListbox.SelectedIndex = backpackListbox.Items.Count - 1;
                 }
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnBackPackRemove(item.Content.ToString());
                 });
@@ -115,7 +116,7 @@ namespace SkEditorPlus.Windows
             string codeToPaste = item.Content.ToString();
 
             textEditor.Document.Insert(textEditor.CaretOffset, codeToPaste);
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnBackPackPaste(codeToPaste);
             });

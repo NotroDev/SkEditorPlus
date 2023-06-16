@@ -1,4 +1,5 @@
-﻿using SkEditorPlus.Managers;
+﻿using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Controllers;
 using System;
 using System.Windows.Controls;
 
@@ -17,7 +18,7 @@ namespace SkEditorPlus.Functionalities
         private void OnTabChanged(object sender, SelectionChangedEventArgs e)
         {
             GC.Collect();
-            fileManager.OnTabChanged();
+            TabController.OnTabChanged();
         }
     }
 }

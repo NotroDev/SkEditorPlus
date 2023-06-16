@@ -2,7 +2,7 @@
 using HandyControl.Controls;
 using HandyControl.Data;
 using SharpVectors.Dom;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,8 @@ using MessageBox = HandyControl.Controls.MessageBox;
 using TabControl = System.Windows.Controls.TabControl;
 using TabItem = HandyControl.Controls.TabItem;
 using System.Security.Principal;
-using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Vaults;
+using SkEditorPlus.Utilities.Services;
 
 namespace SkEditorPlus
 {
@@ -47,12 +48,13 @@ namespace SkEditorPlus
                 {
                     string arg = args[0];
                     string id = arg[11..^1];
-                    string path = await CodeFromWeb.GetCodeFromSkript(id);
+                    string path = await WebBrowserService.GetCodeFromSkript(id);
                     if (path != null)
                         startupFile = path;
                 }
             }
 
+            APIVault.SetAPIInstance(this);
             mainWindow = new MainWindow(this);
             WindowOpen?.Invoke(mainWindow, EventArgs.Empty);
             mainWindow.Show();
@@ -176,7 +178,7 @@ namespace SkEditorPlus
         }
 
 
-        public bool IsAddonInstalled(string name) => AddonManager.addons.Any(addon => addon.Name.Equals(name));
+        public bool IsAddonInstalled(string name) => AddonVault.addons.Any(addon => addon.Name.Equals(name));
 
         public int GetApiVersion() => 0;
     }

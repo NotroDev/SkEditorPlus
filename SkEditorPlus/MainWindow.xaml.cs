@@ -5,8 +5,13 @@ using HandyControl.Themes;
 using HandyControl.Tools;
 using Microsoft.Win32;
 using SharpVectors.Dom;
-using SkEditorPlus.Managers;
 using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Builders;
+using SkEditorPlus.Utilities.Controllers;
+using SkEditorPlus.Utilities.Handlers;
+using SkEditorPlus.Utilities.Managers;
+using SkEditorPlus.Utilities.Services;
+using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Windows;
 using System;
 using System.Diagnostics;
@@ -59,8 +64,8 @@ namespace SkEditorPlus
         public MainWindow(SkEditorAPI skEditor)
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;
-            ExceptionHandler.skEditor = skEditor;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionHandler.OnUnhandledException);
+            CrashExceptionHandler.skEditor = skEditor;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(CrashExceptionHandler.OnUnhandledException);
 
             RegistryKey skEditorProtocol = Registry.ClassesRoot.OpenSubKey("skeditor");
             if (skEditorProtocol == null)
@@ -92,7 +97,7 @@ namespace SkEditorPlus
                         {
                             Process.Start(processInfo);
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             MessageBox.Show(new MessageBoxInfo
                             {
@@ -170,7 +175,7 @@ namespace SkEditorPlus
 
                 if (!File.Exists(appPath + @"\items.json") || !Directory.Exists(appPath + @"\Items"))
                 {
-                    await UpdateManager.UpdateItemFiles().ContinueWith((t) =>
+                    await UpdateService.UpdateItemFiles().ContinueWith((t) =>
                     {
                         Dispatcher.Invoke(() =>
                         {
@@ -181,7 +186,7 @@ namespace SkEditorPlus
 
                 if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd"))
                 {
-                    await UpdateManager.UpdateSyntaxFiles().ContinueWith((t) =>
+                    await UpdateService.UpdateSyntaxFiles().ContinueWith((t) =>
                     {
                         Dispatcher.Invoke(() =>
                         {
@@ -222,19 +227,18 @@ namespace SkEditorPlus
             }
 
             SetUpMica();
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
-            fileManager = new FileManager(skEditor);
-            ProjectManager projectManager = new(skEditor);
+            fileManager = new FileManager();
+            ProjectManager projectManager = new();
 
             projectTabItemLabel.MouseLeftButtonDown += new(projectManager.OnProjectClick);
             structureTabItemLabel.MouseLeftButtonDown += new(fileManager.OnStructureClick);
 
 
-            UpdateManager.skEditor = skEditor;
-            new FunctionalitiesManager().LoadAll(skEditor);
+            new FunctionalityLoader().LoadAll(skEditor);
 
-            RPCManager.Initialize();
+            DiscordRPCManager.Instance.InitializeClient();
 
 
             string tempPath = Path.GetTempPath();
@@ -248,7 +252,7 @@ namespace SkEditorPlus
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        fileManager.NewFile();
+                        FileManager.NewFile();
                         fileManager.GetTextEditor().Load(file);
                         TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                         currentTabItem.Header = Path.GetFileName(file);
@@ -262,29 +266,29 @@ namespace SkEditorPlus
             {
                 Dispatcher.Invoke(() =>
                 {
-                    fileManager.NewFile();
+                    FileManager.NewFile();
                     fileManager.GetTextEditor().Load(startupFile);
                     TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                     currentTabItem.ToolTip = startupFile;
                     currentTabItem.Header = Path.GetFileName(startupFile);
-                    fileManager.OnTabChanged();
+                    TabController.OnTabChanged();
                 });
             }
             else
             {
-                Dispatcher.Invoke(() => fileManager.NewFile());
+                Dispatcher.Invoke(() => FileManager.NewFile());
             }
 
             QuickEditsWindow quickEditsWindow = new(skEditor);
 
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnLoadFinished();
             });
 
             if (Properties.Settings.Default.CheckForUpdates)
             {
-                UpdateManager.CheckUpdate(false);
+                UpdateService.CheckUpdate(false);
             }
 
             RemoveThisWeirdBorder(tabControl);
@@ -347,7 +351,7 @@ namespace SkEditorPlus
         {
             SettingsManager.SaveSettings();
 
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnExiting();
                 });
@@ -380,7 +384,7 @@ namespace SkEditorPlus
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            RPCManager.Uninitialize();
+            DiscordRPCManager.Uninitialize();
 
             Environment.Exit(0);
         }
@@ -388,7 +392,7 @@ namespace SkEditorPlus
         private void TabClosed(object sender, EventArgs e)
         {
             GC.Collect();
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                 addon.OnTabClose();
             });
@@ -412,16 +416,16 @@ namespace SkEditorPlus
                         if (filesToOpen.StartsWith("skeditor://"))
                         {
                             string id = filesToOpen[11..^1].Trim().TrimEnd('/');
-                            string path = await CodeFromWeb.GetCodeFromSkript(id);
+                            string path = await WebBrowserService.GetCodeFromSkript(id);
                             if (path != null)
                             {
-                                fileManager.NewFile();
+                                FileManager.NewFile();
                                 fileManager.GetTextEditor().Load(path);
                                 TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                                 currentTabItem.Header = id + ".sk";
                                 lastTab = currentTabItem;
-                                fileManager.OnTabChanged();
-                                fileManager.ChangeGeometry(currentTabItem);
+                                TabController.OnTabChanged();
+                                GeometryUtility.ChangeGeometry(currentTabItem);
                             }
                         }
                         else
@@ -432,13 +436,13 @@ namespace SkEditorPlus
                                 {
                                     continue;
                                 }
-                                fileManager.NewFile();
+                                FileManager.NewFile();
                                 fileManager.GetTextEditor().Load(file);
                                 TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
                                 currentTabItem.ToolTip = file;
                                 currentTabItem.Header = Path.GetFileName(file);
                                 lastTab = currentTabItem;
-                                fileManager.OnTabChanged();
+                                TabController.OnTabChanged();
                             }
                         }
 
@@ -451,7 +455,7 @@ namespace SkEditorPlus
 
                     Topmost = true;
                     Activate();
-                    Dispatcher.BeginInvoke(new Action(() => { Topmost = false; }));
+                    await Dispatcher.BeginInvoke(new Action(() => { Topmost = false; }));
                 });
             }
             catch { }
@@ -464,7 +468,7 @@ namespace SkEditorPlus
 
         private void OnStructureRefresh(object sender, RoutedEventArgs e)
         {
-            fileManager.CreateStructure();
+            StructureBuilder.CreateStructure();
         }
 
         // I really don't know how to fix this in other way xD

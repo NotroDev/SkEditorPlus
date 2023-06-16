@@ -1,5 +1,5 @@
 ﻿using HandyControl.Controls;
-using SkEditorPlus.Managers;
+using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows.Generators;
 
 namespace SkEditorPlus.Windows
@@ -12,7 +12,7 @@ namespace SkEditorPlus.Windows
         {
             InitializeComponent();
             this.skEditor = skEditor;
-            BackgroundFixManager.FixBackground(this);
+            BackgroundFixer.FixBackground(this);
 
         }
 

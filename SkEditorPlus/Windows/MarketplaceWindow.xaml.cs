@@ -1,5 +1,4 @@
-﻿using SkEditorPlus.Managers;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
@@ -17,6 +16,8 @@ using System.Threading.Tasks;
 using System.Collections.Specialized;
 using HandyControl.Data;
 using HandyControl.Controls;
+using SkEditorPlus.Utilities.Vaults;
+using SkEditorPlus.Utilities.Controllers;
 
 namespace SkEditorPlus.Windows
 {
@@ -182,7 +183,7 @@ namespace SkEditorPlus.Windows
         private static bool IsAddonUninstalled(MarketplaceItem item)
         {
             bool shouldItemBeAdded = true;
-            foreach (var addon in AddonManager.addons)
+            foreach (var addon in AddonVault.addons)
             {
                 if (item.Name.Equals(addon.Name))
                 {
@@ -215,7 +216,7 @@ namespace SkEditorPlus.Windows
             {
                 if (item.Type.Equals("Addon"))
                 {
-                    return AddonManager.addons.Any(skEditorPlusAddon => item.Name.Equals(skEditorPlusAddon.Name) && !item.Version.Equals(skEditorPlusAddon.Version));
+                    return AddonVault.addons.Any(skEditorPlusAddon => item.Name.Equals(skEditorPlusAddon.Name) && !item.Version.Equals(skEditorPlusAddon.Version));
                 }
                 string syntax = Properties.Settings.Default.InstalledSyntaxes.Cast<string>().FirstOrDefault(s => s.Contains(item.Name));
 
@@ -327,7 +328,7 @@ namespace SkEditorPlus.Windows
                         Properties.Settings.Default.SyntaxHighlighting = Path.GetFileNameWithoutExtension(item.URL);
                         Properties.Settings.Default.Save();
 
-                        skEditor.GetFileManager().OnTabChanged();
+                        TabController.OnTabChanged();
                     }
                 }
                 else
@@ -352,7 +353,7 @@ namespace SkEditorPlus.Windows
                     Properties.Settings.Default.InstalledSyntaxes = syntaxes;
                     Properties.Settings.Default.Save();
                 }
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnAddonInstall(item.Name, item.Author, item.Version);
                 });
@@ -393,7 +394,7 @@ namespace SkEditorPlus.Windows
                 Properties.Settings.Default.SyntaxHighlighting = "Default";
                 Properties.Settings.Default.Save();
 
-                skEditor.GetFileManager().OnTabChanged();
+                TabController.OnTabChanged();
             }
             else
             {
@@ -415,7 +416,7 @@ namespace SkEditorPlus.Windows
                     IconKey = ResourceToken.InfoGeometry
                 });
             }
-            AddonManager.addons.ForEach(addon =>
+            AddonVault.addons.ForEach(addon =>
             {
                     addon.OnAddonUninstall(item.Name, item.Author, item.Version);
             });
@@ -447,7 +448,7 @@ namespace SkEditorPlus.Windows
                     byte[] responseBody = await response.Content.ReadAsByteArrayAsync();
                     await File.WriteAllBytesAsync(filePath, responseBody);
 
-                    skEditor.GetFileManager().OnTabChanged();
+                    TabController.OnTabChanged();
                     marketBindings.FilteredItems = FilterItems();
 
                     StringCollection syntaxes = Properties.Settings.Default.InstalledSyntaxes ?? new StringCollection();
@@ -502,7 +503,7 @@ namespace SkEditorPlus.Windows
                         IconKey = ResourceToken.InfoGeometry
                     });
                 }
-                AddonManager.addons.ForEach(addon =>
+                AddonVault.addons.ForEach(addon =>
                 {
                     addon.OnAddonUpdate(item.Name, item.Author, item.Version);
                 });

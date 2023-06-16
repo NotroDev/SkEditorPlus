@@ -1,17 +1,13 @@
-﻿using HandyControl.Controls;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Windows;
 using MessageBox = HandyControl.Controls.MessageBox;
 
-namespace SkEditorPlus.Managers
+namespace SkEditorPlus.Utilities.Managers
 {
     public class SettingsManager
     {

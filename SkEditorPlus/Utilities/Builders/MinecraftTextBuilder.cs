@@ -1,7 +1,6 @@
 ﻿using AvalonEditB;
 using HandyControl.Controls;
 using HandyControl.Data;
-using SkEditorPlus.Managers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,11 +11,11 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using MessageBox = HandyControl.Controls.MessageBox;
 
-namespace SkEditorPlus.Utilities
+namespace SkEditorPlus.Utilities.Builders
 {
-    public class MinecraftFormatting
+    public class MinecraftTextBuilder
     {
-        public static TextBlock GetFormatted(string input, int fontSize = 12, bool defaultColor = false)
+        public static TextBlock Build(string input, int fontSize = 12, bool defaultColor = false)
         {
             try
             {
@@ -24,24 +23,24 @@ namespace SkEditorPlus.Utilities
                 string colorSymbol = "&";
 
                 Dictionary<char, string> colorMap = new()
-{
-    {'0', "#000000"},
-    {'1', "#0000AA"},
-    {'2', "#00AA00"},
-    {'3', "#00AAAA"},
-    {'4', "#AA0000"},
-    {'5', "#AA00AA"},
-    {'6', "#FFAA00"},
-    {'7', "#AAAAAA"},
-    {'8', "#555555"},
-    {'9', "#5555FF"},
-    {'a', "#55FF55"},
-    {'b', "#55FFFF"},
-    {'c', "#FF5555"},
-    {'d', "#FF55FF"},
-    {'e', "#FFFF55"},
-    {'f', "#FFFFFF"},
-};
+                {
+                    {'0', "#000000"},
+                    {'1', "#0000AA"},
+                    {'2', "#00AA00"},
+                    {'3', "#00AAAA"},
+                    {'4', "#AA0000"},
+                    {'5', "#AA00AA"},
+                    {'6', "#FFAA00"},
+                    {'7', "#AAAAAA"},
+                    {'8', "#555555"},
+                    {'9', "#5555FF"},
+                    {'a', "#55FF55"},
+                    {'b', "#55FFFF"},
+                    {'c', "#FF5555"},
+                    {'d', "#FF55FF"},
+                    {'e', "#FFFF55"},
+                    {'f', "#FFFFFF"},
+                };
 
                 StringBuilder xaml = new();
                 xaml.Append("<TextBlock xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>");
