@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using SkEditorPlus.Utilities;
-using SkEditorPlus.Windows.Generators;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,9 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace SkEditorPlus.Windows
 {
@@ -108,32 +105,26 @@ namespace SkEditorPlus.Windows
 
         private async void RefreshItems()
         {
+            cancellationTokenSource?.Cancel();
+            cancellationTokenSource = new CancellationTokenSource();
+
             try
             {
-                string searchQuery = searchTextBox.Text.ToLower().Replace("_", "").Trim();
-                string[] searchTerms = searchQuery.Split(' ');
-
-                cancellationTokenSource?.Cancel();
-                cancellationTokenSource = new CancellationTokenSource();
-
-                var filteredItemsList = itemList.Where(item => ContainsAllSearchTerms(item.DisplayName, searchTerms) || ContainsAllSearchTerms(item.Name, searchTerms))
-                    .Select(item => item.DisplayName);
-
-                if (filteredItemsList.Any(item => item.ToLower() == searchQuery))
-                {
-                    var item = filteredItemsList.First(item => item.ToLower() == searchQuery);
-                    filteredItemsList = filteredItemsList.Where(item => item.ToLower() != searchQuery);
-                    filteredItemsList = new List<string>() { item }.Concat(filteredItemsList);
-                }
+                var filteredItemsList = itemList
+                    .Select(item => new
+                    {
+                        item.DisplayName,
+                        Similarity = Fastenshtein.Levenshtein.Distance(item.DisplayName.ToLower().Replace("_", ""), searchTextBox.Text.ToLower().Replace("_", ""))
+                    })
+                    .OrderBy(item => item.Similarity)
+                    .Select(item => item.DisplayName)
+                    .ToList();
 
                 FilteredItems = new ObservableCollection<string>();
 
-                foreach (var item in filteredItemsList)
+                foreach (var item in filteredItemsList.Take(100))
                 {
                     if (cancellationTokenSource.Token.IsCancellationRequested)
-                        break;
-
-                    if (FilteredItems.Count > 100)
                         break;
 
                     FilteredItems.Add(item);
@@ -150,11 +141,7 @@ namespace SkEditorPlus.Windows
             {
                 return;
             }
-        }
 
-        private static bool ContainsAllSearchTerms(string text, string[] searchTerms)
-        {
-            return searchTerms.All(term => text.ToLower().Replace("_", "").Contains(term));
         }
 
         private void OnSearchKeyDown(object sender, KeyEventArgs e)

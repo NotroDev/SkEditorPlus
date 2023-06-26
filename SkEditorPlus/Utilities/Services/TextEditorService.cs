@@ -1,15 +1,14 @@
-﻿using AvalonEditB.Document;
-using AvalonEditB;
+﻿using AvalonEditB;
+using AvalonEditB.Document;
+using HandyControl.Controls;
+using SkEditorPlus.Utilities.Controllers;
+using SkEditorPlus.Utilities.Vaults;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using HandyControl.Controls;
-using SkEditorPlus.Utilities.Vaults;
-using SkEditorPlus.Utilities.Controllers;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SkEditorPlus.Utilities.Services
 {
@@ -20,12 +19,13 @@ namespace SkEditorPlus.Utilities.Services
             TabItem tabItem = (TabItem)APIVault.GetAPIInstance().GetTabControl().SelectedItem;
             string path = tabItem.ToolTip.ToString();
 
+            TextEditor textEditor = APIVault.GetAPIInstance().GetTextEditor();
             if (Properties.Settings.Default.AutoSave && !string.IsNullOrEmpty(path))
             {
                 try
                 {
                     using var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read);
-                    APIVault.GetAPIInstance().GetTextEditor().Save(stream);
+                    textEditor.Save(stream);
                     TabController.RemoveAsterisk(tabItem);
                 }
                 catch { }
@@ -34,6 +34,22 @@ namespace SkEditorPlus.Utilities.Services
             {
                 TabController.AddAsterisk(tabItem);
             }
+
+            APIVault.GetAPIInstance().GetMainWindow().BottomBarLenght.Text = (Application.Current.FindResource("BottomBarLenght") as string).Replace("{0}", textEditor.Text.Length.ToString());
+            APIVault.GetAPIInstance().GetMainWindow().BottomBarLines.Text = (Application.Current.FindResource("BottomBarLines") as string).Replace("{0}", textEditor.LineCount.ToString());
+        }
+
+        public static void OnCaretPositionChanged(object sender, EventArgs e)
+        {
+            APIVault.GetAPIInstance().GetMainWindow().BottomBarPos.Text = (Application.Current.FindResource("BottomBarPosition") as string).Replace("{0}", APIVault.GetAPIInstance().GetTextEditor().CaretOffset.ToString());
+        }
+
+        public static void OnSelectionChanged(object sender, EventArgs e)
+        {
+            int selectionLenght = APIVault.GetAPIInstance().GetTextEditor().SelectionLength;
+            string textKey = selectionLenght == 0 ? "BottomBarPosition" : "BottomBarSelectionLenght";
+            int value = selectionLenght == 0 ? APIVault.GetAPIInstance().GetTextEditor().CaretOffset : selectionLenght;
+            APIVault.GetAPIInstance().GetMainWindow().BottomBarPos.Text = (Application.Current.FindResource(textKey) as string).Replace("{0}", value.ToString());
         }
 
         public static void OnTextEntering(object sender, TextCompositionEventArgs e)

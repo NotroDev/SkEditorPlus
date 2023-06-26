@@ -1,0 +1,13 @@
+﻿<hc:Window x:Name="particleGeneratorWindow" x:Class="SkEditorPlus.Windows.Generators.ParticleGenerator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="This will be added in the future." Height="350" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey" >
+    <Grid>
+        
+
+    </Grid>
+</hc:Window>

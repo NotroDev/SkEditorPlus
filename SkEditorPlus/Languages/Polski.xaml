@@ -37,6 +37,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Dodatki</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Eksperymenty</system:String>
 
     <!-- Other -->
 
@@ -149,6 +150,8 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Otwórz folder dodatków:</system:String>
     <system:String x:Key="OptionsOpen">Otwórz</system:String>
 
+    <system:String x:Key="OptionsExperimentsWarning">Eksperymenty to nowe funkcje, które nie zostały jeszcze oficjalnie wprowadzone. Mogą zawierać błędy i nie posiadać tłumaczeń.</system:String>
+
 
     <!-- Things I forgot before. So they're here :P -->
 
@@ -192,6 +195,11 @@
     <system:String x:Key="StructureHeaderLoop">Pętla</system:String>
     <system:String x:Key="StructureHeaderIf">Warunek</system:String>
     <system:String x:Key="StructureHeaderComment">Komentarz</system:String>
+
+    <system:String x:Key="BottomBarLenght">długość: {0}</system:String>
+    <system:String x:Key="BottomBarLines">linijki: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">pozycja: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">zaznaczenie: {0}</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Nazwa GUI jest wymagana!</system:String>

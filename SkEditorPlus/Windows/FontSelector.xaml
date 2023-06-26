@@ -13,18 +13,35 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TextBox x:Name="textFont" TextWrapping="Wrap" Text="" Margin="10,33,0,0" Height="23" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170" TextChanged="OnFontTextChanged"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
 
-        <ListBox x:Name="lboxFont" HorizontalAlignment="Left" Height="165" VerticalAlignment="Top" Width="170" Margin="10,75,0,0" SelectionChanged="OnFontChange">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}" />
-            </ListBox.ItemContainerStyle>
-        </ListBox>
+        <Grid Grid.Column="0" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Button x:Name="btnOK" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,33,0,0"
-                Click="OnApply"/>
-        <Button x:Name="btnCancel" Content="{DynamicResource Cancel}" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,75,0,0"/>
+            <TextBox x:Name="textFont" Grid.Row="0" Margin="0,0,0,25" TextWrapping="Wrap" Text="" Height="23" TextAlignment="Left" Width="170" TextChanged="OnFontTextChanged"/>
 
+
+            <ListBox x:Name="lboxFont" Grid.Row="1" VerticalAlignment="Stretch" Width="170" SelectionChanged="OnFontChange">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}" />
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnOK" Grid.Row="0" Content="{DynamicResource ApplyButton}" VerticalAlignment="Top" HorizontalAlignment="Right" IsDefault="True" Width="75" Click="OnApply" Margin="0,0,0,10"/>
+            <Button x:Name="btnCancel" Grid.Row="1" Content="{DynamicResource Cancel}" VerticalAlignment="Top" HorizontalAlignment="Right" IsCancel="True" Width="75"/>
+        </Grid>
     </Grid>
 </hc:Window>

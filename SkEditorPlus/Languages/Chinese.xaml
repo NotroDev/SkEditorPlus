@@ -37,6 +37,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
 	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">附加组件</system:String>
+    <system:String x:Key="OptionsMenuExperiments">实验</system:String>
 
     <!-- Other -->
 
@@ -150,6 +151,8 @@
     <system:String x:Key="OptionsOpenAddonsFolder">打开插件文件夹：</system:String>
     <system:String x:Key="OptionsOpen">打开</system:String>
 
+    <system:String x:Key="OptionsExperimentsWarning">实验是尚未正式发布的新功能。它们可能包含错误，并可能缺乏翻译。</system:String>
+
     <!-- Things I forgot before. So they're here :P -->
 
     <system:String x:Key="NoResults">未找到</system:String>
@@ -192,6 +195,11 @@
     <system:String x:Key="StructureHeaderLoop">循环</system:String>
     <system:String x:Key="StructureHeaderIf">条件</system:String>
     <system:String x:Key="StructureHeaderComment">注释</system:String>
+
+    <system:String x:Key="BottomBarLenght">长度：{0}</system:String>
+    <system:String x:Key="BottomBarLines">行数：{0}</system:String>
+    <system:String x:Key="BottomBarPosition">位置：{0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">选择：{0}</system:String>
 
     <!-- * 错误 * -->
 

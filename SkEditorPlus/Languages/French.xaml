@@ -37,6 +37,8 @@
 	<system:String x:Key="OptionsMenuDiscord">Discord</system:String>
 	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Compléments</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Expériences</system:String>
+    
 	<!-- Autres -->
 
 	<system:String x:Key="NewFileName">Nouveau fichier {0}</system:String>
@@ -148,6 +150,8 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Ouvrir le dossier des addons:</system:String>
     <system:String x:Key="OptionsOpen">Ouvrir</system:String>
 
+    <system:String x:Key="OptionsExperimentsWarning">Les expériences sont de nouvelles fonctions qui n'ont pas encore été officiellement publiées. Elles peuvent contenir des erreurs et pourraient manquer de traduction.</system:String>
+
     <!-- Choses que j'ai oubliées auparavant. Alors ils sont ici :P -->
 
     <system:String x:Key="NoResults">Aucun résultat trouvé</system:String>
@@ -192,6 +196,11 @@
     <system:String x:Key="StructureHeaderLoop">Boucle</system:String>
     <system:String x:Key="StructureHeaderIf">Condition</system:String>
     <system:String x:Key="StructureHeaderComment">Commentaire</system:String>
+
+    <system:String x:Key="BottomBarLenght">longueur: {0}</system:String>
+    <system:String x:Key="BottomBarLines">lignes: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">position: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">sélection: {0}</system:String>
 
     <!-- * Erreurs * -->
 	<system:String x:Key="GUIGenNameError">Le nom de l'interface graphique est requis !</system:String>

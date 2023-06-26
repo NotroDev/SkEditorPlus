@@ -37,6 +37,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Addons</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Experimenten</system:String>
 
     <!-- Other -->
 
@@ -150,7 +151,8 @@
     <system:String x:Key="OptionsAddonsList">Lijst met addons:</system:String>
     <system:String x:Key="OptionsOpenAddonsFolder">Open de addons map:</system:String>
     <system:String x:Key="OptionsOpen">Openen</system:String>
-    
+
+    <system:String x:Key="OptionsExperimentsWarning">Experimenten zijn nieuwe functies die nog niet officieel zijn vrijgegeven. Ze kunnen fouten bevatten en mogelijk ontbreekt de vertaling.</system:String>
 
     <!-- Things I forgot before. So they're here :P -->
 
@@ -195,6 +197,11 @@
     <system:String x:Key="StructureHeaderLoop">Lus</system:String>
     <system:String x:Key="StructureHeaderIf">Conditie</system:String>
     <system:String x:Key="StructureHeaderComment">Opmerking</system:String>
+
+    <system:String x:Key="BottomBarLenght">lengte: {0}</system:String>
+    <system:String x:Key="BottomBarLines">regels: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">positie: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">selectie: {0}</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Naam van GUI is vereist!</system:String>

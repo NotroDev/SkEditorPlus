@@ -8,11 +8,20 @@
         mc:Ignorable="d"
         Title="{DynamicResource FormatWindowTitle}" Height="300" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyUp="OnKey">
     <Grid>
-        <CheckBox x:Name="variablesCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsVariablesCheckbox}" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <RadioButton x:Name="spacesCheckBox" Checked="RadioButtonChecked" Click="RadioButtonClicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsSpacesCheckbox}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="variablesCheckBox" Grid.Row="0" HorizontalAlignment="Left" Margin="15,15,15,5" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsVariablesCheckbox}"/>
 
-        <RadioButton x:Name="tabsCheckBox" Checked="RadioButtonChecked" Click="RadioButtonClicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" FontSize="12" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top">
+        <RadioButton x:Name="spacesCheckBox" Grid.Row="1" HorizontalAlignment="Left" Margin="15,5,15,5" Checked="RadioButtonChecked" Click="RadioButtonClicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsSpacesCheckbox}"/>
+
+        <RadioButton x:Name="tabsCheckBox" Grid.Row="2" HorizontalAlignment="Left" Margin="15,5,15,5" Checked="RadioButtonChecked" Click="RadioButtonClicked" GroupName="SpacesAndTabs" Background="{StaticResource RegionBrush}" FontSize="12">
             <RadioButton.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -32,15 +41,10 @@
         </RadioButton>
 
 
+        <CheckBox x:Name="commentsCheckBox" Grid.Row="3" HorizontalAlignment="Left" Margin="15,5,15,5" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsCommentsCheckbox}" FontSize="12"/>
+        <CheckBox x:Name="elseIfCheckBox" Grid.Row="4" HorizontalAlignment="Left" Margin="15,5,15,5" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsElseIfCheckbox}" FontSize="12"/>
 
-
-
-
-
-        <CheckBox x:Name="commentsCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsCommentsCheckbox}" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="12"/>
-        <CheckBox x:Name="elseIfCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource QuickEditsElseIfCheckbox}" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" FontSize="12"/>
-
-        <Button x:Name="formatButton" Content="{DynamicResource ApplyButton}" IsDefault="True" HorizontalAlignment="Right" Width="auto" Click="FormatClick" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
+        <Button Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15,5,15,15" Content="{DynamicResource ApplyButton}" IsDefault="True" Width="auto" Click="FormatClick"/>
     </Grid>
 </hc:Window>
 

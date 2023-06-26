@@ -1,11 +1,7 @@
-﻿using AvalonEditB;
-using AvalonEditB.Document;
-using HandyControl.Controls;
+﻿using HandyControl.Controls;
 using SkEditorPlus.Utilities;
 using SkEditorPlus.Utilities.Vaults;
-using System.Collections.Generic;
 using System.Windows.Controls;
-using ComboBox = HandyControl.Controls.ComboBox;
 
 namespace SkEditorPlus.Windows.Generators
 {
@@ -93,7 +89,7 @@ namespace SkEditorPlus.Windows.Generators
 
             AddonVault.addons.ForEach(addon =>
             {
-                    addon.OnGenerate(ISkEditorPlusAddon.GenerateType.COMMAND);
+                addon.OnGenerate(ISkEditorPlusAddon.GenerateType.COMMAND);
             });
         }
 

@@ -1,16 +1,14 @@
-﻿using AvalonEditB.Search;
-using AvalonEditB;
+﻿using AvalonEditB;
+using AvalonEditB.Search;
 using HandyControl.Controls;
-using System;
+using SkEditorPlus.Utilities.Services;
+using SkEditorPlus.Utilities.Vaults;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using System.Windows;
 using System.Text.RegularExpressions;
-using SkEditorPlus.Utilities.Vaults;
-using SkEditorPlus.Utilities.Services;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace SkEditorPlus.Utilities.Builders
 {
@@ -41,9 +39,59 @@ namespace SkEditorPlus.Utilities.Builders
             codeEditor.PreviewMouseWheel += TextEditorService.OnScrolling;
             codeEditor.TextChanged += TextEditorService.OnTextChanged;
             codeEditor.TextArea.TextEntering += TextEditorService.OnTextEntering;
+            codeEditor.TextArea.Caret.PositionChanged += TextEditorService.OnCaretPositionChanged;
+            codeEditor.TextArea.SelectionChanged += TextEditorService.OnSelectionChanged;
+
             codeEditor.TextArea.TextView.LinkTextForegroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a94c4");
             codeEditor.TextArea.TextView.LinkTextUnderline = true;
             codeEditor.Options.AllowScrollBelowDocument = true;
+
+            codeEditor.TextArea.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, (sender, e) =>
+            {
+                if (codeEditor.SelectionLength == 0)
+                {
+                    var line = codeEditor.Document.GetLineByOffset(codeEditor.CaretOffset);
+                    codeEditor.Select(line.Offset, line.Length);
+                }
+                codeEditor.Copy();
+            }, (sender, e) =>
+            {
+                e.CanExecute = true;
+            }));
+
+            RoutedCommand commentCommand = new();
+            commentCommand.InputGestures.Add(new KeyGesture(Key.OemQuestion, ModifierKeys.Control));
+            codeEditor.CommandBindings.Add(new CommandBinding(commentCommand, (sender, e) =>
+            {
+                var lines = codeEditor.Document.Lines
+                    .Where(l => codeEditor.SelectionStart <= l.EndOffset && codeEditor.SelectionStart + codeEditor.SelectionLength >= l.Offset)
+                    .ToList();
+
+                var modifiedLines = new List<string>();
+
+                foreach (var line in lines)
+                {
+                    var text = codeEditor.Document.GetText(line);
+                    if (!text.StartsWith("#"))
+                    {
+                        modifiedLines.Add("#" + text);
+                    }
+                    else
+                    {
+                        modifiedLines.Add(text[1..]);
+                    }
+                }
+
+                var replacement = string.Join("\n", modifiedLines);
+                var startOffset = lines.First().Offset;
+                var endOffset = lines.Last().EndOffset - startOffset;
+
+                codeEditor.Document.Replace(startOffset, endOffset, replacement);
+                codeEditor.Select(startOffset, replacement.Length);
+            }, (sender, e) =>
+            {
+                e.CanExecute = true;
+            }));
 
             tabItem.Content = codeEditor;
 
@@ -55,10 +103,7 @@ namespace SkEditorPlus.Utilities.Builders
             APIVault.GetAPIInstance().GetTabControl().Items.Add(tabItem);
             GeometryUtility.ChangeGeometry();
 
-            AddonVault.addons.ForEach(addon =>
-            {
-                addon.OnTabCreate();
-            });
+            AddonVault.addons.ForEach(addon => addon.OnTabCreate());
         }
 
         public static int UntitledCount()

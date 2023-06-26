@@ -15,7 +15,6 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 using HandyControl.Data;
-using HandyControl.Controls;
 using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Utilities.Controllers;
 
@@ -309,7 +308,7 @@ namespace SkEditorPlus.Windows
                 await File.WriteAllBytesAsync(filePath, responseBody);
 
                 marketBindings.FilteredItems = FilterItems();
-                
+
                 if (isSyntax)
                 {
                     MessageBoxResult result = MessageBox.Show(new MessageBoxInfo
@@ -323,7 +322,7 @@ namespace SkEditorPlus.Windows
                         IconKey = ResourceToken.InfoGeometry
                     });
 
-                    if (result  == MessageBoxResult.OK)
+                    if (result == MessageBoxResult.OK)
                     {
                         Properties.Settings.Default.SyntaxHighlighting = Path.GetFileNameWithoutExtension(item.URL);
                         Properties.Settings.Default.Save();
@@ -418,7 +417,7 @@ namespace SkEditorPlus.Windows
             }
             AddonVault.addons.ForEach(addon =>
             {
-                    addon.OnAddonUninstall(item.Name, item.Author, item.Version);
+                addon.OnAddonUninstall(item.Name, item.Author, item.Version);
             });
         }
 

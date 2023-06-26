@@ -76,12 +76,12 @@
                         <DockPanel x:Name="CheckForUpdates"
                            Grid.Row="2"
                            Margin="0,0,0,5">
-                                            <TextBlock Margin="0,0,15,0"
+                            <TextBlock Margin="0,0,15,0"
                                VerticalAlignment="Center"
                                FontFamily="Cascadia Mono"
                                FontSize="16"
                                Text="{DynamicResource OptionsCheckForUpdates}" />
-                                            <CheckBox x:Name="checkForUpdatesCheckbox"
+                            <CheckBox x:Name="checkForUpdatesCheckbox"
                               Height="30"
                               Background="{StaticResource RegionBrush}"
                               Click="CheckboxClicked"
@@ -194,7 +194,7 @@
                         <DockPanel x:Name="SyntaxHighlighting"
                            Grid.Row="0"
                            Margin="0,0,0,5">
-                                            <TextBlock Margin="0,0,15,0"
+                            <TextBlock Margin="0,0,15,0"
                                VerticalAlignment="Center"
                                FontFamily="Cascadia Mono"
                                FontSize="16"
@@ -254,8 +254,7 @@
                                     HorizontalAlignment="Left"
                                     Background="#50000000"
                                     Maximum="255"
-                                    ValueChanged="TransparencyChanged"
-                                    Value="125" />
+                                    ValueChanged="TransparencyChanged"/>
                         </DockPanel>
                     </Grid>
                 </Grid>
@@ -283,6 +282,109 @@
                                       Background="{StaticResource RegionBrush}"
                                       Click="CheckboxClicked"
                                       IsChecked="{Binding IsDiscordRPCEnabled}" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ExperimentsTabItem"
+                     Background="Transparent"
+                     Header="{DynamicResource OptionsMenuExperiments}">
+                <Grid Margin="10,5,5,5"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <DockPanel x:Name="ExperimentsInfo"
+                                   Grid.Row="0"
+                                   Margin="0,0,0,5">
+                            <TextBlock Margin="0,0,15,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource DarkWarningBrush}"
+                                       Text="{DynamicResource OptionsExperimentsWarning}" />
+                        </DockPanel>
+
+                        <DockPanel x:Name="ProjectsExperiment"
+                                   Grid.Row="1"
+                                   Margin="0,0,0,5" ToolTip="Adds a sidebar with Project and Structure menu.">
+                            <TextBlock Margin="0,0,15,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="16"
+                                       Text="Projects and Structure:" />
+                            <CheckBox x:Name="projectsExperimentCheckbox"
+                                      Height="30"
+                                      Background="{StaticResource RegionBrush}"
+                                      Click="OnExperimentClicked"
+                                      IsChecked="{Binding IsProjectsExperimentEnabled}" />
+                        </DockPanel>
+
+                        <DockPanel x:Name="CompletionExperiment"
+                                   Grid.Row="2"
+                                   Margin="0,0,0,5" ToolTip="Enables code completion prototype. It isn't very useful right now.">
+                            <TextBlock Margin="0,0,15,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="16"
+                                       Text="Code completion prototype:" />
+                            <CheckBox x:Name="completionExperimentCheckbox"
+                                      Height="30"
+                                      Background="{StaticResource RegionBrush}"
+                                      Click="OnExperimentClicked"
+                                      IsChecked="{Binding IsCompletionExperimentEnabled}" />
+                        </DockPanel>
+
+                        <DockPanel x:Name="BottomBarExperiment"
+                                   Grid.Row="3"
+                                   Margin="0,0,0,5" ToolTip="Adds a bottom bar with informations about the code.">
+                            <TextBlock Margin="0,0,15,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="16"
+                                       Text="Bottom bar:" />
+                            <CheckBox x:Name="bottomBarExperimentCheckbox"
+                                      Height="30"
+                                      Background="{StaticResource RegionBrush}"
+                                      Click="OnExperimentClicked"
+                                      IsChecked="{Binding IsBottomBarExperimentEnabled}" />
+                        </DockPanel>
+
+                        <DockPanel x:Name="AnalyzerExperiment"
+                                   Grid.Row="4"
+                                   Margin="0,0,0,5" ToolTip="Adds the Analyzer, that can check if your scripts have errors. Due to skUnity Parser's API changes, it's currently not available.">
+                            <TextBlock Margin="0,0,15,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="16"
+                                       Text="Analyzer:" />
+                            <CheckBox x:Name="analyzerExperimentCheckbox"
+                                      Height="30" IsEnabled="False"
+                                      Background="{StaticResource RegionBrush}"
+                                      Click="OnExperimentClicked"
+                                      IsChecked="{Binding IsAnalyzerExperimentEnabled}" />
+                        </DockPanel>
+
+                        <DockPanel x:Name="AlertsExperiment"
+                                   Grid.Row="5"
+                                   Margin="0,0,0,5" ToolTip="When you run SkEditor+, it checks the SkEditor+ website for any alerts that might contain important announcements or warnings.">
+                            <TextBlock Margin="0,0,15,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="16"
+                                       Text="Alerts:" />
+                            <CheckBox x:Name="alertsExperimentCheckbox"
+                                      Height="30"
+                                      Background="{StaticResource RegionBrush}"
+                                      Click="OnExperimentClicked"
+                                      IsChecked="{Binding IsAlertsExperimentEnabled}" />
                         </DockPanel>
                     </Grid>
                 </Grid>

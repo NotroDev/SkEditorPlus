@@ -1,12 +1,13 @@
 ﻿using HandyControl.Controls;
-using SkEditorPlus.Functionalities;
+using HandyControl.Tools.Extension;
 using SkEditorPlus.Utilities.Vaults;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using MessageBox = HandyControl.Controls.MessageBox;
 
@@ -20,7 +21,13 @@ namespace SkEditorPlus.Functionalities
 
             Directory.CreateDirectory(addonFolder);
 
-            foreach (var dllFile in Directory.EnumerateFiles(addonFolder, "*.dll", SearchOption.AllDirectories))
+            string[] experimentAddons = { "CompletionUnlocker", "Analyzer", "ProjectsAndStructureUnlocker" };
+
+            IEnumerable<string> dllFiles = Directory.EnumerateFiles(addonFolder, "*.dll", SearchOption.AllDirectories);
+            IEnumerable<string> experimentAddonsDlls = dllFiles.Where(dll => experimentAddons.Contains(Path.GetFileNameWithoutExtension(dll)));
+            dllFiles = dllFiles.Except(experimentAddonsDlls);
+
+            foreach (var dllFile in dllFiles)
             {
                 StringCollection addonsToRemove = Properties.Settings.Default.AddonsToRemove;
                 addonsToRemove ??= new StringCollection();
@@ -42,11 +49,27 @@ namespace SkEditorPlus.Functionalities
                     File.Delete(dllFile);
                     addonsToRemove.Remove(Path.GetFileName(dllFile));
                     Properties.Settings.Default.AddonsToRemove = addonsToRemove;
-                    Properties.Settings.Default.Save(); 
+                    Properties.Settings.Default.Save();
                     continue;
                 }
 
                 Assembly.LoadFrom(dllFile.Replace("update-", ""));
+            }
+
+            if (experimentAddonsDlls.Any())
+            {
+                StringBuilder addonBuilder = new();
+                experimentAddonsDlls.ForEach(a => addonBuilder.Append($"\"{Path.GetFileNameWithoutExtension(a)}\", "));
+                addonBuilder.Remove(addonBuilder.Length - 2, 2);
+                if (experimentAddonsDlls.Count() == 1)
+                {
+                    MessageBox.Warning($"You have installed the {addonBuilder} addon that was transformed into an Experiment now.\n\nThe addon will be removed - you can enable Experiment in the Settings.", "Experiments");
+                }
+                else
+                {
+                    MessageBox.Warning($"You have installed {experimentAddonsDlls.Count()} addons ({addonBuilder}) that were transformed into Experiments now.\n\nAddons will be removed - you can enable Experiments in the Settings.");
+                }
+                experimentAddonsDlls.ForEach(a => File.Delete(a));
             }
 
             try

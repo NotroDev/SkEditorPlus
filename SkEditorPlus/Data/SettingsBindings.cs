@@ -1,9 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkEditorPlus.Data
 {
@@ -20,14 +15,29 @@ namespace SkEditorPlus.Data
 
         [ObservableProperty]
         private bool isAutoSecondCharacterEnabled;
-        
+
         [ObservableProperty]
         private bool isAutoNewLineAndTabEnabled;
-        
+
         [ObservableProperty]
         private bool isMicaEnabled;
-        
+
         [ObservableProperty]
         private bool isDiscordRPCEnabled;
+        
+        [ObservableProperty]
+        private bool isProjectsExperimentEnabled;
+
+        [ObservableProperty]
+        private bool isCompletionExperimentEnabled;
+
+        [ObservableProperty]
+        private bool isBottomBarExperimentEnabled;
+
+        [ObservableProperty]
+        private bool isAnalyzerExperimentEnabled;
+
+        [ObservableProperty]
+        private bool isAlertsExperimentEnabled;
     }
 }

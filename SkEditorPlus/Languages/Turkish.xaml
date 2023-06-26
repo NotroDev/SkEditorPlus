@@ -37,6 +37,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Eklentiler</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Deneyler</system:String>
 
     <!-- Other -->
 
@@ -149,7 +150,8 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Eklentiler klasörünü aç:</system:String>
     <system:String x:Key="OptionsOpen">Aç</system:String>
 
-    
+    <system:String x:Key="OptionsExperimentsWarning">Deneyler henüz resmi olarak yayınlanmamış yeni işlevlerdir. Hatalar içerebilirler ve çeviri eksikliği olabilir.</system:String>
+
     <!-- Other things -->
 
     <system:String x:Key="NoResults">Bulunamadı</system:String>
@@ -193,6 +195,11 @@
     <system:String x:Key="StructureHeaderLoop">Döngü</system:String>
     <system:String x:Key="StructureHeaderIf">Koşul</system:String>
     <system:String x:Key="StructureHeaderComment">Yorum</system:String>
+
+    <system:String x:Key="BottomBarLenght">uzunluk: {0}</system:String>
+    <system:String x:Key="BottomBarLines">satırlar: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">konum: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">seçim: {0}</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">GUI adı zorunlu!</system:String>

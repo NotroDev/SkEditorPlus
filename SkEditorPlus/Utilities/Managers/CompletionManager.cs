@@ -1,20 +1,15 @@
 ﻿using AvalonEditB;
-using HandyControl.Controls;
 using SkEditorPlus.Data;
 using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Windows;
 using SkEditorPlus.Windows.Generators;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace SkEditorPlus.Utilities.Managers
 {
@@ -22,7 +17,7 @@ namespace SkEditorPlus.Utilities.Managers
     {
         public static TextEditor textEditor;
 
-        private readonly SkEditorAPI skEditor;
+        private readonly SkEditorAPI skEditor = APIVault.GetAPIInstance();
 
         private CancellationTokenSource cancellationTokenSource;
 
@@ -34,10 +29,9 @@ namespace SkEditorPlus.Utilities.Managers
 
         public static CompletionManager instance;
 
-        public CompletionManager(SkEditorAPI skEditor)
+        public CompletionManager()
         {
             instance = this;
-            this.skEditor = skEditor;
 
             for (int i = 0; i < 50; i++)
             {

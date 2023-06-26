@@ -1,6 +1,5 @@
 ﻿using HandyControl.Controls;
 using SkEditorPlus.Utilities;
-using SkEditorPlus.Windows.Generators;
 
 namespace SkEditorPlus.Windows
 {

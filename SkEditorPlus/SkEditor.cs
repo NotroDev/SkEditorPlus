@@ -1,25 +1,16 @@
 ﻿using AvalonEditB;
-using HandyControl.Controls;
-using HandyControl.Data;
-using SharpVectors.Dom;
 using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Services;
+using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Windows;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Net;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using MessageBox = HandyControl.Controls.MessageBox;
 using TabControl = System.Windows.Controls.TabControl;
 using TabItem = HandyControl.Controls.TabItem;
-using System.Security.Principal;
-using SkEditorPlus.Utilities.Vaults;
-using SkEditorPlus.Utilities.Services;
 
 namespace SkEditorPlus
 {

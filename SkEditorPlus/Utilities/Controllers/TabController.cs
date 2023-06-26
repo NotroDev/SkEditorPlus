@@ -1,12 +1,9 @@
-﻿using HandyControl.Controls;
+﻿using AvalonEditB;
+using HandyControl.Controls;
 using SkEditorPlus.Utilities.Managers;
 using SkEditorPlus.Utilities.Vaults;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace SkEditorPlus.Utilities.Controllers
 {
@@ -27,9 +24,19 @@ namespace SkEditorPlus.Utilities.Controllers
 
             if (APIVault.GetAPIInstance().IsFileOpen())
             {
-                //completionManager ??= new(skEditor);
-                //completionManager.LoadCompletionManager(GetTextEditor());
+                TextEditor textEditor = APIVault.GetAPIInstance().GetTextEditor();
+                APIVault.GetAPIInstance().GetMainWindow().BottomBarLenght.Text = (Application.Current.FindResource("BottomBarLenght") as string).Replace("{0}", textEditor.Text.Length.ToString());
+                APIVault.GetAPIInstance().GetMainWindow().BottomBarLines.Text = (Application.Current.FindResource("BottomBarLines") as string).Replace("{0}", textEditor.LineCount.ToString());
+                APIVault.GetAPIInstance().GetMainWindow().BottomBarPos.Text = (Application.Current.FindResource("BottomBarPosition") as string).Replace("{0}", textEditor.CaretOffset.ToString());
+
+                if (Properties.Settings.Default.CompletionExperiment)
+                {
+                    FileManager.instance.completionManager ??= new();
+                    FileManager.instance.completionManager.LoadCompletionManager(textEditor);
+                }
             }
+
+            APIVault.GetAPIInstance().GetMainWindow().BottomBar.Visibility = APIVault.GetAPIInstance().IsFileOpen() && Properties.Settings.Default.BottomBarExperiment ? Visibility.Visible : Visibility.Collapsed;
 
             AddonVault.addons.ForEach(a => a.OnTabChanged());
         }

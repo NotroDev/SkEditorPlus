@@ -1,9 +1,6 @@
 ﻿using HandyControl.Controls;
 using SkEditorPlus.Utilities;
 using SkEditorPlus.Windows.Generators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SkEditorPlus.Windows
 {
@@ -42,11 +39,11 @@ namespace SkEditorPlus.Windows
         }
 
 
-        private void EventClick(object sender, System.Windows.RoutedEventArgs e)
+        private void ParticleClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            EventGenerator eventGenerator = new(skEditor);
+            ParticleGenerator particleGenerator = new(skEditor);
             generatorWindow.Close();
-            eventGenerator.ShowDialog();
+            particleGenerator.ShowDialog();
         }
     }
 }

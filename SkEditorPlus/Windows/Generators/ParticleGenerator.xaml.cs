@@ -3,11 +3,11 @@ using SkEditorPlus.Utilities;
 
 namespace SkEditorPlus.Windows.Generators
 {
-    public partial class EventGenerator : Window
+    public partial class ParticleGenerator : Window
     {
         private SkEditorAPI skEditor;
 
-        public EventGenerator(SkEditorAPI skEditor)
+        public ParticleGenerator(SkEditorAPI skEditor)
         {
             InitializeComponent();
             this.skEditor = skEditor;
@@ -19,7 +19,7 @@ namespace SkEditorPlus.Windows.Generators
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
-                eventGeneratorWindow.Close();
+                particleGeneratorWindow.Close();
             }
         }
 

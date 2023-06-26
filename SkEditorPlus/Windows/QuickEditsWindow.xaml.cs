@@ -1,12 +1,10 @@
 ﻿using AvalonEditB;
 using SkEditorPlus.Utilities;
-using SkEditorPlus.Utilities.Controllers;
 using SkEditorPlus.Utilities.Managers;
 using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -94,10 +92,10 @@ namespace SkEditorPlus.Windows
 
 
 
-        private void SpacesToTabs()
+        public static void SpacesToTabs()
         {
-            int spacingAmount = DetectSpacingAmount();
-            ConvertSpacesToTabs(spacingAmount);
+            int spacingAmount = QuickEditsWindow.DetectSpacingAmount();
+            QuickEditsWindow.ConvertSpacesToTabs(spacingAmount);
             AddonVault.addons.ForEach(addon =>
             {
                 addon.OnQuickEdit(ISkEditorPlusAddon.QuickEditType.CHANGE_SPACES_TO_TABS);
@@ -113,9 +111,9 @@ namespace SkEditorPlus.Windows
             });
         }
 
-        private int DetectSpacingAmount()
+        public static int DetectSpacingAmount()
         {
-            var lines = textEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            var lines = APIVault.GetAPIInstance().GetTextEditor().Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
             var newLines = new List<string>();
 
@@ -132,11 +130,11 @@ namespace SkEditorPlus.Windows
             return 4;
         }
 
-        private void ConvertSpacesToTabs(int spacePerTab)
+        public static void ConvertSpacesToTabs(int spacePerTab)
         {
             try
             {
-                var lines = textEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                var lines = APIVault.GetAPIInstance().GetTextEditor().Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
                 var newLines = new List<string>();
 
@@ -163,7 +161,7 @@ namespace SkEditorPlus.Windows
                 }
 
                 var newCode = string.Join(Environment.NewLine, newLines);
-                textEditor.Document.Text = newCode;
+                APIVault.GetAPIInstance().GetTextEditor().Document.Text = newCode;
             }
             catch
             {

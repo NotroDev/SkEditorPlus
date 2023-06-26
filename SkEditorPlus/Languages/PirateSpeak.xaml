@@ -36,6 +36,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Booty Hoard</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Arrr-speriments</system:String>
 
     <!-- Other -->
 
@@ -146,6 +147,9 @@
     <system:String x:Key="OptionsAddonsList">Arrr, here be yer list o' fancy add-ons:</system:String>
     <system:String x:Key="OptionsOpenAddonsFolder">Open the treasure chest o' addons:</system:String>
     <system:String x:Key="OptionsOpen">Open</system:String>
+
+    <system:String x:Key="OptionsExperimentsWarning">Arrr, ye be messin' with new fancy features that be not yet set sail. They may be havin' some blunders and lackin' proper translation, savvy?</system:String>
+
     <!-- Things I forgot before. So they're here :P -->
 
     <system:String x:Key="NoResults">Not found, ye scallywag</system:String>

@@ -4,24 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
-        xmlns:local="clr-namespace:SkEditorPlus"
         mc:Ignorable="d"
         Title="{DynamicResource PublishWindowTitle}" Height="350" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="OnClosing" KeyUp="OnKey">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Button x:Name="PublishButton" Content="{DynamicResource PublishButton}" IsDefault="True" HorizontalAlignment="Left" Width="75" Margin="220,224,0,0" Click="PublishClick" VerticalAlignment="Top"/>
-        <ComboBox x:Name="langComboBox" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Width="138" SelectedIndex="0">
-            <ComboBoxItem Content="Skript"/>
-            <ComboBoxItem Content="YAML"/>
-        </ComboBox>
-        <hc:TextBox x:Name="apiTextBox" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="{DynamicResource PasteAPIKeyTextboxPlaceholder}" Margin="0,65,0,0" AutomationProperties.IsRequiredForForm="True" Height="30"/>
-        <hc:TextBox x:Name="urlTextBox" HorizontalAlignment="Center" Margin="0,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="285" hc:InfoElement.Placeholder="{DynamicResource PublishResultUrlPlaceholder}" IsReadOnlyCaretVisible="True"/>
-        <CheckBox x:Name="anonymousCheckBox" Background="{StaticResource RegionBrush}" Content="{DynamicResource AnonymousCheckbox}" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="helpText" HorizontalAlignment="Center" Margin="0,100,0,0" TextWrapping="Wrap" Text="{DynamicResource PasteAPIKeyTextboxHint}" VerticalAlignment="Top" Width="285" MouseLeftButtonUp="HelpClicked"/>
-        <Button Content="📋" HorizontalAlignment="Left" Margin="262,264,0,0" VerticalAlignment="Top" Width="33" Click="CopyClick" RenderTransformOrigin="0.455,0.235"/>
-        <ComboBox x:Name="websiteComboBox" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="138" SelectedIndex="0" SelectionChanged="OnWebsiteChange">
+        <ComboBox x:Name="websiteComboBox" Grid.Row="0" Margin="15,15,15,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" SelectedIndex="0">
             <ComboBoxItem Content="Pastebin"/>
             <ComboBoxItem Content="code.skript.pl"/>
         </ComboBox>
+
+        <hc:TextBox x:Name="apiTextBox" Grid.Row="1" Margin="15,15,15,0" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" TextWrapping="NoWrap" Text="" hc:InfoElement.Placeholder="{DynamicResource PasteAPIKeyTextboxPlaceholder}" AutomationProperties.IsRequiredForForm="True" Height="30"/>
+
+        <TextBlock x:Name="helpText" Grid.Row="2" Margin="15,5,15,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" TextWrapping="Wrap" Text="{DynamicResource PasteAPIKeyTextboxHint}" MouseLeftButtonUp="HelpClicked"/>
+
+        <ComboBox x:Name="langComboBox" Grid.Row="3" Margin="15,15,15,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" SelectedIndex="0">
+            <ComboBoxItem Content="Skript"/>
+            <ComboBoxItem Content="YAML"/>
+        </ComboBox>
+
+        <CheckBox x:Name="anonymousCheckBox" Grid.Row="4" Margin="15,5,15,5" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{StaticResource RegionBrush}" Content="{DynamicResource AnonymousCheckbox}"/>
+
+        <Button x:Name="PublishButton" Grid.Row="5" Margin="15,15,15,5" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{DynamicResource PublishButton}" IsDefault="True" Width="75" Click="PublishClick"/>
+
+        <Grid Grid.Row="6" Margin="15,5,15,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <hc:TextBox Grid.Column="0" x:Name="urlTextBox" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" TextWrapping="Wrap" Text="" hc:InfoElement.Placeholder="{DynamicResource PublishResultUrlPlaceholder}" IsReadOnlyCaretVisible="True"/>
+
+            <Button Grid.Column="1" Height="28" Width="28" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="&#xe8c8;" FontFamily="Segoe Fluent Icons" Click="CopyClick"/>
+        </Grid>
     </Grid>
 </hc:Window>

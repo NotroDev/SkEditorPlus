@@ -38,6 +38,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Addons</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Experimente</system:String>
 
     <!-- Anderes -->
 
@@ -150,6 +151,7 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Addons-Ordner öffnen:</system:String>
     <system:String x:Key="OptionsOpen">Öffnen</system:String>
 
+    <system:String x:Key="OptionsExperimentsWarning">Experimente sind neue Funktionen, die noch nicht offiziell veröffentlicht wurden. Sie können Fehler enthalten und könnten Übersetzungen fehlen.</system:String>
 
     <!-- Dinge, die ich zuvor vergessen habe. Sie sind also hier :P -->
 
@@ -194,6 +196,11 @@
     <system:String x:Key="StructureHeaderLoop">Schleife</system:String>
     <system:String x:Key="StructureHeaderIf">Bedingung</system:String>
     <system:String x:Key="StructureHeaderComment">Kommentar</system:String>
+
+    <system:String x:Key="BottomBarLenght">Länge: {0}</system:String>
+    <system:String x:Key="BottomBarLines">Zeilen: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">Position: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">Auswahl: {0}</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Name der GUI ist erforderlich!</system:String>

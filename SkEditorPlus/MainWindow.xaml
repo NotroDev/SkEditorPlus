@@ -15,8 +15,7 @@
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d"
-    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing"
->
+    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" Closing="OnClosing">
     <hc:Window.Resources>
         <Style x:Key="Left90" TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}">
             <Setter Property="HeaderTemplate">
@@ -146,104 +145,126 @@
         </Grid>
     </hc:Window.NonClientAreaContent>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <TabControl x:Name="leftTabControl"
-            Background="Transparent"
-            SelectedIndex="-1"
-            TabStripPlacement="Left" Visibility="Collapsed" BorderThickness="1,1,0,1">
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TabControl x:Name="leftTabControl"
+                        Background="Transparent"
+                        SelectedIndex="-1"
+                        TabStripPlacement="Left" Visibility="Collapsed" BorderThickness="1,1,0,1" SelectionChanged="OnLeftTabControlTabChanged">
 
-            <TabItem x:Name="EmptyTabItem" Visibility="Collapsed" Background="Transparent" Style="{DynamicResource EmptyTabItemStyle}"/>
+                <TabItem x:Name="EmptyTabItem" Visibility="Collapsed" Background="Transparent" Style="{DynamicResource EmptyTabItemStyle}"/>
 
-            <TabItem x:Name="ProjectTabItem"
-                Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
+                <TabItem x:Name="ProjectTabItem"
+                         Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
 
-                <TabItem.Header>
-                    <Label x:Name="projectTabItemLabel" Content="{DynamicResource MenuProject}"
-                       Foreground="{StaticResource PrimaryTextBrush}"
-                       FontSize="11"
-                       FontFamily="Open Sans Medium"
-                       Background="Transparent"
-                       BorderThickness="0"/>
-                </TabItem.Header>
+                    <TabItem.Header>
+                        <Label x:Name="projectTabItemLabel" Content="{DynamicResource MenuProject}"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               FontSize="11"
+                               FontFamily="Open Sans Medium"
+                               Background="Transparent"
+               BorderThickness="0"/>
+                    </TabItem.Header>
 
-                <Grid Width="200" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Stretch" >
+                    <Grid Width="200" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Stretch" >
 
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <TreeView x:Name="fileTreeView" Background="#701c1c1c" hc:BorderElement.CornerRadius="15" BorderThickness="0" VerticalAlignment="Stretch">
-                            <TreeView.ItemContainerStyle>
-                                <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
-                                    <Setter Property="hc:BorderElement.CornerRadius" Value="5"/>
-                                </Style>
-                            </TreeView.ItemContainerStyle>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TreeView x:Name="fileTreeView" Background="#701c1c1c" hc:BorderElement.CornerRadius="15" BorderThickness="0" VerticalAlignment="Stretch">
+                                <TreeView.ItemContainerStyle>
+                                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
+                                        <Setter Property="hc:BorderElement.CornerRadius" Value="5"/>
+                                    </Style>
+                                </TreeView.ItemContainerStyle>
 
-                            <TreeView.Template>
-                                <ControlTemplate TargetType="{x:Type TreeView}">
-                                    <Grid>
-                                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" hc:BorderElement.CornerRadius="{TemplateBinding hc:BorderElement.CornerRadius}">
-                                            <ItemsPresenter/>
-                                        </Border>
-                                        <Image x:Name="emptyTreeViewImage" Source="Images/NoFiles.png" Width="100" Height="100" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding HasItems, RelativeSource={RelativeSource TemplatedParent}}" MouseDown="OnProjectIconClick"/>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="HasItems" Value="false">
-                                            <Setter TargetName="emptyTreeViewImage" Property="Visibility" Value="Visible"/>
-                                        </Trigger>
-                                        <Trigger Property="HasItems" Value="true">
-                                            <Setter TargetName="emptyTreeViewImage" Property="Visibility" Value="Collapsed"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
+                                <TreeView.Template>
+                                    <ControlTemplate TargetType="{x:Type TreeView}">
+                                        <Grid>
+                                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" hc:BorderElement.CornerRadius="{TemplateBinding hc:BorderElement.CornerRadius}">
+                                                <ItemsPresenter/>
+                                            </Border>
+                                            <Image x:Name="emptyTreeViewImage" Source="Images/NoFiles.png" Width="100" Height="100" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding HasItems, RelativeSource={RelativeSource TemplatedParent}}" MouseDown="OnProjectIconClick"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="HasItems" Value="false">
+                                                <Setter TargetName="emptyTreeViewImage" Property="Visibility" Value="Visible"/>
+                                            </Trigger>
+                                            <Trigger Property="HasItems" Value="true">
+                                                <Setter TargetName="emptyTreeViewImage" Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
 
-                                </ControlTemplate>
-                            </TreeView.Template>
+                                    </ControlTemplate>
+                                </TreeView.Template>
 
-                        </TreeView>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>
+                            </TreeView>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
 
-            <TabItem x:Name="StructureTabItem" Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
-                <TabItem.Header>
-                    <Label x:Name="structureTabItemLabel" Content="{DynamicResource MenuStructure}" Foreground="{StaticResource PrimaryTextBrush}" FontSize="11" FontFamily="Open Sans Medium" Background="Transparent" BorderThickness="0" />
-                </TabItem.Header>
-                <Grid Width="200" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Stretch" Background="#701c1c1c">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button Click="OnStructureRefresh" Margin="5">
-                        <Image Source="{svgc:SvgImage Source=/Images/Refresh.svg, AppName=SkEditorPlus}" RenderOptions.BitmapScalingMode="HighQuality"/>
-                    </Button>
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <TreeView x:Name="structureTreeView" Background="Transparent" hc:BorderElement.CornerRadius="15" BorderThickness="0" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <TreeView.ItemContainerStyle>
-                                <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
-                                    <Setter Property="hc:BorderElement.CornerRadius" Value="5" />
-                                </Style>
-                            </TreeView.ItemContainerStyle>
-                        </TreeView>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>
-        </TabControl>
+                <TabItem x:Name="StructureTabItem" Background="Transparent" Style="{DynamicResource Left90}" Padding="-2,0,-2,0">
+                    <TabItem.Header>
+                        <Label x:Name="structureTabItemLabel" Content="{DynamicResource MenuStructure}" Foreground="{StaticResource PrimaryTextBrush}" FontSize="11" FontFamily="Open Sans Medium" Background="Transparent" BorderThickness="0" />
+                    </TabItem.Header>
+                    <Grid Width="200" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Stretch" Background="#701c1c1c">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Click="OnStructureRefresh" Margin="5">
+                            <Image Source="{svgc:SvgImage Source=/Images/Refresh.svg, AppName=SkEditorPlus}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Button>
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <TreeView x:Name="structureTreeView" Background="Transparent" hc:BorderElement.CornerRadius="15" BorderThickness="0" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <TreeView.ItemContainerStyle>
+                                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemBaseStyle}">
+                                        <Setter Property="hc:BorderElement.CornerRadius" Value="5" />
+                                    </Style>
+                                </TreeView.ItemContainerStyle>
+                            </TreeView>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+            </TabControl>
 
-        <hc:TabControl
-            x:Name="tabControl"
-            hc:TabItem.Closed="TabClosed"
-            Grid.Column="1"
-            AllowDrop="True"
-            IsAnimationEnabled="True"
-            IsDraggable="True"
-            IsScrollable="True"
-            ShowCloseButton="True"
-            ShowContextMenu="False"
-            ShowOverflowButton="True"
-            TabItemWidth="150" hc:TabItem.Closing="OnItemClosing"/>
+            <hc:TabControl
+                x:Name="tabControl"
+                hc:TabItem.Closed="TabClosed"
+                Grid.Column="1"
+                AllowDrop="True"
+                IsAnimationEnabled="True"
+                IsDraggable="True"
+                IsScrollable="True"
+                ShowCloseButton="True"
+                ShowContextMenu="False"
+                ShowOverflowButton="False"
+                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                TabItemWidth="150" hc:TabItem.Closing="OnItemClosing"/>
+        </Grid>
+
+        <Grid x:Name="BottomBar" Grid.Row="1" Background="#25000000" Height="25" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="BottomBarLenght" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" Text="lenght: 0"/>
+            <TextBlock x:Name="BottomBarLines" Grid.Column="1" Margin="5,0,5,0" VerticalAlignment="Center" Text="lines: 0"/>
+            <TextBlock x:Name="BottomBarPos" Grid.Column="2" Margin="5,0,5,0" VerticalAlignment="Center" Text="position: 0"/>
+            <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button x:Name="BottomBarSpacesToTabsButton" Margin="5,4,5,4" Content="{DynamicResource QuickEditsSpacesCheckbox}" Style="{StaticResource SmallButtonStyle}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
     <Window.InputBindings>
         <KeyBinding

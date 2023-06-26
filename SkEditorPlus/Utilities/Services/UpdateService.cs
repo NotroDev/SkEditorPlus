@@ -1,18 +1,17 @@
 ﻿using HandyControl.Data;
 using Octokit;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Windows;
-using System;
-using Application = System.Windows.Application;
-using MessageBox = HandyControl.Controls.MessageBox;
-using System.Linq;
-using System.IO;
-using System.Threading.Tasks;
-using FileMode = System.IO.FileMode;
-using System.Windows.Threading;
-using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Utilities.Controllers;
+using SkEditorPlus.Utilities.Vaults;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Windows;
+using Application = System.Windows.Application;
+using FileMode = System.IO.FileMode;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Utilities.Services
 {

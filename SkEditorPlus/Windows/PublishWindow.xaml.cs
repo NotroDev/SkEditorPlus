@@ -1,15 +1,13 @@
-﻿using HandyControl.Controls;
+﻿using HandyControl.Tools.Extension;
 using Newtonsoft.Json.Linq;
 using SkEditorPlus.Utilities;
 using SkEditorPlus.Utilities.Vaults;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-using static System.Windows.Forms.DataFormats;
 using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Windows
@@ -25,10 +23,12 @@ namespace SkEditorPlus.Windows
             BackgroundFixer.FixBackground(this);
 
             helpText.Text = helpText.Text.Replace("{0}", "pastebin.com/doc_api");
+            websiteComboBox.SelectionChanged += OnWebsiteChange;
+            OnWebsiteChange(null, null);
         }
 
         private void PublishClick(object sender, RoutedEventArgs e)
-        {   
+        {
             string error = (string)Application.Current.FindResource("Error");
             string emptyCodeError = (string)Application.Current.FindResource("EmptyCodeError");
             string emptyAPIKeyError = (string)Application.Current.FindResource("EmptyAPIKeyError");
@@ -163,7 +163,7 @@ namespace SkEditorPlus.Windows
             }
         }
 
-        private void OnWebsiteChange(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void OnWebsiteChange(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem comboBoxItem = (ComboBoxItem)websiteComboBox.SelectedItem;
             string website = comboBoxItem.Content.ToString();

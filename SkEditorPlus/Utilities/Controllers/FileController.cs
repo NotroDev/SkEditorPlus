@@ -125,7 +125,7 @@ namespace SkEditorPlus.Utilities.Controllers
             tabControl.Items.Remove(tabItem);
         }
 
-        private static bool ConfirmCloseFile()
+        public static bool ConfirmCloseFile()
         {
             var attention = (string)Application.Current.FindResource("Attention");
             var closeConfirmation = (string)Application.Current.FindResource("CloseConfirmation");

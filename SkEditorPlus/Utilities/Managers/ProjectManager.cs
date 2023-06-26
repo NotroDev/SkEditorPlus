@@ -1,6 +1,5 @@
 ﻿using Renci.SshNet;
 using Renci.SshNet.Async;
-using Renci.SshNet.Sftp;
 using SkEditorPlus.Utilities.Builders;
 using SkEditorPlus.Utilities.Vaults;
 using System;
@@ -14,8 +13,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
-using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 using TabItem = HandyControl.Controls.TabItem;
 

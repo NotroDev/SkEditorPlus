@@ -37,6 +37,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Дополнения</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Эксперименты</system:String>
 
     <!-- Other -->
 
@@ -148,6 +149,8 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Открыть папку с дополнениями:</system:String>
     <system:String x:Key="OptionsOpen">Открыть</system:String>
 
+    <system:String x:Key="OptionsExperimentsWarning">Эксперименты - это новые функции, которые еще не были официально выпущены. Они могут содержать ошибки и могут быть недостаточно переведены.</system:String>
+
     <!-- Things I forgot before. So they're here :P -->
     
     <system:String x:Key="NoResults">Не найдено</system:String>
@@ -192,6 +195,11 @@
     <system:String x:Key="StructureHeaderLoop">Цикл</system:String>
     <system:String x:Key="StructureHeaderIf">Условие</system:String>
     <system:String x:Key="StructureHeaderComment">Комментарий</system:String>
+
+    <system:String x:Key="BottomBarLenght">длина: {0}</system:String>
+    <system:String x:Key="BottomBarLines">линии: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">положение: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">выделение: {0}</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Введите название GUI!</system:String>

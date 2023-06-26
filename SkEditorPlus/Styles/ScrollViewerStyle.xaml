@@ -96,7 +96,7 @@
                                 <EasingDoubleKeyFrame KeyTime="0:0:.1" Value="8"/>
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusX)" Storyboard.TargetName="rectangle">
-                                <EasingDoubleKeyFrame KeyTime="0:0:.1" Value="16"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:.1" Value="4"/>
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusY)" Storyboard.TargetName="rectangle">
                                 <EasingDoubleKeyFrame KeyTime="0:0:.1" Value="4"/>

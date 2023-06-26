@@ -37,6 +37,7 @@
 	<system:String x:Key="OptionsMenuDiscord">Discord</system:String>
 	<system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Complementos</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Experimentos</system:String>
 
 	<!-- Otros -->
 
@@ -66,8 +67,8 @@
 	<system:String x:Key="PublishButton">Publicar</system:String>
 	<system:String x:Key="GenerateButton">Generar</system:String>
 	<system:String x:Key="ApplyButton">Aplicar</system:String>
-
-	<system:String x:Key="PublishResultUrlPlaceholder">Aquí habrá un enlace a su código :)</system:String>
+    <system:String x:Key="PreviewButton">Avance</system:String>
+    <system:String x:Key="PublishResultUrlPlaceholder">Aquí habrá un enlace a su código :)</system:String>
 
 	<system:String x:Key="WhatDoYouWantToGenerate">¿Qué desea generar?</system:String>
 	<system:String x:Key="CommandButton">Comando</system:String>
@@ -150,6 +151,8 @@
     <system:String x:Key="OptionsOpenAddonsFolder">Abrir la carpeta de complementos:</system:String>
     <system:String x:Key="OptionsOpen">Abrir</system:String>
 
+    <system:String x:Key="OptionsExperimentsWarning">Los experimentos son nuevas funciones que aún no han sido lanzadas oficialmente. Pueden contener errores y podrían carecer de traducción.</system:String>
+
     <!-- Cosas que olvidé antes. Así que están aquí :P -->
 
     <system:String x:Key="NoResults">No encontrado</system:String>
@@ -193,6 +196,11 @@
     <system:String x:Key="StructureHeaderLoop">Bucle</system:String>
     <system:String x:Key="StructureHeaderIf">Condición</system:String>
     <system:String x:Key="StructureHeaderComment">Comentario</system:String>
+
+    <system:String x:Key="BottomBarLenght">longitud: {0}</system:String>
+    <system:String x:Key="BottomBarLines">líneas: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">posición: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">selección: {0}</system:String>
 
     <!-- Errors -->
     <system:String x:Key="GUIGenNameError">¡El nombre de la GUI es obligatorio!</system:String>

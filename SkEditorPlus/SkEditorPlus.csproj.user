@@ -32,13 +32,13 @@
     <Page Update="Data\MarketExplorer.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\SmallButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\CompletionListStyle.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\ScrollViewerStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
@@ -68,7 +68,7 @@
     <Page Update="Windows\GenerateWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\Generators\EventGenerator.xaml">
+    <Page Update="Windows\Generators\ParticleGenerator.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Generators\GuiGenerator.xaml">

@@ -82,7 +82,7 @@ namespace SkEditorPlus.Functionalities
                 case "New":
                     FileManager.NewFile();
                     break;
-        
+
                 case "Menu_Open":
                 case "Open":
                     FileController.OpenFile();
@@ -154,7 +154,7 @@ namespace SkEditorPlus.Functionalities
                     NewOptionsWindow optionsWindow = new();
                     optionsWindow.ShowDialog();
                     break;
-        
+
                 case "Menu_ChangeSyntax":
                     SyntaxManager.ChangeSyntax("none");
                     break;

@@ -37,6 +37,7 @@
     <system:String x:Key="OptionsMenuDiscord">Discord</system:String>
     <system:String x:Key="OptionsMenuFTP">FTP</system:String>
     <system:String x:Key="OptionsMenuAddons">Addons</system:String>
+    <system:String x:Key="OptionsMenuExperiments">Experiments</system:String>
 
     <!-- Other -->
 
@@ -61,7 +62,7 @@
     <!-- Labels -->
     
     <system:String x:Key="PasteAPIKeyTextboxPlaceholder">Paste your API key here</system:String>
-    <system:String x:Key="PasteAPIKeyTextboxHint">You will find your key {0} after logging up</system:String>
+    <system:String x:Key="PasteAPIKeyTextboxHint">You will find your key on {0} after logging up</system:String>
     <system:String x:Key="AnonymousCheckbox">Anonymously</system:String>
     <system:String x:Key="PublishButton">Publish</system:String>
     <system:String x:Key="GenerateButton">Generate</system:String>
@@ -148,6 +149,8 @@
     <system:String x:Key="OptionsAddonsList">Addons list:</system:String>
     <system:String x:Key="OptionsOpenAddonsFolder">Open the addons folder:</system:String>
     <system:String x:Key="OptionsOpen">Open</system:String>
+
+    <system:String x:Key="OptionsExperimentsWarning">Experiments are new functions that haven't been officially released yet. They might contain errors and could lack translation.</system:String>
     
 
     <!-- Other things -->
@@ -194,6 +197,11 @@
     <system:String x:Key="StructureHeaderLoop">Loop</system:String>
     <system:String x:Key="StructureHeaderIf">Condition</system:String>
     <system:String x:Key="StructureHeaderComment">Comment</system:String>
+
+    <system:String x:Key="BottomBarLenght">lenght: {0}</system:String>
+    <system:String x:Key="BottomBarLines">lines: {0}</system:String>
+    <system:String x:Key="BottomBarPosition">position: {0}</system:String>
+    <system:String x:Key="BottomBarSelectionLenght">selection: {0}</system:String>
 
     <!-- * Errors * -->
     <system:String x:Key="GUIGenNameError">Name of GUI is required!</system:String>

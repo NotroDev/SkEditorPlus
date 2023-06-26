@@ -1,15 +1,8 @@
-﻿using AvalonEditB;
-using HandyControl.Controls;
-using HandyControl.Data;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
-using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SkEditorPlus.Utilities.Builders
 {

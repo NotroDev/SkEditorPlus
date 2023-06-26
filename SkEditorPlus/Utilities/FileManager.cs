@@ -1,7 +1,5 @@
 ﻿using AvalonEditB;
-using AvalonEditB.Search;
 using HandyControl.Controls;
-using Microsoft.Web.WebView2.Core;
 using SkEditorPlus.Utilities.Builders;
 using SkEditorPlus.Utilities.Managers;
 using SkEditorPlus.Utilities.Services;
@@ -9,15 +7,11 @@ using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Windows;
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
-using FontFamily = System.Windows.Media.FontFamily;
 using MessageBox = HandyControl.Controls.MessageBox;
-using WebView2 = Microsoft.Web.WebView2.Wpf.WebView2;
 
 namespace SkEditorPlus.Utilities
 {

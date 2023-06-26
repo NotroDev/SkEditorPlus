@@ -1,8 +1,5 @@
 ﻿using Functionalities;
-using HandyControl.Controls;
-using HandyControl.Properties.Langs;
 using System;
-using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Windows;

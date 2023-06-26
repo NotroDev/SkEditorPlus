@@ -1,29 +1,27 @@
 ﻿using AvalonEditB;
+using HandyControl.Controls;
+using HandyControl.Data;
+using HandyControl.Tools;
+using SkEditorPlus.Data;
 using SkEditorPlus.Utilities;
+using SkEditorPlus.Utilities.Builders;
+using SkEditorPlus.Utilities.Controllers;
+using SkEditorPlus.Utilities.Services;
+using SkEditorPlus.Utilities.Vaults;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using TabItem = HandyControl.Controls.TabItem;
-using System;
+using Application = System.Windows.Application;
 using CheckBox = System.Windows.Controls.CheckBox;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
-using SkEditorPlus.Data;
-using Application = System.Windows.Application;
-using System.IO;
-using System.Linq;
-using HandyControl.Tools;
-using HandyControl.Controls;
-using HandyControl.Data;
-using System.Net.Http;
-using System.Threading.Tasks;
 using MessageBox = HandyControl.Controls.MessageBox;
-using System.Diagnostics;
-using System.Xml;
-using SkEditorPlus.Utilities.Vaults;
-using SkEditorPlus.Utilities.Builders;
-using SkEditorPlus.Utilities.Services;
-using SkEditorPlus.Utilities.Controllers;
+using TabItem = HandyControl.Controls.TabItem;
 
 namespace SkEditorPlus.Windows
 {
@@ -41,6 +39,7 @@ namespace SkEditorPlus.Windows
             DataContext = settingsBindings;
 
             docsLinkTextBox.Text = Properties.Settings.Default.DocsLink;
+            editorTransparency.Value = Properties.Settings.Default.EditorTransparency;
 
             foreach (var property in settingsBindings.GetType().GetProperties().Where(p => p.PropertyType == typeof(bool)))
             {
@@ -131,11 +130,14 @@ namespace SkEditorPlus.Windows
                 return;
             }
 
-            foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
+            if (Properties.Settings.Default.Mica)
             {
-                if (!skEditor.IsFile(ti)) continue;
-                TextEditor textEditor = (TextEditor)ti.Content;
-                textEditor.Background = new SolidColorBrush(Color.FromArgb((byte)Properties.Settings.Default.EditorTransparency, 30, 30, 30));
+                foreach (TabItem ti in skEditor.GetMainWindow().tabControl.Items)
+                {
+                    if (!skEditor.IsFile(ti)) continue;
+                    TextEditor textEditor = (TextEditor)ti.Content;
+                    textEditor.Background = new SolidColorBrush(Color.FromArgb((byte)Properties.Settings.Default.EditorTransparency, 30, 30, 30));
+                }
             }
             skEditor.GetMainWindow().SetUpMica(false);
         }
@@ -149,12 +151,37 @@ namespace SkEditorPlus.Windows
             }
         }
 
+        private void OnExperimentClicked(object sender, RoutedEventArgs e)
+        {
+            CheckboxClicked(sender, e);
+
+            CheckBox checkBox = (CheckBox)sender;
+            string checkBoxName = checkBox.Name;
+
+            var mainWindow = APIVault.GetAPIInstance().GetMainWindow();
+            switch (checkBoxName)
+            {
+                case "projectsExperimentCheckbox":
+                    mainWindow.leftTabControl.Visibility = checkBox.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+                    break;
+                case "bottomBarExperimentCheckbox":
+                    mainWindow.BottomBar.Visibility = checkBox.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+                    break;
+                case "completionExperimentCheckbox":
+                    TabController.OnTabChanged();
+                    break;
+                case "analyzerExperimentCheckbox":
+                    mainWindow.ToggleAnalyzer(checkBox.IsChecked == true);
+                    break;
+            }
+        }
+
         private void CheckboxClicked(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
             string checkBoxName = checkBox.Name;
             checkBoxName = checkBoxName.Replace("Checkbox", "");
-            checkBoxName = string.Concat(checkBoxName.Substring(0, 1).ToUpper(), checkBoxName.AsSpan(1));
+            checkBoxName = string.Concat(checkBoxName[..1].ToUpper(), checkBoxName.AsSpan(1));
             bool value = (bool)checkBox.IsChecked;
 
             Properties.Settings.Default[checkBoxName] = value;
