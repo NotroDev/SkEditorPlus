@@ -62,4 +62,4 @@ If you would like to support us and promote SkEditor+, you can:
 - Maybe you'll come up with something else?
 
 # 💵 Donations?
-Some people have been asking me about donations. I'm not keen on setting up a donation system because it comes with issues, and honestly, I don't think anyone would be interested in donating. However, if you do want to contribute, just hit me up on Discord - Notro#5324. I'll do my best to figure out the most suitable approach.
+Some people have been asking me about donations. I'm not keen on setting up a donation system because it comes with issues, and honestly, I don't think anyone would be interested in donating. However, if you do want to contribute, just hit me up on Discord - `@notrodev`. I'll do my best to figure out the most suitable approach.
