@@ -37,6 +37,7 @@ namespace SkEditorPlus.Utilities.Handlers
             string crashDescription2 = "If you can, please report the error in the issues section on GitHub (be sure that you're on the latest version before!).{n}{n}Error:{n}{0}";
             string copyAndOpenWebsite = "Copy and open website";
             string ok = "OK";
+            string ignore = "Ignore (can cause problems)";
 
             MessageBox.Show(new MessageBoxInfo
             {
@@ -54,9 +55,10 @@ namespace SkEditorPlus.Utilities.Handlers
             {
                 Message = crashDescription2.Replace("{n}", Environment.NewLine).Replace("{0}", error),
                 Caption = crashTitle,
-                Button = MessageBoxButton.OKCancel,
-                ConfirmContent = copyAndOpenWebsite,
-                CancelContent = ok,
+                Button = MessageBoxButton.YesNoCancel,
+                YesContent = copyAndOpenWebsite,
+                NoContent = ok,
+                CancelContent = ignore,
                 IconBrushKey = ResourceToken.DangerBrush,
                 IconKey = ResourceToken.ErrorGeometry
             });
@@ -64,6 +66,11 @@ namespace SkEditorPlus.Utilities.Handlers
             {
                 Clipboard.SetText(error);
                 skEditor.OpenUrl("https://github.com/NotroDev/SkEditorPlus/issues/new");
+            }
+            else if (result == MessageBoxResult.Cancel)
+            {
+                args.Handled = true;
+                return;
             }
 
             SaveFilesToTemp();
@@ -81,59 +88,63 @@ namespace SkEditorPlus.Utilities.Handlers
 
         public static void SaveFilesToTemp()
         {
-            foreach (TabItem tabItem in skEditor.GetMainWindow().tabControl.Items)
+            try
             {
-                if (tabItem.Content is not TextEditor textEditor)
+                foreach (TabItem tabItem in skEditor.GetMainWindow().tabControl.Items)
                 {
-                    continue;
-                }
-
-                string tempPath = Path.GetTempPath();
-
-                string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
-                if (!Directory.Exists(skEditorFolder))
-                {
-                    Directory.CreateDirectory(skEditorFolder);
-                }
-
-                string fileName = tabItem.Header.ToString();
-                if (fileName.EndsWith("*"))
-                {
-                    fileName = fileName[..^1];
-                }
-
-                if (string.IsNullOrWhiteSpace(textEditor.Document.Text))
-                {
-                    continue;
-                }
-
-                string tempFile = Path.Combine(skEditorFolder, fileName);
-
-                if (!string.IsNullOrEmpty(tempFile))
-                {
-                    StringBuilder fileContent = new();
-                    fileContent.AppendLine("# This file was saved to the temp folder by SkEditor+.");
-                    fileContent.AppendLine("# It could be saved because of a crash or a file restoring feature.");
-                    fileContent.AppendLine("# If you don't need it, you can remove it.");
-                    if (!string.IsNullOrWhiteSpace(tabItem.ToolTip.ToString()))
+                    if (tabItem.Content is not TextEditor textEditor)
                     {
-                        fileContent.AppendLine("# Original path: " + tabItem.ToolTip.ToString());
+                        continue;
                     }
-                    else
+
+                    string tempPath = Path.GetTempPath();
+
+                    string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
+                    if (!Directory.Exists(skEditorFolder))
                     {
-                        fileContent.AppendLine("# Original path: null");
+                        Directory.CreateDirectory(skEditorFolder);
                     }
-                    fileContent.AppendLine("# Saved: " + !tabItem.Header.ToString().EndsWith('*'));
-                    fileContent.AppendLine();
-                    fileContent.Append(textEditor.Document.Text);
+
+                    string fileName = tabItem.Header.ToString();
+                    if (fileName.EndsWith("*"))
+                    {
+                        fileName = fileName[..^1];
+                    }
+
+                    if (string.IsNullOrWhiteSpace(textEditor.Document.Text))
+                    {
+                        continue;
+                    }
+
+                    string tempFile = Path.Combine(skEditorFolder, fileName);
+
+                    if (!string.IsNullOrEmpty(tempFile))
+                    {
+                        StringBuilder fileContent = new();
+                        fileContent.AppendLine("# This file was saved to the temp folder by SkEditor+.");
+                        fileContent.AppendLine("# It could be saved because of a crash or a file restoring feature.");
+                        fileContent.AppendLine("# If you don't need it, you can remove it.");
+                        if (!string.IsNullOrWhiteSpace(tabItem.ToolTip.ToString()))
+                        {
+                            fileContent.AppendLine("# Original path: " + tabItem.ToolTip.ToString());
+                        }
+                        else
+                        {
+                            fileContent.AppendLine("# Original path: null");
+                        }
+                        fileContent.AppendLine("# Saved: " + !tabItem.Header.ToString().EndsWith('*'));
+                        fileContent.AppendLine();
+                        fileContent.Append(textEditor.Document.Text);
 
 
-                    textEditor.Document.Text = fileContent.ToString();
+                        textEditor.Document.Text = fileContent.ToString();
 
-                    textEditor.Save(tempFile);
-                    continue;
+                        textEditor.Save(tempFile);
+                        continue;
+                    }
                 }
             }
+            catch { }
         }
     }
 }

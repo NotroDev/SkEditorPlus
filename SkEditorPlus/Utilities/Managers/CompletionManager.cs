@@ -32,11 +32,6 @@ namespace SkEditorPlus.Utilities.Managers
         public CompletionManager()
         {
             instance = this;
-
-            for (int i = 0; i < 50; i++)
-            {
-                CompletionData.completionSet.Add(new CompletionDataElement("command" + i, "command /{c}:\n\t"));
-            }
         }
 
         public void LoadCompletionManager(TextEditor textEditor)

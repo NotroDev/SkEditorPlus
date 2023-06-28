@@ -116,15 +116,24 @@ namespace SkEditorPlus
                 MessageBox.Show(noFilesDownloaded, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
-            string countryName = RegionInfo.CurrentRegion.Name;
-            string[] languages = new string[] { "zh-cn", "en", "fa", "fr", "ko-kr", "ru", "tr", "pt-br", "pl", "es", "ca-es", "ja" };
-            if (!languages.Contains(countryName.ToLower()))
+            Dictionary<string, string> languages = new()
             {
-                countryName = "en";
+                { "English", "en" },
+                { "Chinese", "zh-cn" },
+                { "French", "fr" },
+                { "Russian", "ru" },
+                { "Turkish", "tr" },
+                { "Polish", "pl" },
+                { "Spanish", "es" }
+            };
+
+            if (languages.ContainsKey(Properties.Settings.Default.Language))
+            {
+                ConfigHelper.Instance.SetLang(languages[Properties.Settings.Default.Language]);
             }
             else
             {
-                ConfigHelper.Instance.SetLang(countryName);
+                ConfigHelper.Instance.SetLang("en");
             }
 
 
@@ -281,25 +290,32 @@ namespace SkEditorPlus
         {
             if (!Properties.Settings.Default.AlertsExperiment) return;
 
-            string url = "https://notro.tech/resources/alert.txt";
-
-            HttpClient client = new();
-            string result = await client.GetStringAsync(url);
-            if (!string.IsNullOrWhiteSpace(result))
+            try
             {
-                string[] lines = result.Split('\n');
+                string url = "https://notro.tech/resources/alert.txt";
 
-                if (lines.Length < 2) return;
+                HttpClient client = new();
+                string result = await client.GetStringAsync(url);
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    string[] lines = result.Split('\n');
 
-                int alertId = int.Parse(lines[0]);
-                if (Properties.Settings.Default.LastAlertId == alertId) return;
-                Properties.Settings.Default.LastAlertId = alertId;
-                Properties.Settings.Default.Save();
+                    if (lines.Length < 2) return;
 
-                string[] alertLines = lines.Skip(2).ToArray();
-                string alertText = string.Join('\n', alertLines);
+                    int alertId = int.Parse(lines[0]);
+                    if (Properties.Settings.Default.LastAlertId == alertId) return;
+                    Properties.Settings.Default.LastAlertId = alertId;
+                    Properties.Settings.Default.Save();
 
-                MessageBox.Info(alertText, "Alert");
+                    string[] alertLines = lines.Skip(2).ToArray();
+                    string alertText = string.Join('\n', alertLines);
+
+                    MessageBox.Info(alertText, "Alert");
+                }
+            }
+            catch
+            {
+                // just ignore
             }
         }
 
