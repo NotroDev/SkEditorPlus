@@ -17,6 +17,7 @@ using System.Collections.Specialized;
 using HandyControl.Data;
 using SkEditorPlus.Utilities.Vaults;
 using SkEditorPlus.Utilities.Controllers;
+using System.Windows.Media.Imaging;
 
 namespace SkEditorPlus.Windows
 {
@@ -121,7 +122,7 @@ namespace SkEditorPlus.Windows
             }
             catch (Exception ex)
             {
-                skEditor.ShowError((Application.Current.FindResource("MarketplaceDownloadError") as string).Replace("{0}", ex.Message).Replace("{n}", Environment.NewLine), Application.Current.FindResource("Error") as string);
+                skEditor.ShowError((Application.Current.FindResource("MarketplaceDownloadError") as string).Replace("{0}", ex.Message + "\n" + ex.StackTrace).Replace("{n}", Environment.NewLine), Application.Current.FindResource("Error") as string);
             }
         }
 

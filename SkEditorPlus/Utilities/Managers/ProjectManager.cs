@@ -35,6 +35,8 @@ namespace SkEditorPlus.Utilities.Managers
 
         public static SftpClient client;
 
+        private static FontFamily font = new(new Uri("pack://application:,,,/"), "./Fonts/#Segoe Fluent Icons");
+
         public ProjectManager()
         {
             instance = this;
@@ -62,7 +64,7 @@ namespace SkEditorPlus.Utilities.Managers
                 Icon = new TextBlock
                 {
                     Text = iconText,
-                    FontFamily = new FontFamily("Segoe Fluent Icons")
+                    FontFamily = font
                 }
             };
         }

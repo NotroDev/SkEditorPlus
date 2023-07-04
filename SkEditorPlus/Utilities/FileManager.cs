@@ -53,12 +53,6 @@ namespace SkEditorPlus.Utilities
 
         public async void OpenFolder()
         {
-            if (!skEditor.IsAddonInstalled("Projects & Structure Unlocker"))
-            {
-                MessageBox.Show("You need to install the Projects & Structure Unlocker addon to use this feature.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             using var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)

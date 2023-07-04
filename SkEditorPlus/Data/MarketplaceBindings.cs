@@ -1,10 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SkEditorPlus.Windows;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace SkEditorPlus.Data
 {
@@ -65,11 +67,9 @@ namespace SkEditorPlus.Data
         public string Version { get; set; }
         public string Icon { get; set; }
         public string LongDescription { get; set; }
-
         public string Type { get; set; }
-
         public string URL { get; set; }
-
         public string NamePlusVersion { get; set; }
+        public List<BitmapSource> Images { get; set; } = new();
     }
 }

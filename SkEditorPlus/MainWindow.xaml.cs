@@ -44,6 +44,8 @@ namespace SkEditorPlus
         private List<string> splashes = new();
         private int lastSplash = new();
 
+        private static FontFamily segoeFluentFont = new (new Uri("pack://application:,,,/"), "./Fonts/#Segoe Fluent Icons");
+
         public Menu GetMenu()
         {
             return MenuBar;
@@ -123,7 +125,7 @@ namespace SkEditorPlus
                 { "French", "fr" },
                 { "Russian", "ru" },
                 { "Turkish", "tr" },
-                { "Polish", "pl" },
+                { "Polski", "pl" },
                 { "Spanish", "es" }
             };
 
@@ -169,6 +171,7 @@ namespace SkEditorPlus
             if (Properties.Settings.Default.ProjectsExperiment)
             {
                 leftTabControl.Visibility = Visibility.Visible;
+                ToggleProjects(true);
             }
             if (Properties.Settings.Default.BottomBarExperiment)
             {
@@ -367,7 +370,7 @@ namespace SkEditorPlus
                     Icon = new TextBlock
                     {
                         Text = "\xe721",
-                        FontFamily = new FontFamily("Segoe Fluent Icons")
+                        FontFamily = segoeFluentFont
                     }
                 };
 
@@ -377,7 +380,7 @@ namespace SkEditorPlus
                     Icon = new TextBlock
                     {
                         Text = "\xe74d",
-                        FontFamily = new FontFamily("Segoe Fluent Icons")
+                        FontFamily = segoeFluentFont
                     }
                 };
 
@@ -399,6 +402,35 @@ namespace SkEditorPlus
             {
                 otherMenu.Items.RemoveAt(otherMenu.Items.Count - 2);
                 otherMenu.Items.RemoveAt(otherMenu.Items.Count - 2);
+            }
+        }
+
+        public void ToggleProjects(bool enable)
+        {
+            Menu menu = MenuBar;
+            MenuItem otherMenu = menu.Items[0] as MenuItem;
+            if (enable)
+            {
+                MenuItem openFolderMenuItem = new()
+                {
+                    Header = Application.Current.FindResource("MenuFileOpenFolder") as string,
+                    Icon = new TextBlock
+                    {
+                        Text = "\xed25",
+                        FontFamily = segoeFluentFont
+                    }
+                };
+
+                openFolderMenuItem.Click += (sender, e) =>
+                {
+                    fileManager.OpenFolder();
+                };
+
+                otherMenu.Items.Insert(2, openFolderMenuItem);
+            }
+            else
+            {
+                otherMenu.Items.RemoveAt(2);
             }
         }
 

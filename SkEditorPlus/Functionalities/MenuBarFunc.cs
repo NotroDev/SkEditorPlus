@@ -88,10 +88,6 @@ namespace SkEditorPlus.Functionalities
                     FileController.OpenFile();
                     break;
 
-                case "Menu_OpenFolder":
-                    fileManager.OpenFolder();
-                    break;
-
                 case "Menu_Save":
                 case "Save":
                     FileController.Save();
@@ -105,7 +101,7 @@ namespace SkEditorPlus.Functionalities
                 case "Menu_Publish":
                 case "Publish":
                     if (skEditor.GetMainWindow().GetFileManager().GetTextEditor() == null) return;
-                    PublishWindow publishWindow = new(skEditor);
+                    PublishWindow publishWindow = new();
                     publishWindow.ShowDialog();
                     break;
 

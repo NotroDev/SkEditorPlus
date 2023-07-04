@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -6,13 +7,14 @@ namespace SkEditorPlus.Utilities.Builders
 {
     public class IconBuilder
     {
+        private static FontFamily segoeFluentFont = new(new Uri("pack://application:,,,/"), "./Fonts/#Segoe Fluent Icons");
         public static TextBlock Build(string iconString, string text)
         {
             TextBlock tempTextBlock = new();
             var icon = new TextBlock()
             {
                 Text = iconString,
-                FontFamily = new FontFamily("Segoe Fluent Icons"),
+                FontFamily = segoeFluentFont,
                 Margin = new Thickness(0, 2, 0, 0),
             };
             icon.SetValue(RenderOptions.BitmapScalingModeProperty, BitmapScalingMode.HighQuality);

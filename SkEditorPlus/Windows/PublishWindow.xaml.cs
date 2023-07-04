@@ -14,12 +14,11 @@ namespace SkEditorPlus.Windows
 {
     public partial class PublishWindow : HandyControl.Controls.Window
     {
-        private SkEditorAPI skEditor;
+        private SkEditorAPI skEditor = APIVault.GetAPIInstance();
 
-        public PublishWindow(SkEditorAPI skEditor)
+        public PublishWindow()
         {
             InitializeComponent();
-            this.skEditor = skEditor;
             BackgroundFixer.FixBackground(this);
 
             helpText.Text = helpText.Text.Replace("{0}", "pastebin.com/doc_api");

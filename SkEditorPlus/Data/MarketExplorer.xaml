@@ -27,10 +27,10 @@
                         </ComboBox>
                     </StackPanel>
                     <ListBox Width="auto" MinWidth="300" MinHeight="360" Height="360" MaxHeight="360" x:Name="AddonsListBox" Grid.Row="1" Grid.Column="0" Margin="0,10,0,0"
-                         ItemsSource="{Binding FilteredItems}"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         SelectionMode="Single" ItemContainerStyle="{StaticResource ListBoxItemStyle}">
+                     ItemsSource="{Binding FilteredItems}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     SelectionMode="Single" ItemContainerStyle="{StaticResource ListBoxItemStyle}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical"/>
@@ -71,20 +71,37 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" TextTrimming="CharacterEllipsis" ToolTip="{Binding SelectedItem.NamePlusVersion}">
-                                    <Run Text="{Binding SelectedItem.Name}" FontFamily="/Fonts/#Cascadia Mono" FontWeight="SemiBold" FontSize="18"/>
-                                    <Run Text="  "/>
-                                    <Run Text="{Binding SelectedItem.Version}" Foreground="Gray" FontFamily="Open Sans" FontSize="16"/>
+                                <Run Text="{Binding SelectedItem.Name}" FontFamily="/Fonts/#Cascadia Mono" FontWeight="SemiBold" FontSize="18"/>
+                                <Run Text="  "/>
+                                <Run Text="{Binding SelectedItem.Version}" Foreground="Gray" FontFamily="Open Sans" FontSize="16"/>
                                 </TextBlock>
                                 <Button x:Name="installButton" Grid.Column="1" Content="{Binding InstallButtonHeader}" 
-                                    Visibility="Collapsed" Margin="10,-5,0,-10" Command="{Binding InstallCommand}"/>
+                                Visibility="Collapsed" Margin="10,-5,0,-10" Command="{Binding InstallCommand}"/>
                             </Grid>
                             <TextBlock Text="{Binding SelectedItem.Author}" FontSize="12" Foreground="Gray" FontFamily="Open Sans"/>
                         </StackPanel>
-                        <ScrollViewer Grid.Row="2" Height="325"  Margin="10" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-                            <TextBlock Text="{Binding SelectedItem.LongDescription}" TextWrapping="Wrap" FontSize="14"/>
+                        <ScrollViewer Grid.Row="2" Margin="5" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding SelectedItem.Images}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="5" Margin="5" Width="200" Height="112.5" Background="#1e1e1e" MouseDown="OnImageClick" MouseLeave="OnImageMouseLeave">
+                                            <Border CornerRadius="5" RenderOptions.BitmapScalingMode="HighQuality">
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="{Binding}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                                </Border.Background>
+                                            </Border>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </ScrollViewer>
+                        <TextBlock Grid.Row="3" Text="{Binding SelectedItem.LongDescription}" TextWrapping="Wrap" FontSize="14" Margin="10"/>
                     </Grid>
-
                 </Grid>
             </Grid>
         </Grid>
