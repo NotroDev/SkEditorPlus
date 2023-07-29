@@ -45,19 +45,7 @@ namespace SkEditorPlus.Utilities.Builders
             codeEditor.TextArea.TextView.LinkTextForegroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a94c4");
             codeEditor.TextArea.TextView.LinkTextUnderline = true;
             codeEditor.Options.AllowScrollBelowDocument = true;
-
-            codeEditor.TextArea.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, (sender, e) =>
-            {
-                if (codeEditor.SelectionLength == 0)
-                {
-                    var line = codeEditor.Document.GetLineByOffset(codeEditor.CaretOffset);
-                    codeEditor.Select(line.Offset, line.Length);
-                }
-                codeEditor.Copy();
-            }, (sender, e) =>
-            {
-                e.CanExecute = true;
-            }));
+            codeEditor.Options.CutCopyWholeLine = true;
 
             RoutedCommand commentCommand = new();
             commentCommand.InputGestures.Add(new KeyGesture(Key.OemQuestion, ModifierKeys.Control));
@@ -106,17 +94,7 @@ namespace SkEditorPlus.Utilities.Builders
             AddonVault.addons.ForEach(addon => addon.OnTabCreate());
         }
 
-        public static int UntitledCount()
-        {
-            int tabIndex = 1;
-            foreach (TabItem ti in APIVault.GetAPIInstance().GetTabControl().Items)
-            {
-                if (regex.IsMatch(ti.Header.ToString()))
-                {
-                    tabIndex++;
-                }
-            }
-            return tabIndex;
-        }
+        public static int UntitledCount() => APIVault.GetAPIInstance().GetTabControl().Items.OfType<TabItem>().ToList()
+               .Count(ti => regex.IsMatch(ti.Header.ToString())) + 1;
     }
 }

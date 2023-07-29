@@ -1,8 +1,11 @@
 ﻿using HandyControl.Tools;
+using SkEditorPlus.Utilities.Vaults;
+using SkEditorPlus.Windows;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Threading;
 
 namespace SkEditorPlus.Utilities
 {
@@ -41,15 +44,6 @@ namespace SkEditorPlus.Utilities
             Window window = sender as Window;
             if (window.WindowState == WindowState.Maximized)
             {
-                IntPtr hWnd = new WindowInteropHelper(Application.Current.MainWindow).Handle;
-
-                IntPtr hNext = hWnd;
-                do
-                    hNext = GetWindow(hNext, GW_HWNDNEXT);
-                while (!IsWindowVisible(hNext));
-
-                SetForegroundWindow(hNext);
-
                 window.Activate();
             }
         }

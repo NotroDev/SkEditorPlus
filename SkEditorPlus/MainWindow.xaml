@@ -64,10 +64,6 @@
                         Header="{DynamicResource MenuFileOpen}"
                         InputGestureText="Ctrl+O" />
                     <MenuItem
-                        x:Name="Menu_OpenFolder"
-                        Icon="&#xed25;"
-                        Header="{DynamicResource MenuFileOpenFolder}"/>
-                    <MenuItem
                         x:Name="Menu_Save"
                         Icon="&#xe74e;"
                         Header="{DynamicResource MenuFileSave}"

@@ -163,6 +163,8 @@ namespace SkEditorPlus.Windows
             {
                 case "projectsExperimentCheckbox":
                     mainWindow.leftTabControl.Visibility = checkBox.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+                    mainWindow.ToggleProjects(checkBox.IsChecked == true);
+
                     break;
                 case "bottomBarExperimentCheckbox":
                     mainWindow.BottomBar.Visibility = checkBox.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
