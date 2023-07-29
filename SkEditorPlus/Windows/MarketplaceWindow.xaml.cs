@@ -90,13 +90,13 @@ namespace SkEditorPlus.Windows
                 if (!firstTime) return;
 
                 var client = new HttpClient();
-                var responseBody = await client.GetStringAsync("https://marketplace.notro.tech/items.json");
+                var responseBody = await client.GetStringAsync("https://skeditormarketplace.eastcore.pl/items.json");
                 var addonsList = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(responseBody)["addons"];
                 addonsList.Sort();
 
                 foreach (var item in addonsList)
                 {
-                    var manifest = await client.GetStringAsync($"https://marketplace.notro.tech/items/{item}/manifest.json");
+                    var manifest = await client.GetStringAsync($"https://skeditormarketplace.eastcore.pl/items/{item}/manifest.json");
                     var addon = JsonConvert.DeserializeObject<MarketplaceItem>(manifest);
 
                     if (!string.IsNullOrEmpty(addon.Icon))

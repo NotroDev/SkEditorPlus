@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" TextWrapping="Wrap" Text="{DynamicResource WhatDoYouWantToGenerate}" FontSize="22" FontFamily="Cascadia Mono" Width="305" TextAlignment="Center" Height="57"/>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" TextWrapping="Wrap" Text="{DynamicResource WhatDoYouWantToGenerate}" FontSize="22" FontFamily="/Fonts/#Cascadia Mono" Width="305" TextAlignment="Center" Height="57"/>
 
         <Grid Grid.Row="1" Margin="0,50,0,0">
             <Button x:Name="commandButton" HorizontalAlignment="Left"  Margin="40,0,0,0" Content="{DynamicResource CommandButton}" Click="CommandClick" Width="auto" MinWidth="80"/>

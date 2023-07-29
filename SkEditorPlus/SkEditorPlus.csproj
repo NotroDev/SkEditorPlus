@@ -7,11 +7,11 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>SkEditorPlus</AssemblyName>
     <RootNamespace>SkEditorPlus</RootNamespace>
-    <Version>1.7.5</Version>
+    <Version>1.7.6</Version>
     <Configurations>Debug;Release</Configurations>
     <Copyright>Copyright © Notro 2023</Copyright>
-    <FileVersion>1.7.5</FileVersion>
-    <AssemblyVersion>1.7.5</AssemblyVersion>
+    <FileVersion>1.7.6</FileVersion>
+    <AssemblyVersion>1.7.6</AssemblyVersion>
     <ApplicationIcon>Images\SkEditor.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
@@ -45,15 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-    <PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="Fastenshtein" Version="1.0.0.8" />
     <PackageReference Include="HandyControls.Lang.pl" Version="3.4.5" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1823.32" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1901.177" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Octokit" Version="6.0.0" />
+    <PackageReference Include="Octokit" Version="7.1.0" />
     <PackageReference Include="Remotion.Linq" Version="2.2.0" />
     <PackageReference Include="Renci.SshNet.Async" Version="1.4.0" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
+    <PackageReference Include="SkAvalonEdit" Version="1.6.0" />
+    <PackageReference Include="SkHandyControls" Version="3.3.4" />
     <PackageReference Include="SSH.NET" Version="2020.0.2" />
   </ItemGroup>
   <ItemGroup>
@@ -70,12 +72,10 @@
 	  </Content>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AvalonEditB">
-      <HintPath>..\..\SkAvalonEdit\AvalonEditB\bin\Debug\net472\AvalonEditB.dll</HintPath>
-    </Reference>
-    <Reference Include="HandyControl">
-      <HintPath>..\..\SkHandyControls\build\lib\net6.0\HandyControl.dll</HintPath>
-    </Reference>
+    <Compile Remove="Controls\**" />
+    <EmbeddedResource Remove="Controls\**" />
+    <None Remove="Controls\**" />
+    <Page Remove="Controls\**" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
@@ -151,10 +151,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Styles\CompletionListStyle.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
@@ -219,8 +215,5 @@
   </ItemGroup>
   <ItemGroup>
 	<FrameworkReference Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms" TargetingPackVersion="6.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>

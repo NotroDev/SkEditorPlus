@@ -38,9 +38,6 @@
     <Page Update="Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\CompletionListStyle.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\SearchPanelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -9,6 +9,7 @@ using SkEditorPlus.Utilities.Controllers;
 using SkEditorPlus.Utilities.Services;
 using SkEditorPlus.Utilities.Vaults;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -96,9 +97,9 @@ namespace SkEditorPlus.Windows
             }
 
             LoadAddons();
-        }
+		}
 
-        private void OnFontButtonClick(object sender, RoutedEventArgs e)
+		private void OnFontButtonClick(object sender, RoutedEventArgs e)
         {
             FontSelector fontSelector = new();
 
@@ -247,8 +248,8 @@ namespace SkEditorPlus.Windows
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             using var client = new HttpClient();
-            Uri skriptUri = new("https://marketplace.notro.tech/Default.xshd");
-            Uri yamlUri = new("https://notro.tech/resources/YAMLHighlighting.xshd");
+            Uri skriptUri = new("https://skeditormarketplace.eastcore.pl/Default.xshd");
+            Uri yamlUri = new("https://eastcore.pl/skeditor/YAMLHighlighting.xshd");
 
             string updateSuccess = (string)Application.Current.FindResource("UpdateSuccess");
 

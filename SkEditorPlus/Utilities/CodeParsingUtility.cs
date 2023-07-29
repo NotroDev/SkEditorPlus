@@ -43,9 +43,10 @@ namespace SkEditorPlus.Utilities
 
                 using var httpClient = new HttpClient();
 
-                string apiKey = "apikey";
+                string apiKey = "apiKey";
 
                 var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.skunity.com/v1/{apiKey}/parser/parse?content={encodedCode}");
+                request.Headers.Add("User-Agent", "SkEditorPlus");
 
                 var response = await httpClient.SendAsync(request);
                 response.EnsureSuccessStatusCode();

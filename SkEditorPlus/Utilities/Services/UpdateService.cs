@@ -98,8 +98,8 @@ namespace SkEditorPlus.Utilities.Services
             Directory.CreateDirectory(syntaxPath);
 
             using var client = new HttpClient();
-            var skriptUri = new Uri("https://marketplace.notro.tech/Default.xshd");
-            var yamlUri = new Uri("https://notro.tech/resources/YAMLHighlighting.xshd");
+            var skriptUri = new Uri("https://skeditormarketplace.eastcore.pl/Default.xshd");
+            var yamlUri = new Uri("https://eastcore.pl/skeditor/YAMLHighlighting.xshd");
             try
             {
                 File.Delete($"{syntaxPath}\\Default.xshd");
@@ -119,8 +119,8 @@ namespace SkEditorPlus.Utilities.Services
             var appPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\SkEditor Plus";
 
             using var client = new HttpClient();
-            var jsonUri = new Uri("https://notro.tech/resources/items.json");
-            var zipUri = new Uri("https://notro.tech/resources/items.zip");
+            var jsonUri = new Uri("https://eastcore.pl/skeditor/items.json");
+            var zipUri = new Uri("https://eastcore.pl/skeditor/items.zip");
             try
             {
                 File.Delete($"{appPath}\\items.json");

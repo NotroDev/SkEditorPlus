@@ -9,40 +9,40 @@ namespace SkEditorPlus
 {
     public interface SkEditorAPI
     {
-        MainWindow GetMainWindow();
+        public MainWindow GetMainWindow();
 
-        event EventHandler WindowOpen;
+		public event EventHandler WindowOpen;
 
-        string GetStartupFile();
+		public string GetStartupFile();
 
-        Menu GetMenu();
+        public Menu GetMenu();
 
-        bool IsFileOpen();
+        public bool IsFileOpen();
 
-        bool IsFile(HandyControl.Controls.TabItem tabItem);
+        public bool IsFile(HandyControl.Controls.TabItem tabItem);
 
-        TextEditor GetTextEditor();
+        public TextEditor GetTextEditor();
 
-        HandyControl.Controls.TabControl GetTabControl();
+        public HandyControl.Controls.TabControl GetTabControl();
 
-        QuickEditsWindow GetQuickEditsWindow();
+        public QuickEditsWindow GetQuickEditsWindow();
 
-        FileManager GetFileManager();
+        public FileManager GetFileManager();
 
-        void ShowMessage(string text, string title = "");
-        void ShowError(string text, string title = "");
-        void ShowSuccess(string text, string title = "");
+        public void ShowMessage(string text, string title = "");
+        public void ShowError(string text, string title = "");
+        public void ShowSuccess(string text, string title = "");
 
-        void OpenUrl(string url);
+        public void OpenUrl(string url);
 
-        TabControl GetSideTabControl();
+        public TabControl GetSideTabControl();
 
-        string GetVersion();
+        public string GetVersion();
 
-        int GetApiVersion();
+        public int GetApiVersion();
 
-        Dispatcher GetDispatcher();
+        public Dispatcher GetDispatcher();
 
-        bool IsAddonInstalled(string name);
+        public bool IsAddonInstalled(string name);
     }
 }

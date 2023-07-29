@@ -85,10 +85,28 @@ namespace SkEditorPlus
         {
             string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SkEditor Plus";
             Directory.CreateDirectory(appPath);
-            if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd") || !File.Exists(appPath + @"\items.json") || !Directory.Exists(appPath + @"\Items"))
+
+			ConfigHelper.Instance.SetLang("en");
+			Dictionary<string, string> languages = new()
+            {
+	            { "English", "en" },
+	            { "Chinese", "zh-cn" },
+	            { "French", "fr" },
+	            { "Russian", "ru" },
+	            { "Turkish", "tr" },
+	            { "Polski", "pl" },
+	            { "Spanish", "es" }
+            };
+
+			if (languages.ContainsKey(Properties.Settings.Default.Language))
+			{
+				ConfigHelper.Instance.SetLang(languages[Properties.Settings.Default.Language]);
+			}
+
+			if (!File.Exists(appPath + @"\Syntax Highlighting\Default.xshd") || !File.Exists(appPath + @"\YAMLHighlighting.xshd") || !File.Exists(appPath + @"\items.json") || !Directory.Exists(appPath + @"\Items"))
             {
                 string noFilesTitle = "No files";
-                string noFilesDescription = "Looks like it's your first time using SkEditor+ or you've recently updated the app, because there are missing files. Click to download.";
+                string noFilesDescription = "Looks like it's your first time using SkEditor+ or you've recently updated the app, because there are missing files.\n\nClick to download.\n\nYou don't need to worry! It will only download syntax highlighting files and Minecraft item list.";
                 string noFilesDownloaded = "Successfully downloaded!";
 
                 MessageBox.Show(noFilesDescription, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -116,26 +134,6 @@ namespace SkEditorPlus
                     });
                 }
                 MessageBox.Show(noFilesDownloaded, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-            Dictionary<string, string> languages = new()
-            {
-                { "English", "en" },
-                { "Chinese", "zh-cn" },
-                { "French", "fr" },
-                { "Russian", "ru" },
-                { "Turkish", "tr" },
-                { "Polski", "pl" },
-                { "Spanish", "es" }
-            };
-
-            if (languages.ContainsKey(Properties.Settings.Default.Language))
-            {
-                ConfigHelper.Instance.SetLang(languages[Properties.Settings.Default.Language]);
-            }
-            else
-            {
-                ConfigHelper.Instance.SetLang("en");
             }
 
 
@@ -295,30 +293,30 @@ namespace SkEditorPlus
 
             try
             {
-                string url = "https://notro.tech/resources/alert.txt";
+                string url = "https://eastcore.pl/skeditor/alert.txt";
 
                 HttpClient client = new();
                 string result = await client.GetStringAsync(url);
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    string[] lines = result.Split('\n');
+                if (string.IsNullOrWhiteSpace(result)) return;
 
-                    if (lines.Length < 2) return;
 
-                    int alertId = int.Parse(lines[0]);
-                    if (Properties.Settings.Default.LastAlertId == alertId) return;
-                    Properties.Settings.Default.LastAlertId = alertId;
-                    Properties.Settings.Default.Save();
+				string[] lines = result.Split('\n');
 
-                    string[] alertLines = lines.Skip(2).ToArray();
-                    string alertText = string.Join('\n', alertLines);
+				if (lines.Length < 2) return;
 
-                    MessageBox.Info(alertText, "Alert");
-                }
-            }
+				int alertId = int.Parse(lines[0]);
+				if (Properties.Settings.Default.LastAlertId == alertId) return;
+				Properties.Settings.Default.LastAlertId = alertId;
+				Properties.Settings.Default.Save();
+
+				string[] alertLines = lines.Skip(2).ToArray();
+				string alertText = string.Join('\n', alertLines);
+
+				MessageBox.Info(alertText, "Alert");
+			}
             catch
             {
-                // just ignore
+                // ignore
             }
         }
 
@@ -343,20 +341,19 @@ namespace SkEditorPlus
 
                 Application.Current.Resources["TextEditorStyle"] = newStyle;
 
-                if (mica && firstTime)
-                {
-                    tabControl.Style = (Style)Application.Current.FindResource("TabControlStyle");
-                    tabControl.Background = Brushes.Transparent;
+                if (!(mica && firstTime)) return;
 
-                    ThemeResources.Current.Add("SecondaryRegionBrush", Brushes.Transparent);
-                    ThemeResources.Current.Add("SecondaryTextBrush", Brushes.Transparent);
-                }
-            }
+				tabControl.Style = (Style)Application.Current.FindResource("TabControlStyle");
+				tabControl.Background = Brushes.Transparent;
+
+				ThemeResources.Current.Add("SecondaryRegionBrush", Brushes.Transparent);
+				ThemeResources.Current.Add("SecondaryTextBrush", Brushes.Transparent);
+			}
             catch
             {
-
-            }
-        }
+				// ignore
+			}
+		}
 
         public void ToggleAnalyzer(bool enable)
         {
@@ -384,10 +381,7 @@ namespace SkEditorPlus
                     }
                 };
 
-                analyzerMenuItem.Click += async (sender, e) =>
-                {
-                    await CodeParsingUtility.ParseCode();
-                };
+                analyzerMenuItem.Click += async (sender, e) => await CodeParsingUtility.ParseCode();
 
                 cleanAnalysisMenuItem.Click += (sender, e) =>
                 {
@@ -507,17 +501,6 @@ namespace SkEditorPlus
             if (tabControl.Items.Count > 0)
             {
                 CrashExceptionHandler.SaveFilesToTemp();
-                return;
-                if (tabControl.Items.Cast<TabItem>().Any(tab => tab.Header.ToString().EndsWith("*")))
-                {
-                    string title = (string)Application.Current.FindResource("UnsavedFiles");
-                    string message = (string)Application.Current.FindResource("UnsavedFilesMessage");
-                    MessageBoxResult result = HandyControl.Controls.MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (result != MessageBoxResult.Yes)
-                    {
-                        e.Cancel = true;
-                    }
-                }
             }
         }
 
@@ -597,7 +580,7 @@ namespace SkEditorPlus
 
                     Topmost = true;
                     Activate();
-                    await Dispatcher.BeginInvoke(new Action(() => { Topmost = false; }));
+                    await Dispatcher.BeginInvoke(new Action(() => { Topmost = true; }));
                 });
             }
             catch { }
@@ -633,7 +616,7 @@ namespace SkEditorPlus
 
         private void OnLeftTabControlTabChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (leftTabControl.SelectedIndex == -1 || leftTabControl.SelectedIndex == 0)
+            if (leftTabControl.SelectedIndex is -1 or 0)
             {
                 leftTabControl.BorderThickness = new Thickness(1, 1, 0, 1);
             }
