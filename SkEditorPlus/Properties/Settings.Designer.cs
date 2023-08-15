@@ -271,29 +271,5 @@ namespace SkEditorPlus.Properties {
                 this["AnalyzerExperiment"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AlertsExperiment {
-            get {
-                return ((bool)(this["AlertsExperiment"]));
-            }
-            set {
-                this["AlertsExperiment"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int LastAlertId {
-            get {
-                return ((int)(this["LastAlertId"]));
-            }
-            set {
-                this["LastAlertId"] = value;
-            }
-        }
     }
 }

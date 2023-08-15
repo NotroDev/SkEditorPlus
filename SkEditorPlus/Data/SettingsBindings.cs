@@ -36,8 +36,5 @@ namespace SkEditorPlus.Data
 
         [ObservableProperty]
         private bool isAnalyzerExperimentEnabled;
-
-        [ObservableProperty]
-        private bool isAlertsExperimentEnabled;
     }
 }

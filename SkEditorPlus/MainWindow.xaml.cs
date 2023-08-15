@@ -283,41 +283,6 @@ namespace SkEditorPlus
                     splashes = task.Result.ToList();
                 }
             });
-
-            await CheckForAlert();
-        }
-
-        public static async Task CheckForAlert()
-        {
-            if (!Properties.Settings.Default.AlertsExperiment) return;
-
-            try
-            {
-                string url = "https://eastcore.pl/skeditor/alert.txt";
-
-                HttpClient client = new();
-                string result = await client.GetStringAsync(url);
-                if (string.IsNullOrWhiteSpace(result)) return;
-
-
-				string[] lines = result.Split('\n');
-
-				if (lines.Length < 2) return;
-
-				int alertId = int.Parse(lines[0]);
-				if (Properties.Settings.Default.LastAlertId == alertId) return;
-				Properties.Settings.Default.LastAlertId = alertId;
-				Properties.Settings.Default.Save();
-
-				string[] alertLines = lines.Skip(2).ToArray();
-				string alertText = string.Join('\n', alertLines);
-
-				MessageBox.Info(alertText, "Alert");
-			}
-            catch
-            {
-                // ignore
-            }
         }
 
         public void SetUpMica(bool firstTime = true)

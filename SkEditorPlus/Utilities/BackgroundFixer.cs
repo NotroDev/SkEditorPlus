@@ -39,13 +39,22 @@ namespace SkEditorPlus.Utilities
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
 
-        public static void OnStateChanged(object sender, EventArgs e)
-        {
-            Window window = sender as Window;
-            if (window.WindowState == WindowState.Maximized)
-            {
-                window.Activate();
-            }
-        }
-    }
+		public static void OnStateChanged(object sender, EventArgs e)
+		{
+			Window window = sender as Window;
+			if (window.WindowState == WindowState.Maximized)
+			{
+				IntPtr hWnd = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+
+				IntPtr hNext = hWnd;
+				do
+					hNext = GetWindow(hNext, GW_HWNDNEXT);
+				while (!IsWindowVisible(hNext));
+
+				SetForegroundWindow(hNext);
+
+				window.Activate();
+			}
+		}
+	}
 }
