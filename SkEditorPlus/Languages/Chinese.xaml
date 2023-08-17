@@ -96,6 +96,9 @@
     <system:String x:Key="GUIGenApplyTooltip">生成的代码需要 skript-gui 插件</system:String>
     <system:String x:Key="GUIGenEdit">编辑</system:String>
     <system:String x:Key="GUIGenRemove">移除</system:String>
+    <system:String x:Key="GUIGenCopy">复制</system:String>
+    <system:String x:Key="GUIGenPaste">粘贴</system:String>
+
 
     <system:String x:Key="ItemSelectorSearch">搜索...</system:String>
     <system:String x:Key="ItemSelectorItemName">物品名称</system:String>

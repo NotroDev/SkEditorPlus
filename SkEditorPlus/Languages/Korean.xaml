@@ -96,6 +96,9 @@
     <system:String x:Key="GUIGenUseSkriptGuiAddon">skript-gui 애드온 사용</system:String>
     <system:String x:Key="GUIGenEdit">편집</system:String>
     <system:String x:Key="GUIGenRemove">제거</system:String>
+    <system:String x:Key="GUIGenCopy">복사</system:String>
+    <system:String x:Key="GUIGenPaste">붙여넣기</system:String>
+
 
     <system:String x:Key="ItemSelectorSearch">검색...</system:String>
     <system:String x:Key="ItemSelectorItemName">아이템 이름</system:String>

@@ -96,6 +96,9 @@
     <system:String x:Key="GUIGenUseSkriptGuiAddon">skript-gui kullanın</system:String>
     <system:String x:Key="GUIGenEdit">Düzenle</system:String>
     <system:String x:Key="GUIGenRemove">Kaldır</system:String>
+    <system:String x:Key="GUIGenCopy">Kopyala</system:String>
+    <system:String x:Key="GUIGenPaste">Yapıştır</system:String>
+
 
     <system:String x:Key="ItemSelectorSearch">Ara...</system:String>
     <system:String x:Key="ItemSelectorItemName">Öğe adı</system:String>

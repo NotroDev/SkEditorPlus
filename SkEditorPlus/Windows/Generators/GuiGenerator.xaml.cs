@@ -32,6 +32,8 @@ namespace SkEditorPlus.Windows.Generators
 
         private Item backgroundItem;
 
+        private ItemSlot clipboardItem;
+
         public GuiGenerator(SkEditorAPI skEditor)
         {
             InitializeComponent();
@@ -80,8 +82,12 @@ namespace SkEditorPlus.Windows.Generators
                 ContextMenu contextMenu = new();
                 MenuItem edit = CreateEditMenuItem(btn);
                 MenuItem remove = CreateRemoveMenuItem(btn);
+                MenuItem copy = CreateCopyMenuItem(btn);
+                MenuItem paste = CreatePasteMenuItem(btn);
                 contextMenu.Items.Add(edit);
                 contextMenu.Items.Add(remove);
+                contextMenu.Items.Add(copy);
+                contextMenu.Items.Add(paste);
                 contextMenu.IsOpen = true;
             };
 
@@ -133,7 +139,8 @@ namespace SkEditorPlus.Windows.Generators
             return edit;
         }
 
-        private MenuItem CreateRemoveMenuItem(Button button)
+
+		private MenuItem CreateRemoveMenuItem(Button button)
         {
             MenuItem remove = ProjectManager.CreateMenuItem(Application.Current.FindResource("GUIGenRemove") as string, "\xE74D");
 
@@ -154,7 +161,51 @@ namespace SkEditorPlus.Windows.Generators
             return remove;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+		private MenuItem CreateCopyMenuItem(Button button)
+		{
+			MenuItem copy = ProjectManager.CreateMenuItem(Application.Current.FindResource("GUIGenCopy") as string, "\xE8C8");
+
+			copy.Click += (sender, e) =>
+			{
+				var slotToCopy = usedSlots.FirstOrDefault(slot => slot.Slot == GetSlot(button));
+				if (slotToCopy != null)
+				{
+                    clipboardItem = slotToCopy;
+				}
+			};
+
+			return copy;
+		}
+
+		private MenuItem CreatePasteMenuItem(Button button)
+		{
+			MenuItem paste = ProjectManager.CreateMenuItem(Application.Current.FindResource("GUIGenPaste") as string, "\xE77F");
+
+			paste.Click += (sender, e) =>
+			{
+                ItemSlot itemToPaste = clipboardItem;
+                if (itemToPaste != null)
+                {
+					UpdateButtonWithSelectedItem(button, itemToPaste.Item);
+
+					int slot = GetSlot(button);
+					usedSlots.RemoveAll(s => s.Slot == slot);
+
+					ItemSlot itemSlot = new(slot, itemToPaste.Item)
+					{
+						HaveCustomName = itemToPaste.HaveCustomName,
+						HaveAction = itemToPaste.HaveAction,
+						OriginalDisplayName = itemToPaste.OriginalDisplayName
+					};
+
+					usedSlots.Add(itemSlot);
+				}
+			};
+
+			return paste;
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             ItemSelector itemSelector = new();
@@ -321,7 +372,7 @@ namespace SkEditorPlus.Windows.Generators
 
             if (backgroundItem != null)
             {
-                code.Append($"\n\tset slot (numbers between 0 and {GetRowQuantity() * 9}) of {{_gui}} to ");
+                code.Append($"\n\tset slot (integers between 0 and {GetRowQuantity() * 9}) of {{_gui}} to ");
                 code.Append(backgroundItem.Name.Replace("_", " "));
             }
 

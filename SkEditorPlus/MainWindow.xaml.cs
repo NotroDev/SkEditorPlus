@@ -545,7 +545,7 @@ namespace SkEditorPlus
 
                     Topmost = true;
                     Activate();
-                    await Dispatcher.BeginInvoke(new Action(() => { Topmost = true; }));
+                    await Dispatcher.BeginInvoke(new Action(() => { Topmost = false; }));
                 });
             }
             catch { }

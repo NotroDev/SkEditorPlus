@@ -97,6 +97,9 @@
     <system:String x:Key="GUIGenUseSkriptGuiAddon">Verwende skript-gui</system:String>
     <system:String x:Key="GUIGenEdit">Bearbeiten</system:String>
     <system:String x:Key="GUIGenRemove">Entfernen</system:String>
+    <system:String x:Key="GUIGenCopy">Kopieren</system:String>
+    <system:String x:Key="GUIGenPaste">Einfügen</system:String>
+
 
     <system:String x:Key="ItemSelectorSearch">Suchen...</system:String>
     <system:String x:Key="ItemSelectorItemName">Objektname</system:String>

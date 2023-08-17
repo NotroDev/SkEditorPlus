@@ -94,6 +94,8 @@
     <system:String x:Key="GUIGenUseSkriptGuiAddon">Use skript-gui, me hearties!</system:String>
     <system:String x:Key="GUIGenEdit">Avast! Edit</system:String>
     <system:String x:Key="GUIGenRemove">Walk the plank!</system:String>
+    <system:String x:Key="GUIGenCopy">Aye aye, copy</system:String>
+    <system:String x:Key="GUIGenPaste">Arrr, paste</system:String>
 
     <system:String x:Key="ItemSelectorSearch">Hunt...</system:String>
     <system:String x:Key="ItemSelectorItemName">Booty name</system:String>
