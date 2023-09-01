@@ -10,6 +10,6 @@
         <Setter Property="TextElement.FontFamily" Value="/Fonts/#Cascadia Mono" />
     </Style>
     <Style TargetType="avalonedit:LineNumberMargin">
-        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="Margin" Value="10,0,10,0" />
     </Style>
 </ResourceDictionary>

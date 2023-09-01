@@ -35,7 +35,11 @@ namespace SkEditorPlus.Utilities.Controllers
                 }
                 SaveDialog();
             }
-            catch { }
+            catch (Exception e)
+            {
+                skEditor.ShowError("Looks like something went wrong while attempting to save your file.\nTry again, and if this keeps happening, it might be a good idea to create a backup.\n\nYou could also report it on the Discord server.", "Error");
+                skEditor.ShowError($"Stack trace:\n\n{e.Message}\n{e.StackTrace}", "Error");
+            }
         }
 
         public static void SaveDialog()
@@ -62,8 +66,12 @@ namespace SkEditorPlus.Utilities.Controllers
                     TabController.OnTabChanged();
                 }
             }
-            catch { }
-        }
+			catch (Exception e)
+			{
+				skEditor.ShowError("Looks like something went wrong while attempting to save your file.\nTry again, and if this keeps happening, it might be a good idea to create a backup.\n\nYou could also report it on the Discord server.", "Error");
+				skEditor.ShowError($"Stack trace:\n\n{e.Message}\n{e.StackTrace}", "Error");
+			}
+		}
 
         public static void OpenFile()
         {

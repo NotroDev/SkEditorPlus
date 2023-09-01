@@ -55,25 +55,24 @@ namespace SkEditorPlus.Utilities
         {
             using var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                skEditor.GetMainWindow().fileTreeView.Items.Clear();
-                projectPath = dialog.SelectedPath;
-                System.Windows.Controls.TreeViewItem treeViewItem = new()
-                {
-                    Header = IconBuilder.Build("\ue8b7", Path.GetFileName(dialog.SelectedPath)),
-                    Tag = dialog.SelectedPath,
-                    IsExpanded = true
-                };
-                skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
+            if (result != System.Windows.Forms.DialogResult.OK) return;
 
-                ProjectManager.instance.isFtp = false;
+			skEditor.GetMainWindow().fileTreeView.Items.Clear();
+			projectPath = dialog.SelectedPath;
+			System.Windows.Controls.TreeViewItem treeViewItem = new()
+			{
+				Header = IconBuilder.Build("\ue8b7", Path.GetFileName(dialog.SelectedPath)),
+				Tag = dialog.SelectedPath,
+				IsExpanded = true
+			};
+			skEditor.GetMainWindow().fileTreeView.Items.Add(treeViewItem);
 
-                await Task.Run(() => ProjectManager.instance.AddDirectoriesAndFilesAsync(new DirectoryInfo(dialog.SelectedPath), treeViewItem));
+			ProjectManager.instance.isFtp = false;
 
-                skEditor.GetMainWindow().leftTabControl.SelectedIndex = 1;
-            }
-        }
+			await Task.Run(() => ProjectManager.instance.AddDirectoriesAndFilesAsync(new DirectoryInfo(dialog.SelectedPath), treeViewItem));
+
+			skEditor.GetMainWindow().leftTabControl.SelectedIndex = 1;
+		}
 
 
         public void FormatCode()

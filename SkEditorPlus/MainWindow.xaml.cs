@@ -78,7 +78,7 @@ namespace SkEditorPlus
 
             StateChanged += BackgroundFixer.OnStateChanged;
 
-            InitializeComponent();
+			InitializeComponent();
         }
 
         async void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -127,10 +127,7 @@ namespace SkEditorPlus
                 {
                     await UpdateService.UpdateSyntaxFiles().ContinueWith((t) =>
                     {
-                        Dispatcher.Invoke(() =>
-                        {
-                            IsEnabled = true;
-                        });
+                        Dispatcher.Invoke(() => IsEnabled = true);
                     });
                 }
                 MessageBox.Show(noFilesDownloaded, noFilesTitle, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -190,7 +187,9 @@ namespace SkEditorPlus
             string skEditorFolder = Path.Combine(tempPath, "SkEditorPlus");
             Directory.CreateDirectory(skEditorFolder);
 
-            if (Directory.GetFiles(skEditorFolder).Length > 0)
+            bool isTempEmpty = Directory.GetFiles(skEditorFolder).Length == 0;
+
+			if (!isTempEmpty)
             {
                 foreach (string file in Directory.GetFiles(skEditorFolder))
                 {
@@ -238,24 +237,24 @@ namespace SkEditorPlus
                 }
             }
 
-            else if (startupFile != null)
+			if (startupFile != null)
+			{
+				Dispatcher.Invoke(() =>
+				{
+					FileManager.NewFile();
+					fileManager.GetTextEditor().Load(startupFile);
+					TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
+					currentTabItem.ToolTip = startupFile;
+					currentTabItem.Header = Path.GetFileName(startupFile);
+					TabController.OnTabChanged();
+				});
+			}
+            else if (isTempEmpty)
             {
-                Dispatcher.Invoke(() =>
-                {
-                    FileManager.NewFile();
-                    fileManager.GetTextEditor().Load(startupFile);
-                    TabItem currentTabItem = (TabItem)tabControl.SelectedItem;
-                    currentTabItem.ToolTip = startupFile;
-                    currentTabItem.Header = Path.GetFileName(startupFile);
-                    TabController.OnTabChanged();
-                });
-            }
-            else
-            {
-                Dispatcher.Invoke(() => FileManager.NewFile());
-            }
+				Dispatcher.Invoke(() => FileManager.NewFile());
+			}
 
-            QuickEditsWindow quickEditsWindow = new(skEditor);
+			QuickEditsWindow quickEditsWindow = new(skEditor);
 
             AddonVault.addons.ForEach(addon =>
             {
