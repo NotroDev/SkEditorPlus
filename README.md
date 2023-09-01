@@ -43,6 +43,8 @@
 <br />
 
 
+# 💀 Dead?
+Not at all! SkEditor+ is currently being rewritten to run faster and better, with added support for Linux and macOS. For more details, head over to our Discord server!
 
 # 🐧 Linux?
 I'm sorry, but I can't release SkEditor+ without rewriting it to another framework or language (but it's my future plan!). You can try this, though: [Linux workaround](https://github.com/NotroDev/SkEditorPlus/wiki/Linux-workaround)
