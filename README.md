@@ -1,3 +1,6 @@
+# 💀 This version is not supported - check out the [new SkEditor](https://github.com/SkEditorTeam/SkEditor)!
+
+
 <p align='center'>
   <img src="SkEditor.png?raw=true" width=40% height=40%>
 </p>
